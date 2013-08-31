@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{927152F6-36F7-45C2-BAFE-AB7E68D19507}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EveShopping.Modelo</RootNamespace>
+    <AssemblyName>EveShopping.ModeloCompleto</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0-rc1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0-rc1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\agtAgent.cs" />
+    <Compile Include="Models\agtAgentType.cs" />
+    <Compile Include="Models\agtResearchAgent.cs" />
+    <Compile Include="Models\chrAncestry.cs" />
+    <Compile Include="Models\chrAttribute.cs" />
+    <Compile Include="Models\chrBloodline.cs" />
+    <Compile Include="Models\chrFaction.cs" />
+    <Compile Include="Models\chrRace.cs" />
+    <Compile Include="Models\crpActivity.cs" />
+    <Compile Include="Models\crpNPCCorporation.cs" />
+    <Compile Include="Models\crpNPCCorporationDivision.cs" />
+    <Compile Include="Models\crpNPCCorporationResearchField.cs" />
+    <Compile Include="Models\crpNPCCorporationTrade.cs" />
+    <Compile Include="Models\crpNPCDivision.cs" />
+    <Compile Include="Models\crtCategory.cs" />
+    <Compile Include="Models\crtCertificate.cs" />
+    <Compile Include="Models\crtClass.cs" />
+    <Compile Include="Models\crtRecommendation.cs" />
+    <Compile Include="Models\crtRelationship.cs" />
+    <Compile Include="Models\dgmAttributeCategory.cs" />
+    <Compile Include="Models\dgmAttributeType.cs" />
+    <Compile Include="Models\dgmEffect.cs" />
+    <Compile Include="Models\dgmTypeAttribute.cs" />
+    <Compile Include="Models\dgmTypeEffect.cs" />
+    <Compile Include="Models\eshFitting.cs" />
+    <Compile Include="Models\eshFittingHardware.cs" />
+    <Compile Include="Models\eshShoppingList.cs" />
+    <Compile Include="Models\EveShoppingContext.cs" />
+    <Compile Include="Models\eveUnit.cs" />
+    <Compile Include="Models\invBlueprintType.cs" />
+    <Compile Include="Models\invCategory.cs" />
+    <Compile Include="Models\invContrabandType.cs" />
+    <Compile Include="Models\invControlTowerResource.cs" />
+    <Compile Include="Models\invControlTowerResourcePurpos.cs" />
+    <Compile Include="Models\invFlag.cs" />
+    <Compile Include="Models\invGroup.cs" />
+    <Compile Include="Models\invItem.cs" />
+    <Compile Include="Models\invMarketGroup.cs" />
+    <Compile Include="Models\invMetaGroup.cs" />
+    <Compile Include="Models\invMetaType.cs" />
+    <Compile Include="Models\invName.cs" />
+    <Compile Include="Models\invPosition.cs" />
+    <Compile Include="Models\invType.cs" />
+    <Compile Include="Models\invTypeMaterial.cs" />
+    <Compile Include="Models\invTypeReaction.cs" />
+    <Compile Include="Models\invUniqueName.cs" />
+    <Compile Include="Models\mapCelestialStatistic.cs" />
+    <Compile Include="Models\mapConstellation.cs" />
+    <Compile Include="Models\mapConstellationJump.cs" />
+    <Compile Include="Models\mapDenormalize.cs" />
+    <Compile Include="Models\mapJump.cs" />
+    <Compile Include="Models\mapLandmark.cs" />
+    <Compile Include="Models\mapLocationScene.cs" />
+    <Compile Include="Models\mapLocationWormholeClass.cs" />
+    <Compile Include="Models\Mapping\agtAgentMap.cs" />
+    <Compile Include="Models\Mapping\agtAgentTypeMap.cs" />
+    <Compile Include="Models\Mapping\agtResearchAgentMap.cs" />
+    <Compile Include="Models\Mapping\chrAncestryMap.cs" />
+    <Compile Include="Models\Mapping\chrAttributeMap.cs" />
+    <Compile Include="Models\Mapping\chrBloodlineMap.cs" />
+    <Compile Include="Models\Mapping\chrFactionMap.cs" />
+    <Compile Include="Models\Mapping\chrRaceMap.cs" />
+    <Compile Include="Models\Mapping\crpActivityMap.cs" />
+    <Compile Include="Models\Mapping\crpNPCCorporationDivisionMap.cs" />
+    <Compile Include="Models\Mapping\crpNPCCorporationMap.cs" />
+    <Compile Include="Models\Mapping\crpNPCCorporationResearchFieldMap.cs" />
+    <Compile Include="Models\Mapping\crpNPCCorporationTradeMap.cs" />
+    <Compile Include="Models\Mapping\crpNPCDivisionMap.cs" />
+    <Compile Include="Models\Mapping\crtCategoryMap.cs" />
+    <Compile Include="Models\Mapping\crtCertificateMap.cs" />
+    <Compile Include="Models\Mapping\crtClassMap.cs" />
+    <Compile Include="Models\Mapping\crtRecommendationMap.cs" />
+    <Compile Include="Models\Mapping\crtRelationshipMap.cs" />
+    <Compile Include="Models\Mapping\dgmAttributeCategoryMap.cs" />
+    <Compile Include="Models\Mapping\dgmAttributeTypeMap.cs" />
+    <Compile Include="Models\Mapping\dgmEffectMap.cs" />
+    <Compile Include="Models\Mapping\dgmTypeAttributeMap.cs" />
+    <Compile Include="Models\Mapping\dgmTypeEffectMap.cs" />
+    <Compile Include="Models\Mapping\eshFittingHardwareMap.cs" />
+    <Compile Include="Models\Mapping\eshFittingMap.cs" />
+    <Compile Include="Models\Mapping\eshShoppingListMap.cs" />
+    <Compile Include="Models\Mapping\eveUnitMap.cs" />
+    <Compile Include="Models\Mapping\invBlueprintTypeMap.cs" />
+    <Compile Include="Models\Mapping\invCategoryMap.cs" />
+    <Compile Include="Models\Mapping\invContrabandTypeMap.cs" />
+    <Compile Include="Models\Mapping\invControlTowerResourceMap.cs" />
+    <Compile Include="Models\Mapping\invControlTowerResourcePurposMap.cs" />
+    <Compile Include="Models\Mapping\invFlagMap.cs" />
+    <Compile Include="Models\Mapping\invGroupMap.cs" />
+    <Compile Include="Models\Mapping\invItemMap.cs" />
+    <Compile Include="Models\Mapping\invMarketGroupMap.cs" />
+    <Compile Include="Models\Mapping\invMetaGroupMap.cs" />
+    <Compile Include="Models\Mapping\invMetaTypeMap.cs" />
+    <Compile Include="Models\Mapping\invNameMap.cs" />
+    <Compile Include="Models\Mapping\invPositionMap.cs" />
+    <Compile Include="Models\Mapping\invTypeMap.cs" />
+    <Compile Include="Models\Mapping\invTypeMaterialMap.cs" />
+    <Compile Include="Models\Mapping\invTypeReactionMap.cs" />
+    <Compile Include="Models\Mapping\invUniqueNameMap.cs" />
+    <Compile Include="Models\Mapping\mapCelestialStatisticMap.cs" />
+    <Compile Include="Models\Mapping\mapConstellationJumpMap.cs" />
+    <Compile Include="Models\Mapping\mapConstellationMap.cs" />
+    <Compile Include="Models\Mapping\mapDenormalizeMap.cs" />
+    <Compile Include="Models\Mapping\mapJumpMap.cs" />
+    <Compile Include="Models\Mapping\mapLandmarkMap.cs" />
+    <Compile Include="Models\Mapping\mapLocationSceneMap.cs" />
+    <Compile Include="Models\Mapping\mapLocationWormholeClassMap.cs" />
+    <Compile Include="Models\Mapping\mapRegionJumpMap.cs" />
+    <Compile Include="Models\Mapping\mapRegionMap.cs" />
+    <Compile Include="Models\Mapping\mapSolarSystemJumpMap.cs" />
+    <Compile Include="Models\Mapping\mapSolarSystemMap.cs" />
+    <Compile Include="Models\Mapping\mapUniverseMap.cs" />
+    <Compile Include="Models\Mapping\planetSchematicMap.cs" />
+    <Compile Include="Models\Mapping\planetSchematicsPinMapMap.cs" />
+    <Compile Include="Models\Mapping\planetSchematicsTypeMapMap.cs" />
+    <Compile Include="Models\Mapping\ramActivityMap.cs" />
+    <Compile Include="Models\Mapping\ramAssemblyLineMap.cs" />
+    <Compile Include="Models\Mapping\ramAssemblyLineStationMap.cs" />
+    <Compile Include="Models\Mapping\ramAssemblyLineTypeDetailPerCategoryMap.cs" />
+    <Compile Include="Models\Mapping\ramAssemblyLineTypeDetailPerGroupMap.cs" />
+    <Compile Include="Models\Mapping\ramAssemblyLineTypeMap.cs" />
+    <Compile Include="Models\Mapping\ramInstallationTypeContentMap.cs" />
+    <Compile Include="Models\Mapping\ramTypeRequirementMap.cs" />
+    <Compile Include="Models\Mapping\staOperationMap.cs" />
+    <Compile Include="Models\Mapping\staOperationServiceMap.cs" />
+    <Compile Include="Models\Mapping\staServiceMap.cs" />
+    <Compile Include="Models\Mapping\staStationMap.cs" />
+    <Compile Include="Models\Mapping\staStationTypeMap.cs" />
+    <Compile Include="Models\Mapping\translationTableMap.cs" />
+    <Compile Include="Models\Mapping\trnTranslationColumnMap.cs" />
+    <Compile Include="Models\Mapping\trnTranslationLanguageMap.cs" />
+    <Compile Include="Models\Mapping\trnTranslationMap.cs" />
+    <Compile Include="Models\Mapping\warCombatZoneMap.cs" />
+    <Compile Include="Models\Mapping\warCombatZoneSystemMap.cs" />
+    <Compile Include="Models\mapRegion.cs" />
+    <Compile Include="Models\mapRegionJump.cs" />
+    <Compile Include="Models\mapSolarSystem.cs" />
+    <Compile Include="Models\mapSolarSystemJump.cs" />
+    <Compile Include="Models\mapUniverse.cs" />
+    <Compile Include="Models\planetSchematic.cs" />
+    <Compile Include="Models\planetSchematicsPinMap.cs" />
+    <Compile Include="Models\planetSchematicsTypeMap.cs" />
+    <Compile Include="Models\ramActivity.cs" />
+    <Compile Include="Models\ramAssemblyLine.cs" />
+    <Compile Include="Models\ramAssemblyLineStation.cs" />
+    <Compile Include="Models\ramAssemblyLineType.cs" />
+    <Compile Include="Models\ramAssemblyLineTypeDetailPerCategory.cs" />
+    <Compile Include="Models\ramAssemblyLineTypeDetailPerGroup.cs" />
+    <Compile Include="Models\ramInstallationTypeContent.cs" />
+    <Compile Include="Models\ramTypeRequirement.cs" />
+    <Compile Include="Models\staOperation.cs" />
+    <Compile Include="Models\staOperationService.cs" />
+    <Compile Include="Models\staService.cs" />
+    <Compile Include="Models\staStation.cs" />
+    <Compile Include="Models\staStationType.cs" />
+    <Compile Include="Models\translationTable.cs" />
+    <Compile Include="Models\trnTranslation.cs" />
+    <Compile Include="Models\trnTranslationColumn.cs" />
+    <Compile Include="Models\trnTranslationLanguage.cs" />
+    <Compile Include="Models\warCombatZone.cs" />
+    <Compile Include="Models\warCombatZoneSystem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

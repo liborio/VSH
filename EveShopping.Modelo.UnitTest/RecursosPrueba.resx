@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="EveXmlTresNaves" xml:space="preserve">
+    <value>&lt;?xml version="1.0" ?&gt;
+	&lt;fittings&gt;
+		&lt;fitting name="breacher - dual td v1.3"&gt;
+			&lt;description value=""/&gt;
+			&lt;shipType value="Breacher"/&gt;
+			&lt;hardware slot="hi slot 0" type="Light Missile Launcher II"/&gt;
+			&lt;hardware slot="hi slot 1" type="Light Missile Launcher II"/&gt;
+			&lt;hardware slot="hi slot 2" type="Light Missile Launcher II"/&gt;
+			&lt;hardware qty="2" slot="drone bay" type="Warrior II"/&gt;
+			&lt;hardware slot="low slot 0" type="Nanofiber Internal Structure II"/&gt;
+			&lt;hardware slot="low slot 1" type="Nanofiber Internal Structure II"/&gt;
+			&lt;hardware qty="450" slot="cargo" type="Mjolnir Fury Light Missile"/&gt;
+			&lt;hardware slot="med slot 1" type="Warp Disruptor II"/&gt;
+			&lt;hardware slot="med slot 2" type="Balmer Series Tracking Disruptor I"/&gt;
+			&lt;hardware slot="med slot 3" type="Balmer Series Tracking Disruptor I"/&gt;
+			&lt;hardware slot="med slot 0" type="Limited 1MN Microwarpdrive I"/&gt;
+			&lt;hardware slot="low slot 2" type="Ballistic Control System II"/&gt;
+			&lt;hardware qty="450" slot="cargo" type="Scourge Fury Light Missile"/&gt;
+			&lt;hardware qty="450" slot="cargo" type="Nova Fury Light Missile"/&gt;
+			&lt;hardware qty="450" slot="cargo" type="Inferno Fury Light Missile"/&gt;
+			&lt;hardware qty="450" slot="cargo" type="Caldari Navy Scourge Light Missile"/&gt;
+			&lt;hardware qty="450" slot="cargo" type="Caldari Navy Inferno Light Missile"/&gt;
+			&lt;hardware qty="450" slot="cargo" type="Caldari Navy Nova Light Missile"/&gt;
+			&lt;hardware qty="450" slot="cargo" type="Caldari Navy Mjolnir Light Missile"/&gt;
+			&lt;hardware qty="25" slot="cargo" type="Nanite Repair Paste"/&gt;
+			&lt;hardware qty="2" slot="cargo" type="Optimal Range Disruption Script"/&gt;
+			&lt;hardware qty="2" slot="cargo" type="Tracking Speed Disruption Script"/&gt;
+			&lt;hardware slot="rig slot 0" type="Small Polycarbon Engine Housing I"/&gt;
+			&lt;hardware slot="rig slot 1" type="Small Capacitor Control Circuit I"/&gt;
+			&lt;hardware slot="rig slot 2" type="Small Capacitor Control Circuit I"/&gt;
+		&lt;/fitting&gt;
+		&lt;fitting name="cierzo"&gt;
+			&lt;description value=""/&gt;
+			&lt;shipType value="Hurricane"/&gt;
+			&lt;hardware slot="low slot 4" type="Gyrostabilizer II"/&gt;
+			&lt;hardware slot="low slot 5" type="Gyrostabilizer II"/&gt;
+			&lt;hardware slot="low slot 0" type="Damage Control II"/&gt;
+			&lt;hardware qty="6" slot="drone bay" type="Warrior II"/&gt;
+			&lt;hardware slot="hi slot 0" type="425mm AutoCannon II"/&gt;
+			&lt;hardware slot="hi slot 1" type="425mm AutoCannon II"/&gt;
+			&lt;hardware slot="hi slot 2" type="425mm AutoCannon II"/&gt;
+			&lt;hardware slot="hi slot 3" type="425mm AutoCannon II"/&gt;
+			&lt;hardware slot="hi slot 4" type="425mm AutoCannon II"/&gt;
+			&lt;hardware slot="hi slot 5" type="425mm AutoCannon II"/&gt;
+			&lt;hardware slot="med slot 1" type="X5 Prototype Engine Enervator"/&gt;
+			&lt;hardware slot="med slot 2" type="X5 Prototype Engine Enervator"/&gt;
+			&lt;hardware slot="hi slot 7" type="Small Unstable Power Fluctuator I"/&gt;
+			&lt;hardware slot="med slot 3" type="Faint Epsilon Warp Scrambler I"/&gt;
+			&lt;hardware slot="med slot 0" type="Experimental 10MN Microwarpdrive I"/&gt;
+			&lt;hardware slot="low slot 2" type="Energized Adaptive Nano Membrane II"/&gt;
+			&lt;hardware slot="low slot 3" type="Energized Adaptive Nano Membrane II"/&gt;
+			&lt;hardware slot="low slot 1" type="1600mm Reinforced Rolled Tungsten Plates I"/&gt;
+			&lt;hardware slot="hi slot 6" type="Medium Rudimentary Energy Destabilizer I"/&gt;
+			&lt;hardware slot="rig slot 0" type="Medium Trimark Armor Pump I"/&gt;
+			&lt;hardware slot="rig slot 1" type="Medium Trimark Armor Pump I"/&gt;
+			&lt;hardware slot="rig slot 2" type="Medium Trimark Armor Pump I"/&gt;
+		&lt;/fitting&gt;
+		&lt;fitting name="the thing"&gt;
+			&lt;description value=""/&gt;
+			&lt;shipType value="Thrasher"/&gt;
+			&lt;hardware slot="low slot 1" type="Gyrostabilizer II"/&gt;
+			&lt;hardware slot="low slot 0" type="Nanofiber Internal Structure II"/&gt;
+			&lt;hardware slot="hi slot 0" type="250mm Light Artillery Cannon II"/&gt;
+			&lt;hardware slot="hi slot 1" type="250mm Light Artillery Cannon II"/&gt;
+			&lt;hardware slot="hi slot 2" type="250mm Light Artillery Cannon II"/&gt;
+			&lt;hardware slot="hi slot 3" type="250mm Light Artillery Cannon II"/&gt;
+			&lt;hardware slot="hi slot 5" type="250mm Light Artillery Cannon II"/&gt;
+			&lt;hardware slot="hi slot 6" type="250mm Light Artillery Cannon II"/&gt;
+			&lt;hardware slot="hi slot 7" type="250mm Light Artillery Cannon II"/&gt;
+			&lt;hardware slot="med slot 2" type="Warp Disruptor II"/&gt;
+			&lt;hardware slot="med slot 1" type="DDO Photometry Tracking Disruptor I"/&gt;
+			&lt;hardware slot="med slot 0" type="Limited 1MN Microwarpdrive I"/&gt;
+			&lt;hardware qty="800" slot="cargo" type="Republic Fleet EMP S"/&gt;
+			&lt;hardware qty="900" slot="cargo" type="Republic Fleet Fusion S"/&gt;
+			&lt;hardware qty="900" slot="cargo" type="Republic Fleet Phased Plasma S"/&gt;
+			&lt;hardware slot="hi slot 4" type="Salvager I"/&gt;
+			&lt;hardware qty="400" slot="cargo" type="Republic Fleet Carbonized Lead S"/&gt;
+			&lt;hardware qty="1" slot="cargo" type="Optimal Range Disruption Script"/&gt;
+			&lt;hardware qty="1" slot="cargo" type="Tracking Speed Disruption Script"/&gt;
+			&lt;hardware slot="rig slot 2" type="Small Polycarbon Engine Housing I"/&gt;
+			&lt;hardware slot="rig slot 1" type="Small Semiconductor Memory Cell I"/&gt;
+			&lt;hardware slot="rig slot 0" type="Small Projectile Collision Accelerator I"/&gt;
+		&lt;/fitting&gt;
+	&lt;/fittings&gt;</value>
+  </data>
+  <data name="EveXmlUnaNaveNoRoot" xml:space="preserve">
+    <value>&lt;fitting name="breacher - dual td v1.3"&gt;
+			&lt;description value=""/&gt;
+			&lt;shipType value="Breacher"/&gt;
+			&lt;hardware slot="hi slot 0" type="Light Missile Launcher II"/&gt;
+			&lt;hardware slot="hi slot 1" type="Light Missile Launcher II"/&gt;
+			&lt;hardware slot="hi slot 2" type="Light Missile Launcher II"/&gt;
+			&lt;hardware qty="2" slot="drone bay" type="Warrior II"/&gt;
+			&lt;hardware slot="low slot 0" type="Nanofiber Internal Structure II"/&gt;
+			&lt;hardware slot="low slot 1" type="Nanofiber Internal Structure II"/&gt;
+			&lt;hardware qty="450" slot="cargo" type="Mjolnir Fury Light Missile"/&gt;
+			&lt;hardware slot="med slot 1" type="Warp Disruptor II"/&gt;
+			&lt;hardware slot="med slot 2" type="Balmer Series Tracking Disruptor I"/&gt;
+			&lt;hardware slot="med slot 3" type="Balmer Series Tracking Disruptor I"/&gt;
+			&lt;hardware slot="med slot 0" type="Limited 1MN Microwarpdrive I"/&gt;
+			&lt;hardware slot="low slot 2" type="Ballistic Control System II"/&gt;
+			&lt;hardware qty="450" slot="cargo" type="Scourge Fury Light Missile"/&gt;
+			&lt;hardware qty="450" slot="cargo" type="Nova Fury Light Missile"/&gt;
+			&lt;hardware qty="450" slot="cargo" type="Inferno Fury Light Missile"/&gt;
+			&lt;hardware qty="450" slot="cargo" type="Caldari Navy Scourge Light Missile"/&gt;
+			&lt;hardware qty="450" slot="cargo" type="Caldari Navy Inferno Light Missile"/&gt;
+			&lt;hardware qty="450" slot="cargo" type="Caldari Navy Nova Light Missile"/&gt;
+			&lt;hardware qty="450" slot="cargo" type="Caldari Navy Mjolnir Light Missile"/&gt;
+			&lt;hardware qty="25" slot="cargo" type="Nanite Repair Paste"/&gt;
+			&lt;hardware qty="2" slot="cargo" type="Optimal Range Disruption Script"/&gt;
+			&lt;hardware qty="2" slot="cargo" type="Tracking Speed Disruption Script"/&gt;
+			&lt;hardware slot="rig slot 0" type="Small Polycarbon Engine Housing I"/&gt;
+			&lt;hardware slot="rig slot 1" type="Small Capacitor Control Circuit I"/&gt;
+			&lt;hardware slot="rig slot 2" type="Small Capacitor Control Circuit I"/&gt;
+		&lt;/fitting&gt;</value>
+  </data>
+</root>
