@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EveShopping.ModeloCompleto"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EveShopping.Repositorios", "EveShopping.Repositorios\EveShopping.Repositorios.csproj", "{EB30C6A5-04CA-406E-BB1F-9FAD927B3F89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EveShopping.Tests", "EveShopping.Tests\EveShopping.Tests.csproj", "{D0B0B9E7-254E-4292-9C04-D0BC924AB4B8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,10 +37,6 @@ Global
 		{EB30C6A5-04CA-406E-BB1F-9FAD927B3F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB30C6A5-04CA-406E-BB1F-9FAD927B3F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB30C6A5-04CA-406E-BB1F-9FAD927B3F89}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D0B0B9E7-254E-4292-9C04-D0BC924AB4B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D0B0B9E7-254E-4292-9C04-D0BC924AB4B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D0B0B9E7-254E-4292-9C04-D0BC924AB4B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D0B0B9E7-254E-4292-9C04-D0BC924AB4B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
