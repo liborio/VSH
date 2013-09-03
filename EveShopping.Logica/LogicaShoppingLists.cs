@@ -1,6 +1,7 @@
 ﻿using EveShopping.Logica.Conversion;
 using EveShopping.Modelo;
-using EveShopping.Modelo.Models;
+using EveShopping.Modelo;
+using EveShopping.Modelo.EntidadesAux;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +12,14 @@ namespace EveShopping.Logica
 {
     public class LogicaShoppingLists
     {
-        public IEnumerable<eshFitting> ObtenerListaFits(string fitOriginal, TipoFormatoFitOriginal tipo){
+        public IEnumerable<FittingAnalyzed> ObtenerListaFits(string fitOriginal, Enumerados.TipoFormatoFitOriginal tipo){
             IConversorFit conv = null;
             switch (tipo)
             {
-                case TipoFormatoFitOriginal.EFT:
+                case Enumerados.TipoFormatoFitOriginal.EFT:
                     throw new NotImplementedException();
                     break;
-                case TipoFormatoFitOriginal.EveXml:
+                case Enumerados.TipoFormatoFitOriginal.EveXml:
                 default:
                     conv = new ConversorEveXmlToFitList();
                     break;

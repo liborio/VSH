@@ -44,16 +44,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntidadesAux\FittingAnalyzed.cs" />
+    <Compile Include="EntidadesAux\FittingHardwareAnalyzed.cs" />
     <Compile Include="Enumerados.cs" />
     <Compile Include="eshFitting.cs" />
     <Compile Include="eshFittingHardware.cs" />
+    <Compile Include="eshFittingSlot.cs" />
     <Compile Include="eshShoppingList.cs" />
     <Compile Include="EveShoppingContext.cs" />
     <Compile Include="Mapping\eshFittingHardwareMap.cs" />
     <Compile Include="Mapping\eshFittingMap.cs" />
+    <Compile Include="Mapping\eshFittingSlotMap.cs" />
     <Compile Include="Mapping\eshShoppingListMap.cs" />
     <Compile Include="invType.cs" />
     <Compile Include="Mapping\invTypeMap.cs" />
+    <Compile Include="Parciales\eshFittingHardware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

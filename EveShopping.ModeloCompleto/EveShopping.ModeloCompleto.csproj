@@ -73,6 +73,7 @@
     <Compile Include="Models\dgmTypeEffect.cs" />
     <Compile Include="Models\eshFitting.cs" />
     <Compile Include="Models\eshFittingHardware.cs" />
+    <Compile Include="Models\eshFittingSlot.cs" />
     <Compile Include="Models\eshShoppingList.cs" />
     <Compile Include="Models\EveShoppingContext.cs" />
     <Compile Include="Models\eveUnit.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Models\Mapping\dgmTypeEffectMap.cs" />
     <Compile Include="Models\Mapping\eshFittingHardwareMap.cs" />
     <Compile Include="Models\Mapping\eshFittingMap.cs" />
+    <Compile Include="Models\Mapping\eshFittingSlotMap.cs" />
     <Compile Include="Models\Mapping\eshShoppingListMap.cs" />
     <Compile Include="Models\Mapping\eveUnitMap.cs" />
     <Compile Include="Models\Mapping\invBlueprintTypeMap.cs" />
@@ -175,6 +177,7 @@
     <Compile Include="Models\Mapping\staServiceMap.cs" />
     <Compile Include="Models\Mapping\staStationMap.cs" />
     <Compile Include="Models\Mapping\staStationTypeMap.cs" />
+    <Compile Include="Models\Mapping\sysdiagramMap.cs" />
     <Compile Include="Models\Mapping\translationTableMap.cs" />
     <Compile Include="Models\Mapping\trnTranslationColumnMap.cs" />
     <Compile Include="Models\Mapping\trnTranslationLanguageMap.cs" />
@@ -202,6 +205,7 @@
     <Compile Include="Models\staService.cs" />
     <Compile Include="Models\staStation.cs" />
     <Compile Include="Models\staStationType.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\translationTable.cs" />
     <Compile Include="Models\trnTranslation.cs" />
     <Compile Include="Models\trnTranslationColumn.cs" />

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
-namespace EveShopping.Modelo.Models.Mapping
+namespace EveShopping.Modelo.Mapping
 {
     public class eshFittingMap : EntityTypeConfiguration<eshFitting>
     {
@@ -23,15 +23,19 @@ namespace EveShopping.Modelo.Models.Mapping
             this.Property(t => t.name).HasColumnName("name");
             this.Property(t => t.shipTypeID).HasColumnName("shipTypeID");
             this.Property(t => t.description).HasColumnName("description");
+            this.Property(t => t.slotID).HasColumnName("slotID");
             this.Property(t => t.shoppingListID).HasColumnName("shoppingListID");
 
             // Relationships
-            this.HasOptional(t => t.invType)
+            this.HasRequired(t => t.eshFittingSlot)
                 .WithMany(t => t.eshFittings)
-                .HasForeignKey(d => d.shipTypeID);
+                .HasForeignKey(d => d.slotID);
             this.HasRequired(t => t.eshShoppingList)
                 .WithMany(t => t.eshFittings)
                 .HasForeignKey(d => d.shoppingListID);
+            this.HasOptional(t => t.invType)
+                .WithMany(t => t.eshFittings)
+                .HasForeignKey(d => d.shipTypeID);
 
         }
     }

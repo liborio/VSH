@@ -1,4 +1,4 @@
-﻿using EveShopping.Modelo.Models;
+﻿using EveShopping.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +19,10 @@ namespace EveShopping.Repositorios
 
         public RepositorioBase(EveShoppingContext _contexto)
         {
+            if (_contexto == null)
+            {
+                _contexto = new EveShoppingContext();   
+            }
             Contexto = _contexto;
         }
 

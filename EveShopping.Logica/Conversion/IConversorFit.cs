@@ -1,4 +1,5 @@
-﻿using EveShopping.Modelo.Models;
+﻿using EveShopping.Modelo;
+using EveShopping.Modelo.EntidadesAux;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,6 @@ namespace EveShopping.Logica.Conversion
     /// </summary>
     public interface IConversorFit
     {
-        IEnumerable<eshFitting> ToFitList(string fitExterna);
+        IEnumerable<FittingAnalyzed> ToFitList(string fitExterna);
     }
 }

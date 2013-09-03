@@ -1,8 +1,8 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using EveShopping.Modelo.Models.Mapping;
+using EveShopping.Modelo.Mapping;
 
-namespace EveShopping.Modelo.Models
+namespace EveShopping.Modelo
 {
     public partial class EveShoppingContext : DbContext
     {
@@ -42,6 +42,7 @@ namespace EveShopping.Modelo.Models
         public DbSet<dgmTypeEffect> dgmTypeEffects { get; set; }
         public DbSet<eshFittingHardware> eshFittingHardwares { get; set; }
         public DbSet<eshFitting> eshFittings { get; set; }
+        public DbSet<eshFittingSlot> eshFittingSlots { get; set; }
         public DbSet<eshShoppingList> eshShoppingLists { get; set; }
         public DbSet<eveUnit> eveUnits { get; set; }
         public DbSet<invBlueprintType> invBlueprintTypes { get; set; }
@@ -90,6 +91,7 @@ namespace EveShopping.Modelo.Models
         public DbSet<staService> staServices { get; set; }
         public DbSet<staStation> staStations { get; set; }
         public DbSet<staStationType> staStationTypes { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<translationTable> translationTables { get; set; }
         public DbSet<trnTranslationColumn> trnTranslationColumns { get; set; }
         public DbSet<trnTranslationLanguage> trnTranslationLanguages { get; set; }
@@ -125,6 +127,7 @@ namespace EveShopping.Modelo.Models
             modelBuilder.Configurations.Add(new dgmTypeEffectMap());
             modelBuilder.Configurations.Add(new eshFittingHardwareMap());
             modelBuilder.Configurations.Add(new eshFittingMap());
+            modelBuilder.Configurations.Add(new eshFittingSlotMap());
             modelBuilder.Configurations.Add(new eshShoppingListMap());
             modelBuilder.Configurations.Add(new eveUnitMap());
             modelBuilder.Configurations.Add(new invBlueprintTypeMap());
@@ -173,6 +176,7 @@ namespace EveShopping.Modelo.Models
             modelBuilder.Configurations.Add(new staServiceMap());
             modelBuilder.Configurations.Add(new staStationMap());
             modelBuilder.Configurations.Add(new staStationTypeMap());
+            modelBuilder.Configurations.Add(new sysdiagramMap());
             modelBuilder.Configurations.Add(new translationTableMap());
             modelBuilder.Configurations.Add(new trnTranslationColumnMap());
             modelBuilder.Configurations.Add(new trnTranslationLanguageMap());

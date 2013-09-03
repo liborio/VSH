@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "New";
+}
+
+<div id="list-main">
+    <div class="inside-section">
+        <h2>Your fits</h2>
+    </div>
+</div>
+
+@section izquierda{
+    <div id="list-left-menu">
+        <div class="inside-section">
+            <h2>Import fits</h2>    
+            @using (Ajax.BeginForm("AnalyzeRawFit", new AjaxOptions { UpdateTargetId = "fitsAnalysed" }))
+            {
+            <form id="payment"  >
+                <fieldset>
+                        <legend>Raw fit</legend>
+                        <textarea id="rawFit" name="rawFit" rows="5" placeholder="Paste here the fit that you want to import from EVE or supported fitting tools" required></textarea>
+                        <button type="submit" class="buttonYellow" value="Analyze" />
+                </fieldset>
+            </form>
+            }
+            <div id="fitsAnalysed">
+            </div>
+        </div>
+        </div>
+    }

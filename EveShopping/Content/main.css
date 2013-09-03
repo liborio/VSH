@@ -1,0 +1,599 @@
+/* ==========================================================================
+   HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+body {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+img {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.chromeframe {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* ===== Initializr Styles ==================================================
+   Author: Jonathan Verrecchia - verekia.com/initializr/responsive-template
+   ========================================================================== */
+
+body {
+    font: 16px/26px Helvetica, Helvetica Neue, Arial;
+}
+
+.wrapper {
+    width: 90%;
+    margin: 0 5%;
+}
+
+/* ===================
+    ALL: Orange Theme
+   =================== */
+
+.header-container {
+    border-bottom: 20px solid #e44d26;
+}
+
+.footer-container,
+.main aside {
+    border-top: 20px solid #e44d26;
+}
+
+.header-container,
+.footer-container,
+.main aside {
+    background: #f16529;
+}
+
+.title {
+    color: white;
+}
+
+/* ==============
+    MOBILE: Menu
+   ============== */
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    display: block;
+    margin-bottom: 10px;
+    padding: 15px 0;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    background: #e44d26;
+}
+
+    nav a:hover,
+    nav a:visited {
+        color: white;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+/* ==============
+    MOBILE: Main
+   ============== */
+
+.main {
+    padding: 30px 1em;
+    background-color: #1C1C1C;
+    color: white;
+}
+
+    .main article h1 {
+        font-size: 2em;
+    }
+
+    .main aside {
+        color: white;
+        padding: 0px 5% 10px;
+    }
+
+.footer-container footer {
+    color: white;
+    padding: 20px 0;
+}
+
+/* ===============
+    ALL: IE Fixes
+   =============== */
+
+.ie7 .title {
+    padding-top: 20px;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 480px) {
+
+    /* ====================
+    INTERMEDIATE: Menu
+   ==================== */
+
+    nav a {
+        float: left;
+        width: 27%;
+        margin: 0 1.7%;
+        padding: 25px 2%;
+        margin-bottom: 0;
+    }
+
+    nav li:first-child a {
+        margin-left: 0;
+    }
+
+    nav li:last-child a {
+        margin-right: 0;
+    }
+
+    /* ========================
+    INTERMEDIATE: IE Fixes
+   ======================== */
+
+    nav ul li {
+        display: inline;
+    }
+
+    .oldie nav a {
+        margin: 0 0.7%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+    /* ====================
+    WIDE: CSS3 Effects
+   ==================== */
+
+    .header-container,
+    .main aside {
+        -webkit-box-shadow: 0 5px 10px #aaa;
+        -moz-box-shadow: 0 5px 10px #aaa;
+        box-shadow: 0 5px 10px #aaa;
+    }
+
+    /* ============
+    WIDE: Menu
+   ============ */
+
+    .title {
+        float: left;
+    }
+
+    nav {
+        float: right;
+        width: 38%;
+    }
+
+    /* ============
+    WIDE: Main
+   ============ */
+
+    .main article {
+        float: left;
+        width: 57%;
+    }
+
+    .main aside {
+        float: right;
+        width: 28%;
+    }
+}
+
+@media only screen and (min-width: 1140px) {
+
+    /* ===============
+    Maximal Width
+   =============== */
+
+    .wrapper {
+        width: 1026px; /* 1140px - 10% for margins */
+        margin: 0 auto;
+    }
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    *text-indent: -9999px;
+}
+
+    .ir:before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 150%;
+    }
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+    .visuallyhidden.focusable:active,
+    .visuallyhidden.focusable:focus {
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        width: auto;
+    }
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+        a[href]:after {
+            content: " (" attr(href) ")";
+        }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+
+
+/* ========== mios ==============================    */
+
+input {
+    padding: 5px;
+    font-size: 15px;
+    text-shadow: 0px 1px 0px #fff;
+    outline: none;
+    background: -webkit-gradient(linear, left top, left bottom, from(#bcbcbe), to(#fff));
+    background: -moz-linear-gradient(top, #bcbcbe, #fff);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #717171;
+    -webkit-box-shadow: 1px 1px 0px #1C1C1C;
+    -moz-box-shadow: 1px 1px 0px #1C1C1C;
+    box-shadow: 1px 1px 0px #1C1C1C;
+}
+
+    input:focus {
+        -webkit-box-shadow: 0px 0px 5px #F16529;
+        -moz-box-shadow: 0px 0px 5px #F16529;
+        box-shadow: 0px 0px 5px #F16529;
+    }
+
+textarea {
+    padding: 5px;
+    font-size: 15px;
+    text-shadow: 0px 1px 0px #fff;
+    outline: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    -webkit-transition: .3s ease-in-out;
+    -moz-transition: .3s ease-in-out;
+}
+
+    textarea:focus {
+        border: 1px solid #fafafa;
+        -webkit-box-shadow: 0px 0px 6px #F16529;
+        -moz-box-shadow: 0px 0px 5px #F16529;
+        box-shadow: 0px 0px 5px #F16529;
+    }
+
+#list-left-menu, #list-main {
+    min-height: 400px;
+    float: left;
+    background-color: #272727;
+}
+
+#list-left-menu {
+    width: 39%;
+    margin-right: 2%;
+}
+
+#list-main {
+    width: 59%;
+}
+
+div.inside-section {
+    margin: 3px 1em 3px;
+}
+
+::-webkit-input-placeholder {
+    color: #999;
+    font-size: 90%;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: #999;
+    font-size: 90%;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+    color: #999;
+    font-size: 90%;
+}
+
+:-ms-input-placeholder {
+    color: #999;
+    font-size: 90%;
+}
+
+form {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 1%;
+    width: 98%;
+}
+
+    form fieldset {
+        padding: 1% 2px 1%;
+    }
+
+        form fieldset:last-of-type {
+            margin-bottom: 0;
+        }
+
+    form legend {
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+
+    form fieldset input, form fieldset textarea {
+        width: 95%;
+    }
+
+.buttonYellow {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9) );
+	background:-moz-linear-gradient( center top, #f9f9f9 5%, #e9e9e9 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9');
+	background-color:#f9f9f9;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:30px;
+	line-height:20px;
+	width:auto;
+    padding-left: 1em;
+    padding-right: 1em;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #ffffff;
+}
+.buttonYellow:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9) );
+	background:-moz-linear-gradient( center top, #e9e9e9 5%, #f9f9f9 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9');
+	background-color:#e9e9e9;
+    border-color:#F16529;
+    color:black;
+}
+    .buttonYellow:active {
+        position: relative;
+        top: 1px;
+    }
+
+
+
+table {
+    font-size: 90%;
+    width:100%;
+    border: 1px solid #1C1C1C;
+    border-collapse: collapse;
+    
+}
+
+td {
+    border-style: solid none solid none;
+    border-width: 1px;
+    border-color: #1C1C1C;
+    padding: 1px 4px;
+    margin: 0;
+}
+
+tr {
+    border: none;
+    width:100%;
+}
+
+tr.fila-par {
+    background-color: #3A3A3A;
+}
+
+tr.fila-impar {
+    background-color: #272727;
+}
+
+div.subs-wrapper {
+    margin-bottom:1em;
+    border: solid 1px #D3700C;
+}
+
+div.subs-wrapper-head {
+    background-color:#D3700C;
+    border: solid 1px #D3700C;
+    padding: 2px 1em 2px;
+}
+
+
+@media (max-width: 600px) {
+    #list-left-menu, #list-main
+
+{
+    width: 100%;
+    margin-right: 0;
+    margin-top: 5px;
+}
+}

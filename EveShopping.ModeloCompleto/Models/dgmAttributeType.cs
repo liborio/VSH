@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace EveShopping.Modelo.Models
+namespace EveShopping.Modelo
 {
     public partial class dgmAttributeType
     {

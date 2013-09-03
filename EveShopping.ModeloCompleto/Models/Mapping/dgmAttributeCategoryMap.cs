@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
-namespace EveShopping.Modelo.Models.Mapping
+namespace EveShopping.Modelo.Mapping
 {
     public class dgmAttributeCategoryMap : EntityTypeConfiguration<dgmAttributeCategory>
     {
