@@ -1,8 +1,9 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using EveShopping.Modelo.Mapping;
+using EveShopping.Modelo.Models.Mapping;
+using EveShopping.Modelo.Models;
 
-namespace EveShopping.Modelo
+namespace EveShopping.Modelo.Models
 {
     public partial class EveShoppingContext : DbContext
     {

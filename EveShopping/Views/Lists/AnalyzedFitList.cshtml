@@ -2,7 +2,7 @@
 
 @foreach (var item in this.Model)
 {
-    @using (Ajax.BeginForm("SaveFitAsValid", new AjaxOptions { UpdateTargetId = "fits-valid" }))
+    using (Ajax.BeginForm("SaveFitAsValid", new AjaxOptions { UpdateTargetId = "fits-valid" }))
     {
         <div class="subs-wrapper">
             <div class="subs-wrapper-head">

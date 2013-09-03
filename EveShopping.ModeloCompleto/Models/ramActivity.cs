@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace EveShopping.Modelo
+namespace EveShopping.Modelo.Models
 {
     public partial class ramActivity
     {

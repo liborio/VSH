@@ -75,6 +75,7 @@
     <Compile Include="Models\eshFittingHardware.cs" />
     <Compile Include="Models\eshFittingSlot.cs" />
     <Compile Include="Models\eshShoppingList.cs" />
+    <Compile Include="Models\eshShoppingListFitting.cs" />
     <Compile Include="Models\EveShoppingContext.cs" />
     <Compile Include="Models\eveUnit.cs" />
     <Compile Include="Models\invBlueprintType.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Models\Mapping\eshFittingHardwareMap.cs" />
     <Compile Include="Models\Mapping\eshFittingMap.cs" />
     <Compile Include="Models\Mapping\eshFittingSlotMap.cs" />
+    <Compile Include="Models\Mapping\eshShoppingListFittingMap.cs" />
     <Compile Include="Models\Mapping\eshShoppingListMap.cs" />
     <Compile Include="Models\Mapping\eveUnitMap.cs" />
     <Compile Include="Models\Mapping\invBlueprintTypeMap.cs" />
@@ -216,6 +218,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="CodeTemplates\ReverseEngineerCodeFirst\Context.tt" />
+    <None Include="CodeTemplates\ReverseEngineerCodeFirst\Entity.tt" />
+    <None Include="CodeTemplates\ReverseEngineerCodeFirst\Mapping.tt" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

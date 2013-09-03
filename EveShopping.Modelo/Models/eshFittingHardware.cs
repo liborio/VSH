@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace EveShopping.Modelo
+namespace EveShopping.Modelo.Models
 {
     public partial class eshFittingHardware
     {
@@ -10,7 +10,6 @@ namespace EveShopping.Modelo
         public int typeID { get; set; }
         public int slotID { get; set; }
         public short positionInSlot { get; set; }
-        public short quantity { get; set; }
         public virtual eshFitting eshFitting { get; set; }
         public virtual eshFittingSlot eshFittingSlot { get; set; }
     }

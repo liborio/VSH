@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
-namespace EveShopping.Modelo.Mapping
+namespace EveShopping.Modelo.Models.Mapping
 {
     public class ramInstallationTypeContentMap : EntityTypeConfiguration<ramInstallationTypeContent>
     {

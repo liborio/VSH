@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
-namespace EveShopping.Modelo.Mapping
+namespace EveShopping.Modelo.Models.Mapping
 {
     public class eshFittingHardwareMap : EntityTypeConfiguration<eshFittingHardware>
     {
@@ -18,7 +18,6 @@ namespace EveShopping.Modelo.Mapping
             this.Property(t => t.typeID).HasColumnName("typeID");
             this.Property(t => t.slotID).HasColumnName("slotID");
             this.Property(t => t.positionInSlot).HasColumnName("positionInSlot");
-            this.Property(t => t.quantity).HasColumnName("quantity");
 
             // Relationships
             this.HasRequired(t => t.eshFitting)

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EveShopping.Modelo
+namespace EveShopping.Modelo.Models
 {
     public partial class eshFittingHardware
     {

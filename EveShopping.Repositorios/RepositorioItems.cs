@@ -1,4 +1,4 @@
-﻿using EveShopping.Modelo;
+﻿using EveShopping.Modelo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

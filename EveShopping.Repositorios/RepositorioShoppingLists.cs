@@ -1,4 +1,5 @@
 ﻿using EveShopping.Modelo;
+using EveShopping.Modelo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace EveShopping.Repositorios
 {
     public class RepositorioShoppingLists : RepositorioBase
     {
-        public RepositorioShoppingLists(EveShoppingContext contexto = null)
+        public RepositorioShoppingLists(EveShopping.Modelo.Models.EveShoppingContext contexto = null)
             : base(contexto)
         {
         }

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
-namespace EveShopping.Modelo.Mapping
+namespace EveShopping.Modelo.Models.Mapping
 {
     public class eshShoppingListMap : EntityTypeConfiguration<eshShoppingList>
     {
@@ -27,6 +27,8 @@ namespace EveShopping.Modelo.Mapping
             this.Property(t => t.publicID).HasColumnName("publicID");
             this.Property(t => t.name).HasColumnName("name");
             this.Property(t => t.description).HasColumnName("description");
+            this.Property(t => t.dateCreation).HasColumnName("dateCreation");
+            this.Property(t => t.dateUpdate).HasColumnName("dateUpdate");
         }
     }
 }

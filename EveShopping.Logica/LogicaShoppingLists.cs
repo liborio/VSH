@@ -1,6 +1,6 @@
 ﻿using EveShopping.Logica.Conversion;
 using EveShopping.Modelo;
-using EveShopping.Modelo;
+using EveShopping.Modelo.Models;
 using EveShopping.Modelo.EntidadesAux;
 using System;
 using System.Collections.Generic;

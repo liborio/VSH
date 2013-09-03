@@ -1,8 +1,8 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using EveShopping.Modelo.Mapping;
+using EveShopping.Modelo.Models.Mapping;
 
-namespace EveShopping.Modelo
+namespace EveShopping.Modelo.Models
 {
     public partial class EveShoppingContext : DbContext
     {
@@ -43,6 +43,7 @@ namespace EveShopping.Modelo
         public DbSet<eshFittingHardware> eshFittingHardwares { get; set; }
         public DbSet<eshFitting> eshFittings { get; set; }
         public DbSet<eshFittingSlot> eshFittingSlots { get; set; }
+        public DbSet<eshShoppingListFitting> eshShoppingListFittings { get; set; }
         public DbSet<eshShoppingList> eshShoppingLists { get; set; }
         public DbSet<eveUnit> eveUnits { get; set; }
         public DbSet<invBlueprintType> invBlueprintTypes { get; set; }
@@ -128,6 +129,7 @@ namespace EveShopping.Modelo
             modelBuilder.Configurations.Add(new eshFittingHardwareMap());
             modelBuilder.Configurations.Add(new eshFittingMap());
             modelBuilder.Configurations.Add(new eshFittingSlotMap());
+            modelBuilder.Configurations.Add(new eshShoppingListFittingMap());
             modelBuilder.Configurations.Add(new eshShoppingListMap());
             modelBuilder.Configurations.Add(new eveUnitMap());
             modelBuilder.Configurations.Add(new invBlueprintTypeMap());
