@@ -8,6 +8,6 @@ namespace EveShopping.Modelo.Models
 {
     public partial class eshFittingHardware
     {
-        public string name { get; set; }
+        //public string name { get; set; }
     }
 }

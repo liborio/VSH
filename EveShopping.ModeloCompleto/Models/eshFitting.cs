@@ -16,6 +16,8 @@ namespace EveShopping.Modelo.Models
         public Nullable<int> shipTypeID { get; set; }
         public string description { get; set; }
         public System.DateTime dateCreation { get; set; }
+        public decimal shipVolume { get; set; }
+        public decimal volume { get; set; }
         public virtual ICollection<eshFittingHardware> eshFittingHardwares { get; set; }
         public virtual invType invType { get; set; }
         public virtual ICollection<eshShoppingListFitting> eshShoppingListFittings { get; set; }

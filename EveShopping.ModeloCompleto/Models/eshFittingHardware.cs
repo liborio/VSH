@@ -10,6 +10,8 @@ namespace EveShopping.Modelo.Models
         public int typeID { get; set; }
         public int slotID { get; set; }
         public short positionInSlot { get; set; }
+        public short units { get; set; }
+        public decimal volume { get; set; }
         public virtual eshFitting eshFitting { get; set; }
         public virtual eshFittingSlot eshFittingSlot { get; set; }
     }

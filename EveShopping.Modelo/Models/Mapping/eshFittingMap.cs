@@ -24,6 +24,8 @@ namespace EveShopping.Modelo.Models.Mapping
             this.Property(t => t.shipTypeID).HasColumnName("shipTypeID");
             this.Property(t => t.description).HasColumnName("description");
             this.Property(t => t.dateCreation).HasColumnName("dateCreation");
+            this.Property(t => t.shipVolume).HasColumnName("shipVolume");
+            this.Property(t => t.volume).HasColumnName("volume");
 
             // Relationships
             this.HasOptional(t => t.invType)

@@ -68,23 +68,44 @@ namespace EveShopping.Logica
 
         public eshFitting MountFittingFromFittingAnalysed(FittingAnalyzed fit)
         {
+            RepositorioItems repo = new RepositorioItems();
             eshFitting salida = new eshFitting();
             salida.name = fit.Name;
             salida.description = fit.Description;
+            invType shipType = repo.SelectItemTypePorName(fit.Ship);
+            if (shipType == null)
+            {
+                throw new ApplicationException(Messages.err_nombreItemAnalizadaNoExiste);
+            }
+            salida.shipTypeID = shipType.typeID;
+            salida.shipVolume = shipType.volume.Value;
+
+            double totalVol = salida.shipVolume;
             foreach (var item in fit.Items)
             {
-                eshFittingHardware fhwd = MountFittingHardware(item);
+                eshFittingHardware fhwd = MountFittingHardware(item, repo);
                 salida.eshFittingHardwares.Add(fhwd);
+                totalVol += fhwd.volume;
             }
+            salida.volume = totalVol;
+            
+
             return salida;
         }
 
-        public eshFittingHardware MountFittingHardware(FittingHardwareAnalyzed fithwd)
+        public eshFittingHardware MountFittingHardware(FittingHardwareAnalyzed fithwd, RepositorioItems repo)
         {
+            invType tipo = repo.SelectItemTypePorName(fithwd.Name);
+            if (tipo == null)
+            {
+                throw new ApplicationException(Messages.err_nombreItemAnalizadaNoExiste);
+            }
             eshFittingHardware salida = new eshFittingHardware();
-            salida.name = fithwd.Name;
             salida.positionInSlot = 0;
             salida.slotID = fithwd.Slot;
+            salida.units = fithwd.Units;
+            salida.volume = tipo.volume.Value * fithwd.Units;
+            
             return salida;
         }
 

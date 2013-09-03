@@ -18,6 +18,8 @@ namespace EveShopping.Modelo.Models.Mapping
             this.Property(t => t.typeID).HasColumnName("typeID");
             this.Property(t => t.slotID).HasColumnName("slotID");
             this.Property(t => t.positionInSlot).HasColumnName("positionInSlot");
+            this.Property(t => t.units).HasColumnName("units");
+            this.Property(t => t.volume).HasColumnName("volume");
 
             // Relationships
             this.HasRequired(t => t.eshFitting)
