@@ -27,6 +27,8 @@ namespace EveShopping.Modelo.Models.Mapping
                 .WithMany(t => t.eshFittingHardwares)
                 .HasForeignKey(d => d.slotID);
 
+            this.Ignore(t => t.name);
+
         }
     }
 }

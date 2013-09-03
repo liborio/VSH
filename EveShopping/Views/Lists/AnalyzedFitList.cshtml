@@ -2,44 +2,43 @@
 
 @foreach (var item in this.Model)
 {
-    using (Ajax.BeginForm("SaveFitAsValid", new AjaxOptions { UpdateTargetId = "fits-valid" }))
-    {
-        <div class="subs-wrapper">
-            <div class="subs-wrapper-head">
-                <label>@item.Name</label>
-            </div>
+ 
+    <h3>@item.Name</h3>
 
-            <div class="subs-wrapper-main" data-esh-secDesp-name="@item.Name">
-                <table name="table-data">
-                    <tr class="fila-impar">
-                        <td>@item.Ship</td>
-                        <td>x 1</td>
-                    </tr>
-                    @{
-        ViewBag.prevSlot = 0;
-        ViewBag.estilo = "fila-impar";
-                    }
-                    @foreach (var hwdItem in item.Items)
-                    {
-                        if (hwdItem.Slot != ViewBag.prevSlot)
-                        {
-                            ViewBag.prevSlot = hwdItem.Slot;
-                            if (string.Equals(ViewBag.estilo, "fila-par"))
-                            {
-                                ViewBag.estilo = "fila-impar";
-                            }
-                            else
-                            {
-                                ViewBag.estilo = "fila-par";
-                            }
-                        }
-                        <tr class="@ViewBag.estilo">
-                            <td>@hwdItem.Name</td>
-                            <td>x @hwdItem.Units</td>
-                        </tr>
-                    }
-                </table>
+    <div class="subs-wrapper-main" data-esh-secDesp-name="@item.Name">
+        <div class="subs-link-bar">
+        @Ajax.ActionLink("Use fit", "UseAnalysedFit"
+             , new { fitName = item.Name }, new AjaxOptions {OnSuccess="NewActionUsed"})
             </div>
-        </div>
-    }
+        <table>
+            <tr class="fila-impar">
+                <td>@item.Ship</td>
+                <td>x 1</td>
+            </tr>
+            @{
+    ViewBag.prevSlot = 0;
+    ViewBag.estilo = "fila-impar";
+            }
+            @foreach (var hwdItem in item.Items)
+            {
+                if (hwdItem.Slot != ViewBag.prevSlot)
+                {
+                    ViewBag.prevSlot = hwdItem.Slot;
+                    if (string.Equals(ViewBag.estilo, "fila-par"))
+                    {
+                        ViewBag.estilo = "fila-impar";
+                    }
+                    else
+                    {
+                        ViewBag.estilo = "fila-par";
+                    }
+                }
+                <tr class="@ViewBag.estilo">
+                    <td>@hwdItem.Name</td>
+                    <td>x @hwdItem.Units</td>
+                </tr>
+            }
+        </table>
+    </div>
+    
 }

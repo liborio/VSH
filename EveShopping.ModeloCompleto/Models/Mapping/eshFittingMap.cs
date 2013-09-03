@@ -23,13 +23,9 @@ namespace EveShopping.Modelo.Models.Mapping
             this.Property(t => t.name).HasColumnName("name");
             this.Property(t => t.shipTypeID).HasColumnName("shipTypeID");
             this.Property(t => t.description).HasColumnName("description");
-            this.Property(t => t.slotID).HasColumnName("slotID");
             this.Property(t => t.dateCreation).HasColumnName("dateCreation");
 
             // Relationships
-            this.HasRequired(t => t.eshFittingSlot)
-                .WithMany(t => t.eshFittings)
-                .HasForeignKey(d => d.slotID);
             this.HasOptional(t => t.invType)
                 .WithMany(t => t.eshFittings)
                 .HasForeignKey(d => d.shipTypeID);
