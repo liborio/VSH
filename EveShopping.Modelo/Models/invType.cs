@@ -7,6 +7,7 @@ namespace EveShopping.Modelo.Models
     {
         public invType()
         {
+            this.eshFittingHardwares = new List<eshFittingHardware>();
             this.eshFittings = new List<eshFitting>();
         }
 
@@ -23,6 +24,7 @@ namespace EveShopping.Modelo.Models
         public Nullable<bool> published { get; set; }
         public Nullable<int> marketGroupID { get; set; }
         public Nullable<double> chanceOfDuplicating { get; set; }
+        public virtual ICollection<eshFittingHardware> eshFittingHardwares { get; set; }
         public virtual ICollection<eshFitting> eshFittings { get; set; }
     }
 }

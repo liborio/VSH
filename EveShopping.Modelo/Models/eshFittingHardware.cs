@@ -14,5 +14,6 @@ namespace EveShopping.Modelo.Models
         public double volume { get; set; }
         public virtual eshFitting eshFitting { get; set; }
         public virtual eshFittingSlot eshFittingSlot { get; set; }
+        public virtual invType invType { get; set; }
     }
 }

@@ -29,6 +29,31 @@ namespace EveShopping.Logica
             return conv.ToFitList(fitOriginal);
         }
 
+        public eshFitting SelectFitPorID(int fittingID)
+        {
+            RepositorioShoppingLists repo = new RepositorioShoppingLists();
+            return repo.SelectFitPorID(fittingID);
+        }
+
+        /// <summary>
+        /// si el id no existe no se hace nada
+        /// </summary>
+        /// <param name="fittingID"></param>
+        public void DeleteFitPorID(int fittingID)
+        {
+            EveShoppingContext context = new EveShoppingContext();
+            eshFitting fit = context.eshFittings.Where(f => f.fittingID == fittingID).FirstOrDefault();
+            context.eshFittings.Remove(fit);
+            
+            context.SaveChanges();
+        }
+
+        public IEnumerable<eshFitting> SelectFitsEnShoppingList(string publicID)
+        {
+            RepositorioShoppingLists repo = new RepositorioShoppingLists();
+            return repo.SelectFitsEnShoppingList(publicID);            
+        }
+        
         public string CrearShoppingList(eshShoppingList lista)
         {
             string publicID = Guid.NewGuid().ToString();
@@ -42,6 +67,7 @@ namespace EveShopping.Logica
         public int SaveAnalisedFit(string listPublicId, FittingAnalyzed fitAnalysed, int? userId = null)
         {
             eshShoppingList lista = null;
+            eshFitting fit = null;
             using (TransactionScope scope = new TransactionScope())
             {
                 RepositorioShoppingLists repo = new RepositorioShoppingLists();
@@ -53,7 +79,7 @@ namespace EveShopping.Logica
                     lista.publicID = listPublicId;
                     repo.CrearShoppingList(lista);
                 }
-                eshFitting fit = MountFittingFromFittingAnalysed(fitAnalysed);
+                fit = MountFittingFromFittingAnalysed(fitAnalysed);
                 eshShoppingListFitting relation = new eshShoppingListFitting();
                 fit.eshShoppingListFittings.Add(relation);
                 relation.eshShoppingList = lista;
@@ -63,7 +89,7 @@ namespace EveShopping.Logica
 
                 scope.Complete();
             }
-            return lista.shoppingListID;
+            return fit.fittingID;
         }
 
         public eshFitting MountFittingFromFittingAnalysed(FittingAnalyzed fit)
@@ -101,6 +127,7 @@ namespace EveShopping.Logica
                 throw new ApplicationException(Messages.err_nombreItemAnalizadaNoExiste);
             }
             eshFittingHardware salida = new eshFittingHardware();
+            salida.typeID = tipo.typeID;
             salida.positionInSlot = 0;
             salida.slotID = fithwd.Slot;
             salida.units = fithwd.Units;

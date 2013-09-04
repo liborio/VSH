@@ -3,12 +3,12 @@
 @foreach (var item in this.Model)
 {
  
-    <h3>@item.Name</h3>
+    <h3 data-esh-name="@item.Name">@item.Name</h3>
 
-    <div class="subs-wrapper-main" data-esh-secDesp-name="@item.Name">
+    <div data-esh-name="@item.Name" class="subs-wrapper-main" data-esh-secDesp-name="@item.Name">
         <div class="subs-link-bar">
         @Ajax.ActionLink("Use fit", "UseAnalysedFit"
-             , new { fitName = item.Name }, new AjaxOptions {OnSuccess="NewActionUsed"})
+             , new { fitName = item.Name }, new AjaxOptions { OnSuccess="OnSuccessUseAnalysedFit"})
             </div>
         <table>
             <tr class="fila-impar">

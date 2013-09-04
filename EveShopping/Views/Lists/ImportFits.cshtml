@@ -1,38 +1,49 @@
-﻿@{
+﻿@model IEnumerable<EveShopping.Web.Modelo.EVFitting>
+
+@{
     ViewBag.Title = "New";
 }
 
 <div id="list-main">
     <div class="inside-section">
         <h2>Your fits</h2>
+            <div id="fitsInList" class="subs-wrapper" data-esh-fits-in-list >
+        @if ((this.Model != null) && this.Model.Count() > 0)
+        {
+            Html.RenderPartial("PVFitsInShoppingList", this.Model);
+        }
+            </div>
     </div>
 </div>
 
 <input id="fitPublicId" type="hidden" value="@ViewBag.FitPublicId" />
 
+
 @section scripts{
     @Scripts.Render("~/bundles/jqueryui")
 
-     <script src="~/Scripts/eshImportFits.js" type="text/javascript">
+    <script src="~/Scripts/eshImportFits.js" type="text/javascript">
     </script>
 }
 
 @section izquierda{
+
+
     <div id="list-left-menu">
         <div class="inside-section">
-            <h2>Import fits</h2>    
+            <h2>Import fits</h2>
             @using (Ajax.BeginForm("AnalyzeRawFit", new AjaxOptions { UpdateTargetId = "fitsAnalysed", OnSuccess = "ReactivateImportedFitsAccordion" }))
             {
-            <form id="payment"  >
-                <fieldset>
+                <form id="payment">
+                    <fieldset>
                         <legend>Raw fit</legend>
                         <textarea id="rawFit" name="rawFit" rows="5" placeholder="Paste here the fit that you want to import from EVE or supported fitting tools" required></textarea>
-                        <button type="submit" class="buttonYellow" value="Analyze" />
-                </fieldset>
-            </form>
+                        <button type="submit" class="buttonYellow" value="Analyse">Analyse</button>
+                    </fieldset>
+                </form>
             }
-            <div id="fitsAnalysed" class="subs-wrapper">
+            <div id="fitsAnalysed" class="subs-wrapper" data-esh-analysed-fits>
             </div>
         </div>
-        </div>
-    }
+    </div>
+}

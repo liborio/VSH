@@ -26,6 +26,27 @@ namespace EveShopping.Repositorios
             return this.Contexto.eshShoppingLists.Where(l => l.publicID == publicID).FirstOrDefault();
         }
 
+
+        public eshFitting SelectFitPorID(int fittingID)
+        {
+            return Contexto.eshFittings.Include("invType").Include("eshFittingHardwares")
+                .Include("eshFittingHardwares.invType").Where(f => f.fittingID == fittingID).FirstOrDefault();
+        }
+
+
+        public IEnumerable<eshFitting> SelectFitsEnShoppingList(string publicID)
+        {
+            var salida =
+                (from sl in Contexto.eshShoppingLists
+                 join slf in Contexto.eshShoppingListsFittings on sl.shoppingListID equals slf.shoppingListID
+                 join f in Contexto.eshFittings.Include("eshFittingHardwares").Include("invType").Include("eshFittingHardwares.invType") on slf.fittingID equals f.fittingID
+                 where sl.publicID == publicID
+                 select f).ToList();
+
+            return salida;
+        }
+
+
         public void CrearShoppingList(eshShoppingList lista)
         {
             lista.dateCreation = System.DateTime.Now;

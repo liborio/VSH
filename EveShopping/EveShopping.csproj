@@ -227,7 +227,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Lists\ImportFits.cshtml" />
     <Content Include="Views\Lists\AnalyzedFitList.cshtml" />
-    <Content Include="Views\Lists\UseAnalisedFit.cshtml" />
+    <Content Include="Views\Lists\UserFitList.cshtml" />
+    <Content Include="Views\Lists\PVFitsInShoppingList.cshtml" />
+    <Content Include="Views\Lists\PVFitInShoppingList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

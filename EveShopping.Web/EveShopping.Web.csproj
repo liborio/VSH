@@ -42,8 +42,21 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agentes\AgenteShoppingList.cs" />
     <Compile Include="EstadoUsuario.cs" />
+    <Compile Include="Modelo\EVFitting.cs" />
+    <Compile Include="Modelo\EVFittingHardware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EveShopping.Logica\EveShopping.Logica.csproj">
+      <Project>{43ff78f1-f8a1-457e-b2cc-aff73f1c58d8}</Project>
+      <Name>EveShopping.Logica</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EveShopping.Modelo\EveShopping.Modelo.csproj">
+      <Project>{0850a85e-c6c0-439e-83a7-c88a720e9285}</Project>
+      <Name>EveShopping.Modelo</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

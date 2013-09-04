@@ -2,6 +2,8 @@
 using EveShopping.Modelo;
 using EveShopping.Modelo.EntidadesAux;
 using EveShopping.Web;
+using EveShopping.Web.Agentes;
+using EveShopping.Web.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +30,13 @@ namespace EveShopping.Controllers
                 return RedirectToAction("ImportFits",new {id = id});
             }
              EstadoUsuario.CurrentListPublicId = id;
-            return View();
+
+            //cargamos las fits que puedan estar agregadadas a la shopping list
+             AgenteShoppingList agente =
+                 new AgenteShoppingList();
+             IEnumerable<EVFitting> fits = agente.SelectFitsEnShoppingList(id);
+
+            return View(fits);
         }
 
         [HttpPost()]
@@ -66,10 +74,24 @@ namespace EveShopping.Controllers
 
             //Guardamos la fit en base de datos
             LogicaShoppingLists logica = new LogicaShoppingLists();
-            logica.SaveAnalisedFit(EstadoUsuario.CurrentListPublicId, fit);
+            int fitID = logica.SaveAnalisedFit(EstadoUsuario.CurrentListPublicId, fit);
 
-            return PartialView();
+            AgenteShoppingList agente = new AgenteShoppingList();
+            EVFitting evfit = agente.SelectFitPorID(fitID);
 
+
+            return PartialView("PVFitInShoppingList", evfit);
+
+        }
+
+
+        public ActionResult DeleteFittingFromShoppingList(int id)
+        {
+            AgenteShoppingList agente = new AgenteShoppingList();
+            agente.DeleteFitPorID(id);
+
+            return Content(id.ToString());
+            //return Json(new { Result = id });
         }
     }
 }

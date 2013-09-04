@@ -1,0 +1,8 @@
+﻿@model IEnumerable<EveShopping.Web.Modelo.EVFitting>
+
+@foreach (var item in this.Model)
+{
+
+    Html.RenderPartial("PVFitInShoppingList", item);
+}
+

@@ -28,6 +28,9 @@ namespace EveShopping.Modelo.Models.Mapping
             this.HasRequired(t => t.eshFittingSlot)
                 .WithMany(t => t.eshFittingHardwares)
                 .HasForeignKey(d => d.slotID);
+            this.HasRequired(t => t.invType)
+                .WithMany(t => t.eshFittingHardwares)
+                .HasForeignKey(d => d.typeID);
 
         }
     }
