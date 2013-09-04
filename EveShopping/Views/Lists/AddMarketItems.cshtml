@@ -1,0 +1,31 @@
+﻿@model EveShopping.Models.EDVAddMarketItems
+
+@{
+    ViewBag.Title = "AddMarketItems";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddMarketItems</h2>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <script src="~/Scripts/eshAddMarketItems.js" type="text/javascript">
+    </script>
+}
+
+@Html.Partial("PVMarketItemsEnShoppingList", Model.MarketItemsEnShoppingList)
+
+@section izquierda{
+
+
+    <div id="list-left-menu">
+        <div class="inside-section">
+            <h2>Market items</h2>
+            <div id="marketItems" class="subs-wrapper">
+                @Html.Partial("PVMarketMenu", this.Model)
+            </div>
+        </div>
+    </div>
+}

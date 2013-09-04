@@ -33,6 +33,55 @@ namespace EveShopping.Repositorios
                 .Include("eshFittingHardwares.invType").Where(f => f.fittingID == fittingID).FirstOrDefault();
         }
 
+        public eshShoppingListInvType SelectMarketItemEnShoppingListPorID(int listID, int itemID)
+        {
+
+            return Contexto.eshShoppingListsInvTypes.Where(slit => slit.shoppingListID == listID && slit.typeID == itemID).FirstOrDefault();
+        }
+
+        public eshShoppingListInvType CreateMarketItemEnShoppingList(int listID, int itemID, short units)
+        {
+            eshShoppingListInvType slit = new eshShoppingListInvType();
+            slit.typeID = itemID;
+            slit.shoppingListID = listID;
+            slit.units = units;
+
+            invType it = Contexto.invTypes.Where(it2 => it2.typeID == itemID).FirstOrDefault();
+            if (it == null)
+            {
+                throw new ApplicationException(Messages.err_itemNoExiste);
+            }
+            slit.volume = units * it.volume.Value;
+            Contexto.eshShoppingListsInvTypes.Add(slit);
+            Contexto.SaveChanges();
+            return slit;
+        }
+
+        public eshShoppingListInvType UpdateMarketItemEnShoppingList(int listID, int itemID, short units)
+        {
+            eshShoppingListInvType slit = SelectMarketItemEnShoppingListPorID(listID, itemID);
+
+            if (slit == null)
+            {
+                CreateMarketItemEnShoppingList(listID, itemID, units);
+            }
+            else
+            {
+                invType it = Contexto.invTypes.Where(it2 => it2.typeID == itemID).FirstOrDefault();
+                if (it == null)
+                {
+                    throw new ApplicationException(Messages.err_itemNoExiste);
+                }
+                slit.units += units;
+                if (slit.units < 0) slit.units = 0;
+
+
+                RepositorioItems repoItems = new RepositorioItems(this.Contexto);
+                slit.volume = slit.units * repoItems.GetVolume(it);
+            }
+            Contexto.SaveChanges();
+            return slit;
+        }
 
         public IEnumerable<eshFitting> SelectFitsEnShoppingList(string publicID)
         {
@@ -64,7 +113,7 @@ namespace EveShopping.Repositorios
             this.Contexto.eshFittings.Add(fit);
             this.Contexto.SaveChanges();
         }
-
-
     }
+
+
 }

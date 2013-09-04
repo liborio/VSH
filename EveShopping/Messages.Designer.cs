@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EveShopping.Repositorios {
+namespace EveShopping {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace EveShopping.Repositorios {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EveShopping.Repositorios.Messages", typeof(Messages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EveShopping.Messages", typeof(Messages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,11 @@ namespace EveShopping.Repositorios {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The item doesnt exist in our database..
+        ///   Looks up a localized string similar to The shopping list&apos;s public ID has not being received..
         /// </summary>
-        internal static string err_itemNoExiste {
+        internal static string err_requestWithoutPublicID {
             get {
-                return ResourceManager.GetString("err_itemNoExiste", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The shopping list&apos;s public id cant be null.
-        /// </summary>
-        internal static string err_publicIDNulo {
-            get {
-                return ResourceManager.GetString("err_publicIDNulo", resourceCulture);
+                return ResourceManager.GetString("err_requestWithoutPublicID", resourceCulture);
             }
         }
     }

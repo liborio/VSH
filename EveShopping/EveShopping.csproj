@@ -131,9 +131,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EDVAddMarketItems.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\path-separator.ico" />
     <Content Include="Content\main.css" />
     <Content Include="Content\normalize.css" />
     <Content Include="Content\normalize.min.css" />
@@ -196,6 +204,8 @@
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="index.html" />
+    <Content Include="Scripts\eshAddMarketItems.js" />
+    <Content Include="Scripts\eshCommon.js" />
     <Content Include="Scripts\eshImportFits.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -230,10 +240,13 @@
     <Content Include="Views\Lists\UserFitList.cshtml" />
     <Content Include="Views\Lists\PVFitsInShoppingList.cshtml" />
     <Content Include="Views\Lists\PVFitInShoppingList.cshtml" />
+    <Content Include="Views\Lists\AddMarketItems.cshtml" />
+    <Content Include="Views\Lists\PVMarketMenu.cshtml" />
+    <Content Include="Views\Lists\PVMarketItemEnShoppingList.cshtml" />
+    <Content Include="Views\Lists\PVMarketItemsEnShoppingList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -255,6 +268,12 @@
       <Project>{0e17fb65-3e36-4b56-8559-2bf9ea2bb33d}</Project>
       <Name>EveShopping.Web</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -8,6 +8,7 @@ namespace EveShopping.Modelo.Models
         public eshShoppingList()
         {
             this.eshShoppingListFittings = new List<eshShoppingListFitting>();
+            this.eshShoppingListInvTypes = new List<eshShoppingListInvType>();
         }
 
         public int shoppingListID { get; set; }
@@ -17,5 +18,6 @@ namespace EveShopping.Modelo.Models
         public System.DateTime dateCreation { get; set; }
         public System.DateTime dateUpdate { get; set; }
         public virtual ICollection<eshShoppingListFitting> eshShoppingListFittings { get; set; }
+        public virtual ICollection<eshShoppingListInvType> eshShoppingListInvTypes { get; set; }
     }
 }

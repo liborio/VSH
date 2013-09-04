@@ -1,4 +1,5 @@
 ﻿using EveShopping.Logica;
+using EveShopping.Modelo.EntidadesAux;
 using EveShopping.Modelo.Models;
 using EveShopping.Web.Modelo;
 using System;
@@ -41,6 +42,20 @@ namespace EveShopping.Web.Agentes
             }
 
             return fitsSalida;
+        }
+
+        public MarketItem AddOrUpdateMarketItemEnShoppingList(string shoppingListPublidID, int itemID, short units)
+        {
+            LogicaShoppingLists logica =
+                new LogicaShoppingLists();
+            logica.AddItemToShoppingList(shoppingListPublidID, itemID, units);
+            return logica.SelectMarketItemByID(shoppingListPublidID, itemID);
+        }
+
+        public IList<MarketItem> SelectMarketItemsEnShoppingList(string publicID)
+        {
+            LogicaShoppingLists logica = new LogicaShoppingLists();
+            return logica.SelectMarketItemsEnShoppingList(publicID);
         }
 
         private static EVFitting MontarEVFiting(eshFitting item)

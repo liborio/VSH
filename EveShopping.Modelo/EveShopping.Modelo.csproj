@@ -44,8 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constantes.cs" />
     <Compile Include="EntidadesAux\FittingAnalyzed.cs" />
     <Compile Include="EntidadesAux\FittingHardwareAnalyzed.cs" />
+    <Compile Include="EntidadesAux\MarketItem.cs" />
     <Compile Include="Enumerados.cs" />
     <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -57,12 +59,14 @@
     <Compile Include="Models\eshFittingSlot.cs" />
     <Compile Include="Models\eshShoppingList.cs" />
     <Compile Include="Models\eshShoppingListFitting.cs" />
+    <Compile Include="Models\eshShoppingListInvType.cs" />
     <Compile Include="Models\EveShoppingContext.cs" />
     <Compile Include="Models\invMarketGroup.cs" />
     <Compile Include="Models\Mapping\eshFittingHardwareMap.cs" />
     <Compile Include="Models\Mapping\eshFittingMap.cs" />
     <Compile Include="Models\Mapping\eshFittingSlotMap.cs" />
     <Compile Include="Models\Mapping\eshShoppingListFittingMap.cs" />
+    <Compile Include="Models\Mapping\eshShoppingListInvTypeMap.cs" />
     <Compile Include="Models\Mapping\eshShoppingListMap.cs" />
     <Compile Include="Models\invType.cs" />
     <Compile Include="Models\Mapping\invMarketGroupMap.cs" />

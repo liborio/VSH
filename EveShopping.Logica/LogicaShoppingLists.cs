@@ -64,6 +64,15 @@ namespace EveShopping.Logica
             return publicID;
         }
 
+        public void AddItemToShoppingList(string publicID, int itemID, short units)
+        {
+            RepositorioShoppingLists repo = new RepositorioShoppingLists();
+            eshShoppingList list = repo.SelectShopingListPorPublicID(publicID);
+
+            eshShoppingListInvType slit = repo.UpdateMarketItemEnShoppingList(list.shoppingListID, itemID, units);
+        }
+
+
         public int SaveAnalisedFit(string listPublicId, FittingAnalyzed fitAnalysed, int? userId = null)
         {
             eshShoppingList lista = null;
@@ -92,9 +101,60 @@ namespace EveShopping.Logica
             return fit.fittingID;
         }
 
+        public IList<MarketItem> SelectMarketItemsEnShoppingList(string publicID)
+        {
+            EveShoppingContext context = new EveShoppingContext();
+
+            IList<MarketItem> miList = new List<MarketItem>();
+
+            eshShoppingList shl = context.eshShoppingLists.Where( s => s.publicID == publicID).FirstOrDefault();
+
+            if (shl == null) throw new ApplicationException(Messages.err_shoppingLisNoExiste);
+
+            IEnumerable<eshShoppingListInvType> listaSlit =
+                context.eshShoppingListsInvTypes.Include("invType").Where(l => l.shoppingListID == shl.shoppingListID);
+
+            foreach (var slit in listaSlit)
+            {
+                MarketItem mi = new MarketItem();
+                mi.ItemID = slit.typeID;
+                mi.Name = slit.invType.typeName;
+                mi.Units = slit.units;
+                mi.Volume = slit.volume;
+                mi.URI = string.Format(Constantes.EVEImageServerFormat32, slit.typeID);
+                miList.Add(mi);
+            }
+            return miList;
+        }
+            
+        public MarketItem SelectMarketItemByID(string shoppingListPublicID, int id)
+        {
+            EveShoppingContext context = new EveShoppingContext();
+            eshShoppingList slist = context.eshShoppingLists.Where(sl => sl.publicID == shoppingListPublicID).FirstOrDefault();
+
+            if (slist == null) throw new ApplicationException(Messages.err_shoppingLisNoExiste);
+
+            eshShoppingListInvType slitype = context.eshShoppingListsInvTypes.Include("invType").Where(slit => slit.shoppingListID == slist.shoppingListID && slit.typeID == id).FirstOrDefault();
+            if (slitype == null) throw new ApplicationException(Messages.err_itemNoEnShoppingList);
+
+            RepositorioItems repo = new RepositorioItems();
+
+            MarketItem mi = new MarketItem
+            {
+                ItemID = slitype.typeID,
+                Name = slitype.invType.typeName,
+                Units = slitype.units,
+                URI = string.Format(Constantes.EVEImageServerFormat32, slitype.typeID),
+                Volume = repo.GetVolume(slitype.invType) * slitype.units
+            };
+            return mi;
+        }
+
+
         public eshFitting MountFittingFromFittingAnalysed(FittingAnalyzed fit)
         {
             RepositorioItems repo = new RepositorioItems();
+            
             eshFitting salida = new eshFitting();
             salida.name = fit.Name;
             salida.description = fit.Description;
@@ -104,7 +164,7 @@ namespace EveShopping.Logica
                 throw new ApplicationException(Messages.err_nombreItemAnalizadaNoExiste);
             }
             salida.shipTypeID = shipType.typeID;
-            salida.shipVolume = shipType.volume.Value;
+            salida.shipVolume =  repo.GetVolume( shipType);
 
             double totalVol = salida.shipVolume;
             foreach (var item in fit.Items)
@@ -131,7 +191,7 @@ namespace EveShopping.Logica
             salida.positionInSlot = 0;
             salida.slotID = fithwd.Slot;
             salida.units = fithwd.Units;
-            salida.volume = tipo.volume.Value * fithwd.Units;
+            salida.volume = repo.GetVolume( tipo) * fithwd.Units;
             
             return salida;
         }

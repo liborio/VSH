@@ -1,6 +1,8 @@
 ﻿using EveShopping.Logica;
 using EveShopping.Modelo;
 using EveShopping.Modelo.EntidadesAux;
+using EveShopping.Modelo.Models;
+using EveShopping.Models;
 using EveShopping.Web;
 using EveShopping.Web.Agentes;
 using EveShopping.Web.Modelo;
@@ -38,6 +40,48 @@ namespace EveShopping.Controllers
 
             return View(fits);
         }
+
+        public ActionResult AddMarketItems(string id)
+        {
+            EstadoUsuario.CurrentListPublicId = id;
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ApplicationException(Messages.err_requestWithoutPublicID);
+            }
+            AgenteMarketItems agente = new AgenteMarketItems();
+            AgenteShoppingList agenteShList = new AgenteShoppingList();
+            IEnumerable<EVMarketItem> marketItems = agente.SelectMarketGroupsByParentID(null);
+            IEnumerable<MarketItem> marketItemsEnShoppingList = agenteShList.SelectMarketItemsEnShoppingList(id);
+            EDVAddMarketItems edv = new EDVAddMarketItems();
+            edv.MarketItems = marketItems;
+            edv.MarketItemsEnShoppingList = marketItemsEnShoppingList;
+            return View(edv);
+        }
+            
+        public PartialViewResult NavigateMarketGroup(int id)
+        {
+            AgenteMarketItems agente = new AgenteMarketItems();
+            IEnumerable<EVMarketItem> marketItems = agente.SelectMarketGroupsByParentID(id);
+            IList<invMarketGroup> marketChain = agente.GetParentGroupsChain(id);
+
+            invMarketGroup groupActual = marketChain.Last();
+            marketChain.Remove(groupActual);
+
+            EDVAddMarketItems edv = new EDVAddMarketItems();
+            edv.MarketItems = marketItems;
+            edv.MarketChain = marketChain;
+            edv.GroupName = groupActual.marketGroupName;
+            return PartialView("PVMarketMenu", edv);
+        }
+
+        public PartialViewResult UpdateMarketItemToShoppingList(int id, short units = 1)
+        {
+            AgenteShoppingList agente = new AgenteShoppingList();
+            MarketItem item = agente.AddOrUpdateMarketItemEnShoppingList(EstadoUsuario.CurrentListPublicId, id, units);
+
+            return  PartialView("PVMarketItemEnShoppingList",item);
+        }
+
 
         [HttpPost()]
         [ValidateInput(false)]

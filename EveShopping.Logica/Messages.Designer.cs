@@ -61,11 +61,29 @@ namespace EveShopping.Logica {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The item is not found in the shopping list..
+        /// </summary>
+        internal static string err_itemNoEnShoppingList {
+            get {
+                return ResourceManager.GetString("err_itemNoEnShoppingList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The analysed fit contains an item with a name that cant be recognized..
         /// </summary>
         internal static string err_nombreItemAnalizadaNoExiste {
             get {
                 return ResourceManager.GetString("err_nombreItemAnalizadaNoExiste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cant find the shopping list in our acurate archives. Try to create it again..
+        /// </summary>
+        internal static string err_shoppingLisNoExiste {
+            get {
+                return ResourceManager.GetString("err_shoppingLisNoExiste", resourceCulture);
             }
         }
     }

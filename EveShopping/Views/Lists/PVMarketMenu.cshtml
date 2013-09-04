@@ -1,0 +1,44 @@
+﻿@model EveShopping.Models.EDVAddMarketItems
+
+<div class="menu-market" data-esh-marketmenu>
+    @if (Model.MarketChain != null)
+    {
+        <div class="clearfix">
+            <ul id="market-path">
+                @foreach (var item in Model.MarketChain)
+                {
+                    <li class="market-path-val" data-esh-id="@item.marketGroupID" onclick="navigateMarketGroup(@item.marketGroupID)">@item.marketGroupName</li>
+                    <li class="market-path-sep">></li>
+                }
+                <li class="market-path-actual">@Model.GroupName</li>
+            </ul>
+        </div>
+    }
+    <div class="clearfix">
+        <ul>
+            @foreach (var item in Model.MarketItems)
+            {
+                <li class="fila-impar">
+                    @if (item.EsFinal)
+                    {
+                        <div onclick="addItemToShoppingList(@item.ItemID)">
+                            @if (!string.IsNullOrEmpty(item.UrlIcon))
+                            {<span class="icono"><img src="@item.UrlIcon" alt="@item.Name" />
+                        </span>}
+                            <span class="nombre" data-esh-id="@item.ItemID">@item.Name</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div onclick="navigateMarketGroup(@item.ItemID)">
+                            @if (!string.IsNullOrEmpty(item.UrlIcon))
+                            {<span class="icono"><img src="@item.UrlIcon" alt="@item.Name" />
+                        </span>}
+                            <span class="nombre" data-esh-id="@item.ItemID">@item.Name</span>
+                        </div>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+</div>

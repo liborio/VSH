@@ -9,6 +9,7 @@ namespace EveShopping.Modelo.Models
         {
             this.eshFittingHardwares = new List<eshFittingHardware>();
             this.eshFittings = new List<eshFitting>();
+            this.eshShoppingListInvTypes = new List<eshShoppingListInvType>();
         }
 
         public int typeID { get; set; }
@@ -26,5 +27,6 @@ namespace EveShopping.Modelo.Models
         public Nullable<double> chanceOfDuplicating { get; set; }
         public virtual ICollection<eshFittingHardware> eshFittingHardwares { get; set; }
         public virtual ICollection<eshFitting> eshFittings { get; set; }
+        public virtual ICollection<eshShoppingListInvType> eshShoppingListInvTypes { get; set; }
     }
 }

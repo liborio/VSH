@@ -1,0 +1,8 @@
+﻿@model IEnumerable<EveShopping.Modelo.EntidadesAux.MarketItem>
+
+<ul data-esch-marketItemsInShoppingList>
+    @foreach (var item in Model)
+    {
+        Html.RenderPartial("PVMarketItemEnShoppingList",item);
+    }   
+</ul>

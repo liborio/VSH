@@ -22,9 +22,10 @@ namespace EveShopping.Modelo.Models
         public DbSet<eshFittingSlot> eshFittingSlots { get; set; }
         public DbSet<eshShoppingList> eshShoppingLists { get; set; }
         public DbSet<eshShoppingListFitting> eshShoppingListsFittings { get; set; }
+        public DbSet<eshShoppingListInvType> eshShoppingListsInvTypes { get; set; }
         public DbSet<invType> invTypes { get; set; }
         public DbSet<invMarketGroup> invMarketGroups { get; set; }
-        
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new eshFittingHardwareMap());
@@ -32,6 +33,7 @@ namespace EveShopping.Modelo.Models
             modelBuilder.Configurations.Add(new eshFittingSlotMap());
             modelBuilder.Configurations.Add(new eshShoppingListMap());
             modelBuilder.Configurations.Add(new eshShoppingListFittingMap());
+            modelBuilder.Configurations.Add(new eshShoppingListInvTypeMap());
             modelBuilder.Configurations.Add(new invTypeMap());
             modelBuilder.Configurations.Add(new invMarketGroupMap());
         }

@@ -42,10 +42,12 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agentes\AgenteMarketItems.cs" />
     <Compile Include="Agentes\AgenteShoppingList.cs" />
     <Compile Include="EstadoUsuario.cs" />
     <Compile Include="Modelo\EVFitting.cs" />
     <Compile Include="Modelo\EVFittingHardware.cs" />
+    <Compile Include="Modelo\EVMarketItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
