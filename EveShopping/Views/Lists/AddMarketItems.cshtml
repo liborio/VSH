@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AddMarketItems</h2>
+@*<h2>AddMarketItems</h2>*@
 
 
 @section scripts{
@@ -15,7 +15,15 @@
     </script>
 }
 
-@Html.Partial("PVMarketItemsEnShoppingList", Model.MarketItemsEnShoppingList)
+<div id="list-main">
+    <div class="inside-section">
+        <h2>Market items in shopping list</h2>
+        <div id="fitsInList" class="subs-wrapper" data-esh-fits-in-list>
+            @Html.Partial("PVMarketItemsEnShoppingList", Model.MarketItemsEnShoppingList)
+        </div>
+    </div>
+</div>
+
 
 @section izquierda{
 

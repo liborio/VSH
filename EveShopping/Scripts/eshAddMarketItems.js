@@ -4,7 +4,19 @@ function OnSuccessNavigateMarketGroup(data) {
 }
 
 function OnSuccessAddItemToShoppingList(data) {
-    var i = 1;
+    var itemTable = $('[data-esch-marketItemsInShoppingList]');
+    var existeItem = $(itemTable).find('[data-esh-id="' + this + '"]').length > 0;
+
+    
+
+    if (!existeItem) {
+        $(data).insertBefore(itemTable.find('tr').first());
+    }
+
+    
+
+    
+
 }
 
 function navigateMarketGroup(id) {
@@ -18,6 +30,7 @@ function navigateMarketGroup(id) {
 function addItemToShoppingList(id) {
     $.ajax({
         url: '/Lists/UpdateMarketItemToShoppingList/' + id,
+        context: id,
         success: OnSuccessAddItemToShoppingList,
         dataType: 'html'
     });

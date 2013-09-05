@@ -547,6 +547,7 @@ form {
         top: 1px;
     }
 
+/* Table ================================================================ */
 
 table {
     font-size: 90%;
@@ -588,13 +589,15 @@ tr {
         background-color: black;
     }
 
+
 td a {
-    text-decoration: none;
-    color: #FFF;
+        color: #FFA500;
+        text-decoration: none;
 }
 
     td a:hover {
         text-decoration: underline;
+        cursor: pointer;
     }
 
 
@@ -638,7 +641,7 @@ div.subs-link-bar {
 
 ul#market-path {
     width: 100%;
-    list-style: none;           
+    list-style: none;
     padding: 0 2%;
 }
 
@@ -650,28 +653,29 @@ ul#market-path {
         margin-right: 2px;
     }
 
-    
+
     ul#market-path .market-path-val {
         color: #FFA500;
-        cursor:pointer;
+        cursor: pointer;
     }
+
     ul#market-path .market-path-sep {
         color: #FFA500;
     }
 
     ul#market-path .market-path-actual {
         color: #4D809B;
-        font-size:95%
+        font-size: 95%;
     }
 
-        ul#market-path .market-path-val:hover {
-            text-decoration:underline;
-        }
+    ul#market-path .market-path-val:hover {
+        text-decoration: underline;
+    }
 
 div.menu-market ul {
     list-style: none;
     padding: 0;
-    margin:0;
+    margin: 0;
     font-size: 90%;
 }
 
@@ -679,37 +683,33 @@ div.menu-market ul {
         width: 96%;
         padding: 0 2% 0;
         border-top: 1px solid #1C1C1C;
-        
     }
 
         div.menu-market ul li div:hover {
-            background-color:#3A3A3A;
+            background-color: #3A3A3A;
             cursor: pointer;
         }
 
 /* ajax loader =================================================================== */
 
 .modal {
-    display:    none;
-    position:   fixed;
-    z-index:    1000;
-    top:        0;
-    left:       0;
-    height:     100%;
-    width:      100%;
-    background: rgba( 255, 255, 255, .8 ) 
-                url('../../Content/Images/ajax-loader.gif') 
-                50% 50% 
-                no-repeat;
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba( 255, 255, 255, .8 ) url('../../Content/Images/ajax-loader.gif') 50% 50% no-repeat;
 }
 
 body.loading {
-    overflow: hidden;   
+    overflow: hidden;
 }
 
-body.loading .modal {
-    display: block;
-}
+    body.loading .modal {
+        display: block;
+    }
 
 
 @media (max-width: 600px) {

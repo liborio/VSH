@@ -1,8 +1,9 @@
 ﻿@model EveShopping.Modelo.EntidadesAux.MarketItem
 
-<li data-esh-id="@Model.ItemID">
-    <img src="@Model.URI" alt="@Model.Name" />
-    <span class="span-name">@Model.Name</span>
-    <span class="span-units">@Model.Units</span>
-    <span class="span-vol">@Model.Volume</span>
-</li>
+<tr class="fila-impar" data-esh-id="@Model.ItemID">
+    <td><img src="@Model.URI" alt="@Model.Name" /></td>
+    <td>@Model.Name</td>
+    <td>x @Model.Units</td>
+    <td class="numericCol">@Model.Volume m3</td>
+    <td class="numericCol"><a>Edit</a></td>
+</tr>
