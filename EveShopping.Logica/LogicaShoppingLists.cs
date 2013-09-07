@@ -48,7 +48,7 @@ namespace EveShopping.Logica
             context.SaveChanges();
         }
 
-        public IEnumerable<eshFitting> SelectFitsEnShoppingList(string publicID)
+        public IEnumerable<eshShoppingListFitting> SelectFitsEnShoppingList(string publicID)
         {
             RepositorioShoppingLists repo = new RepositorioShoppingLists();
             return repo.SelectFitsEnShoppingList(publicID);            
@@ -72,6 +72,35 @@ namespace EveShopping.Logica
             eshShoppingListInvType slit = repo.UpdateMarketItemEnShoppingList(list.shoppingListID, itemID, units);
         }
 
+        public eshShoppingListFitting SetUnitsToFitInShoppingList(string publicID, int id, short units)
+        {
+            EveShoppingContext contexto = new EveShoppingContext();
+
+            eshShoppingListFitting slfit = (from sl in contexto.eshShoppingLists
+                                            join slf in contexto.eshShoppingListsFittings.Include("eshFitting.eshFittingHardwares") on sl.shoppingListID equals slf.shoppingListID
+                                            where sl.publicID == publicID && slf.fittingID == id
+                                            select slf).FirstOrDefault();
+            
+            if (slfit == null) throw new ApplicationException(Messages.err_fittingNoExiste);
+
+
+            if (units < 0) units = 0;           
+            slfit.units = units;
+            contexto.SaveChanges();
+
+            return slfit;
+        }
+
+        public void DeleteItemFromShoppingList(string publicID, int itemID){
+            EveShoppingContext contexto = new EveShoppingContext();
+            RepositorioShoppingLists repo = new RepositorioShoppingLists(contexto);
+            eshShoppingList list = repo.SelectShopingListPorPublicID(publicID);
+
+            eshShoppingListInvType item = repo.SelectMarketItemEnShoppingListPorID(list.shoppingListID, itemID);
+
+            contexto.eshShoppingListsInvTypes.Remove(item);
+            contexto.SaveChanges();
+        }
 
         public int SaveAnalisedFit(string listPublicId, FittingAnalyzed fitAnalysed, int? userId = null)
         {

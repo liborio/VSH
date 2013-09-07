@@ -24,64 +24,26 @@ namespace EveShopping.Controllers
             return View();
         }
 
+        #region Import Fits
+
         public ActionResult ImportFits(string id = null)
         {
             if (id == null)
             {
                 id = Guid.NewGuid().ToString();
-                return RedirectToAction("ImportFits",new {id = id});
+                return RedirectToAction("ImportFits", new { id = id });
             }
-             EstadoUsuario.CurrentListPublicId = id;
+            this.ViewBag.PublicID = id;
+
+            EstadoUsuario.CurrentListPublicId = id;
 
             //cargamos las fits que puedan estar agregadadas a la shopping list
-             AgenteShoppingList agente =
-                 new AgenteShoppingList();
-             IEnumerable<EVFitting> fits = agente.SelectFitsEnShoppingList(id);
+            AgenteShoppingList agente =
+                new AgenteShoppingList();
+            IEnumerable<EVFitting> fits = agente.SelectFitsEnShoppingList(id);
 
             return View(fits);
         }
-
-        public ActionResult AddMarketItems(string id)
-        {
-            EstadoUsuario.CurrentListPublicId = id;
-            if (string.IsNullOrEmpty(id))
-            {
-                throw new ApplicationException(Messages.err_requestWithoutPublicID);
-            }
-            AgenteMarketItems agente = new AgenteMarketItems();
-            AgenteShoppingList agenteShList = new AgenteShoppingList();
-            IEnumerable<EVMarketItem> marketItems = agente.SelectMarketGroupsByParentID(null);
-            IEnumerable<MarketItem> marketItemsEnShoppingList = agenteShList.SelectMarketItemsEnShoppingList(id);
-            EDVAddMarketItems edv = new EDVAddMarketItems();
-            edv.MarketItems = marketItems;
-            edv.MarketItemsEnShoppingList = marketItemsEnShoppingList;
-            return View(edv);
-        }
-            
-        public PartialViewResult NavigateMarketGroup(int id)
-        {
-            AgenteMarketItems agente = new AgenteMarketItems();
-            IEnumerable<EVMarketItem> marketItems = agente.SelectMarketGroupsByParentID(id);
-            IList<invMarketGroup> marketChain = agente.GetParentGroupsChain(id);
-
-            invMarketGroup groupActual = marketChain.Last();
-            marketChain.Remove(groupActual);
-
-            EDVAddMarketItems edv = new EDVAddMarketItems();
-            edv.MarketItems = marketItems;
-            edv.MarketChain = marketChain;
-            edv.GroupName = groupActual.marketGroupName;
-            return PartialView("PVMarketMenu", edv);
-        }
-
-        public PartialViewResult UpdateMarketItemToShoppingList(int id, short units = 1)
-        {
-            AgenteShoppingList agente = new AgenteShoppingList();
-            MarketItem item = agente.AddOrUpdateMarketItemEnShoppingList(EstadoUsuario.CurrentListPublicId, id, units);
-
-            return  PartialView("PVMarketItemEnShoppingList",item);
-        }
-
 
         [HttpPost()]
         [ValidateInput(false)]
@@ -128,6 +90,16 @@ namespace EveShopping.Controllers
 
         }
 
+        [HttpPost()]
+        public PartialViewResult SetUnitsToFitInShoppingList(int id, short units)
+        {
+            AgenteShoppingList agente = new AgenteShoppingList();
+            string publicID = EstadoUsuario.CurrentListPublicId;
+
+            EVFitting evfit = agente.SetUnitsToFitInShoppingList(publicID, id, units);
+
+            return PartialView("PVFitInShoppingList", evfit);
+        }
 
         public ActionResult DeleteFittingFromShoppingList(int id)
         {
@@ -137,5 +109,71 @@ namespace EveShopping.Controllers
             return Content(id.ToString());
             //return Json(new { Result = id });
         }
+
+
+        #endregion
+
+
+        #region Add Market Items
+
+        public ActionResult AddMarketItems(string id)
+        {
+            this.ViewBag.PublicID = id;
+
+            EstadoUsuario.CurrentListPublicId = id;
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ApplicationException(Messages.err_requestWithoutPublicID);
+            }
+            AgenteMarketItems agente = new AgenteMarketItems();
+            AgenteShoppingList agenteShList = new AgenteShoppingList();
+            IEnumerable<EVMarketItem> marketItems = agente.SelectMarketGroupsByParentID(null);
+            IEnumerable<MarketItem> marketItemsEnShoppingList = agenteShList.SelectMarketItemsEnShoppingList(id);
+            EDVAddMarketItems edv = new EDVAddMarketItems();
+            edv.MarketItems = marketItems;
+            edv.MarketItemsEnShoppingList = marketItemsEnShoppingList;
+            return View(edv);
+        }
+
+        public PartialViewResult NavigateMarketGroup(int id)
+        {
+            System.Threading.Thread.Sleep(1500);
+
+            AgenteMarketItems agente = new AgenteMarketItems();
+            IEnumerable<EVMarketItem> marketItems = agente.SelectMarketGroupsByParentID(id);
+            IList<invMarketGroup> marketChain = agente.GetParentGroupsChain(id);
+
+            invMarketGroup groupActual = marketChain.Last();
+            marketChain.Remove(groupActual);
+
+            EDVAddMarketItems edv = new EDVAddMarketItems();
+            edv.MarketItems = marketItems;
+            edv.MarketChain = marketChain;
+            edv.GroupName = groupActual.marketGroupName;
+            return PartialView("PVMarketMenu", edv);
+        }
+
+        public PartialViewResult UpdateMarketItemToShoppingList(int id, short units = 1)
+        {
+            AgenteShoppingList agente = new AgenteShoppingList();
+            MarketItem item = agente.AddOrUpdateMarketItemEnShoppingList(EstadoUsuario.CurrentListPublicId, id, units);
+
+            return PartialView("PVMarketItemEnShoppingList", item);
+        }
+
+        public ActionResult DeleteMarketItemToShoppingList(int id)
+        {
+            AgenteShoppingList agente = new AgenteShoppingList();
+            agente.DeleteMarketItemEnShoppingList(EstadoUsuario.CurrentListPublicId, id);
+
+            return null;
+        }
+
+
+        #endregion
+
+            
+
+
     }
 }

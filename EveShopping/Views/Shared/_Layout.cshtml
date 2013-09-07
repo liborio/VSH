@@ -33,15 +33,16 @@
             <h1 class="title">EVE-shopping</h1>
             <nav>
                 <ul>
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("New List", "ImportFits", "Lists")</li>
-                    <li><a href="#">About</a></li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { id = "navlink_home" })</li>
+                    <li>@Html.ActionLink("New List", "ImportFits", "Lists", null, new { id = "navlink_newList" })</li>
+                    <li><a href="#" id="navlink_about">About</a></li>
                 </ul>
             </nav>
         </header>
     </div>
-
+    
     <div class="main-container">
+            @RenderSection("subheader", required:false)        
         <div class="main wrapper clearfix">
             @RenderSection("izquierda", required: false)
             @RenderBody()
@@ -58,7 +59,9 @@
         </footer>
     </div>
 
-    <div id="loading-image" class="modal"></div>
+    <div id="loading-image" class="modal">
+        <div><span>hola</span></div>
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)

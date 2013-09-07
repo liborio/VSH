@@ -61,6 +61,15 @@ namespace EveShopping.Logica {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is no record of this fitting in our registers.
+        /// </summary>
+        internal static string err_fittingNoExiste {
+            get {
+                return ResourceManager.GetString("err_fittingNoExiste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The item is not found in the shopping list..
         /// </summary>
         internal static string err_itemNoEnShoppingList {

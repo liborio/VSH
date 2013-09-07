@@ -6,7 +6,7 @@
 
 <div id="list-main">
     <div class="inside-section">
-        <h2>Your fits</h2>
+        <h3>Fits in shopping list</h3>
             <div id="fitsInList" class="subs-wrapper" data-esh-fits-in-list >
         @if ((this.Model != null) && this.Model.Count() > 0)
         {
@@ -31,7 +31,7 @@
 
     <div id="list-left-menu">
         <div class="inside-section">
-            <h2>Import fits</h2>
+            <h3>Import fits</h3>
             @using (Ajax.BeginForm("AnalyzeRawFit", new AjaxOptions { UpdateTargetId = "fitsAnalysed", OnSuccess = "ReactivateImportedFitsAccordion" }))
             {
                 <form id="payment">
@@ -46,4 +46,15 @@
             </div>
         </div>
     </div>
+}
+
+@section subheader{
+        <div id="subheader-container" class="clearfix">
+            <ul id="menu-pasos">
+                <li>@Html.ActionLink("Summary", "Summary", "Lists", new { id = this.ViewBag.PublicID},null)</li>
+                <li>@Html.ActionLink("Add market items", "AddMarketItems", "Lists", new { id = this.ViewBag.PublicID}, null)</li>
+                <li class="selected">@Html.ActionLink("Add ship fittings", "ImportFits", "Lists", new { id = this.ViewBag.PublicID}, null)</li>
+            </ul>
+        </div>
+
 }

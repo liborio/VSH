@@ -1,23 +1,66 @@
-﻿
+﻿/// <reference path="jquery.blockUI.js" />
+
+
+$(document).ready(function () {
+    $('.header-container').find('a').removeClass('selected');
+    $('.header-container').find('#navlink_newList').addClass('selected');
+});
+
+
+ ajaxLoader = {
+    timer : 0,
+
+    initTimer : function(){
+        ajaxLoader.timer = setTimeout("$.blockUI({message: '<img src=\"../../content/images/ajax-loader4.gif\"/>', css: {backgroundColor: '#3A3A3A', border: '2px solid #1F4E66', padding: '10px 2em', width: '14%', left: '43%'}, overlayCSS: {opacity: '0.3'}})", 300);
+    },
+
+    endTimer : function ()  {
+        clearTimeout(ajaxLoader.timer);
+        $.unblockUI();
+    },
+}
+
+$(document).ajaxStart(ajaxLoader.initTimer)
+   .ajaxStop(ajaxLoader.endTimer);
+
+
+//$('#loading-image').hide().ajaxStart(function () {
+//    $(this).show();    
+//})
+//   .ajaxStop(function () {
+//       $(this).hide();
+//   })
+//;
+
+
 function OnSuccessNavigateMarketGroup(data) {
     $('[data-esh-marketMenu]').replaceWith(data);
 }
 
-function OnSuccessAddItemToShoppingList(data) {
+
+
+function AddOrReplaceItemInShoppingList(data, id, inEdit) {
     var itemTable = $('[data-esch-marketItemsInShoppingList]');
-    var existeItem = $(itemTable).find('[data-esh-id="' + this + '"]').length > 0;
-
-    
-
+    var existeItem = $(itemTable).find('[data-esh-id="' + id + '"]').length > 0;
     if (!existeItem) {
         $(data).insertBefore(itemTable.find('tr').first());
     }
-
-    
-
-    
-
+    else {
+        $(data).replaceAll(itemTable.find('[data-esh-id="' + id + '"]'));
+    }
+    if (inEdit) {
+        itemTable.find('[data-esh-id="' + id + '"]').addClass('row-edit');
+    }
 }
+
+function OnSuccessAddItemToShoppingList(data) {
+    AddOrReplaceItemInShoppingList(data, this, false);
+}
+
+function onSuccessUpdateItemToShoppingList(data) {
+    AddOrReplaceItemInShoppingList(data, this, true);
+}
+
 
 function navigateMarketGroup(id) {
     $.ajax({
@@ -27,11 +70,78 @@ function navigateMarketGroup(id) {
     });
 }
 
+
 function addItemToShoppingList(id) {
+    addupdatItemToShoppingList(id, OnSuccessAddItemToShoppingList, 1);
+}
+
+function updateItemToShoppingList(id, units) {
+    addupdatItemToShoppingList(id, onSuccessUpdateItemToShoppingList, units);
+}
+
+function addupdatItemToShoppingList(id, funcSuccess, units) {
     $.ajax({
-        url: '/Lists/UpdateMarketItemToShoppingList/' + id,
+        type: 'POST',
+        url: '/Lists/UpdateMarketItemToShoppingList',
         context: id,
-        success: OnSuccessAddItemToShoppingList,
+        success: funcSuccess,
+        data: {id: id, units: units},
+        dataType: 'html'        
+    });
+}
+
+function editItemInShoppingList(id) {
+    cleanEdits();
+    var row = $('[data-esch-marketitemsinshoppinglist]').find('[data-esh-id="' + id + '"]');
+
+    $(row).addClass('row-edit')
+    $(row).find('a').hide()
+    var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='5' class='col-edit'><span><a onclick=\"addUnitsItemInShoppingList('" + id + "')\">Add</a> / <a onclick=\"removeUnitsItemInShoppingList('" + id + "')\">Remove</a><input data-esh-units type='text' value='1'>units</span><span><a onclick=\"deleteItemInShoppingList('" + id + "')\">Delete</a></span><span><a onclick=\"cancelEditItemInShoppingList('" + id + "')\">Cancel edit</a></span>"
+    $(filaControlesEdicion).insertAfter(row)
+
+    $(filaControlesEdicion).find('input:text').focus(function () { $(this).select(); });
+    $('[data-esch-marketitemsinshoppinglist]').find('[data-esh-row-edit]').find('input:text').focus();
+
+
+
+}
+
+
+function cleanEdits() {
+    $('[data-esch-marketitemsinshoppinglist]').find('[data-esh-row-edit]').remove();
+    $('[data-esch-marketitemsinshoppinglist]').find('.row-edit').removeClass('row-edit');
+    $('[data-esch-marketitemsinshoppinglist]').find('a').show();
+}
+
+function cancelEditItemInShoppingList(id) {
+    $('[data-esh-id="' + id + '"]').removeClass('row-edit')
+    $('[data-esh-id="' + id + '"]').find('a').show();
+    $('[data-esch-marketitemsinshoppinglist]').find('[data-esh-row-edit]').remove();
+}
+
+function addUnitsItemInShoppingList(id) {
+    var units = $('[data-esch-marketitemsinshoppinglist]').find('[data-esh-row-edit]').find('[data-esh-units]').val();
+    updateItemToShoppingList(id, units)
+
+}
+
+function removeUnitsItemInShoppingList(id) {
+    var units = parseInt( $('[data-esch-marketitemsinshoppinglist]').find('[data-esh-row-edit]').find('[data-esh-units]').val()) * -1;
+    updateItemToShoppingList(id, units)
+}
+
+function deleteItemInShoppingList(id) {
+    $.ajax({
+        url: '/Lists/DeleteMarketItemToShoppingList/' + id,
+        context: id,
+        success: onSuccessDeleteItemToShoppingList,
         dataType: 'html'
     });
 }
+
+function onSuccessDeleteItemToShoppingList() {
+    cleanEdits();
+    $('[data-esch-marketitemsinshoppinglist]').find('[data-esh-id="' + this + '"]').remove();
+
+}
+

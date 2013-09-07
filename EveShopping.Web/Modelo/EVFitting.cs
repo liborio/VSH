@@ -13,6 +13,7 @@ namespace EveShopping.Web.Modelo
         public string Description { get; set; }
         public string ShipName { get; set; }
         public double ShipVolume { get; set; }
+        public short Units { get; set; }
         public double Volume { get; set; }
         public IList<EVFittingHardware> FittingHardwares { get; set; }
         public string ShipImageUrl32 { get; set; }

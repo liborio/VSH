@@ -83,14 +83,14 @@ namespace EveShopping.Repositorios
             return slit;
         }
 
-        public IEnumerable<eshFitting> SelectFitsEnShoppingList(string publicID)
+        public IEnumerable<eshShoppingListFitting> SelectFitsEnShoppingList(string publicID)
         {
             var salida =
                 (from sl in Contexto.eshShoppingLists
-                 join slf in Contexto.eshShoppingListsFittings on sl.shoppingListID equals slf.shoppingListID
-                 join f in Contexto.eshFittings.Include("eshFittingHardwares").Include("invType").Include("eshFittingHardwares.invType") on slf.fittingID equals f.fittingID
+                 join slf in Contexto.eshShoppingListsFittings.Include("eshFitting.eshFittingHardwares").Include("eshFitting.invType").Include("eshFitting.eshFittingHardwares.invType") on sl.shoppingListID equals slf.shoppingListID
+                 join f in Contexto.eshFittings on slf.fittingID equals f.fittingID
                  where sl.publicID == publicID
-                 select f).ToList();
+                 select slf).ToList();
 
             return salida;
         }

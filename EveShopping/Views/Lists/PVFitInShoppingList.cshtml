@@ -1,20 +1,16 @@
 ﻿@model EveShopping.Web.Modelo.EVFitting
 
-    <h3 data-esh-name="@Model.Name" data-esh-id="@Model.FittingID">@Model.Name</h3>
+    <h3 data-esh-name="@Model.Name" data-esh-id="@Model.FittingID" data-esh-units="@Model.Units" class="clearfix accordion-header">
+        <span class="left">@Model.Name</span>
+        <span class="right">
+            <a data-esh-edit-link onclick="editFitInShoppingList('@Model.FittingID')">Edit</a>
+
+        </span>
+        <span class="right">x @Model.Units</span>
+
+    </h3>
 
     <div class="subs-wrapper-main" data-esh-name="@Model.Name" data-esh-id="@Model.FittingID" data-esh-secDesp-name="@Model.Name">
-        <div class="subs-link-bar">
-            @Ajax.ActionLink("delete", "DeleteFittingFromShoppingList"
-             , new { id = Model.FittingID }, new AjaxOptions { OnSuccess = "OnSuccessDeleteFitFromList" })
-            @Ajax.ActionLink("add", "UseAnalysedFit"
-             , new { id = Model.FittingID }, new AjaxOptions { OnSuccess = "Add" })
-            /
-            @Ajax.ActionLink("remove", "UseAnalysedFit"
-             , new { id = Model.FittingID }, new AjaxOptions { OnSuccess = "Remove" })
-            <input id="@string.Format("input-units-for-{0}", Model.FittingID)" type="text" value="1" />
-            units
-
-        </div>
         <table>
             <tr class="fila-impar">
                 <td>

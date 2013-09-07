@@ -1,7 +1,7 @@
 ﻿@model EveShopping.Models.EDVAddMarketItems
 
 @{
-    ViewBag.Title = "AddMarketItems";
+    ViewBag.Title = "Add market items to shopping list";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,7 +17,7 @@
 
 <div id="list-main">
     <div class="inside-section">
-        <h2>Market items in shopping list</h2>
+        <h3>Market items in shopping list</h3>
         <div id="fitsInList" class="subs-wrapper" data-esh-fits-in-list>
             @Html.Partial("PVMarketItemsEnShoppingList", Model.MarketItemsEnShoppingList)
         </div>
@@ -26,14 +26,23 @@
 
 
 @section izquierda{
-
-
     <div id="list-left-menu">
         <div class="inside-section">
-            <h2>Market items</h2>
+            <h3>Market items</h3>
             <div id="marketItems" class="subs-wrapper">
                 @Html.Partial("PVMarketMenu", this.Model)
             </div>
         </div>
     </div>
+}
+
+@section subheader{
+        <div id="subheader-container" class="clearfix">
+            <ul id="menu-pasos">
+                <li>@Html.ActionLink("Summary", "Summary", "Lists", new { id = this.ViewBag.PublicID},null)</li>
+                <li class="selected">@Html.ActionLink("Add market items", "AddMarketItems", "Lists", new { id = this.ViewBag.PublicID}, null)</li>
+                <li>@Html.ActionLink("Add ship fittings", "ImportFits", "Lists", new { id = this.ViewBag.PublicID}, null)</li>
+            </ul>
+        </div>
+
 }

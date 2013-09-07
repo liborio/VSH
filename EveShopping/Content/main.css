@@ -13,7 +13,7 @@ textarea {
 body {
     font-size: 1em;
     line-height: 1.4;
-    background: #071820;
+    background: #1F4E66;
 }
 
 ::-moz-selection {
@@ -80,7 +80,8 @@ body {
 
 .footer-container,
 .main aside {
-    border-top: 20px solid #4D809B;
+    margin-top: 1em;
+    /*border-top: 20px solid #4D809B;*/
 }
 
 
@@ -96,6 +97,39 @@ body {
 
 .title {
     color: white;
+}
+
+#subheader-container {
+    margin-bottom: 2px;
+    width: 100%;  
+}
+
+#subheader-container #menu-pasos {
+    width:1056px;
+    list-style:none;
+        padding-left:0;
+}
+    #subheader-container #menu-pasos li {
+        background: #3A3A3A;
+        margin-right: 2px;
+        padding: 2px 1em 2px;
+        float:right;
+    }
+
+    #subheader-container #menu-pasos li a {
+        color: white;
+        text-decoration: none;
+    }
+
+
+    #subheader-container #menu-pasos li a:hover {
+       cursor: pointer;
+       color: #FF9013;
+       text-decoration: underline;
+    }
+
+#subheader-container #menu-pasos .selected {
+    background: #272727;
 }
 
 /* ==============
@@ -115,7 +149,7 @@ nav a {
     text-decoration: none;
     font-weight: bold;
     color: white;
-    background: #4D809B;
+    background: #1F4E66;
 }
 
     nav a:hover,
@@ -132,7 +166,7 @@ nav a {
    ============== */
 
 .main {
-    padding: 30px 1em;
+    padding: 30px 15px;
     background-color: #1C1C1C;
     color: white;
 }
@@ -148,7 +182,7 @@ nav a {
 
 .footer-container footer {
     color: white;
-    padding: 20px 0;
+    padding: 5px 0;
 }
 
 /* ===============
@@ -177,11 +211,12 @@ nav a {
     nav a {
         float: left;
         width: 27%;
-        margin: 0 1.7%;
-        padding: 25px 2%;
+        margin: 14px 1.7%;
+        padding: 18px 2%;
         margin-bottom: 0;
     }
 
+    
     nav li:first-child a {
         margin-left: 0;
     }
@@ -189,6 +224,11 @@ nav a {
     nav li:last-child a {
         margin-right: 0;
     }
+
+        nav a.selected {
+        background-color:#4D809B;
+    }
+
 
     /* ========================
     INTERMEDIATE: IE Fixes
@@ -250,7 +290,7 @@ nav a {
     Maximal Width
    =============== */
 
-    .wrapper {
+    .wrapper{
         width: 1026px; /* 1140px - 10% for margins */
         margin: 0 auto;
     }
@@ -589,6 +629,22 @@ tr {
         background-color: black;
     }
 
+    tr.row-edit {
+        background-color:#3A3A3A;
+    }
+
+td.col-edit input {
+    width: 3em;
+    margin: 0px 0.5em 0px;
+    text-align:right;
+}
+
+td.col-edit span {
+    margin-right: 1em;
+    padding-right:1em;
+    border-right: 1px dotted #1C1C1C;
+}
+
 
 td a {
         color: #FFA500;
@@ -603,7 +659,7 @@ td a {
 
 
 div.subs-wrapper {
-    margin-bottom: 1em;
+    /*margin-bottom: 1em;*/
     border: solid 1px #1C1C1C;
 }
 
@@ -690,6 +746,37 @@ div.menu-market ul {
             cursor: pointer;
         }
 
+/* Accordion ======================================================================= */
+
+h3.accordion-header span.left {
+    float: left;
+}
+
+h3.accordion-header span.right {
+    float: right;
+    padding-left: 1em;
+}
+
+h3.accordion-header span {
+    cursor: default;    
+}
+
+h3.accordion-header a {
+    color: #FFA500;
+    z-index: 1000;
+    font-size: 85%;
+    font-weight: normal;
+}
+
+h3.accordion-header a {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+h3.ui-state-focus {
+    border: 0;
+}
+
 /* ajax loader =================================================================== */
 
 .modal {
@@ -700,8 +787,8 @@ div.menu-market ul {
     left: 0;
     height: 100%;
     width: 100%;
-    background: rgba( 255, 255, 255, .8 ) url('../../Content/Images/ajax-loader.gif') 50% 50% no-repeat;
-}
+    background: rgba( 255, 255, 255, 0 ) url('../../Content/Images/ajax-loader.gif') 50% 50% no-repeat;
+}   
 
 body.loading {
     overflow: hidden;
