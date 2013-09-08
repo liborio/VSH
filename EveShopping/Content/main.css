@@ -319,6 +319,12 @@ nav a {
     visibility: hidden;
 }
 
+.notVisible {
+    display:none;
+}
+
+
+
 .visuallyhidden {
     border: 0;
     clip: rect(0 0 0 0);
@@ -475,22 +481,37 @@ textarea {
         box-shadow: 0px 0px 5px #4D809B;
     }
 
+
+#list-left-menu, #list-main, #help-container {
+    background-color: #272727;
+}
 #list-left-menu, #list-main {
     min-height: 400px;
     float: left;
-    background-color: #272727;
 }
 
 #list-left-menu {
     width: 39%;
-    margin-right: 2%;
+    margin-right: 1%;
 }
 
 #list-main {
-    width: 59%;
+    width: 60%;
 }
 
-div.inside-section {
+#help-container {
+    padding: 3px 1em 3px;
+    margin:0.5em 0;
+}
+
+    #help-container h3 {
+        margin:0;
+    }
+    #help-container span {
+        cursor: default;
+    }
+
+div.inside-section{
     margin: 3px 1em 3px;
 }
 
@@ -626,7 +647,7 @@ tr {
     }
 
     tr.fila-ultima {
-        background-color: black;
+        background-color: #1C1C1C;
     }
 
     tr.row-edit {
@@ -660,18 +681,25 @@ td a {
 
 div.subs-wrapper {
     /*margin-bottom: 1em;*/
-    border: solid 1px #1C1C1C;
 }
 
     div.subs-wrapper h3 {
         color: #FFF;
         border: solid 1px #1C1C1C;
-        padding: 2px 1em 2px;
+        padding: 2px 1em 2px 24px;
         font-size: 100%;
         margin: 2px 0 0;
-        background-color: #030303;
-        background: -webkit-gradient(linear, left top, left bottom, from(#030303), to(#636363));
-        background: -moz-linear-gradient(top, #030303, #636363);
+        background: url('images/arrow-down20.png') no-repeat;
+        background-color: #1c1c1c;
+        background-position: 0px 0.3em;
+        /*background: -webkit-gradient(linear, left top, left bottom, from(#030303), to(#636363));
+        background: -moz-linear-gradient(top, #030303, #636363);*/
+    }
+
+    div.subs-wrapper h3.ui-state-active {
+        background: url('images/arrow-up20.png') no-repeat;
+        background-color: #1c1c1c;
+        background-position: 0px 0.3em;
     }
 
 div.subs-link-bar {
@@ -748,27 +776,42 @@ div.menu-market ul {
 
 /* Accordion ======================================================================= */
 
-h3.accordion-header span.left {
+.ui-accordion-header:hover {
+    cursor: pointer;
+}
+
+.ui-accordion-header {
+    outline:none;
+    padding-left:32px;
+    background: url('images/arrow-down32.png') no-repeat;
+}
+
+.ui-state-active {
+    background: url('images/arrow-up32.png') no-repeat;
+}
+
+h3.ui-accordion-header span.left {
     float: left;
 }
 
-h3.accordion-header span.right {
+h3.ui-accordion-header span.right {
     float: right;
     padding-left: 1em;
 }
 
-h3.accordion-header span {
-    cursor: default;    
+h3.ui-accordion-header span {
+    cursor: pointer;
 }
 
-h3.accordion-header a {
+h3.ui-accordion-header a {
     color: #FFA500;
     z-index: 1000;
     font-size: 85%;
     font-weight: normal;
+    text-decoration: none;
 }
 
-h3.accordion-header a {
+h3.ui-accordion-header a:hover {
     text-decoration: underline;
     cursor: pointer;
 }
@@ -800,7 +843,7 @@ body.loading {
 
 
 @media (max-width: 600px) {
-    #list-left-menu, #list-main {
+    #list-left-menu, #list-main, #help-container {
         width: 100%;
         margin-right: 0;
         margin-top: 5px;

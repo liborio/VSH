@@ -143,6 +143,12 @@
     <Content Include="Content\images\ajax-loader4.gif" />
     <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\ajax-loader2.gif" />
+    <Content Include="Content\images\arrow-down20.png" />
+    <Content Include="Content\images\arrow-down24.png" />
+    <Content Include="Content\images\arrow-down32.png" />
+    <Content Include="Content\images\arrow-up20.png" />
+    <Content Include="Content\images\arrow-up24.png" />
+    <Content Include="Content\images\arrow-up32.png" />
     <Content Include="Content\images\path-separator.ico" />
     <Content Include="Content\main.css" />
     <Content Include="Content\normalize.css" />

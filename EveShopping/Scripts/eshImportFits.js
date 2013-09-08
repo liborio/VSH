@@ -16,29 +16,61 @@ ajaxLoader = {
     },
 }
 
+accordionState = {
+
+    initAccordion: function (acc) {
+        $(function () { $(acc).accordion({ collapsible: true, active: false, heighStyle: "content", autoHeight: false, clearStyle: true }) });
+    },
+
+    disableAccordion: function (acc) {
+        $(function () { $(acc).accordion("disable") });
+    },
+
+    enableAccordion: function (acc) {
+        $(function () { $(acc).accordion("enable") });
+    },
+
+    openPanel: function (acc, idItem) {
+        var index = accordionState.getIndex(acc, idItem);
+        var currentActive = $(acc).accordion("option", "active");
+        if (index != currentActive) {
+            $(acc).accordion({ active: index });
+        }
+    },
+
+    getIndex: function (acc, idItem) {
+        var items = $(acc).find('h3');
+        var max = items.length - 1;
+
+        for (var i = 0; i < max; i++) {
+            var item = items[i];
+            if ($(item).data('esh-id') == idItem) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
+$(document).ready(function () {
+    $('#help-container div').hide();
+
+});
+
 $(document).ajaxStart(ajaxLoader.initTimer)
    .ajaxStop(ajaxLoader.endTimer);
 
-
-
-function initAccordion(acc) {
-    $(function () { $(acc).accordion({ collapsible: true, active: false, heighStyle: "content", autoHeight: false, clearStyle: true }) });
-}
-
-function disableAccordion(acc) {
-    $(function () { $(acc).accordion("disable") });
-}
-
-function enableAccordion(acc) {
-    $(function () { $(acc).accordion("enable") });
-}
+$(function () {
+    $('#help-container div').show();
+    $('#help-container').show().accordion({ collapsible: true, active: false, heighStyle: "content", autoHeight: false, clearStyle: true });
+});
 
 
 $(document).ready(function () {
     $('.header-container').find('a').removeClass('selected');
     $('.header-container').find('#navlink_newList').addClass('selected');
     //$(function () { $('#fitsInList').accordion({ collapsible: true , active: false, heighStyle:"content", autoHeight: false, clearStyle: true}) });
-    initAccordion($('#fitsInList'));
+    accordionState.initAccordion($('#fitsInList'));
 });
 
 
@@ -49,19 +81,19 @@ $(document).ready(function () {
 //}
 
 function ReactivateImportedFitsAccordion() {
-    initAccordion($("#fitsAnalysed"))
+    accordionState.initAccordion($("#fitsAnalysed"))
     //$(function () { $("#fitsAnalysed").accordion({ collapsible: true, active: false, heighStyle: "content", autoHeight: false, clearStyle: true }) });
 }
 
-function OnSuccessUseAnalysedFit(data){
+function OnSuccessUseAnalysedFit(data) {
     $(data).prependTo($("[data-esh-fits-in-list]").first());
     var name = $(data).first().attr('data-esh-name');
     $('[data-esh-analysed-fits').children('[data-esh-name = "' + name + '"]').remove();
-    initAccordion($('#fitsInList'));
+    accordionState.initAccordion($('#fitsInList'));
     //$(function () { $('#fitsInList').accordion({ collapsible: true, active: false, heighStyle: "content", autoHeight: false, clearStyle: true }) });
 }
 
-function OnSuccessDeleteFitFromList() {    
+function OnSuccessDeleteFitFromList() {
     $('[data-esh-fits-in-list').children('[data-esh-id = "' + this + '"]').remove();
 }
 
@@ -69,7 +101,7 @@ function onSetUnitsInShoppingListSuccess(data) {
     var id = this;
     var fitsContainer = $('[data-esh-fits-in-list');
     $(fitsContainer).find('[data-esh-id = ' + id + '] + div').remove();
-    $(data).replaceAll('[data-esh-id = '+ id + ']');
+    $(data).replaceAll('[data-esh-id = ' + id + ']');
 }
 
 
@@ -87,8 +119,12 @@ function editFitInShoppingList(id) {
     $('[data-esh-fits-in-list]').find('[data-esh-edit-link]').hide();
     var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='4' class='col-edit'><span><a onclick=\"setUnitsItemInShoppingList('" + id + "')\">Set</a> <input data-esh-units type='text' value='" + units + "'>units</span><span><a onclick=\"deleteItemInShoppingList('" + id + "')\">Delete</a></span><span><a onclick=\"cancelEditItemInShoppingList('" + id + "')\">Close edit</a></span>";
     $(filaControlesEdicion).insertBefore(row);
-    
-    disableAccordion($('#fitsInList'));
+
+    var acc = $('#fitsInList');
+
+    accordionState.openPanel(acc, id);
+
+    accordionState.disableAccordion(acc);
     //$(function () { $('#fitsInList').accordion("disable")});
 
     $(filaControlesEdicion).find('input:text').focus(function () { $(this).select(); });
@@ -97,12 +133,12 @@ function editFitInShoppingList(id) {
 }
 
 function disableFitInShoppingListPanels() {
-    disableAccordion($("#fitsAnalysed"));
+    accordionState.disableAccordion($("#fitsAnalysed"));
 }
 
 function cancelEditItemInShoppingList(id) {
     cleanEdits();
-    enableAccordion($('#fitsInList'));
+    accordionState.enableAccordion($('#fitsInList'));
 }
 
 function setUnitsItemInShoppingList(id) {
