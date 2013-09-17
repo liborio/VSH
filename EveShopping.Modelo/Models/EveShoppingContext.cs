@@ -23,8 +23,10 @@ namespace EveShopping.Modelo.Models
         public DbSet<eshShoppingList> eshShoppingLists { get; set; }
         public DbSet<eshShoppingListFitting> eshShoppingListsFittings { get; set; }
         public DbSet<eshShoppingListInvType> eshShoppingListsInvTypes { get; set; }
+        public DbSet<eshPrice> eshPrices { get; set; }
         public DbSet<invType> invTypes { get; set; }
         public DbSet<invMarketGroup> invMarketGroups { get; set; }
+        public DbSet<mapSolarSystem> mapSolarSystems { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -34,8 +36,10 @@ namespace EveShopping.Modelo.Models
             modelBuilder.Configurations.Add(new eshShoppingListMap());
             modelBuilder.Configurations.Add(new eshShoppingListFittingMap());
             modelBuilder.Configurations.Add(new eshShoppingListInvTypeMap());
+            modelBuilder.Configurations.Add(new eshPriceMap());
             modelBuilder.Configurations.Add(new invTypeMap());
             modelBuilder.Configurations.Add(new invMarketGroupMap());
+            modelBuilder.Configurations.Add(new mapSolarSystemMap());
         }
     }
 }

@@ -12,12 +12,43 @@ namespace EveShopping.Web.Agentes
 {
     public class AgenteShoppingList
     {
+        public string CrearShoppingList(string name, string description)
+        {
+            LogicaShoppingLists logica = new LogicaShoppingLists();
+            return logica.CrearShoppingList(name, description);
+        }
+
+
+
         public EVFitting SelectFitPorID(int fittingID)
         {
             LogicaShoppingLists logica =
                 new LogicaShoppingLists();
             eshFitting fit = logica.SelectFitPorID(fittingID);
             return MontarEVFiting(fit, 1);
+        }
+
+        public EVListSummary SelectListSummaryPorPublicID(string publicID)
+        {
+            LogicaShoppingLists logica = new LogicaShoppingLists();
+            eshShoppingList sl = logica.SelectShoppingListByPublicID(publicID);
+
+            EVListSummary summ = new EVListSummary();
+            summ.Name = sl.name;
+            summ.Description = sl.description;
+
+            foreach (var slit in sl.eshShoppingListInvTypes)
+            {
+                EVFittingHardware fh = new EVFittingHardware();
+                fh.Name = slit.invType.typeName;
+                fh.Units = slit.units;
+                fh.Volume = slit.volume;
+                fh.ImageUrl32 = GetImageUrl32(slit.typeID);
+
+                summ.Items.Add(fh);
+            }
+            return summ;
+            
         }
 
         public int DeleteFitPorID(int fittingID)
@@ -56,7 +87,7 @@ namespace EveShopping.Web.Agentes
         {
             LogicaShoppingLists logica =
                 new LogicaShoppingLists();
-            logica.AddItemToShoppingList(shoppingListPublidID, itemID, units);
+            logica.UpdateMarketItemToShoppingList(shoppingListPublidID, itemID, units);
             return logica.SelectMarketItemByID(shoppingListPublidID, itemID);
         }
 
@@ -83,7 +114,7 @@ namespace EveShopping.Web.Agentes
             fit.ShipVolume = item.shipVolume;
             fit.Volume = item.volume;
             fit.FittingID = item.fittingID;
-            fit.ShipImageUrl32 = string.Format("http://image.eveonline.com/Type/{0}_32.png", item.invType.typeID);
+            fit.ShipImageUrl32 = GetImageUrl32(item.invType.typeID);
             fit.Units = units;
             foreach (var itemHwd in item.eshFittingHardwares)
             {
@@ -97,6 +128,11 @@ namespace EveShopping.Web.Agentes
                 fit.FittingHardwares.Add(hwd);
             }
             return fit;
+        }
+
+        private static string GetImageUrl32(int typeId)
+        {
+            return string.Format("http://image.eveonline.com/Type/{0}_32.png", typeId);
         }
     }
 }

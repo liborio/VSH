@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -45,8 +46,10 @@
     <Compile Include="Agentes\AgenteMarketItems.cs" />
     <Compile Include="Agentes\AgenteShoppingList.cs" />
     <Compile Include="EstadoUsuario.cs" />
+    <Compile Include="Modelo\ConvertToJavaScriptArray.cs" />
     <Compile Include="Modelo\EVFitting.cs" />
     <Compile Include="Modelo\EVFittingHardware.cs" />
+    <Compile Include="Modelo\EVListSummary.cs" />
     <Compile Include="Modelo\EVMarketItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

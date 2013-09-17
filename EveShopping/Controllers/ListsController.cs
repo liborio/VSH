@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace EveShopping.Controllers
 {
@@ -25,6 +26,20 @@ namespace EveShopping.Controllers
         }
 
         #region Import Fits
+
+        public ActionResult New()
+        {
+            return View();
+        }
+
+        public ActionResult Create(string slName, string slDescription)
+        {
+            AgenteShoppingList agente = new AgenteShoppingList();
+            string id = agente.CrearShoppingList(slName, slDescription);
+
+            return RedirectToAction("ImportFits", new { id = id });
+
+        }
 
         public ActionResult ImportFits(string id = null)
         {
@@ -44,6 +59,37 @@ namespace EveShopping.Controllers
 
             return View(fits);
         }
+
+        public ActionResult Summary(string id = null)
+        {
+
+            if (id == null)
+            {
+                id = EstadoUsuario.CurrentListPublicId;
+            }
+            ViewBag.PublicID = id;
+            AgenteShoppingList agente = new AgenteShoppingList();
+            EVListSummary summ =  agente.SelectListSummaryPorPublicID(id);
+
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string itemArray = serializer.Serialize(summ.Items);
+
+
+            EDVSummary edv = new EDVSummary();
+            edv.ItemArray = itemArray;
+            edv.Summary = summ;
+
+            return View(edv);
+        }
+        
+        public JsonResult SummaryData(string id = null)
+        {
+            AgenteShoppingList agente = new AgenteShoppingList();
+            EVListSummary summ = agente.SelectListSummaryPorPublicID(id);
+
+            return Json(summ.Items, JsonRequestBehavior.AllowGet);
+        }
+
 
         [HttpPost()]
         [ValidateInput(false)]
@@ -137,8 +183,6 @@ namespace EveShopping.Controllers
 
         public PartialViewResult NavigateMarketGroup(int id)
         {
-            System.Threading.Thread.Sleep(1500);
-
             AgenteMarketItems agente = new AgenteMarketItems();
             IEnumerable<EVMarketItem> marketItems = agente.SelectMarketGroupsByParentID(id);
             IList<invMarketGroup> marketChain = agente.GetParentGroupsChain(id);

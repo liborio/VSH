@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "New";
+}
+
+<h2>New shopping list</h2>
+
+@using(Html.BeginForm("Create", "Lists",FormMethod.Post)){
+    <fieldset>
+        <legend>Name</legend>
+        <input type="text" name="slName" placeholder="Shopping list's name" required maxlength="100" />
+    </fieldset>
+    <fieldset>
+        <legend>Description</legend>
+        <textarea name="slDescription" rows="5" placeholder="Description for new shopping list" maxlength="3000"></textarea>
+    </fieldset>
+    <button type="submit" class="buttonYellow" value="Create">Create</button>
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <script src="~/Scripts/eshImportFits.js" type="text/javascript">
+    </script>
+}
+

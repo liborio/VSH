@@ -74,6 +74,7 @@
     <Compile Include="Models\eshFitting.cs" />
     <Compile Include="Models\eshFittingHardware.cs" />
     <Compile Include="Models\eshFittingSlot.cs" />
+    <Compile Include="Models\eshPrice.cs" />
     <Compile Include="Models\eshShoppingList.cs" />
     <Compile Include="Models\eshShoppingListFitting.cs" />
     <Compile Include="Models\eshShoppingListInvType.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Models\Mapping\eshFittingHardwareMap.cs" />
     <Compile Include="Models\Mapping\eshFittingMap.cs" />
     <Compile Include="Models\Mapping\eshFittingSlotMap.cs" />
+    <Compile Include="Models\Mapping\eshPriceMap.cs" />
     <Compile Include="Models\Mapping\eshShoppingListFittingMap.cs" />
     <Compile Include="Models\Mapping\eshShoppingListInvTypeMap.cs" />
     <Compile Include="Models\Mapping\eshShoppingListMap.cs" />

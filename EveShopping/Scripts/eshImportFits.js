@@ -18,8 +18,11 @@ ajaxLoader = {
 
 accordionState = {
 
-    initAccordion: function (acc) {
-        $(function () { $(acc).accordion({ collapsible: true, active: false, heighStyle: "content", autoHeight: false, clearStyle: true }) });
+    initAccordion: function (acc, index) {
+        $(function () { $(acc).accordion("destroy").accordion({ collapsible: true, active: false, heighStyle: "content", autoHeight: false, clearStyle: true }) });
+        if (index != null) {
+            $(acc).accordion({active: index});
+        }
     },
 
     disableAccordion: function (acc) {
@@ -33,14 +36,14 @@ accordionState = {
     openPanel: function (acc, idItem) {
         var index = accordionState.getIndex(acc, idItem);
         var currentActive = $(acc).accordion("option", "active");
-        if (index != currentActive) {
+        if (index !== currentActive) {
             $(acc).accordion({ active: index });
         }
     },
 
     getIndex: function (acc, idItem) {
         var items = $(acc).find('h3');
-        var max = items.length - 1;
+        var max = items.length;
 
         for (var i = 0; i < max; i++) {
             var item = items[i];
@@ -69,16 +72,9 @@ $(function () {
 $(document).ready(function () {
     $('.header-container').find('a').removeClass('selected');
     $('.header-container').find('#navlink_newList').addClass('selected');
-    //$(function () { $('#fitsInList').accordion({ collapsible: true , active: false, heighStyle:"content", autoHeight: false, clearStyle: true}) });
     accordionState.initAccordion($('#fitsInList'));
 });
 
-
-//function eshImportFits() {
-//    $(function () {
-//        $("#fitsAnalysed").accordion({ collapsible: true , active: false})});
-//    };
-//}
 
 function ReactivateImportedFitsAccordion() {
     accordionState.initAccordion($("#fitsAnalysed"))
@@ -89,12 +85,13 @@ function OnSuccessUseAnalysedFit(data) {
     $(data).prependTo($("[data-esh-fits-in-list]").first());
     var name = $(data).first().attr('data-esh-name');
     $('[data-esh-analysed-fits').children('[data-esh-name = "' + name + '"]').remove();
-    accordionState.initAccordion($('#fitsInList'));
-    //$(function () { $('#fitsInList').accordion({ collapsible: true, active: false, heighStyle: "content", autoHeight: false, clearStyle: true }) });
+    accordionState.initAccordion($('#fitsInList'), 0);
 }
 
 function OnSuccessDeleteFitFromList() {
     $('[data-esh-fits-in-list').children('[data-esh-id = "' + this + '"]').remove();
+    accordionState.initAccordion($('#fitsInList'));
+    cleanEdits();
 }
 
 function onSetUnitsInShoppingListSuccess(data) {
@@ -102,6 +99,10 @@ function onSetUnitsInShoppingListSuccess(data) {
     var fitsContainer = $('[data-esh-fits-in-list');
     $(fitsContainer).find('[data-esh-id = ' + id + '] + div').remove();
     $(data).replaceAll('[data-esh-id = ' + id + ']');
+    
+    accordionState.initAccordion($('#fitsInList'));
+    accordionState.openPanel($('#fitsInList'), id);
+    cleanEdits();
 }
 
 

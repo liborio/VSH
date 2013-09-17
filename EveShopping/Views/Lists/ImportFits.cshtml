@@ -13,6 +13,10 @@
                 Html.RenderPartial("PVFitsInShoppingList", this.Model);
             }
         </div>
+        <div id="links-navegacion-pasos-container">
+            @Html.ActionLink("Add market items >>", "AddMarketItems", new { id = this.ViewBag.PublicID }, null)
+        </div>
+         
     </div>
 </div>
 
@@ -61,13 +65,13 @@
 
 @section ayuda{
     <div id="help-container" class="notVisible">
-            <h3><span>Add fittings to shopping list</span></h3>
-            <div>
-                <p>In this step you will be able to add any fit you want to include in the shopping list, follow the next steps:</p>
-                <p>Paste your fittings and analyse them on the analyse section. You can use fits exported from EVE Online (support file with multiple fittings) and EFT. </p>
-                <p>Select the fits that you want to use from the imported section</p>
-                <p>Edit them and set the amount of units of this fit that you want to include in your shopping list</p>
-                <p>Shopping list is completed in 3 steps, you can navigate following the buttons at the end of the main section or using the shopping list navigation bar.</p>
-            </div>
+        <h3><span>Add fittings to shopping list</span></h3>
+        <div>
+            <p>In this step you will be able to add any fit you want to include in the shopping list, follow the next steps:</p>
+            <p>Paste your fittings and analyse them on the analyse section. You can use fits exported from EVE Online (support file with multiple fittings) and EFT. </p>
+            <p>Select the fits that you want to use from the imported section</p>
+            <p>Edit them and set the amount of units of this fit that you want to include in your shopping list</p>
+            <p>Shopping list is completed in 3 steps, you can navigate following the buttons at the end of the main section or using the shopping list navigation bar.</p>
+        </div>
     </div>
 }

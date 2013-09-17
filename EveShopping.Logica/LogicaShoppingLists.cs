@@ -48,11 +48,38 @@ namespace EveShopping.Logica
             context.SaveChanges();
         }
 
+        public eshShoppingList SelectShoppingListByPublicID(string publicID){
+            EveShoppingContext contexto =
+                new EveShoppingContext();
+
+            return contexto.eshShoppingLists.Include("eshShoppingListFittings.eshFitting.eshFittingHardwares.invType")
+                .Include("eshShoppingListInvTypes.invType").Where(sl => sl.publicID == publicID).FirstOrDefault();
+        }
+
         public IEnumerable<eshShoppingListFitting> SelectFitsEnShoppingList(string publicID)
         {
             RepositorioShoppingLists repo = new RepositorioShoppingLists();
             return repo.SelectFitsEnShoppingList(publicID);            
         }
+
+        public string CrearShoppingList(string name, string description)
+        {
+            string publicID = Guid.NewGuid().ToString();
+            EveShoppingContext contexto = new EveShoppingContext();
+
+            eshShoppingList sl = new eshShoppingList();
+            sl.name = name;
+            sl.description = description;
+            sl.publicID = publicID;
+            sl.dateCreation = System.DateTime.Now;
+            sl.dateUpdate = System.DateTime.Now;
+            contexto.eshShoppingLists.Add(sl);
+            contexto.SaveChanges();
+            return publicID;
+
+        }
+
+
         
         public string CrearShoppingList(eshShoppingList lista)
         {
@@ -64,7 +91,7 @@ namespace EveShopping.Logica
             return publicID;
         }
 
-        public void AddItemToShoppingList(string publicID, int itemID, short units)
+        public void UpdateMarketItemToShoppingList(string publicID, int itemID, short units)
         {
             RepositorioShoppingLists repo = new RepositorioShoppingLists();
             eshShoppingList list = repo.SelectShopingListPorPublicID(publicID);

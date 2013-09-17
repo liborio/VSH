@@ -43,6 +43,7 @@ namespace EveShopping.Modelo.Models
         public DbSet<eshFittingHardware> eshFittingHardwares { get; set; }
         public DbSet<eshFitting> eshFittings { get; set; }
         public DbSet<eshFittingSlot> eshFittingSlots { get; set; }
+        public DbSet<eshPrice> eshPrices { get; set; }
         public DbSet<eshShoppingListFitting> eshShoppingListFittings { get; set; }
         public DbSet<eshShoppingListInvType> eshShoppingListInvTypes { get; set; }
         public DbSet<eshShoppingList> eshShoppingLists { get; set; }
@@ -130,6 +131,7 @@ namespace EveShopping.Modelo.Models
             modelBuilder.Configurations.Add(new eshFittingHardwareMap());
             modelBuilder.Configurations.Add(new eshFittingMap());
             modelBuilder.Configurations.Add(new eshFittingSlotMap());
+            modelBuilder.Configurations.Add(new eshPriceMap());
             modelBuilder.Configurations.Add(new eshShoppingListFittingMap());
             modelBuilder.Configurations.Add(new eshShoppingListInvTypeMap());
             modelBuilder.Configurations.Add(new eshShoppingListMap());

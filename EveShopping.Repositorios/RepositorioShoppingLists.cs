@@ -72,7 +72,7 @@ namespace EveShopping.Repositorios
                 {
                     throw new ApplicationException(Messages.err_itemNoExiste);
                 }
-                slit.units += units;
+                slit.units = units;
                 if (slit.units < 0) slit.units = 0;
 
 

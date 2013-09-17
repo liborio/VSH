@@ -24,15 +24,6 @@ $(document).ajaxStart(ajaxLoader.initTimer)
    .ajaxStop(ajaxLoader.endTimer);
 
 
-//$('#loading-image').hide().ajaxStart(function () {
-//    $(this).show();    
-//})
-//   .ajaxStop(function () {
-//       $(this).hide();
-//   })
-//;
-
-
 function OnSuccessNavigateMarketGroup(data) {
     $('[data-esh-marketMenu]').replaceWith(data);
 }
@@ -42,14 +33,19 @@ function OnSuccessNavigateMarketGroup(data) {
 function AddOrReplaceItemInShoppingList(data, id, inEdit) {
     var itemTable = $('[data-esch-marketItemsInShoppingList]');
     var existeItem = $(itemTable).find('[data-esh-id="' + id + '"]').length > 0;
-    if (!existeItem) {
-        $(data).insertBefore(itemTable.find('tr').first());
+    if ($(itemTable).find("[data-esh-id]").length == 0) {
+        $(itemTable).append(data);
     }
     else {
-        $(data).replaceAll(itemTable.find('[data-esh-id="' + id + '"]'));
-    }
-    if (inEdit) {
-        itemTable.find('[data-esh-id="' + id + '"]').addClass('row-edit');
+        if (!existeItem) {
+            $(data).insertBefore(itemTable.find('tr').first());
+        }
+        else {
+            $(data).replaceAll(itemTable.find('[data-esh-id="' + id + '"]'));
+        }
+        if (inEdit) {
+            itemTable.find('[data-esh-id="' + id + '"]').addClass('row-edit');
+        }
     }
 }
 
@@ -59,6 +55,7 @@ function OnSuccessAddItemToShoppingList(data) {
 
 function onSuccessUpdateItemToShoppingList(data) {
     AddOrReplaceItemInShoppingList(data, this, true);
+    cancelEditItemInShoppingList(this);
 }
 
 
@@ -96,7 +93,9 @@ function editItemInShoppingList(id) {
 
     $(row).addClass('row-edit')
     $(row).find('a').hide()
-    var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='5' class='col-edit'><span><a onclick=\"addUnitsItemInShoppingList('" + id + "')\">Add</a> / <a onclick=\"removeUnitsItemInShoppingList('" + id + "')\">Remove</a><input data-esh-units type='text' value='1'>units</span><span><a onclick=\"deleteItemInShoppingList('" + id + "')\">Delete</a></span><span><a onclick=\"cancelEditItemInShoppingList('" + id + "')\">Cancel edit</a></span>"
+    var units = $(row).data('esh-units');
+
+    var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='5' class='col-edit'><span><a onclick=\"setUnitsItemInShoppingList('" + id + "')\">Set</a><input data-esh-units type='text' value='" + units + "'>units</span><span><a onclick=\"deleteItemInShoppingList('" + id + "')\">Delete</a></span><span><a onclick=\"cancelEditItemInShoppingList('" + id + "')\">Close edit</a></span>"
     $(filaControlesEdicion).insertAfter(row)
 
     $(filaControlesEdicion).find('input:text').focus(function () { $(this).select(); });
@@ -119,15 +118,10 @@ function cancelEditItemInShoppingList(id) {
     $('[data-esch-marketitemsinshoppinglist]').find('[data-esh-row-edit]').remove();
 }
 
-function addUnitsItemInShoppingList(id) {
+function setUnitsItemInShoppingList(id) {
     var units = $('[data-esch-marketitemsinshoppinglist]').find('[data-esh-row-edit]').find('[data-esh-units]').val();
     updateItemToShoppingList(id, units)
 
-}
-
-function removeUnitsItemInShoppingList(id) {
-    var units = parseInt( $('[data-esch-marketitemsinshoppinglist]').find('[data-esh-row-edit]').find('[data-esh-units]').val()) * -1;
-    updateItemToShoppingList(id, units)
 }
 
 function deleteItemInShoppingList(id) {

@@ -44,6 +44,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -137,6 +138,7 @@
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
     <Compile Include="Models\EDVAddMarketItems.cs" />
+    <Compile Include="Models\EDVSummary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -210,12 +212,49 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <None Include="Properties\PublishProfiles\eve-shopping.pubxml" />
+    <None Include="Properties\PublishProfiles\findeldia.pubxml" />
+    <None Include="Properties\PublishProfiles\localhost.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="index.html" />
     <Content Include="Scripts\eshAddMarketItems.js" />
     <Content Include="Scripts\eshCommon.js" />
     <Content Include="Scripts\eshHome.js" />
     <Content Include="Scripts\eshImportFits.js" />
+    <Content Include="Scripts\eshSummary.js" />
+    <Content Include="Scripts\grid\ChangeLog.txt" />
+    <Content Include="Scripts\grid\GPL-LICENSE.txt" />
+    <Content Include="Scripts\grid\images\cross.png" />
+    <Content Include="Scripts\grid\images\horiz-bg.png" />
+    <Content Include="Scripts\grid\images\horiz-slider-bg.png" />
+    <Content Include="Scripts\grid\images\loading.gif" />
+    <Content Include="Scripts\grid\images\page-first-gray.gif" />
+    <Content Include="Scripts\grid\images\page-last-gray.gif" />
+    <Content Include="Scripts\grid\images\page-next-gray.gif" />
+    <Content Include="Scripts\grid\images\page-prev-gray.gif" />
+    <Content Include="Scripts\grid\images\Refresh.gif" />
+    <Content Include="Scripts\grid\images\sort_asc.gif" />
+    <Content Include="Scripts\grid\images\sort_desc.gif" />
+    <Content Include="Scripts\grid\images\sprite.png" />
+    <Content Include="Scripts\grid\images\tick.png" />
+    <Content Include="Scripts\grid\images\vert-bg.png" />
+    <Content Include="Scripts\grid\images\vert-slider-bg.png" />
+    <Content Include="Scripts\grid\index.htm" />
+    <Content Include="Scripts\grid\localize\pq-localize-de.js" />
+    <Content Include="Scripts\grid\localize\pq-localize-es.js" />
+    <Content Include="Scripts\grid\localize\pq-localize-hu.js" />
+    <Content Include="Scripts\grid\localize\pq-localize-it.js" />
+    <Content Include="Scripts\grid\localize\pq-localize-ja.js" />
+    <Content Include="Scripts\grid\localize\pq-localize-nl.js" />
+    <Content Include="Scripts\grid\localize\pq-localize-zh.js" />
+    <Content Include="Scripts\grid\pqgrid.dev.css" />
+    <Content Include="Scripts\grid\pqgrid.dev.js" />
+    <Content Include="Scripts\grid\pqgrid.min.css" />
+    <Content Include="Scripts\grid\pqgrid.min.js" />
+    <Content Include="Scripts\grid\ReadMe.txt" />
+    <Content Include="Scripts\grid\themes\Office\images\column-header-bg.png" />
+    <Content Include="Scripts\grid\themes\Office\images\column-header-over-bg.gif" />
+    <Content Include="Scripts\grid\themes\Office\pqgrid.css" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -254,6 +293,8 @@
     <Content Include="Views\Lists\PVMarketMenu.cshtml" />
     <Content Include="Views\Lists\PVMarketItemEnShoppingList.cshtml" />
     <Content Include="Views\Lists\PVMarketItemsEnShoppingList.cshtml" />
+    <Content Include="Views\Lists\New.cshtml" />
+    <Content Include="Views\Lists\Summary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -301,7 +342,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>52897</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:16524/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
