@@ -12,7 +12,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script src="~/Scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"
@@ -24,7 +23,8 @@
     </script>
 
     @RenderSection("scriptsHead", required: false);
-</head>
+  @Styles.Render("~/Content/css")
+  </head>
 <body>
     <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>

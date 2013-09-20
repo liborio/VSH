@@ -20,6 +20,19 @@ namespace EveShopping.Web.Agentes
 
             return salida;
         }
+        
+        public IEnumerable<EVMarketItem> SearchMarketItems(string searchText){
+            LogicaMarketItems logica = new LogicaMarketItems();
+            IEnumerable<invType> invTypes = logica.SearchMarketItems(searchText);
+
+            foreach (var item in invTypes)
+            {
+                yield return Copiar(item);
+            }
+
+        }
+
+
 
         public IEnumerable<EVMarketItem> SelectMarketGroupsByParentID(int? parentID)
         {

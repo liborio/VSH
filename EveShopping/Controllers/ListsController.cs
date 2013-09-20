@@ -181,6 +181,13 @@ namespace EveShopping.Controllers
             return View(edv);
         }
 
+        public PartialViewResult SearchMarketItem(string id)
+        {
+            AgenteMarketItems agente = new AgenteMarketItems();
+            IEnumerable<EVMarketItem> items = agente.SearchMarketItems(id).ToList();
+            return PartialView("PVSearchMarketItem", items);
+        }
+
         public PartialViewResult NavigateMarketGroup(int id)
         {
             AgenteMarketItems agente = new AgenteMarketItems();

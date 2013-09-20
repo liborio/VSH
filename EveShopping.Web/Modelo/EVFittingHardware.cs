@@ -14,7 +14,7 @@ namespace EveShopping.Web.Modelo
         public int FittingHardwareID { get; set; }
         public string ImageUrl32 { get; set; }
         public string Name { get; set; }
-        public short Units { get; set; }
+        public int Units { get; set; }
         public double Volume { get; set; }
         [ScriptIgnore]
         public int Slot { get; set; }

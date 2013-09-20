@@ -1,56 +1,54 @@
 ﻿@model EveShopping.Web.Modelo.EVFitting
 
-    <h3 data-esh-name="@Model.Name" data-esh-id="@Model.FittingID" data-esh-units="@Model.Units" class="clearfix accordion-header">
-        <span class="left">@Model.Name</span>
-        <span class="right">
-            <a data-esh-edit-link onclick="editFitInShoppingList('@Model.FittingID')">Edit</a>
+<h3 data-esh-name="@Model.Name" data-esh-id="@Model.FittingID" data-esh-units="@Model.Units" class="clearfix accordion-header">
+    <span class="left">@Model.Name</span>
+    <span class="right">
+        <a data-esh-edit-link onclick="editFitInShoppingList('@Model.FittingID')">Edit</a>
 
-        </span>
-        <span class="right">x @Model.Units</span>
+    </span>
+    <span class="right">x @Model.Units</span>
 
-    </h3>
+</h3>
 
-    <div class="subs-wrapper-main" data-esh-name="@Model.Name" data-esh-id="@Model.FittingID" data-esh-secDesp-name="@Model.Name">
-        <table>
-            <tr class="fila-impar">
-                <td>
-                    <img src="@Model.ShipImageUrl32" alt="@Model.Name" /></td>
-                <td>@Model.ShipName</td>
-                <td>x 1</td>
-                <td class="numericCol">@Model.ShipVolume m3</td>
-            </tr>
-            @{
-    ViewBag.prevSlot = 0;
-    ViewBag.estilo = "fila-impar";
-            }
-            @foreach (var hwdItem in Model.FittingHardwares)
+<div class="subs-wrapper-main" data-esh-name="@Model.Name" data-esh-id="@Model.FittingID" data-esh-secDesp-name="@Model.Name">
+    <table>
+        <tr class="fila-impar">
+            <td>
+                <img src="@Model.ShipImageUrl32" alt="@Model.Name" /></td>
+            <td>@Model.ShipName</td>
+            <td>x 1</td>
+            <td class="numericCol">@Model.ShipVolume m3</td>
+        </tr>
+        @{
+            ViewBag.prevSlot = 0;
+            ViewBag.estilo = "fila-impar";
+        }
+        @foreach (var hwdItem in Model.FittingHardwares)
+        {
+            if (hwdItem.Slot != ViewBag.prevSlot)
             {
-                if (hwdItem.Slot != ViewBag.prevSlot)
-                {
-                    ViewBag.prevSlot = hwdItem.Slot;
-                    if (string.Equals(ViewBag.estilo, "fila-par"))
-                    {
-                        ViewBag.estilo = "fila-impar";
-                    }
-                    else
-                    {
-                        ViewBag.estilo = "fila-par";
-                    }
-                }
-                <tr class="@ViewBag.estilo">
+                ViewBag.prevSlot = hwdItem.Slot;
+                <tr class="fila-par">
                     <td>
-                        <img src="@hwdItem.ImageUrl32" alt="@hwdItem.Name" /></td>
-                    <td>@hwdItem.Name</td>
-                    <td>x @hwdItem.Units</td>
-                    <td class="numericCol">@hwdItem.Volume m3</td>
+                        <img src="~/content/images/@EveShopping.Web.VSHMappings.GetImageName(hwdItem.Slot)" alt="" /></td>
+                    <td colspan="3">@EveShopping.Web.VSHMappings.GetSlotName(hwdItem.Slot)</td>
                 </tr>
+
             }
-            <tr class="fila-ultima">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="numericCol">@Model.Volume m3</td>
+            <tr class="@ViewBag.estilo">
+                <td>
+                    <img src="@hwdItem.ImageUrl32" alt="@hwdItem.Name" /></td>
+                <td>@hwdItem.Name</td>
+                <td>x @hwdItem.Units</td>
+                <td class="numericCol">@hwdItem.Volume m3</td>
             </tr>
-        </table>
-    </div>
+        }
+        <tr class="fila-ultima">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="numericCol">@Model.Volume m3</td>
+        </tr>
+    </table>
+</div>
 

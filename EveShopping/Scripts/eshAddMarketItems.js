@@ -1,11 +1,25 @@
 ﻿/// <reference path="jquery.blockUI.js" />
 
 
+var thread = null;
+
+function findMember(t) {
+    alert(t);
+}
+
 $(document).ready(function () {
     $('.header-container').find('a').removeClass('selected');
     $('.header-container').find('#navlink_newList').addClass('selected');
-});
+    accordionState.initAccordion($('#market-items-accordion'));
 
+
+    $('#searchText').keyup(function () {
+        if ($(this).val().length >= 5) {
+            clearTimeout(thread);
+            var $this = $(this); thread = setTimeout(function () { searchMarketItem($this.val()) }, 500);
+        }
+    });
+});
 
  ajaxLoader = {
     timer : 0,
@@ -27,7 +41,6 @@ $(document).ajaxStart(ajaxLoader.initTimer)
 function OnSuccessNavigateMarketGroup(data) {
     $('[data-esh-marketMenu]').replaceWith(data);
 }
-
 
 
 function AddOrReplaceItemInShoppingList(data, id, inEdit) {
@@ -56,6 +69,19 @@ function OnSuccessAddItemToShoppingList(data) {
 function onSuccessUpdateItemToShoppingList(data) {
     AddOrReplaceItemInShoppingList(data, this, true);
     cancelEditItemInShoppingList(this);
+}
+
+function onSuccessSearchItem(data) {
+    $('#searchResult').replaceWith(data);
+}
+
+
+function searchMarketItem(text) {
+    $.ajax({
+        url: '/lists/searchMarketItem/' + text,
+        success: onSuccessSearchItem,
+        dataType: 'html'
+    });
 }
 
 

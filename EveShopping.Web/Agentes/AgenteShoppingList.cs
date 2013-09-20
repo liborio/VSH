@@ -37,15 +37,38 @@ namespace EveShopping.Web.Agentes
             summ.Name = sl.name;
             summ.Description = sl.description;
 
+            Dictionary<int, EVFittingHardware> diccHardware = new Dictionary<int, EVFittingHardware>();
+
             foreach (var slit in sl.eshShoppingListInvTypes)
             {
                 EVFittingHardware fh = new EVFittingHardware();
+                fh.FittingHardwareID = slit.typeID;
                 fh.Name = slit.invType.typeName;
                 fh.Units = slit.units;
                 fh.Volume = slit.volume;
                 fh.ImageUrl32 = GetImageUrl32(slit.typeID);
 
                 summ.Items.Add(fh);
+                diccHardware.Add(slit.typeID, fh);
+            }
+
+            foreach (var shfit in sl.eshShoppingListFittings)
+            {
+                foreach (var item in shfit.eshFitting.eshFittingHardwares)
+                {
+                    EVFittingHardware fh = diccHardware.ContainsKey(item.typeID) ? diccHardware[item.typeID] : null;
+                    if (fh == null)
+                    {
+                        fh = new EVFittingHardware();
+                        fh.FittingHardwareID = item.typeID;
+                        fh.Name = item.invType.typeName;
+                        fh.ImageUrl32 = GetImageUrl32(item.invType.typeID);
+                        diccHardware.Add(item.typeID, fh);
+                        summ.Items.Add(fh);
+                    }
+                    fh.Units +=  item.units * shfit.units;
+                    fh.Volume += item.volume * shfit.units;
+                }
             }
             return summ;
             

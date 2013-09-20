@@ -1,0 +1,29 @@
+﻿@model IEnumerable<EveShopping.Web.Modelo.EVMarketItem>
+
+<div id="searchResult" class="clearfix menu-market">
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li class="fila-impar">
+                @if (item.EsFinal)
+                {
+                    <div onclick="addItemToShoppingList(@item.ItemID)">
+                        @if (!string.IsNullOrEmpty(item.UrlIcon))
+                        {<span class="icono"><img src="@item.UrlIcon" alt="@item.Name" />
+                            </span>}
+                        <span class="nombre" data-esh-id="@item.ItemID">@item.Name</span>
+                    </div>
+                }
+                else
+                {
+                    <div onclick="navigateMarketGroup(@item.ItemID)">
+                        @if (!string.IsNullOrEmpty(item.UrlIcon))
+                        {<span class="icono"><img src="@item.UrlIcon" alt="@item.Name" />
+                            </span>}
+                        <span class="nombre" data-esh-id="@item.ItemID">@item.Name</span>
+                    </div>
+                }
+            </li>
+        }
+    </ul>
+</div>

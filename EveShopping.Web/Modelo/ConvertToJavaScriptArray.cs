@@ -33,11 +33,13 @@ namespace EveShopping.Web.Modelo
 
         public static string Convert(EVFittingHardware data)
         {
-            return string.Format("['{0}','{1}','{2}','{3}']",
+            return string.Format("[\"{0}\",\"{1}\",\"{2}\",\"{3}\", \"{4}\"]",                
                 data.ImageUrl32,
                 data.Name,
+                data.Volume,
                 data.Units,
-                data.Volume);
+                data.FittingHardwareID
+                );
         }
     }
 }

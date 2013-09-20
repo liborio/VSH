@@ -113,7 +113,7 @@ body {
         background: #3A3A3A;
         margin-right: 2px;
         padding: 2px 1em 2px;
-        float:right;
+        float:left;
     }
 
     #subheader-container #menu-pasos li a {
@@ -129,7 +129,7 @@ body {
     }
 
 #subheader-container #menu-pasos .selected {
-    background: #272727;
+    background: #1C1C1C;
 }
 
 /* ==============
@@ -289,8 +289,9 @@ nav a {
     /* ===============
     Maximal Width
    =============== */
+        
 
-    .wrapper{
+    .wrapper, #subheader-container{
         width: 1026px; /* 1140px - 10% for margins */
         margin: 0 auto;
     }
@@ -490,6 +491,10 @@ textarea {
     float: left;
 }
 
+#full-main {
+    width:100%;
+}
+
 #list-left-menu {
     width: 39%;
     margin-right: 1%;
@@ -615,12 +620,15 @@ table {
     width: 100%;
     border: 1px solid #1C1C1C;
     border-collapse: collapse;
+    color: white;
+    background-color: #272727;
 }
 
-td {
+td, td.pq-grid-cell {
     border-style: solid none solid none;
     border-width: 1px;
     border-color: #1C1C1C;
+    border-bottom: 1px solid #1c1c1c;
     padding: 1px 4px;
     margin: 0;
 }
@@ -667,12 +675,13 @@ td.col-edit span {
 }
 
 
-td a {
+td a, .ui-widget-content td a, .yellow-link {
         color: #FFA500;
         text-decoration: none;
 }
 
-    td a:hover {
+    td a:hover, .ui-widget-content td a:hover, .yellow-link {
+        color: #FFA500;
         text-decoration: underline;
         cursor: pointer;
     }
@@ -818,6 +827,14 @@ h3.ui-accordion-header a:hover {
 
 h3.ui-state-focus {
     border: 0;
+}
+
+
+/* widgets ===================================*/
+
+.ui-state-active {
+    background-color: #3A3A3A;
+    color: #ffffff;
 }
 
 /* ajax loader =================================================================== */
