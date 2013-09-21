@@ -12,7 +12,8 @@
         scrollModel: { horizontal: false, autoFit: true }
 
     };
-    var data = $.parseJSON($('#gridData').val());
+    //var data = $.parseJSON($('#gridData').val());
+    var data = $.parseJSON(summary_data);
 
     obj.colModel = [
         {

@@ -60,6 +60,33 @@ namespace EveShopping.Controllers
             return View(fits);
         }
 
+        public ActionResult GetList(string id)
+        {
+            AgenteShoppingList agente = new AgenteShoppingList();
+            EVListSummary summ = agente.SelectListSummaryPorPublicIDRead(id);
+
+            ViewBag.PublicID = id;
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string itemArray = serializer.Serialize(summ.Items);
+
+
+            EDVSummary edv = new EDVSummary();
+            edv.ItemArray = itemArray;
+            edv.Summary = summ;
+
+            
+            if (summ.PublicID == id)
+            {
+                return View("Summary", edv);
+            }
+            else
+            {
+                return View("Public", edv);
+            }
+
+
+        }
+
         public ActionResult Summary(string id = null)
         {
 
@@ -81,7 +108,25 @@ namespace EveShopping.Controllers
 
             return View(edv);
         }
-        
+
+        public ActionResult Public(string id)
+        {
+            AgenteShoppingList agente = new AgenteShoppingList();
+            EVListSummary summ = agente.SelectListSummaryPorPublicIDRead(id);
+
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string itemArray = serializer.Serialize(summ.Items);
+
+            ViewBag.PublicID = id;
+            
+            EDVSummary edv = new EDVSummary();
+            edv.ItemArray = itemArray;
+            edv.Summary = summ;
+
+            return View(edv);
+        }
+
+
         public JsonResult SummaryData(string id = null)
         {
             AgenteShoppingList agente = new AgenteShoppingList();

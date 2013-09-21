@@ -59,6 +59,25 @@ namespace EveShopping.Logica
             context.SaveChanges();
         }
 
+        public string GetPublidIDPorPublidIDRead(string publicIDRead)
+        {
+            EveShoppingContext contexto =
+                new EveShoppingContext();
+            eshShoppingList list = contexto.eshShoppingLists.Where(s => s.ReadOnlypublicID == publicIDRead).FirstOrDefault();
+
+            if (list == null)
+            {
+                list = contexto.eshShoppingLists.Where(s => s.publicID == publicIDRead).FirstOrDefault();
+            }
+            if (list == null)
+            {
+                throw new ApplicationException(Messages.err_shoppingLisNoExiste);
+            }
+            return list.publicID;
+
+
+        }
+
         public eshShoppingList SelectShoppingListByPublicID(string publicID){
             EveShoppingContext contexto =
                 new EveShoppingContext();

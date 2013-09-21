@@ -613,6 +613,13 @@ form {
         top: 1px;
     }
 
+/* Navegación entre pasos ================================================*/
+
+
+#links-navegacion-pasos-container {
+    text-align: center;
+    padding:2em 0 1em;
+}
 /* Table ================================================================ */
 
 table {
@@ -833,7 +840,7 @@ h3.ui-state-focus {
 /* widgets ===================================*/
 
 .ui-state-active {
-    background-color: #3A3A3A;
+    /*background-color: #3A3A3A;*/
     color: #ffffff;
 }
 

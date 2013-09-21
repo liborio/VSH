@@ -303,6 +303,7 @@
     <Content Include="Views\Lists\New.cshtml" />
     <Content Include="Views\Lists\Summary.cshtml" />
     <Content Include="Views\Lists\PVSearchMarketItem.cshtml" />
+    <Content Include="Views\Lists\Public.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

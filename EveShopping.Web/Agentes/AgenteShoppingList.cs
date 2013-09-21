@@ -28,6 +28,14 @@ namespace EveShopping.Web.Agentes
             return MontarEVFiting(fit, 1);
         }
 
+        public EVListSummary SelectListSummaryPorPublicIDRead(string publicIDRead)
+        {
+            LogicaShoppingLists logica = new LogicaShoppingLists();
+            string publicID = logica.GetPublidIDPorPublidIDRead(publicIDRead);
+            return SelectListSummaryPorPublicID(publicID);
+        }
+
+
         public EVListSummary SelectListSummaryPorPublicID(string publicID)
         {
             LogicaShoppingLists logica = new LogicaShoppingLists();
@@ -36,6 +44,8 @@ namespace EveShopping.Web.Agentes
             EVListSummary summ = new EVListSummary();
             summ.Name = sl.name;
             summ.Description = sl.description;
+            summ.PublicID = sl.publicID;
+
 
             Dictionary<int, EVFittingHardware> diccHardware = new Dictionary<int, EVFittingHardware>();
 
