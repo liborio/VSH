@@ -98,7 +98,7 @@ namespace EveShopping.Controllers
             LogicaShoppingLists logica =
                 new LogicaShoppingLists();
             IEnumerable<FittingAnalyzed> fits =
-                logica.ObtenerListaFits(rawFit, Enumerados.TipoFormatoFitOriginal.EveXml);
+                logica.ObtenerListaFits(rawFit);
 
             IDictionary<string, FittingAnalyzed> diccFits =
                 new Dictionary<string, FittingAnalyzed>();

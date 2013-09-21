@@ -88,6 +88,15 @@ namespace EveShopping.Logica {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The fitting doesn&apos;t have a recognised format..
+        /// </summary>
+        internal static string err_notRecognisedFormat {
+            get {
+                return ResourceManager.GetString("err_notRecognisedFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cant find the shopping list in our acurate archives. Try to create it again..
         /// </summary>
         internal static string err_shoppingLisNoExiste {

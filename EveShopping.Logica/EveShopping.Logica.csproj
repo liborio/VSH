@@ -46,8 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conversion\ConversorEFTToFitList.cs" />
     <Compile Include="Conversion\ConversorEveXmlToFitList.cs" />
     <Compile Include="Conversion\ConversorFitList.cs" />
+    <Compile Include="Conversion\FittingFormatNotRecognisedException.cs" />
     <Compile Include="Conversion\IConversorFit.cs" />
     <Compile Include="LogicaMarketItems.cs" />
     <Compile Include="LogicaShoppingLists.cs" />

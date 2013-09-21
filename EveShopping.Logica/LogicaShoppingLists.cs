@@ -14,19 +14,30 @@ namespace EveShopping.Logica
 {
     public class LogicaShoppingLists
     {
-        public IEnumerable<FittingAnalyzed> ObtenerListaFits(string fitOriginal, Enumerados.TipoFormatoFitOriginal tipo){
+        public IEnumerable<FittingAnalyzed> ObtenerListaFits(string fitOriginal){
             IConversorFit conv = null;
-            switch (tipo)
+            IEnumerable<FittingAnalyzed> salida = null;
+            conv = new ConversorEFTToFitList();
+            try
             {
-                case Enumerados.TipoFormatoFitOriginal.EFT:
-                    throw new NotImplementedException();
-                    break;
-                case Enumerados.TipoFormatoFitOriginal.EveXml:
-                default:
-                    conv = new ConversorEveXmlToFitList();
-                    break;
+                salida = conv.ToFitList(fitOriginal);
+                if (salida != null)
+                {
+                    return salida;
+                }
             }
-            return conv.ToFitList(fitOriginal);
+            catch (FittingFormatNotRecognisedException ex)
+            {
+            }
+
+            conv = new ConversorEveXmlToFitList();
+            salida = conv.ToFitList(fitOriginal);
+
+            if (salida == null)
+            {
+                throw new FittingFormatNotRecognisedException(Messages.err_fittingNoExiste);
+            }
+            return salida;
         }
 
         public eshFitting SelectFitPorID(int fittingID)
