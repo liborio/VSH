@@ -124,5 +124,30 @@ namespace EveShopping.Logica.UnitTest {
                 return ResourceManager.GetString("EveXmlUnaNaveNoRoot", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [Moa, 1]
+        ///
+        ///Magnetic Field Stabilizer II
+        ///Magnetic Field Stabilizer II
+        ///Co-Processor II
+        ///Damage Control II
+        ///
+        ///Large Ancillary Shield Booster, Navy Cap Booster 150
+        ///Large Ancillary Shield Booster, Navy Cap Booster 150
+        ///Warp Scrambler II
+        ///Experimental 10MN Microwarpdrive I
+        ///Stasis Webifier II
+        ///
+        ///Heavy Electron Blaster II, Caldari Navy Antimatter Charge M
+        ///Heavy Ion Blaster II, Caldari Navy Antimatter Charge M
+        ///Heavy Ion Blaster II, Caldari Navy Antimatter Charge M
+        ///Heavy Ion Blaster II, Caldari Navy Antimatte [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string moaFalla {
+            get {
+                return ResourceManager.GetString("moaFalla", resourceCulture);
+            }
+        }
     }
 }

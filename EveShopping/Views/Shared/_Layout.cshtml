@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
+    <title>@ViewBag.FullTitle</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -24,7 +24,7 @@
 
     @RenderSection("scriptsHead", required: false);
   @Styles.Render("~/Content/css")
-  </head>
+</head>
 <body>
     <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
@@ -54,7 +54,10 @@
         </div>
         <!-- #main -->
     </div>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <!-- #main-container -->
+
+
 
     <div class="footer-container">
         <footer class="wrapper">
@@ -67,6 +70,17 @@
     </div>
 
     @RenderSection("scripts", required: false)
+
+    <div id="info-dialog-message" title="Market not available in this browser" style="display: none;">
+        <p>
+            <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
+            <span id="info-dialog-main-msg">You can access market details for the items only from EVE Online browser.</span>
+        </p>
+        <p id="info-dialog-second-msg">
+            Clicking in this link from in game browser will open market details window.
+        </p>
+    </div>
+
 
     <script>
         var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];

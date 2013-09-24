@@ -8,7 +8,7 @@ using System.Web;
 
 namespace EveShopping.Models
 {
-    public class EDVAddMarketItems
+    public class EDVAddMarketItems : EDVShopingListBase
     {
         public IEnumerable<EVMarketItem> MarketItems { get; set; }
         public IEnumerable<invMarketGroup> MarketChain { get; set; }

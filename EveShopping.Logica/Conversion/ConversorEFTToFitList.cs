@@ -22,27 +22,40 @@ namespace EveShopping.Logica.Conversion
                         
             FittingAnalyzed fit = null;
             List<string> lineasSlot = new List<string>();
+            bool changingSlot = false;
             foreach (var item in lines)
             {
                 if (SlotActual == Enumerados.TipoSlot.Ship)
                 {
-                    fit = ObtenerFit(item);
-                    listaSalida.Add(fit);
-                    SlotActual = this.GetNextSlot(SlotActual);
+                    if (!string.IsNullOrEmpty(item))
+                    {
+                        fit = ObtenerFit(item);
+                        listaSalida.Add(fit);
+                        SlotActual = this.GetNextSlot(SlotActual);
+                        changingSlot = true;
+                    }
                     continue;
                 }
                 if (string.IsNullOrEmpty(item))
                 {
-                    IEnumerable<FittingHardwareAnalyzed> slot = ObtenerFittingHardwareSlot(lineasSlot, SlotActual);
-                    foreach (var fha in slot)
+                    if (!changingSlot)
                     {
-                        fit.Items.Add(fha);   
+                        IEnumerable<FittingHardwareAnalyzed> slot = ObtenerFittingHardwareSlot(lineasSlot, SlotActual);
+                        foreach (var fha in slot)
+                        {
+                            fit.Items.Add(fha);
+                        }
+                        SlotActual = this.GetNextSlot(SlotActual);
+                        lineasSlot.Clear();
                     }
-                    SlotActual = this.GetNextSlot(SlotActual);
-                    lineasSlot.Clear();
+                    else
+                    {
+                        changingSlot = true;
+                    }
                 }
                 else
                 {
+                    changingSlot = false;
                     lineasSlot.Add(item);      
               
                 }
@@ -83,20 +96,40 @@ namespace EveShopping.Logica.Conversion
             }
         }
 
+
         private IEnumerable<FittingHardwareAnalyzed> ObtenerFittingHardwareSlot(IEnumerable<string> lines, Enumerados.TipoSlot slot)
         {
             IDictionary<string, FittingHardwareAnalyzed> fwdicc = new Dictionary<string,FittingHardwareAnalyzed>();
             string hwdname = null;
             foreach (var item in lines)
             {
+                short initialUnits = 1;
                 FittingHardwareAnalyzed fha = null;
                 hwdname = item.Trim();
+                //quitamos la coma para eliminar las ammo de los items que las admiten
+                if (hwdname.Contains(',')){
+                    hwdname = hwdname.Split(',').First();
+                }
+                //si estamos en el slot de drones o bay, puede aparecer un multiplicador, lo quitamos y tomamos las unidades
+                if (slot == Enumerados.TipoSlot.DroneBay || slot == Enumerados.TipoSlot.Cargo)
+                {
+                    int posX = hwdname.LastIndexOf(" x");
+                    if (posX >= 0)
+                    {
+                        string szunits = hwdname.Substring(posX + 2, hwdname.Length - posX - 2);
+                        if (short.TryParse(szunits, out initialUnits))
+                        {
+                            hwdname = hwdname.Substring(0, posX);
+                        }
+                    }
+
+                }
                 if (!fwdicc.ContainsKey(hwdname))
                 {
                     fha = new FittingHardwareAnalyzed();
                     fha.Name = hwdname;
                     fha.Slot = (short)slot;
-                    fha.Units = 0;
+                    fha.Units = (short)(initialUnits - 1);
                     fwdicc.Add(hwdname, fha);
                 }
                 else

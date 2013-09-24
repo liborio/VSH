@@ -63,7 +63,7 @@ namespace EveShopping.Logica
         {
             EveShoppingContext contexto =
                 new EveShoppingContext();
-            eshShoppingList list = contexto.eshShoppingLists.Where(s => s.ReadOnlypublicID == publicIDRead).FirstOrDefault();
+            eshShoppingList list = contexto.eshShoppingLists.Where(s => s.readOnlypublicID == publicIDRead).FirstOrDefault();
 
             if (list == null)
             {
@@ -101,6 +101,7 @@ namespace EveShopping.Logica
             sl.name = name;
             sl.description = description;
             sl.publicID = publicID;
+            sl.readOnlypublicID = Guid.NewGuid().ToString();
             sl.dateCreation = System.DateTime.Now;
             sl.dateUpdate = System.DateTime.Now;
             contexto.eshShoppingLists.Add(sl);

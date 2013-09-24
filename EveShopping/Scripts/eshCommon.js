@@ -2,12 +2,12 @@
     timer: 0,
 
     initTimer: function () {
-        ajaxLoader.timer = setTimeout("$.blockUI({message: '<img src=\"../../content/images/ajax-loader4.gif\"/>', css: {backgroundColor: '#3A3A3A', border: '2px solid #1F4E66', padding: '10px 2em', width: '14%', left: '43%'}, overlayCSS: {opacity: '0.3'}})", 300);
+        ajaxLoader.timer = setTimeout("$('body').blockUI({message: '<img src=\"../../content/images/ajax-loader4.gif\"/>', css: {backgroundColor: '#3A3A3A', border: '2px solid #1F4E66', padding: '10px 2em', width: '14%', left: '43%'}, overlayCSS: {opacity: '0.3'}})", 300);
     },
 
     endTimer: function () {
         clearTimeout(ajaxLoader.timer);
-        $.unblockUI();
+        $('body').unblockUI();
     },
 }
 
@@ -48,6 +48,33 @@ accordionState = {
             }
         }
         return -1;
+    }
+}
+
+infoDialog = {
+    show: function (head, mainMessage, secondMessage) {
+        $("#info-dialog-message").first().attr["title"] = head;
+        $("#info-dialog-main-msg").text(mainMessage);
+        $("#info-dialog-second-msg").text(secondMessage);
+        $("#info-dialog-message").dialog({
+            modal: true,
+            buttons: {
+                Ok: function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+        $("#info-dialog-message").dialog("option", "position", "center");
+        var width = $("#info-dialog-message").width();
+        var height = $("#info-dialog-message").height();
+        var wwidth = $(window).width();
+        var wheight = $(window).height();
+
+        //alert(width + '-' + height);
+        //alert(wwidth + '-' + wheight);
+        
+
+
     }
 }
 

@@ -16,8 +16,8 @@ namespace EveShopping.Modelo.Models
         public string name { get; set; }
         public string description { get; set; }
         public System.DateTime dateCreation { get; set; }
+        public string readOnlypublicID { get; set; }
         public System.DateTime dateUpdate { get; set; }
-        public string ReadOnlypublicID { get; set; }
         public virtual ICollection<eshShoppingListFitting> eshShoppingListFittings { get; set; }
         public virtual ICollection<eshShoppingListInvType> eshShoppingListInvTypes { get; set; }
     }

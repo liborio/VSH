@@ -21,6 +21,10 @@ namespace EveShopping.Modelo.Models.Mapping
             this.Property(t => t.description)
                 .HasMaxLength(3990);
 
+            this.Property(t => t.readOnlypublicID)
+                .IsRequired()
+                .HasMaxLength(50);
+
             // Table & Column Mappings
             this.ToTable("eshShoppingLists");
             this.Property(t => t.shoppingListID).HasColumnName("shoppingListID");
@@ -28,6 +32,7 @@ namespace EveShopping.Modelo.Models.Mapping
             this.Property(t => t.name).HasColumnName("name");
             this.Property(t => t.description).HasColumnName("description");
             this.Property(t => t.dateCreation).HasColumnName("dateCreation");
+            this.Property(t => t.readOnlypublicID).HasColumnName("readOnlypublicID");
             this.Property(t => t.dateUpdate).HasColumnName("dateUpdate");
         }
     }

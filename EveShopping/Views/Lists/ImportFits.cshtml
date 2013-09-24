@@ -1,16 +1,17 @@
-﻿@model IEnumerable<EveShopping.Web.Modelo.EVFitting>
+﻿@model EveShopping.Models.EDVImportFits
 
 @{
     ViewBag.Title = "New";
+    ViewBag.FullTitle = "EVE-shopping list fits: " + Model.ShoppingListName;
 }
 
 <div id="list-main">
     <div class="inside-section">
         <h3>Fits in shopping list</h3>
         <div id="fitsInList" class="subs-wrapper" data-esh-fits-in-list>
-            @if ((this.Model != null) && this.Model.Count() > 0)
+            @if ((this.Model.Fittings != null) && this.Model.Fittings.Count() > 0)
             {
-                Html.RenderPartial("PVFitsInShoppingList", this.Model);
+                Html.RenderPartial("PVFitsInShoppingList", this.Model.Fittings);
             }
         </div>
         <div id="links-navegacion-pasos-container">

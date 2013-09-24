@@ -260,4 +260,31 @@ Navy Cap Booster 400 x10</value>
 			&lt;hardware slot="rig slot 2" type="Small Capacitor Control Circuit I"/&gt;
 		&lt;/fitting&gt;</value>
   </data>
+  <data name="moaFalla" xml:space="preserve">
+    <value>[Moa, 1]
+
+Magnetic Field Stabilizer II
+Magnetic Field Stabilizer II
+Co-Processor II
+Damage Control II
+
+Large Ancillary Shield Booster, Navy Cap Booster 150
+Large Ancillary Shield Booster, Navy Cap Booster 150
+Warp Scrambler II
+Experimental 10MN Microwarpdrive I
+Stasis Webifier II
+
+Heavy Electron Blaster II, Caldari Navy Antimatter Charge M
+Heavy Ion Blaster II, Caldari Navy Antimatter Charge M
+Heavy Ion Blaster II, Caldari Navy Antimatter Charge M
+Heavy Ion Blaster II, Caldari Navy Antimatter Charge M
+Heavy Ion Blaster II, Caldari Navy Antimatter Charge M
+
+Medium Anti-EM Screen Reinforcer I
+Medium Anti-Thermal Screen Reinforcer I
+Medium Anti-Thermal Screen Reinforcer I
+
+
+Warrior II x3</value>
+  </data>
 </root>

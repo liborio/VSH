@@ -49,17 +49,39 @@ namespace EveShopping.Web.Agentes
 
             Dictionary<int, EVFittingHardware> diccHardware = new Dictionary<int, EVFittingHardware>();
 
+            foreach (var shfit in sl.eshShoppingListFittings)
+            {
+                EVFittingHardware fh = diccHardware.ContainsKey(shfit.eshFitting.shipTypeID.Value) ? diccHardware[shfit.eshFitting.shipTypeID.Value] : null;
+
+                if (fh == null)
+                {
+                    fh = new EVFittingHardware();
+                    fh.FittingHardwareID = shfit.eshFitting.shipTypeID.Value;
+                    fh.Name = shfit.eshFitting.name;
+                    fh.ImageUrl32 = GetImageUrl32(shfit.eshFitting.shipTypeID.Value);
+                    summ.Items.Add(fh);
+                    diccHardware.Add(fh.FittingHardwareID, fh);
+                }
+                fh.Units += shfit.units;
+                fh.Volume += shfit.units * shfit.eshFitting.shipVolume;
+            }
+
             foreach (var slit in sl.eshShoppingListInvTypes)
             {
-                EVFittingHardware fh = new EVFittingHardware();
-                fh.FittingHardwareID = slit.typeID;
-                fh.Name = slit.invType.typeName;
-                fh.Units = slit.units;
-                fh.Volume = slit.volume;
-                fh.ImageUrl32 = GetImageUrl32(slit.typeID);
+                EVFittingHardware fh = diccHardware.ContainsKey(slit.typeID) ? diccHardware[slit.typeID] : null;
 
-                summ.Items.Add(fh);
-                diccHardware.Add(slit.typeID, fh);
+                if (fh == null)
+                {
+                    fh = new EVFittingHardware();
+                    fh.FittingHardwareID = slit.typeID;
+                    fh.Name = slit.invType.typeName;
+                    fh.ImageUrl32 = GetImageUrl32(slit.typeID);
+                    summ.Items.Add(fh);
+                    diccHardware.Add(slit.typeID, fh);
+                }
+                fh.Units += slit.units;
+                fh.Volume += slit.volume;
+
             }
 
             foreach (var shfit in sl.eshShoppingListFittings)
@@ -137,6 +159,17 @@ namespace EveShopping.Web.Agentes
             LogicaShoppingLists logica = new LogicaShoppingLists();
             return logica.SelectMarketItemsEnShoppingList(publicID);
         }
+
+        #region eve-central
+
+        public void UpdatePrices()
+        {
+            LogicaEveCentral logica = new LogicaEveCentral();
+            logica.UpdatePrices();
+        }
+
+        #endregion
+
 
         private static EVFitting MontarEVFiting(eshFitting item, short units)
         {

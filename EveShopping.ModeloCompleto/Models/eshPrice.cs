@@ -7,7 +7,10 @@ namespace EveShopping.Modelo.Models
     {
         public int typeID { get; set; }
         public int solarSystemID { get; set; }
-        public double ecPrice { get; set; }
+        public decimal avg { get; set; }
+        public decimal max { get; set; }
+        public decimal min { get; set; }
+        public decimal median { get; set; }
         public System.DateTime updateTime { get; set; }
         public virtual invType invType { get; set; }
         public virtual mapSolarSystem mapSolarSystem { get; set; }

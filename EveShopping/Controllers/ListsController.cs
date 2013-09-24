@@ -57,7 +57,10 @@ namespace EveShopping.Controllers
                 new AgenteShoppingList();
             IEnumerable<EVFitting> fits = agente.SelectFitsEnShoppingList(id);
 
-            return View(fits);
+            EDVImportFits edv = new EDVImportFits();
+            edv.Fittings = fits;            
+
+            return View(edv);
         }
 
         public ActionResult GetList(string id)
@@ -265,6 +268,12 @@ namespace EveShopping.Controllers
             return null;
         }
 
+        public EmptyResult UpdatePrices()
+        {
+            AgenteShoppingList agente = new AgenteShoppingList();
+            agente.UpdatePrices();
+            return new EmptyResult();
+        }
 
         #endregion
 

@@ -61,6 +61,7 @@
     <Compile Include="Models\eshShoppingList.cs" />
     <Compile Include="Models\eshShoppingListFitting.cs" />
     <Compile Include="Models\eshShoppingListInvType.cs" />
+    <Compile Include="Models\eshTradeHub.cs" />
     <Compile Include="Models\EveShoppingContext.cs" />
     <Compile Include="Models\invMarketGroup.cs" />
     <Compile Include="Models\Mapping\eshFittingHardwareMap.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Models\Mapping\eshShoppingListInvTypeMap.cs" />
     <Compile Include="Models\Mapping\eshShoppingListMap.cs" />
     <Compile Include="Models\invType.cs" />
+    <Compile Include="Models\Mapping\eshTradeHubMap.cs" />
     <Compile Include="Models\Mapping\invMarketGroupMap.cs" />
     <Compile Include="Models\Mapping\invTypeMap.cs" />
     <Compile Include="Models\Mapping\mapSolarSystemMap.cs" />

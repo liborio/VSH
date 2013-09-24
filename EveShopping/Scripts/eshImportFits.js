@@ -35,19 +35,19 @@ function ReactivateImportedFitsAccordion() {
 function OnSuccessUseAnalysedFit(data) {
     $(data).prependTo($("[data-esh-fits-in-list]").first());
     var name = $(data).first().attr('data-esh-name');
-    $('[data-esh-analysed-fits').children('[data-esh-name = "' + name + '"]').remove();
+    $('[data-esh-analysed-fits]').children('[data-esh-name = "' + name + '"]').remove();
     accordionState.initAccordion($('#fitsInList'), 0);
 }
 
 function OnSuccessDeleteFitFromList() {
-    $('[data-esh-fits-in-list').children('[data-esh-id = "' + this + '"]').remove();
+    $('[data-esh-fits-in-list]').children('[data-esh-id = "' + this + '"]').remove();
     accordionState.initAccordion($('#fitsInList'));
     cleanEdits();
 }
 
 function onSetUnitsInShoppingListSuccess(data) {
     var id = this;
-    var fitsContainer = $('[data-esh-fits-in-list');
+    var fitsContainer = $('[data-esh-fits-in-list]');
     $(fitsContainer).find('[data-esh-id = ' + id + '] + div').remove();
     $(data).replaceAll('[data-esh-id = ' + id + ']');
     

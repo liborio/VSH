@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EveShopping.Web;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,16 +14,23 @@ namespace EveShopping
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-            name: "ListNew",
-            url: "lists/New",
-            defaults: new { controller = "Lists", action = "New" });
+//            routes.MapRoute(
+//            name: "ListNew",
+//            url: "lists/New",
+//            defaults: new { controller = "Lists", action = "New" });
+
+//            routes.MapRoute(
+//name: "ListCreate",
+//url: "lists/Create",
+//defaults: new { controller = "Lists", action = "Create" });
 
 
             routes.MapRoute(
             name: "ListView",
             url: "lists/{id}",
-            defaults: new { controller = "Lists", action = "GetList" }    
+            defaults: new { controller = "Lists", action = "GetList" },
+            constraints: new  { id = new IsGuidConstraint()  }
+
 );
 
             routes.MapRoute(

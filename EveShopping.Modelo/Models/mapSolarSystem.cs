@@ -37,5 +37,6 @@ namespace EveShopping.Modelo.Models
         public Nullable<int> sunTypeID { get; set; }
         public string securityClass { get; set; }
         public virtual ICollection<eshPrice> eshPrices { get; set; }
+        public virtual eshTradeHub eshTradeHub { get; set; }
     }
 }

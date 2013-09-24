@@ -34,6 +34,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.1\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -51,6 +54,10 @@
     <Compile Include="Conversion\ConversorFitList.cs" />
     <Compile Include="Conversion\FittingFormatNotRecognisedException.cs" />
     <Compile Include="Conversion\IConversorFit.cs" />
+    <Compile Include="EveCentral\EveCentralAgent.cs" />
+    <Compile Include="EveCentral\ItemPrices.cs" />
+    <Compile Include="EveCentral\ItemPriceStats.cs" />
+    <Compile Include="LogicaEveCentral.cs" />
     <Compile Include="LogicaMarketItems.cs" />
     <Compile Include="LogicaShoppingLists.cs" />
     <Compile Include="Messages.Designer.cs">
@@ -59,8 +66,13 @@
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.log4net.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EveShopping.Comun\EveShopping.Comun.csproj">
+      <Project>{fe145ed9-ffc6-41ce-8dd4-b05b9a3974b1}</Project>
+      <Name>EveShopping.Comun</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EveShopping.Modelo\EveShopping.Modelo.csproj">
       <Project>{0850a85e-c6c0-439e-83a7-c88a720e9285}</Project>
       <Name>EveShopping.Modelo</Name>

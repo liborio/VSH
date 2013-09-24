@@ -1,4 +1,21 @@
-﻿$(function () {
+﻿/// <reference path="eshCommon.js" />
+
+
+function openMarketDatailsWindow(id) {
+    try {
+        CCPEVE.showMarketDetails(id);
+    } catch (e) {
+        $(function () {
+            infoDialog.show(
+                "Market not available in this browser"
+                , "You can access market details for the items only from EVE Online browser."
+                , "Clicking in this link from in game browser will open market details window.");
+        });
+    }
+}
+
+
+$(function () {
     var wd = $("#full-main").innerWidth();
     var obj = {
         title: "Grid From Array",
@@ -42,7 +59,7 @@
             dataType: "string",
             align: "right",
             render: function (ui) {
-                return "<a onClick=\"CCPEVE.showMarketDetails(" + ui.rowData[4] + ")\">Market</a>"
+                return "<a onClick=\"openMarketDatailsWindow(" + ui.rowData[4] + ")\">Market</a>"
             }
         }
 
@@ -55,10 +72,12 @@
 
     var $grid = $("#grid_parts").pqGrid(obj);
 
+    $grid.find(".pq-scrollbar-vert").pqScrollBar("disable");
+
     //});
 });
 
-$(window).resize(function () {
-    var wd = $("#full-main").innerWidth();
-    $("#grid_parts").pqGrid("option", { width: wd });
-});
+    $(window).resize(function () {
+        var wd = $("#full-main").innerWidth();
+        $("#grid_parts").pqGrid("option", { width: wd });
+    });
