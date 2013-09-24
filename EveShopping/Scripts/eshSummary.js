@@ -14,6 +14,15 @@ function openMarketDatailsWindow(id) {
     }
 }
 
+function formatPrice(price) {
+    if (price > 1000000) {
+        return (price / 1000000).toFixed(2) + ' M';
+    }
+    if (price > 1000) {
+        return (price / 1000).toFixed(2) + ' K';
+    }
+    return price.toFixed(2);
+}
 
 $(function () {
     var wd = $("#full-main").innerWidth();
@@ -42,15 +51,21 @@ $(function () {
         },
         { title: "Name", width: 350, dataType: "string" },
         {
+            title: "Price", width: 56, dataType: "float", align: "right",
+            render: function (ui) {
+                return formatPrice( ui.rowData[2]);
+            }
+        },
+        {
             title: "Volume", width: 56, dataType: "float", align: "right",
             render: function (ui) {
-                return ui.rowData[2] + ' m3';
+                return ui.rowData[3] + ' m3';
             }
         },
         {
             title: "Units", width: 100, dataType: "int", align: "right",
             render: function (ui) {
-                return "x " + ui.rowData[3];
+                return "x " + ui.rowData[4];
             }
         },
         {
@@ -59,7 +74,7 @@ $(function () {
             dataType: "string",
             align: "right",
             render: function (ui) {
-                return "<a onClick=\"openMarketDatailsWindow(" + ui.rowData[4] + ")\">Market</a>"
+                return "<a onClick=\"openMarketDatailsWindow(" + ui.rowData[5] + ")\">Market</a>"
             }
         }
 

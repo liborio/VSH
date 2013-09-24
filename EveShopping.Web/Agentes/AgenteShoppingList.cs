@@ -81,72 +81,74 @@ namespace EveShopping.Web.Agentes
         public EVListSummary SelectListSummaryPorPublicID(string publicID)
         {
             LogicaShoppingLists logica = new LogicaShoppingLists();
-            eshShoppingList sl = logica.SelectShoppingListByPublicID(publicID);
+            return logica.SelectListSummaryPorPublicID(publicID, new Imagex32UrlResolver());
+            //eshShoppingList sl = logica.SelectShoppingListByPublicID(publicID);
 
-            EVListSummary summ = new EVListSummary();
-            summ.Name = sl.name;
-            summ.Description = sl.description;
-            summ.PublicID = sl.publicID;
+            //EVListSummary summ = new EVListSummary();
+            //summ.Name = sl.name;
+            //summ.Description = sl.description;
+            //summ.PublicID = sl.publicID;
 
 
-            Dictionary<int, EVFittingHardware> diccHardware = new Dictionary<int, EVFittingHardware>();
+            
 
-            foreach (var shfit in sl.eshShoppingListFittings)
-            {
-                EVFittingHardware fh = diccHardware.ContainsKey(shfit.eshFitting.shipTypeID.Value) ? diccHardware[shfit.eshFitting.shipTypeID.Value] : null;
+            //Dictionary<int, EVFittingHardware> diccHardware = new Dictionary<int, EVFittingHardware>();
 
-                if (fh == null)
-                {
-                    fh = new EVFittingHardware();
-                    fh.ItemID = shfit.eshFitting.shipTypeID.Value;
-                    fh.Name = shfit.eshFitting.name;
-                    fh.ImageUrl32 = GetImageUrl32(shfit.eshFitting.shipTypeID.Value);
-                    summ.Items.Add(fh);
-                    diccHardware.Add(fh.ItemID, fh);
-                }
-                fh.Units += shfit.units;
-                fh.Volume += shfit.units * shfit.eshFitting.shipVolume;
-                
+            //foreach (var shfit in sl.eshShoppingListFittings)
+            //{
+            //    EVFittingHardware fh = diccHardware.ContainsKey(shfit.eshFitting.shipTypeID.Value) ? diccHardware[shfit.eshFitting.shipTypeID.Value] : null;
+    
+            //    if (fh == null)
+            //    {
+            //        fh = new EVFittingHardware();
+            //        fh.ItemID = shfit.eshFitting.shipTypeID.Value;
+            //        fh.Name = shfit.eshFitting.name;
+            //        fh.ImageUrl32 = GetImageUrl32(shfit.eshFitting.shipTypeID.Value);
+            //        summ.Items.Add(fh);
+            //        diccHardware.Add(fh.ItemID, fh);
+            //    }
+            //    fh.Units += shfit.units;
+            //    fh.Volume += shfit.units * shfit.eshFitting.shipVolume;                
 
-            }
+            //}
 
-            foreach (var slit in sl.eshShoppingListInvTypes)
-            {
-                EVFittingHardware fh = diccHardware.ContainsKey(slit.typeID) ? diccHardware[slit.typeID] : null;
+            //foreach (var slit in sl.eshShoppingListInvTypes)
+            //{
+            //    EVFittingHardware fh = diccHardware.ContainsKey(slit.typeID) ? diccHardware[slit.typeID] : null;
 
-                if (fh == null)
-                {
-                    fh = new EVFittingHardware();
-                    fh.ItemID = slit.typeID;
-                    fh.Name = slit.invType.typeName;
-                    fh.ImageUrl32 = GetImageUrl32(slit.typeID);
-                    summ.Items.Add(fh);
-                    diccHardware.Add(slit.typeID, fh);
-                }
-                fh.Units += slit.units;
-                fh.Volume += slit.volume;
+            //    if (fh == null)
+            //    {
+            //        fh = new EVFittingHardware();
+            //        fh.ItemID = slit.typeID;
+            //        fh.Name = slit.invType.typeName;
+            //        fh.ImageUrl32 = GetImageUrl32(slit.typeID);
+            //        summ.Items.Add(fh);
+            //        diccHardware.Add(slit.typeID, fh);
+            //    }
+            //    fh.Units += slit.units;
+            //    fh.Volume += slit.volume;
 
-            }
+            //}
 
-            foreach (var shfit in sl.eshShoppingListFittings)
-            {
-                foreach (var item in shfit.eshFitting.eshFittingHardwares)
-                {
-                    EVFittingHardware fh = diccHardware.ContainsKey(item.typeID) ? diccHardware[item.typeID] : null;
-                    if (fh == null)
-                    {
-                        fh = new EVFittingHardware();
-                        fh.ItemID = item.typeID;
-                        fh.Name = item.invType.typeName;
-                        fh.ImageUrl32 = GetImageUrl32(item.invType.typeID);
-                        diccHardware.Add(item.typeID, fh);
-                        summ.Items.Add(fh);
-                    }
-                    fh.Units +=  item.units * shfit.units;
-                    fh.Volume += item.volume * shfit.units;
-                }
-            }
-            return summ;
+            //foreach (var shfit in sl.eshShoppingListFittings)
+            //{
+            //    foreach (var item in shfit.eshFitting.eshFittingHardwares)
+            //    {
+            //        EVFittingHardware fh = diccHardware.ContainsKey(item.typeID) ? diccHardware[item.typeID] : null;
+            //        if (fh == null)
+            //        {
+            //            fh = new EVFittingHardware();
+            //            fh.ItemID = item.typeID;
+            //            fh.Name = item.invType.typeName;
+            //            fh.ImageUrl32 = GetImageUrl32(item.invType.typeID);
+            //            diccHardware.Add(item.typeID, fh);
+            //            summ.Items.Add(fh);
+            //        }
+            //        fh.Units +=  item.units * shfit.units;
+            //        fh.Volume += item.volume * shfit.units;
+            //    }
+            //}
+            //return summ;
             
         }
 

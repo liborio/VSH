@@ -34,9 +34,10 @@ namespace EveShopping.Web.Modelo
 
         public static string Convert(EVFittingHardware data)
         {
-            return string.Format("[\"{0}\",\"{1}\",\"{2}\",\"{3}\", \"{4}\"]",                
+            return string.Format("[\"{0}\",\"{1}\",\"{2}\",\"{3}\", \"{4}\",\"{5}\"]",                
                 data.ImageUrl32,
                 data.Name,
+                data.TotalPrice,
                 data.Volume,
                 data.Units,
                 data.ItemID

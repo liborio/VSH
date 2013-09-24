@@ -19,6 +19,9 @@ $(document).ready(function () {
             var $this = $(this); thread = setTimeout(function () { searchMarketItem($this.val()) }, 500);
         }
     });
+    accordionState.openPanelByIndex($('#market-items-accordion'), 1);
+
+
 });
 
  ajaxLoader = {

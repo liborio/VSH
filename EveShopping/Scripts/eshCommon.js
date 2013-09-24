@@ -37,6 +37,13 @@ accordionState = {
         }
     },
 
+    openPanelByIndex: function (acc, index) {
+        var currentActive = $(acc).accordion("option", "active");
+        if (index !== currentActive) {
+            $(acc).accordion({ active: index });
+        }
+    },
+
     getIndex: function (acc, idItem) {
         var items = $(acc).find('h3');
         var max = items.length;

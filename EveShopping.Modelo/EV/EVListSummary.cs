@@ -14,6 +14,9 @@ namespace EveShopping.Modelo.EV
         public string Description { get; set; }
         public IList<EVFittingHardware> Items { get; set; }
 
+        public double TotalVolume { get; set; }
+        public decimal TotalPrice { get; set; }
+
         public EVListSummary()
         {
             Items = new List<EVFittingHardware>();
