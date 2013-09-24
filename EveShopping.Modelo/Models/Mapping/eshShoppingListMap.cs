@@ -34,6 +34,13 @@ namespace EveShopping.Modelo.Models.Mapping
             this.Property(t => t.dateCreation).HasColumnName("dateCreation");
             this.Property(t => t.readOnlypublicID).HasColumnName("readOnlypublicID");
             this.Property(t => t.dateUpdate).HasColumnName("dateUpdate");
+            this.Property(t => t.tradeHubID).HasColumnName("tradeHubID");
+
+            // Relationships
+            this.HasRequired(t => t.eshTradeHub)
+                .WithMany(t => t.eshShoppingLists)
+                .HasForeignKey(d => d.tradeHubID);
+
         }
     }
 }

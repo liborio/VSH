@@ -46,7 +46,7 @@ namespace EveShopping.Logica.EveCentral
                 foreach (XElement type in itemTypes)
                 {
                     int typeId = int.Parse( type.Attribute("id").Value);
-                    XElement buy = type.Element("buy");
+                    XElement buy = type.Element("sell");
                     ItemPriceStats stats = new ItemPriceStats();
                     stats.Avg = decimal.Parse(buy.Element("avg").Value);
                     stats.Max = decimal.Parse(buy.Element("max").Value);

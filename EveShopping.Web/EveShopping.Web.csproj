@@ -46,12 +46,10 @@
     <Compile Include="Agentes\AgenteMarketItems.cs" />
     <Compile Include="Agentes\AgenteShoppingList.cs" />
     <Compile Include="EstadoUsuario.cs" />
+    <Compile Include="Imagex32UrlResolver.cs" />
     <Compile Include="IsGuidConstrain.cs" />
     <Compile Include="Mappings.cs" />
     <Compile Include="Modelo\ConvertToJavaScriptArray.cs" />
-    <Compile Include="Modelo\EVFitting.cs" />
-    <Compile Include="Modelo\EVFittingHardware.cs" />
-    <Compile Include="Modelo\EVListSummary.cs" />
     <Compile Include="Modelo\EVMarketItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

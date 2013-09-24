@@ -10,6 +10,21 @@ namespace EveShopping.Web
 {
     public class VSHMappings
     {
+        public static string GetNormalizedPrice(decimal precio)
+        {
+            if (precio > 1000000)
+            {
+                return string.Format("{0:F} M", precio / 1000000);
+            }
+
+            if (precio > 1000)
+            {
+                return string.Format("{0:F} K", precio / 1000);
+            }
+
+            return string.Format("{0:F} K", precio);
+        }
+
         public static string GetSlotName(int slot)
         {
             return GetSlotName((Enumerados.TipoSlot)slot);

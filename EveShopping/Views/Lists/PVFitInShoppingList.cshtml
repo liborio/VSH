@@ -1,12 +1,12 @@
-﻿@model EveShopping.Web.Modelo.EVFitting
+﻿@model EveShopping.Modelo.EV.EVFitting
 
-<h3 data-esh-name="@Model.Name" data-esh-id="@Model.FittingID" data-esh-units="@Model.Units" class="clearfix accordion-header">
+<h3 data-esh-name="@Model.Name" data-esh-id="@Model.FittingID" data-esh-units="@Model.Units" class="clearfix accordion-header" data-esh-price="@Model.Price" data-esh-vol="@Model.Volume">
     <span class="left">@Model.Name</span>
     <span class="right">
         <a data-esh-edit-link onclick="editFitInShoppingList('@Model.FittingID')">Edit</a>
 
     </span>
-    <span class="right">x @Model.Units</span>
+    <span class="right">x @Model.Units (@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.Price) - @Model.Volume m3)</span>
 
 </h3>
 
@@ -17,6 +17,7 @@
                 <img src="@Model.ShipImageUrl32" alt="@Model.Name" /></td>
             <td>@Model.ShipName</td>
             <td>x 1</td>
+            <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.ShipPrice)</td>
             <td class="numericCol">@Model.ShipVolume m3</td>
         </tr>
         @{
@@ -28,11 +29,11 @@
             if (hwdItem.Slot != ViewBag.prevSlot)
             {
                 ViewBag.prevSlot = hwdItem.Slot;
-                <tr class="fila-par">
-                    <td>
-                        <img src="~/content/images/@EveShopping.Web.VSHMappings.GetImageName(hwdItem.Slot)" alt="" /></td>
-                    <td colspan="3">@EveShopping.Web.VSHMappings.GetSlotName(hwdItem.Slot)</td>
-                </tr>
+            <tr class="fila-par">
+                <td>
+                    <img src="~/content/images/@EveShopping.Web.VSHMappings.GetImageName(hwdItem.Slot)" alt="" /></td>
+                <td colspan="4">@EveShopping.Web.VSHMappings.GetSlotName(hwdItem.Slot)</td>
+            </tr>
 
             }
             <tr class="@ViewBag.estilo">
@@ -40,14 +41,14 @@
                     <img src="@hwdItem.ImageUrl32" alt="@hwdItem.Name" /></td>
                 <td>@hwdItem.Name</td>
                 <td>x @hwdItem.Units</td>
+                <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(hwdItem.Price)</td>
                 <td class="numericCol">@hwdItem.Volume m3</td>
             </tr>
         }
         <tr class="fila-ultima">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class="numericCol">@Model.Volume m3</td>
+            <td colspan="3">Totals x 1 unit</td>
+            <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.Price/Model.Units)</td>
+            <td class="numericCol">@(Model.Volume/Model.Units) m3</td>
         </tr>
     </table>
 </div>

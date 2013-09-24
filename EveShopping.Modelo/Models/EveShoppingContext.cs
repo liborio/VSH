@@ -27,6 +27,7 @@ namespace EveShopping.Modelo.Models
         public DbSet<eshTradeHub> eshTradeHubs { get; set; }
         public DbSet<invType> invTypes { get; set; }
         public DbSet<invMarketGroup> invMarketGroups { get; set; }
+        public DbSet<invGroup> invGroups { get; set; }
         //public DbSet<staStation> staStations { get; set; }
         public DbSet<mapSolarSystem> mapSolarSystems { get; set; }
 
@@ -42,6 +43,7 @@ namespace EveShopping.Modelo.Models
             modelBuilder.Configurations.Add(new eshTradeHubMap());
             modelBuilder.Configurations.Add(new invTypeMap());
             modelBuilder.Configurations.Add(new invMarketGroupMap());
+            modelBuilder.Configurations.Add(new invGroupMap());
             //modelBuilder.Configurations.Add(new staStationMap());
             modelBuilder.Configurations.Add(new mapSolarSystemMap());
         }

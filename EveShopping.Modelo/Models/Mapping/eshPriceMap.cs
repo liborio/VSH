@@ -22,9 +22,6 @@ namespace EveShopping.Modelo.Models.Mapping
             this.Property(t => t.typeID).HasColumnName("typeID");
             this.Property(t => t.solarSystemID).HasColumnName("solarSystemID");
             this.Property(t => t.avg).HasColumnName("avg");
-            this.Property(t => t.max).HasColumnName("max");
-            this.Property(t => t.min).HasColumnName("min");
-            this.Property(t => t.median).HasColumnName("median");
             this.Property(t => t.updateTime).HasColumnName("updateTime");
 
             // Relationships

@@ -1,5 +1,6 @@
 ﻿using EveShopping.Logica;
 using EveShopping.Modelo.EntidadesAux;
+using EveShopping.Modelo.EV;
 using EveShopping.Modelo.Models;
 using EveShopping.Web.Modelo;
 using System;
@@ -12,6 +13,25 @@ namespace EveShopping.Web.Agentes
 {
     public class AgenteShoppingList
     {
+
+        public static decimal CalculateTotalPrice(IEnumerable<EVFitting> fittings){
+            decimal total = 0;
+            foreach (var item in fittings){
+                total += item.Price;
+            }
+            return total;
+        }
+
+        public static double CalculateTotalVolume(IEnumerable<EVFitting> fittins)
+        {
+            double total = 0;
+            foreach (var item in fittins)
+            {
+                total += item.Volume;
+            }
+            return total;
+        }
+
         public string CrearShoppingList(string name, string description)
         {
             LogicaShoppingLists logica = new LogicaShoppingLists();
@@ -20,12 +40,11 @@ namespace EveShopping.Web.Agentes
 
 
 
-        public EVFitting SelectFitPorID(int fittingID)
+        public EVFitting SelectFitPorID(string publicID, int fittingID)
         {
             LogicaShoppingLists logica =
                 new LogicaShoppingLists();
-            eshFitting fit = logica.SelectFitPorID(fittingID);
-            return MontarEVFiting(fit, 1);
+            return logica.SelectFitSummary(publicID, fittingID, new Imagex32UrlResolver());
         }
 
         public EVListSummary SelectListSummaryPorPublicIDRead(string publicIDRead)
@@ -64,6 +83,8 @@ namespace EveShopping.Web.Agentes
                 }
                 fh.Units += shfit.units;
                 fh.Volume += shfit.units * shfit.eshFitting.shipVolume;
+                
+
             }
 
             foreach (var slit in sl.eshShoppingListInvTypes)
@@ -118,23 +139,18 @@ namespace EveShopping.Web.Agentes
         {
             LogicaShoppingLists logica =
                 new LogicaShoppingLists();
-            eshShoppingListFitting slf = logica.SetUnitsToFitInShoppingList(publicID, id, units);
-
-            return MontarEVFiting(slf.eshFitting, slf.units);
+            EVFitting slf = logica.SetUnitsToFitInShoppingList(publicID, id, units, new Imagex32UrlResolver());
+            return slf;
+            //return MontarEVFiting(slf.eshFitting, slf.units);
         }
 
         public IEnumerable<EVFitting> SelectFitsEnShoppingList(string publicID){
             LogicaShoppingLists logica =
                 new LogicaShoppingLists();
-            IEnumerable<eshShoppingListFitting> listaEshF = logica.SelectFitsEnShoppingList(publicID);
+            IEnumerable<EVFitting> fitsSalida;
 
-            List<EVFitting> fitsSalida = new List<EVFitting>();
+            fitsSalida = logica.SelectFitsInShoppingList(publicID, new Imagex32UrlResolver());
 
-            foreach (var item in listaEshF)
-            {
-                EVFitting fit = MontarEVFiting(item.eshFitting, item.units);
-                fitsSalida.Add(fit);
-            }
             return fitsSalida;
         }
 

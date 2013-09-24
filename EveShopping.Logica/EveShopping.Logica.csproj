@@ -57,6 +57,7 @@
     <Compile Include="EveCentral\EveCentralAgent.cs" />
     <Compile Include="EveCentral\ItemPrices.cs" />
     <Compile Include="EveCentral\ItemPriceStats.cs" />
+    <Compile Include="IImageResolver.cs" />
     <Compile Include="LogicaEveCentral.cs" />
     <Compile Include="LogicaMarketItems.cs" />
     <Compile Include="LogicaShoppingLists.cs" />

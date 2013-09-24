@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using EveShopping.Repositorios;
+using EveShopping.Modelo.EV;
 
 namespace EveShopping.Logica
 {
@@ -78,6 +79,68 @@ namespace EveShopping.Logica
 
         }
 
+        public IEnumerable<EVFitting> SelectFitsInShoppingList(string publicID, IImageResolver imageResolver)
+        {
+            EveShoppingContext contexto = 
+                new EveShoppingContext();
+            IEnumerable<EVFitting> fittings =
+                (from sl in contexto.eshShoppingLists
+                 join slf in contexto.eshShoppingListsFittings on sl.shoppingListID equals slf.shoppingListID
+                 join f in contexto.eshFittings on slf.fittingID equals f.fittingID
+                 join it in contexto.invTypes on f.shipTypeID equals it.typeID
+                 join p in contexto.eshPrices on new {sl.tradeHubID, it.typeID} equals new { tradeHubID = p.solarSystemID, p.typeID}
+                 where sl.publicID == publicID
+                 select new EVFitting
+                 {
+                     Description = f.description,
+                     FittingID = f.fittingID,
+                     Name = f.name,
+                     ShipID = f.shipTypeID.Value,
+                     ShipName = f.invType.typeName,
+                     ShipVolume = f.shipVolume,
+                     Units = slf.units,
+                     ShipPrice = p.avg,
+                     Price = p.avg * slf.units,
+                     Volume = f.shipVolume * slf.units
+                 }).ToList();
+
+            foreach (var fit in fittings)
+            {
+                fit.ShipImageUrl32 = imageResolver.GetImageURL(fit.ShipID);
+
+                var qfittingHardwares =
+                   (from sl in contexto.eshShoppingLists
+                    join slf in contexto.eshShoppingListsFittings on sl.shoppingListID equals slf.shoppingListID
+                    join f in contexto.eshFittings on slf.fittingID equals f.fittingID
+                    join fh in contexto.eshFittingHardwares on f.fittingID equals fh.fittingID
+                    join it in contexto.invTypes on fh.typeID equals it.typeID
+                    join mg in contexto.invMarketGroups on it.marketGroupID equals mg.marketGroupID
+                    join p in contexto.eshPrices on new { sl.tradeHubID, it.typeID } equals new { tradeHubID = p.solarSystemID, p.typeID }
+                    where f.fittingID == fit.FittingID
+                    orderby fh.slotID, fh.positionInSlot, fh.invType.typeName
+                    select new EVFittingHardware
+                    {
+                        FittingHardwareID = fh.typeID,
+                        GroupName = mg.marketGroupName,
+                        Name = it.typeName,
+                        Price = fh.units * p.avg,
+                        Slot = fh.slotID,
+                        SlotName = fh.eshFittingSlot.name,
+                        Units = fh.units,
+                        Volume = fh.units * it.volume.Value
+
+                    });
+                foreach (var item in qfittingHardwares)
+                {
+                    item.ImageUrl32 = imageResolver.GetImageURL(item.FittingHardwareID);
+                    fit.FittingHardwares.Add(item);
+                    fit.Price += item.Price * fit.Units;
+                    fit.Volume += item.Volume * 2;
+                }
+            }
+            return fittings;
+        }
+
         public eshShoppingList SelectShoppingListByPublicID(string publicID){
             EveShoppingContext contexto =
                 new EveShoppingContext();
@@ -104,6 +167,7 @@ namespace EveShopping.Logica
             sl.readOnlypublicID = Guid.NewGuid().ToString();
             sl.dateCreation = System.DateTime.Now;
             sl.dateUpdate = System.DateTime.Now;
+            sl.tradeHubID = 30000142;
             contexto.eshShoppingLists.Add(sl);
             contexto.SaveChanges();
             return publicID;
@@ -130,23 +194,79 @@ namespace EveShopping.Logica
             eshShoppingListInvType slit = repo.UpdateMarketItemEnShoppingList(list.shoppingListID, itemID, units);
         }
 
-        public eshShoppingListFitting SetUnitsToFitInShoppingList(string publicID, int id, short units)
+        public EVFitting SelectFitSummary(string publicID, int fittingID, IImageResolver imageResolver)
         {
             EveShoppingContext contexto = new EveShoppingContext();
 
-            eshShoppingListFitting slfit = (from sl in contexto.eshShoppingLists
-                                            join slf in contexto.eshShoppingListsFittings.Include("eshFitting.eshFittingHardwares") on sl.shoppingListID equals slf.shoppingListID
-                                            where sl.publicID == publicID && slf.fittingID == id
-                                            select slf).FirstOrDefault();
-            
+            EVFitting fit =
+    (from slf in contexto.eshShoppingListsFittings
+     join f in contexto.eshFittings on slf.fittingID equals f.fittingID
+     join it in contexto.invTypes on f.shipTypeID equals it.typeID
+     join p in contexto.eshPrices on new { tradeHubID = slf.eshShoppingList.tradeHubID, it.typeID } equals new { tradeHubID = p.solarSystemID, p.typeID }
+     where slf.eshShoppingList.publicID == publicID && slf.fittingID == fittingID
+     select new EVFitting
+     {
+         Description = f.description,
+         FittingID = f.fittingID,
+         Name = f.name,
+         ShipID = f.shipTypeID.Value,
+         ShipName = f.invType.typeName,
+         ShipVolume = f.shipVolume,
+         Units = slf.units,
+         ShipPrice = p.avg,
+         Price = p.avg * slf.units,
+         Volume = f.shipVolume * slf.units
+     }).FirstOrDefault();
+
+                fit.ShipImageUrl32 = imageResolver.GetImageURL(fit.ShipID);
+
+                var qfittingHardwares =
+                   (from sl in contexto.eshShoppingLists
+                    join slf in contexto.eshShoppingListsFittings on sl.shoppingListID equals slf.shoppingListID
+                    join f in contexto.eshFittings on slf.fittingID equals f.fittingID
+                    join fh in contexto.eshFittingHardwares on f.fittingID equals fh.fittingID
+                    join it in contexto.invTypes on fh.typeID equals it.typeID
+                    join mg in contexto.invMarketGroups on it.marketGroupID equals mg.marketGroupID
+                    join p in contexto.eshPrices on new { sl.tradeHubID, it.typeID } equals new { tradeHubID = p.solarSystemID, p.typeID }
+                    where f.fittingID == fit.FittingID
+                    orderby fh.slotID, fh.positionInSlot, fh.invType.typeName
+                    select new EVFittingHardware
+                    {
+                        FittingHardwareID = fh.typeID,
+                        GroupName = mg.marketGroupName,
+                        Name = it.typeName,
+                        Price = fh.units * p.avg,
+                        Slot = fh.slotID,
+                        SlotName = fh.eshFittingSlot.name,
+                        Units = fh.units,
+                        Volume = fh.units * it.volume.Value
+
+                    });
+                foreach (var item in qfittingHardwares)
+                {
+                    item.ImageUrl32 = imageResolver.GetImageURL(item.FittingHardwareID);
+                    fit.FittingHardwares.Add(item);
+                    fit.Price += item.Price * fit.Units;
+                    fit.Volume += item.Volume * 2;
+                }
+
+            return fit;
+
+        }
+
+        public EVFitting SetUnitsToFitInShoppingList(string publicID, int fittingID, short units, IImageResolver imageResolver)
+        {
+            EveShoppingContext contexto = new EveShoppingContext();
+
+            //guardamos los cambios
+            eshShoppingListFitting slfit = contexto.eshShoppingListsFittings.Where(slf => slf.fittingID == fittingID && slf.eshShoppingList.publicID == publicID).FirstOrDefault();
             if (slfit == null) throw new ApplicationException(Messages.err_fittingNoExiste);
-
-
             if (units < 0) units = 0;           
             slfit.units = units;
             contexto.SaveChanges();
 
-            return slfit;
+            //obtenemos la fitting
+            return this.SelectFitSummary(publicID, fittingID, imageResolver);
         }
 
         public void DeleteItemFromShoppingList(string publicID, int itemID){

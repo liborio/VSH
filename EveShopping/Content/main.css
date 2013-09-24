@@ -516,9 +516,22 @@ textarea {
         cursor: default;
     }
 
+h3.main-title {
+    width:100%
+}
+    h3.main-title span {
+        float:left;
+    }
+
+        h3.main-title span.right {
+        float:right;
+    }
+
 div.inside-section{
     margin: 3px 1em 3px;
 }
+
+
 
 ::-webkit-input-placeholder {
     color: #999;

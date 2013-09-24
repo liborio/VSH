@@ -1,6 +1,7 @@
 ﻿using EveShopping.Logica;
 using EveShopping.Modelo;
 using EveShopping.Modelo.EntidadesAux;
+using EveShopping.Modelo.EV;
 using EveShopping.Modelo.Models;
 using EveShopping.Models;
 using EveShopping.Web;
@@ -177,7 +178,7 @@ namespace EveShopping.Controllers
             int fitID = logica.SaveAnalisedFit(EstadoUsuario.CurrentListPublicId, fit);
 
             AgenteShoppingList agente = new AgenteShoppingList();
-            EVFitting evfit = agente.SelectFitPorID(fitID);
+            EVFitting evfit = agente.SelectFitPorID(EstadoUsuario.CurrentListPublicId, fitID);
 
 
             return PartialView("PVFitInShoppingList", evfit);

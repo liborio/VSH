@@ -21,9 +21,16 @@ namespace EveShopping.Logica
                 hubIdList.Add(hub.solarSystemID);
             }
             EveCentralAgent agente = new EveCentralAgent();
+            int[] categoryIDs = new int[]{6,7,8,18,32};
 
-            IEnumerable<invType> items =
-                contexto.invTypes.Where(t => t.marketGroupID != null).ToList();
+
+
+            var items =
+                (from it in contexto.invTypes
+                 join ig in contexto.invGroups on it.groupID equals ig.groupID
+                 where it.marketGroupID != null &&  ig.categoryID != null &&categoryIDs.Contains(ig.categoryID.Value)
+                 select new { typeID = it.typeID }).ToList();
+               // contexto.invTypes.Where(t => t.marketGroupID != null && categoryIDs.Contains(t. ).ToList();
 
             List<int> ItemIds = new List<int>();
             foreach (var item in items)
@@ -49,9 +56,6 @@ namespace EveShopping.Logica
                                 eprice.solarSystemID = price.HubID;
                             }
                             eprice.avg = price.Stats.Avg;
-                            eprice.max = price.Stats.Max;
-                            eprice.min = price.Stats.Min;
-                            eprice.median = price.Stats.Median;
                             eprice.updateTime = System.DateTime.Now;
                         }
                         ItemIds.Clear();

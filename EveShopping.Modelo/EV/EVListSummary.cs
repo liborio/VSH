@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EveShopping.Web.Modelo
+namespace EveShopping.Modelo.EV
 {
     public class EVListSummary
     {

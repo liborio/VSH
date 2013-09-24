@@ -37,12 +37,14 @@ function OnSuccessUseAnalysedFit(data) {
     var name = $(data).first().attr('data-esh-name');
     $('[data-esh-analysed-fits]').children('[data-esh-name = "' + name + '"]').remove();
     accordionState.initAccordion($('#fitsInList'), 0);
+    setTotalPriceAndUnits();
 }
 
 function OnSuccessDeleteFitFromList() {
     $('[data-esh-fits-in-list]').children('[data-esh-id = "' + this + '"]').remove();
     accordionState.initAccordion($('#fitsInList'));
     cleanEdits();
+    setTotalPriceAndUnits();
 }
 
 function onSetUnitsInShoppingListSuccess(data) {
@@ -54,6 +56,31 @@ function onSetUnitsInShoppingListSuccess(data) {
     accordionState.initAccordion($('#fitsInList'));
     accordionState.openPanel($('#fitsInList'), id);
     cleanEdits();
+    setTotalPriceAndUnits();
+}
+
+function setTotalPriceAndUnits() {
+    var vol = 0;
+    $('[data-esh-vol]').each(function () { vol += Number($(this).attr('data-esh-vol')); })
+
+    var price = 0;
+    $('[data-esh-price]').each(function () { price += Number($(this).attr('data-esh-price')); })
+    var formated = null;
+    if (price > 1000000) {
+        price = price / 1000000;
+        formated = ' M';
+    }
+    if (!formated && (price > 1000)) {
+        price = price / 1000;
+        formated = ' K';
+    }
+    price = price.toFixed(2);
+    if (price > 0) {
+        $('#total-price-vol').text(price + formated + ' - ' + vol + ' m3');
+    }
+    else {
+        $('#total-price-vol').text('');
+    }
 }
 
 
@@ -62,57 +89,57 @@ function cleanEdits() {
     $('[data-esh-fits-in-list]').find('[data-esh-edit-link]').show();
 }
 
-function editFitInShoppingList(id) {
-    cleanEdits();
-    var row = $('[data-esh-fits-in-list]').find('[data-esh-id="' + id + '"]').find('tr').first();
-    var units = $('[data-esh-fits-in-list]').find('h3[data-esh-id="' + id + '"]').data('esh-units')
-    $(row).addClass('row-edit');
+    function editFitInShoppingList(id) {
+        cleanEdits();
+        var row = $('[data-esh-fits-in-list]').find('[data-esh-id="' + id + '"]').find('tr').first();
+        var units = $('[data-esh-fits-in-list]').find('h3[data-esh-id="' + id + '"]').data('esh-units')
+        $(row).addClass('row-edit');
 
-    $('[data-esh-fits-in-list]').find('[data-esh-edit-link]').hide();
-    var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='4' class='col-edit'><span><a onclick=\"setUnitsItemInShoppingList('" + id + "')\">Set</a> <input data-esh-units type='text' value='" + units + "'>units</span><span><a onclick=\"deleteItemInShoppingList('" + id + "')\">Delete</a></span><span><a onclick=\"cancelEditItemInShoppingList('" + id + "')\">Close edit</a></span>";
-    $(filaControlesEdicion).insertBefore(row);
+        $('[data-esh-fits-in-list]').find('[data-esh-edit-link]').hide();
+        var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='4' class='col-edit'><span><a onclick=\"setUnitsItemInShoppingList('" + id + "')\">Set</a> <input data-esh-units type='text' value='" + units + "'>units</span><span><a onclick=\"deleteItemInShoppingList('" + id + "')\">Delete</a></span><span><a onclick=\"cancelEditItemInShoppingList('" + id + "')\">Close edit</a></span>";
+        $(filaControlesEdicion).insertBefore(row);
 
-    var acc = $('#fitsInList');
+        var acc = $('#fitsInList');
 
-    accordionState.openPanel(acc, id);
+        accordionState.openPanel(acc, id);
 
-    accordionState.disableAccordion(acc);
-    //$(function () { $('#fitsInList').accordion("disable")});
+        accordionState.disableAccordion(acc);
+        //$(function () { $('#fitsInList').accordion("disable")});
 
-    $(filaControlesEdicion).find('input:text').focus(function () { $(this).select(); });
-    $('[data-esh-fits-in-list]').find('[data-esh-row-edit]').find('input:text').focus();
-    //$('[data-esch-marketitemsinshoppinglist]').find('[data-esh-row-edit]').find('input:text').focus();
-}
+        $(filaControlesEdicion).find('input:text').focus(function () { $(this).select(); });
+        $('[data-esh-fits-in-list]').find('[data-esh-row-edit]').find('input:text').focus();
+        //$('[data-esch-marketitemsinshoppinglist]').find('[data-esh-row-edit]').find('input:text').focus();
+    }
 
-function disableFitInShoppingListPanels() {
-    accordionState.disableAccordion($("#fitsAnalysed"));
-}
+    function disableFitInShoppingListPanels() {
+        accordionState.disableAccordion($("#fitsAnalysed"));
+    }
 
-function cancelEditItemInShoppingList(id) {
-    cleanEdits();
-    accordionState.enableAccordion($('#fitsInList'));
-}
+    function cancelEditItemInShoppingList(id) {
+        cleanEdits();
+        accordionState.enableAccordion($('#fitsInList'));
+    }
 
-function setUnitsItemInShoppingList(id) {
+    function setUnitsItemInShoppingList(id) {
 
-    var units = $('[data-esh-fits-in-list]').find('[data-esh-id=' + id + '] + div').find('[data-esh-units]').val();
-    $.ajax({
-        type: 'POST',
-        url: '/Lists/SetUnitsToFitInShoppingList',
-        context: id,
-        success: onSetUnitsInShoppingListSuccess,
-        data: { id: id, units: units },
-        dataType: 'html'
-    });
-}
+        var units = $('[data-esh-fits-in-list]').find('[data-esh-id=' + id + '] + div').find('[data-esh-units]').val();
+        $.ajax({
+            type: 'POST',
+            url: '/Lists/SetUnitsToFitInShoppingList',
+            context: id,
+            success: onSetUnitsInShoppingListSuccess,
+            data: { id: id, units: units },
+            dataType: 'html'
+        });
+    }
 
-function deleteItemInShoppingList(id) {
-    $.ajax({
-        url: '/Lists/DeleteFittingFromShoppingList/' + id,
-        context: id,
-        success: OnSuccessDeleteFitFromList,
-        dataType: 'html'
-    });
-}
+    function deleteItemInShoppingList(id) {
+        $.ajax({
+            url: '/Lists/DeleteFittingFromShoppingList/' + id,
+            context: id,
+            success: OnSuccessDeleteFitFromList,
+            dataType: 'html'
+        });
+    }
 
 
