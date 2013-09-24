@@ -120,10 +120,10 @@ namespace EveShopping.Logica
                     orderby fh.slotID, fh.positionInSlot, fh.invType.typeName
                     select new EVFittingHardware
                     {
-                        FittingHardwareID = fh.typeID,
+                        ItemID = fh.typeID,
                         GroupName = mg.marketGroupName,
                         Name = it.typeName,
-                        Price = fh.units * p.avg,
+                        TotalPrice = fh.units * p.avg,
                         Slot = fh.slotID,
                         SlotName = fh.eshFittingSlot.name,
                         Units = fh.units,
@@ -132,9 +132,9 @@ namespace EveShopping.Logica
                     });
                 foreach (var item in qfittingHardwares)
                 {
-                    item.ImageUrl32 = imageResolver.GetImageURL(item.FittingHardwareID);
+                    item.ImageUrl32 = imageResolver.GetImageURL(item.ItemID);
                     fit.FittingHardwares.Add(item);
-                    fit.Price += item.Price * fit.Units;
+                    fit.Price += item.TotalPrice * fit.Units;
                     fit.Volume += item.Volume * 2;
                 }
             }
@@ -232,10 +232,10 @@ namespace EveShopping.Logica
                     orderby fh.slotID, fh.positionInSlot, fh.invType.typeName
                     select new EVFittingHardware
                     {
-                        FittingHardwareID = fh.typeID,
+                        ItemID = fh.typeID,
                         GroupName = mg.marketGroupName,
                         Name = it.typeName,
-                        Price = fh.units * p.avg,
+                        TotalPrice = fh.units * p.avg,
                         Slot = fh.slotID,
                         SlotName = fh.eshFittingSlot.name,
                         Units = fh.units,
@@ -244,9 +244,9 @@ namespace EveShopping.Logica
                     });
                 foreach (var item in qfittingHardwares)
                 {
-                    item.ImageUrl32 = imageResolver.GetImageURL(item.FittingHardwareID);
+                    item.ImageUrl32 = imageResolver.GetImageURL(item.ItemID);
                     fit.FittingHardwares.Add(item);
-                    fit.Price += item.Price * fit.Units;
+                    fit.Price += item.TotalPrice * fit.Units;
                     fit.Volume += item.Volume * 2;
                 }
 
@@ -308,52 +308,76 @@ namespace EveShopping.Logica
             return fit.fittingID;
         }
 
-        public IList<MarketItem> SelectMarketItemsEnShoppingList(string publicID)
+        public IList<MarketItem> SelectMarketItemsEnShoppingList(string publicID, IImageResolver imageResolver)
         {
             EveShoppingContext context = new EveShoppingContext();
 
             IList<MarketItem> miList = new List<MarketItem>();
 
-            eshShoppingList shl = context.eshShoppingLists.Where( s => s.publicID == publicID).FirstOrDefault();
-
-            if (shl == null) throw new ApplicationException(Messages.err_shoppingLisNoExiste);
-
-            IEnumerable<eshShoppingListInvType> listaSlit =
-                context.eshShoppingListsInvTypes.Include("invType").Where(l => l.shoppingListID == shl.shoppingListID);
-
-            foreach (var slit in listaSlit)
+            var qlistaItems =
+                (from sl in context.eshShoppingLists
+                 join slit in context.eshShoppingListsInvTypes on sl.shoppingListID equals slit.shoppingListID
+                 join it in context.invTypes on slit.typeID equals it.typeID
+                 join p in context.eshPrices on new { sl.tradeHubID, slit.typeID } equals new { tradeHubID = p.solarSystemID, p.typeID }
+                 where sl.publicID == publicID
+                 select new 
+                 {
+                     ItemID = slit.typeID,
+                     Name = it.typeName,
+                     Units = slit.units,
+                     TotalPrice = p.avg * slit.units,
+                     invType = it
+                     
+                 });
+            foreach (var item in qlistaItems)
             {
-                MarketItem mi = new MarketItem();
-                mi.ItemID = slit.typeID;
-                mi.Name = slit.invType.typeName;
-                mi.Units = slit.units;
-                mi.Volume = slit.volume;
-                mi.URI = string.Format(Constantes.EVEImageServerFormat32, slit.typeID);
+                MarketItem mi =
+                    new MarketItem()
+                    {
+                        ItemID = item.ItemID,
+                        Name = item.Name,
+                        Units = item.Units,
+                        TotalPrice = item.TotalPrice,
+                        Volume = RepositorioItems.GetVolume(item.invType) * item.Units,
+                        ImageUrl32 = imageResolver.GetImageURL(item.ItemID)
+
+                    };
                 miList.Add(mi);
             }
+
             return miList;
         }
-            
-        public MarketItem SelectMarketItemByID(string shoppingListPublicID, int id)
+
+        public MarketItem SelectMarketItemByID(string publicID, int id, IImageResolver imageResolver)
         {
             EveShoppingContext context = new EveShoppingContext();
-            eshShoppingList slist = context.eshShoppingLists.Where(sl => sl.publicID == shoppingListPublicID).FirstOrDefault();
 
-            if (slist == null) throw new ApplicationException(Messages.err_shoppingLisNoExiste);
 
-            eshShoppingListInvType slitype = context.eshShoppingListsInvTypes.Include("invType").Where(slit => slit.shoppingListID == slist.shoppingListID && slit.typeID == id).FirstOrDefault();
-            if (slitype == null) throw new ApplicationException(Messages.err_itemNoEnShoppingList);
-
-            RepositorioItems repo = new RepositorioItems();
-
-            MarketItem mi = new MarketItem
+            var qmi  =
+                (from sl in context.eshShoppingLists
+                 join slit in context.eshShoppingListsInvTypes on sl.shoppingListID equals slit.shoppingListID
+                 join it in context.invTypes on slit.typeID equals it.typeID
+                 join p in context.eshPrices on new { sl.tradeHubID, slit.typeID } equals new { tradeHubID = p.solarSystemID, p.typeID }
+                 where sl.publicID == publicID && slit.typeID == id
+                 select new 
+                 {
+                     ItemID = slit.typeID,
+                     Name = it.typeName,
+                     Units = slit.units,
+                     TotalPrice = p.avg * slit.units,
+                     Volume = it.volume.Value * slit.units,
+                     ItemType = it
+                 }).FirstOrDefault();
+            MarketItem mi = new MarketItem()
             {
-                ItemID = slitype.typeID,
-                Name = slitype.invType.typeName,
-                Units = slitype.units,
-                URI = string.Format(Constantes.EVEImageServerFormat32, slitype.typeID),
-                Volume = repo.GetVolume(slitype.invType) * slitype.units
+                ItemID = qmi.ItemID,
+                Name = qmi.Name,
+                Units = qmi.Units,
+                TotalPrice = qmi.TotalPrice,
+                Volume = RepositorioItems.GetVolume(qmi.ItemType) * qmi.Units,
+                ImageUrl32 = imageResolver.GetImageURL(qmi.ItemID)
             };
+            
             return mi;
         }
 
@@ -371,7 +395,7 @@ namespace EveShopping.Logica
                 throw new ApplicationException(Messages.err_nombreItemAnalizadaNoExiste);
             }
             salida.shipTypeID = shipType.typeID;
-            salida.shipVolume =  repo.GetVolume( shipType);
+            salida.shipVolume =  RepositorioItems.GetVolume( shipType);
 
             double totalVol = salida.shipVolume;
             foreach (var item in fit.Items)
@@ -398,7 +422,7 @@ namespace EveShopping.Logica
             salida.positionInSlot = 0;
             salida.slotID = fithwd.Slot;
             salida.units = fithwd.Units;
-            salida.volume = repo.GetVolume( tipo) * fithwd.Units;
+            salida.volume = RepositorioItems.GetVolume( tipo) * fithwd.Units;
             
             return salida;
         }

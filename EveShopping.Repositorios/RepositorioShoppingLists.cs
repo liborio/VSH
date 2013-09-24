@@ -51,7 +51,8 @@ namespace EveShopping.Repositorios
             {
                 throw new ApplicationException(Messages.err_itemNoExiste);
             }
-            slit.volume = units * it.volume.Value;
+            RepositorioItems repoItems = new RepositorioItems();
+            slit.volume = units * RepositorioItems.GetVolume(it);
             Contexto.eshShoppingListsInvTypes.Add(slit);
             Contexto.SaveChanges();
             return slit;
@@ -77,7 +78,7 @@ namespace EveShopping.Repositorios
 
 
                 RepositorioItems repoItems = new RepositorioItems(this.Contexto);
-                slit.volume = slit.units * repoItems.GetVolume(it);
+                slit.volume = slit.units * RepositorioItems.GetVolume(it);
             }
             Contexto.SaveChanges();
             return slit;

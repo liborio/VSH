@@ -41,7 +41,7 @@
                     <img src="@hwdItem.ImageUrl32" alt="@hwdItem.Name" /></td>
                 <td>@hwdItem.Name</td>
                 <td>x @hwdItem.Units</td>
-                <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(hwdItem.Price)</td>
+                <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(hwdItem.TotalPrice)</td>
                 <td class="numericCol">@hwdItem.Volume m3</td>
             </tr>
         }

@@ -1,9 +1,10 @@
-﻿@model EveShopping.Modelo.EntidadesAux.MarketItem
+﻿@model EveShopping.Modelo.EV.MarketItem
 
-<tr class="fila-impar" data-esh-id="@Model.ItemID" data-esh-units="@Model.Units">
-    <td><img src="@Model.URI" alt="@Model.Name" /></td>
+<tr class="fila-impar" data-esh-id="@Model.ItemID" data-esh-units="@Model.Units" data-esh-vol="@Model.Volume" data-esh-price="@Model.TotalPrice">
+    <td><img src="@Model.ImageUrl32" alt="@Model.Name" /></td>
     <td>@Model.Name</td>
     <td>x @Model.Units</td>
+    <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.TotalPrice)</td>
     <td class="numericCol">@Model.Volume m3</td>
     <td class="numericCol"><a onclick="editItemInShoppingList(@Model.ItemID)">Edit</a></td>
 </tr>

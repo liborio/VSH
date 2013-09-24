@@ -39,7 +39,7 @@ namespace EveShopping.Web.Modelo
                 data.Name,
                 data.Volume,
                 data.Units,
-                data.FittingHardwareID
+                data.ItemID
                 );
         }
     }

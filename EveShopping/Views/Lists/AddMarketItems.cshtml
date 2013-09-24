@@ -19,7 +19,17 @@
 
 <div id="list-main">
     <div class="inside-section">
-        <h3>Market items in shopping list</h3>
+        <h3 class="main-title clearfix"><span>Market items in shopping list</span><span class="right">
+            @if (Model.MarketItemsEnShoppingList.Count() > 0)
+            {
+                <span id="total-price-vol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalPrice(this.Model.MarketItemsEnShoppingList)) - @EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalVolume(this.Model.MarketItemsEnShoppingList) m3</span>
+            }
+            else
+            {
+                <span id="total-price-vol"></span>
+            }
+
+        </span></h3>
         <div id="fitsInList" class="subs-wrapper" data-esh-fits-in-list>
             @Html.Partial("PVMarketItemsEnShoppingList", Model.MarketItemsEnShoppingList)
         </div>
@@ -39,7 +49,7 @@
                 <div>
                     <input type="input" id="searchText" name="seachText" placeholder="Type to seach, min 5 chars" />
                     <div id="searchResult">
-                    </div>
+                    </div   >
                 </div>
 
             <h3>Market items</h3>

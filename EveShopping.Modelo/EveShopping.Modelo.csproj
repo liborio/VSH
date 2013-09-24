@@ -47,7 +47,9 @@
     <Compile Include="Constantes.cs" />
     <Compile Include="EntidadesAux\FittingAnalyzed.cs" />
     <Compile Include="EntidadesAux\FittingHardwareAnalyzed.cs" />
-    <Compile Include="EntidadesAux\MarketItem.cs" />
+    <Compile Include="EV\BaseItem.cs" />
+    <Compile Include="EV\IItem.cs" />
+    <Compile Include="EV\MarketItem.cs" />
     <Compile Include="EV\EVFitting.cs" />
     <Compile Include="EV\EVFittingHardware.cs" />
     <Compile Include="EV\EVListSummary.cs" />

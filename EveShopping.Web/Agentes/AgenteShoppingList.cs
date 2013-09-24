@@ -14,15 +14,38 @@ namespace EveShopping.Web.Agentes
     public class AgenteShoppingList
     {
 
-        public static decimal CalculateTotalPrice(IEnumerable<EVFitting> fittings){
+
+        public static decimal CalculateTotalPrice(IEnumerable<EVFitting> fittings) 
+        {
             decimal total = 0;
-            foreach (var item in fittings){
+            foreach (var item in fittings)
+            {
                 total += item.Price;
             }
             return total;
         }
 
-        public static double CalculateTotalVolume(IEnumerable<EVFitting> fittins)
+
+        public static double CalculateTotalVolume(IEnumerable<EVFitting> fittins) 
+        {
+            double total = 0;
+            foreach (var item in fittins)
+            {
+                total += item.Volume;
+            }
+            return total;
+        }
+
+        public static decimal CalculateTotalPrice<T>(IEnumerable<T> fittings) where T:BaseItem{
+            decimal total = 0;
+            foreach (var item in fittings){
+                total += item.TotalPrice;
+            }
+            return total;
+        }
+
+
+        public static double CalculateTotalVolume<T>(IEnumerable<T> fittins) where T : BaseItem
         {
             double total = 0;
             foreach (var item in fittins)
@@ -75,11 +98,11 @@ namespace EveShopping.Web.Agentes
                 if (fh == null)
                 {
                     fh = new EVFittingHardware();
-                    fh.FittingHardwareID = shfit.eshFitting.shipTypeID.Value;
+                    fh.ItemID = shfit.eshFitting.shipTypeID.Value;
                     fh.Name = shfit.eshFitting.name;
                     fh.ImageUrl32 = GetImageUrl32(shfit.eshFitting.shipTypeID.Value);
                     summ.Items.Add(fh);
-                    diccHardware.Add(fh.FittingHardwareID, fh);
+                    diccHardware.Add(fh.ItemID, fh);
                 }
                 fh.Units += shfit.units;
                 fh.Volume += shfit.units * shfit.eshFitting.shipVolume;
@@ -94,7 +117,7 @@ namespace EveShopping.Web.Agentes
                 if (fh == null)
                 {
                     fh = new EVFittingHardware();
-                    fh.FittingHardwareID = slit.typeID;
+                    fh.ItemID = slit.typeID;
                     fh.Name = slit.invType.typeName;
                     fh.ImageUrl32 = GetImageUrl32(slit.typeID);
                     summ.Items.Add(fh);
@@ -113,7 +136,7 @@ namespace EveShopping.Web.Agentes
                     if (fh == null)
                     {
                         fh = new EVFittingHardware();
-                        fh.FittingHardwareID = item.typeID;
+                        fh.ItemID = item.typeID;
                         fh.Name = item.invType.typeName;
                         fh.ImageUrl32 = GetImageUrl32(item.invType.typeID);
                         diccHardware.Add(item.typeID, fh);
@@ -159,7 +182,7 @@ namespace EveShopping.Web.Agentes
             LogicaShoppingLists logica =
                 new LogicaShoppingLists();
             logica.UpdateMarketItemToShoppingList(shoppingListPublidID, itemID, units);
-            return logica.SelectMarketItemByID(shoppingListPublidID, itemID);
+            return logica.SelectMarketItemByID(shoppingListPublidID, itemID, new Imagex32UrlResolver());
         }
 
         public void DeleteMarketItemEnShoppingList(string shoppingListPublidID, int itemID)
@@ -173,7 +196,7 @@ namespace EveShopping.Web.Agentes
         public IList<MarketItem> SelectMarketItemsEnShoppingList(string publicID)
         {
             LogicaShoppingLists logica = new LogicaShoppingLists();
-            return logica.SelectMarketItemsEnShoppingList(publicID);
+            return logica.SelectMarketItemsEnShoppingList(publicID, new Imagex32UrlResolver());
         }
 
         #region eve-central
@@ -204,7 +227,7 @@ namespace EveShopping.Web.Agentes
                 hwd.Name = itemHwd.invType.typeName;
                 hwd.Units = itemHwd.units;
                 hwd.Volume = itemHwd.volume;
-                hwd.FittingHardwareID = itemHwd.fittingHardwareID;
+                hwd.ItemID = itemHwd.fittingHardwareID;
                 hwd.ImageUrl32 = string.Format("http://image.eveonline.com/Type/{0}_32.png", itemHwd.invType.typeID);
                 hwd.Slot = itemHwd.slotID;
                 fit.FittingHardwares.Add(hwd);

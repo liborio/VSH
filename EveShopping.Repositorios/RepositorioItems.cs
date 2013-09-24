@@ -57,7 +57,7 @@ namespace EveShopping.Repositorios
                 .OrderBy(g => g.marketGroupName).ToList();
         }
 
-        public double GetVolume(invType it)
+        public static double GetVolume(invType it)
         {
             switch (it.groupID)
             {

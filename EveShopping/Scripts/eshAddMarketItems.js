@@ -64,11 +64,13 @@ function AddOrReplaceItemInShoppingList(data, id, inEdit) {
 
 function OnSuccessAddItemToShoppingList(data) {
     AddOrReplaceItemInShoppingList(data, this, false);
+    setTotalPriceAndUnits();
 }
 
 function onSuccessUpdateItemToShoppingList(data) {
     AddOrReplaceItemInShoppingList(data, this, true);
     cancelEditItemInShoppingList(this);
+    setTotalPriceAndUnits();
 }
 
 function onSuccessSearchItem(data) {
@@ -162,6 +164,6 @@ function deleteItemInShoppingList(id) {
 function onSuccessDeleteItemToShoppingList() {
     cleanEdits();
     $('[data-esch-marketitemsinshoppinglist]').find('[data-esh-id="' + this + '"]').remove();
-
+    setTotalPriceAndUnits();
 }
 

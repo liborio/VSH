@@ -59,29 +59,6 @@ function onSetUnitsInShoppingListSuccess(data) {
     setTotalPriceAndUnits();
 }
 
-function setTotalPriceAndUnits() {
-    var vol = 0;
-    $('[data-esh-vol]').each(function () { vol += Number($(this).attr('data-esh-vol')); })
-
-    var price = 0;
-    $('[data-esh-price]').each(function () { price += Number($(this).attr('data-esh-price')); })
-    var formated = null;
-    if (price > 1000000) {
-        price = price / 1000000;
-        formated = ' M';
-    }
-    if (!formated && (price > 1000)) {
-        price = price / 1000;
-        formated = ' K';
-    }
-    price = price.toFixed(2);
-    if (price > 0) {
-        $('#total-price-vol').text(price + formated + ' - ' + vol + ' m3');
-    }
-    else {
-        $('#total-price-vol').text('');
-    }
-}
 
 
 function cleanEdits() {

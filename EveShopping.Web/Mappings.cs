@@ -22,7 +22,7 @@ namespace EveShopping.Web
                 return string.Format("{0:F} K", precio / 1000);
             }
 
-            return string.Format("{0:F} K", precio);
+            return string.Format("{0:F}", precio);
         }
 
         public static string GetSlotName(int slot)
