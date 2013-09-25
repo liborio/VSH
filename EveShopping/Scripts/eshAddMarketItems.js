@@ -129,9 +129,12 @@ function editItemInShoppingList(id) {
     var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='5' class='col-edit'><span><a onclick=\"setUnitsItemInShoppingList('" + id + "')\">Set</a><input data-esh-units type='text' value='" + units + "'>units</span><span><a onclick=\"deleteItemInShoppingList('" + id + "')\">Delete</a></span><span><a onclick=\"cancelEditItemInShoppingList('" + id + "')\">Close edit</a></span>"
     $(filaControlesEdicion).insertAfter(row)
 
-    $(filaControlesEdicion).find('input:text').focus(function () { $(this).select(); });
-    $('[data-esch-marketitemsinshoppinglist]').find('[data-esh-row-edit]').find('input:text').focus();
-
+    //$(filaControlesEdicion).find('input:text').focus(function () { $(this).select(); });
+    //$('[data-esch-marketitemsinshoppinglist]').find('[data-esh-row-edit]').find('input:text').focus();
+    var inputRows = $(filaControlesEdicion).find('input:text');
+    $(inputRows).focus(function () { $(this).select(); });
+    $(inputRows).focus();
+    $(inputRows).spinner();
 
 
 }

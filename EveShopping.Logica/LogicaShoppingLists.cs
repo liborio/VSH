@@ -136,9 +136,10 @@ namespace EveShopping.Logica
                     item.ImageUrl32 = imageResolver.GetImageURL(item.ItemID);
                     fit.FittingHardwares.Add(item);
                     fit.Price += item.TotalPrice * fit.Units;
-                    fit.Volume += item.Volume * 2;
+                    fit.Volume += item.Volume * fit.Units;
                 }
             }
+            
             return fittings;
         }
 
@@ -249,7 +250,7 @@ namespace EveShopping.Logica
                 item.ImageUrl32 = imageResolver.GetImageURL(item.ItemID);
                 fit.FittingHardwares.Add(item);
                 fit.Price += item.TotalPrice * fit.Units;
-                fit.Volume += item.Volume * 2;
+                fit.Volume += item.Volume * fit.Units;
             }
 
             return fit;
@@ -283,7 +284,8 @@ namespace EveShopping.Logica
                         ItemID = fit.ShipID,
                         Units = fit.Units,
                         Volume = fit.ShipVolume * fit.Units,
-                        TotalPrice = fit.ShipPrice * fit.Units
+                        TotalPrice = fit.ShipPrice * fit.Units,
+                        ImageUrl32 = imageResolver.GetImageURL(fit.ShipID)
                     };
                 diccHwd.Add(fw.ItemID, fw);
             }

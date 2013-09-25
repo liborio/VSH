@@ -8,7 +8,6 @@
 
 $(document).ready(function () {
     $('#help-container div').hide();
-
 });
 
 $(document).ajaxStart(ajaxLoader.initTimer)
@@ -83,8 +82,11 @@ function cleanEdits() {
         accordionState.disableAccordion(acc);
         //$(function () { $('#fitsInList').accordion("disable")});
 
-        $(filaControlesEdicion).find('input:text').focus(function () { $(this).select(); });
-        $('[data-esh-fits-in-list]').find('[data-esh-row-edit]').find('input:text').focus();
+        var inputRows = $(filaControlesEdicion).find('input:text');
+        $(inputRows).focus(function () { $(this).select(); });
+        $(inputRows).focus();
+        $(inputRows).spinner();
+
         //$('[data-esch-marketitemsinshoppinglist]').find('[data-esh-row-edit]').find('input:text').focus();
     }
 

@@ -235,6 +235,11 @@
     <Content Include="Scripts\eshHome.js" />
     <Content Include="Scripts\eshImportFits.js" />
     <Content Include="Scripts\eshSummary.js" />
+    <Content Include="Scripts\footable\footable.filter.js" />
+    <Content Include="Scripts\footable\footable.js" />
+    <Content Include="Scripts\footable\footable.paginate.js" />
+    <Content Include="Scripts\footable\footable.plugin.template.js" />
+    <Content Include="Scripts\footable\footable.sort.js" />
     <Content Include="Scripts\grid\ChangeLog.txt" />
     <Content Include="Scripts\grid\GPL-LICENSE.txt" />
     <Content Include="Scripts\grid\images\cross.png" />
