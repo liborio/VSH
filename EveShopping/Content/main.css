@@ -580,7 +580,7 @@ form {
         width: 95%;
     }
 
-.buttonYellow {
+.buttonYellow, .buttonYellow-short {
     -moz-box-shadow: inset 0px 1px 0px 0px #fce2c1;
     -webkit-box-shadow: inset 0px 1px 0px 0px #fce2c1;
     box-shadow: inset 0px 1px 0px 0px #fce2c1;
@@ -614,17 +614,23 @@ form {
     padding: 2px 1em 2px;
 }
 
-    .buttonYellow:hover {
+    .buttonYellow:hover, .buttonYellow-short:hover {
         background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #975e09), color-stop(1, #c8800b) );
         background: -moz-linear-gradient( center top, #975e09 5%, #c8800b 100% );
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#975e09', endColorstr='#c8800b');
         background-color: #975e09;
+        cursor: pointer;
     }
 
-    .buttonYellow:active {
+    .buttonYellow:active, .buttonYellow-short:active {
         position: relative;
         top: 1px;
     }
+
+.buttonYellow-short {
+    padding: 0px 1em;
+    height: 25px;
+}
 
 /* Navegación entre pasos ================================================*/
 
@@ -653,9 +659,14 @@ td, td.pq-grid-cell {
     margin: 0;
 }
 
-    td.numericCol {
+th {
+    text-align:left;
+}
+
+    th.numericCol, td.numericCol {
         text-align: right;
     }
+
 
 tr {
     border: none;
@@ -663,7 +674,7 @@ tr {
 }
 
     tr:hover {
-        background: white;
+        background: #3A3A3A;
     }
 
     tr.fila-par {
@@ -897,3 +908,48 @@ body.loading {
 
 /* UI Widgets ===========================================================*/
 
+
+/*footable =============================================*/
+.footable > tfoot .pagination {
+  text-align: center;
+}
+.footable > tfoot .pagination ul {
+  display: inline-block;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+}
+.footable > tfoot .pagination ul > li {
+  display: inline;
+}
+.footable > tfoot .pagination ul > li > a,
+.footable > tfoot .pagination ul > li > span {
+  float: left;
+  border: 2px solid transparent;
+  margin: 0 3px;
+  color: #FFA500;
+  background: transparent;
+  padding: 1px 5px;
+  text-decoration: none;
+}
+.footable > tfoot .pagination ul > li.disabled > a {
+  color: #888;
+}
+.footable > tfoot .pagination ul > li.active > a {
+  border-color: #FFA500;
+}
+.footable > tfoot .pagination ul > li:first-child > a,
+.footable > tfoot .pagination ul > li:last-child > a,
+.footable > tfoot .pagination ul > li:first-child > span,
+.footable > tfoot .pagination ul > li:last-child > span {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+
+#searchText {
+    width: 70%;
+}

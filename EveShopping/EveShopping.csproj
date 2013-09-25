@@ -149,6 +149,8 @@
     <Compile Include="Properties\AssemblyInfo.log4net.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\fonts\footable.svg" />
+    <Content Include="Content\footable.core.css" />
     <Content Include="Content\images\ajax-loader4.gif" />
     <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\ajax-loader2.gif" />
@@ -225,11 +227,15 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\fonts\footable.eot" />
+    <Content Include="Content\fonts\footable.ttf" />
+    <Content Include="Content\fonts\footable.woff" />
     <None Include="Properties\PublishProfiles\eve-shopping.pubxml" />
     <None Include="Properties\PublishProfiles\findeldia.pubxml" />
     <None Include="Properties\PublishProfiles\localhost.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="index.html" />
+    <Content Include="Scripts\bootstrap-tab.js" />
     <Content Include="Scripts\eshAddMarketItems.js" />
     <Content Include="Scripts\eshCommon.js" />
     <Content Include="Scripts\eshHome.js" />
@@ -317,6 +323,7 @@
     <Content Include="Views\Lists\Summary.cshtml" />
     <Content Include="Views\Lists\PVSearchMarketItem.cshtml" />
     <Content Include="Views\Lists\Public.cshtml" />
+    <Content Include="Views\Lists\PVSummaryItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

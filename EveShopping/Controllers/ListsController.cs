@@ -131,13 +131,13 @@ namespace EveShopping.Controllers
         }
 
 
-        public JsonResult SummaryData(string id = null)
-        {
-            AgenteShoppingList agente = new AgenteShoppingList();
-            EVListSummary summ = agente.SelectListSummaryPorPublicID(id);
+        //public JsonResult SummaryData(string id = null)
+        //{
+        //    AgenteShoppingList agente = new AgenteShoppingList();
+        //    EVListSummary summ = agente.SelectListSummaryPorPublicID(id);
 
-            return Json(summ.Items, JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(summ.Items, JsonRequestBehavior.AllowGet);
+        //}
 
 
         [HttpPost()]

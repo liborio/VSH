@@ -1,29 +1,42 @@
 ﻿@model IEnumerable<EveShopping.Web.Modelo.EVMarketItem>
 
 <div id="searchResult" class="clearfix menu-market">
-    <ul>
+    <table id="search-result-table">
+        <tbody>
         @foreach (var item in Model)
         {
-            <li class="fila-impar">
+            <tr>
                 @if (item.EsFinal)
                 {
-                    <div onclick="addItemToShoppingList(@item.ItemID)">
+                    <td onclick="addItemToShoppingList(@item.ItemID)">
                         @if (!string.IsNullOrEmpty(item.UrlIcon))
                         {<span class="icono"><img src="@item.UrlIcon" alt="@item.Name" />
                             </span>}
                         <span class="nombre" data-esh-id="@item.ItemID">@item.Name</span>
-                    </div>
+                    </td>
                 }
                 else
                 {
-                    <div onclick="navigateMarketGroup(@item.ItemID)">
+                    <td onclick="navigateMarketGroup(@item.ItemID)">
                         @if (!string.IsNullOrEmpty(item.UrlIcon))
                         {<span class="icono"><img src="@item.UrlIcon" alt="@item.Name" />
                             </span>}
                         <span class="nombre" data-esh-id="@item.ItemID">@item.Name</span>
-                    </div>
+                    </td>
                 }
-            </li>
+            </tr>
         }
-    </ul>
+            </tbody>
+        @if(this.Model.Count() > 10)
+        {
+        <tfoot>
+            <tr>
+                <td colspan ="2">
+                    <div class="pagination pagination-centered"></div>
+                </td>
+            </tr>
+        </tfoot>            
+        }
+
+    </table>
 </div>

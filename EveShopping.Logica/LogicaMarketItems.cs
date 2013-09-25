@@ -25,7 +25,7 @@ namespace EveShopping.Logica
             return repo.SelectMarketGroupsByParentID(parentID);
         }
 
-        public IEnumerable<invType> SearchMarketItems(string searchText, int count = 15)
+        public IEnumerable<invType> SearchMarketItems(string searchText, int count = 50)
         {
             EveShoppingContext contexto = new EveShoppingContext();
             return contexto.invTypes.Where(p => p.marketGroupID != null && p.typeName.Contains(searchText)).OrderBy(p => p.typeName).Take(count);

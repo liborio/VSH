@@ -14,9 +14,12 @@
 
     </span>
 </h3>
-
+            <div id="itemsInSummary" class="subs-wrapper">
+            @Html.Partial("PVSummaryItems", Model.Summary)
+        </div>
 <div id="full-main">
-    <div id="grid_parts"></div>
+
+
             <div id="links-navegacion-pasos-container">
             @Html.ActionLink("<< Add market items", "AddMarketItems", new { id = this.ViewBag.PublicID }, new { @class="buttonYellow" })
         </div>
@@ -43,18 +46,11 @@
 }
 
 @section scripts{
-
-        <script type="text/javascript">
-            var summary_data = '@Html.Raw(EveShopping.Web.Modelo.ConvertToJavaScriptArray.Convert(this.Model.Summary.Items))';
-       </script>
-
-
-    @Scripts.Render("~/bundles/jqueryui")
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-    <script src="~/Scripts/eshSummary.js" type="text/javascript">
-    </script>
-    <script type="text/javascript" src="~/Scripts/grid/pqgrid.min.js"></script>
-
     <script type="text/javascript" src="~/Scripts/eshSummary.js"></script>
+
+    <link href="~/content/footable.core.css" rel="stylesheet" type="text/css" />
+    <script src="~/scripts/footable/footable.js" type="text/javascript"></script>
+    <script src="~/scripts/footable/footable.sort.js" type="text/javascript"></script>
+    <script src="~/scripts/footable/footable.paginate.js" type="text/javascript"></script>
+	<script src="~/scripts/bootstrap-tab.js" type="text/javascript"></script>
 }

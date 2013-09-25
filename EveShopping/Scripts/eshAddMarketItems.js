@@ -12,13 +12,16 @@ $(document).ready(function () {
     $('.header-container').find('#navlink_newList').addClass('selected');
     accordionState.initAccordion($('#market-items-accordion'));
 
-
-    $('#searchText').keyup(function () {
-        if ($(this).val().length >= 5) {
-            clearTimeout(thread);
-            var $this = $(this); thread = setTimeout(function () { searchMarketItem($this.val()) }, 500);
-        }
+    $("#searchButton").click(function () {
+        searchMarketItem($("#searchText").val())
     });
+
+    //$('#searchText').keyup(function () {
+    //    if ($(this).val().length >= 5) {
+    //        clearTimeout(thread);
+    //        var $this = $(this); thread = setTimeout(function () { searchMarketItem($this.val()) }, 500);
+    //    }
+    //});
     accordionState.openPanelByIndex($('#market-items-accordion'), 1);
 
 
@@ -78,6 +81,8 @@ function onSuccessUpdateItemToShoppingList(data) {
 
 function onSuccessSearchItem(data) {
     $('#searchResult').replaceWith(data);
+    $('#search-result-table').footable();
+
 }
 
 

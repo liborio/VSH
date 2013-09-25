@@ -1,0 +1,35 @@
+﻿@model EveShopping.Modelo.EV.EVListSummary
+
+<table id="summary-table" data-page-size="15">
+    <thead>
+        <tr>
+            <th data-sort-ignore="true"></th>
+            <th>Name</th>
+            <th class="numericCol" data-hide="phone" data-sort-ignore="true">Price</th>
+            <th class="numericCol" data-hide="phone" data-sort-ignore="true">Volume</th>
+            <th class="numericCol" data-sort-ignore="true">Units</th>
+            <th data-hide="phone" data-sort-ignore="true"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in this.Model.Items)
+        {
+            <tr>
+                <td>
+                    <img src="@item.ImageUrl32" alt="@item.Name" /></td>
+                <td>@item.Name</td>
+                <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.TotalPrice)</td>
+                <td class="numericCol">@item.Volume m3</td>
+                <td class="numericCol">x @item.Units</td>
+                <td class="numericCol"><a onclick="openMarketDatailsWindow(@item.ItemID)">Market</a></td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="6">
+                <div class="pagination pagination-centered"></div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
