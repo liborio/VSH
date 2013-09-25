@@ -93,7 +93,6 @@ namespace EveShopping.Controllers
 
         public ActionResult Summary(string id = null)
         {
-
             if (id == null)
             {
                 id = EstadoUsuario.CurrentListPublicId;

@@ -25,11 +25,14 @@
             </tr>
         }
     </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="6">
-                <div class="pagination pagination-centered"></div>
-            </td>
-        </tr>
-    </tfoot>
+    @if (Model.Items.Count() > 15)
+    {
+        <tfoot>
+            <tr>
+                <td colspan="6">
+                    <div class="pagination pagination-centered"></div>
+                </td>
+            </tr>
+        </tfoot>
+    }
 </table>

@@ -267,6 +267,7 @@ namespace EveShopping.Logica
             summary.Description = shoppingList.description;
             summary.Name = shoppingList.name;
             summary.PublicID = shoppingList.publicID;
+            summary.ReadOnlyPublicID = shoppingList.readOnlypublicID;
             summary.ShoppingListID = shoppingList.shoppingListID;
 
 

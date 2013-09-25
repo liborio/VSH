@@ -10,6 +10,7 @@ namespace EveShopping.Modelo.EV
     {
         public int ShoppingListID { get; set; }
         public string PublicID { get; set; }
+        public string ReadOnlyPublicID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public IList<EVFittingHardware> Items { get; set; }
