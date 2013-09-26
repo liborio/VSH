@@ -5,9 +5,9 @@
         <tr>
             <th data-sort-ignore="true"></th>
             <th>Name</th>
-            <th class="numericCol" data-hide="phone" data-sort-ignore="true">Price</th>
-            <th class="numericCol" data-hide="phone" data-sort-ignore="true">Volume</th>
-            <th class="numericCol" data-sort-ignore="true">Units</th>
+            <th class="numericCol" data-hide="phone">Price</th>
+            <th class="numericCol" data-hide="phone">Volume</th>
+            <th class="numericCol">Units</th>
             <th data-hide="phone" data-sort-ignore="true"></th>
         </tr>
     </thead>
@@ -18,9 +18,9 @@
                 <td>
                     <img src="@item.ImageUrl32" alt="@item.Name" /></td>
                 <td>@item.Name</td>
-                <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.TotalPrice)</td>
-                <td class="numericCol">@item.Volume m3</td>
-                <td class="numericCol">x @item.Units</td>
+                <td class="numericCol" data-value="@decimal.ToDouble(item.TotalPrice)">@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.TotalPrice)</td>
+                <td class="numericCol" data-value="@item.Volume">@item.Volume m3</td>
+                <td class="numericCol" data-value="@item.Units">x @item.Units</td>
                 <td class="numericCol"><a onclick="openMarketDatailsWindow(@item.ItemID)">Market</a></td>
             </tr>
         }

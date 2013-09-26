@@ -193,7 +193,7 @@ namespace EveShopping.Logica
         {
             RepositorioShoppingLists repo = new RepositorioShoppingLists();
             eshShoppingList list = repo.SelectShopingListPorPublicID(publicID);
-
+            if (units < 1) units = 1;
             eshShoppingListInvType slit = repo.UpdateMarketItemEnShoppingList(list.shoppingListID, itemID, units);
         }
 
@@ -352,7 +352,7 @@ namespace EveShopping.Logica
             //guardamos los cambios
             eshShoppingListFitting slfit = contexto.eshShoppingListsFittings.Where(slf => slf.fittingID == fittingID && slf.eshShoppingList.publicID == publicID).FirstOrDefault();
             if (slfit == null) throw new ApplicationException(Messages.err_fittingNoExiste);
-            if (units < 0) units = 0;
+            if (units < 1) units = 1;
             slfit.units = units;
             contexto.SaveChanges();
 

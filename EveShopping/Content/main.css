@@ -697,6 +697,19 @@ tr {
         background-color:#3A3A3A;
     }
 
+thead tr:hover {
+    background:none;
+}
+
+thead th:hover {
+    background: #3A3A3A;
+}
+
+tfoot tr:hover {
+    background: none;
+}
+
+
 td.col-edit input {
     width: 3em;
     margin: 0px 0.5em 0px;
@@ -1201,9 +1214,20 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
   padding: 1px 5px;
   text-decoration: none;
 }
+
+.footable > tfoot .pagination ul > li >a:hover {
+  background:#3A3A3A;
+}
+
 .footable > tfoot .pagination ul > li.disabled > a {
   color: #888;
 }
+
+.footable > tfoot .pagination ul > li.disabled > a:hover {
+  background:none;
+  cursor: default;
+}
+
 .footable > tfoot .pagination ul > li.active > a {
   border-color: #FFA500;
 }
