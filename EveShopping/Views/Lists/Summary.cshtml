@@ -15,36 +15,18 @@
     </span>
 </h3>
 
-<div id="description-container" class="inside-section notVisible">
-    <h3 class="ui-accordion-header"><span>@Model.Summary.Name</span></h3>
-    <div class="ui-accordion-content">
-        @using (Html.BeginForm("SaveShoppingListHeader", "Lists", FormMethod.Post))
-        {
-            <fieldset>
-                <legend>Name</legend>
-                <input type="text" name="slName" placeholder="Shopping list's name" required maxlength="100" />
-            </fieldset>
-            <fieldset>
-                <legend>Description</legend>
-                <textarea name="slDescription" rows="5" placeholder="Description for new shopping list" maxlength="3000"></textarea>
-            </fieldset>
-            <button type="submit" class="buttonYellow" value="Save">Save</button>
-        }
-    </div>
-</div>
-
     <div id="help-container" class="notVisible">
-        <h3 ><span>@Model.Summary.Name</span><span class="right">(open to edit name and description)</spa></h3>
+        <h3 ><span id="hListName">@Model.Summary.Name</span><span class="right">(open to edit name and description)</span></h3>
         <div>
-            @using (Html.BeginForm("SaveShoppingListHeader", "Lists", FormMethod.Post))
+            @using (Ajax.BeginForm("SaveShoppingListHeader", "Lists", new AjaxOptions {  HttpMethod =  "Post", OnSuccess="onSuccessSaveShoppingListHeader"}))
             {
                 <fieldset>
                     <legend>Name</legend>
-                    <input type="text" name="slName" placeholder="Shopping list's name" required maxlength="100" value="@Model.Summary.Name" />
+                    <input type="text" id="slName" name="slName" placeholder="Shopping list's name" required maxlength="100" value="@Model.Summary.Name" />
                 </fieldset>
                 <fieldset>
                     <legend>Description</legend>
-                    <textarea name="slDescription" rows="5" placeholder="Description for new shopping list" maxlength="3000" aria-valuetext="@Model.Summary.Description"></textarea>
+                    <textarea name="slDescription" rows="5" placeholder="Description for new shopping list" maxlength="3000">@Model.Summary.Description</textarea>
                 </fieldset>
                 <button type="submit" class="buttonYellow" value="Save">Save</button>
             }

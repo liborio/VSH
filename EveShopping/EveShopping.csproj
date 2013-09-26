@@ -149,6 +149,7 @@
     <Compile Include="Properties\AssemblyInfo.log4net.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\fonts\footable.svg" />
     <Content Include="Content\footable.core.css" />
     <Content Include="Content\images\ajax-loader4.gif" />

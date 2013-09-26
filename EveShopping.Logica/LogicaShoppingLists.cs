@@ -196,6 +196,17 @@ namespace EveShopping.Logica
             return publicID;
         }
 
+        public void ActualizarShoppingListHeader(string publicID, string slName, string slDescription)
+        {
+            EveShoppingContext contexto = new EveShoppingContext();
+            eshShoppingList sl = null;
+            sl = contexto.eshShoppingLists.Where(s => s.publicID == publicID).FirstOrDefault();
+            sl.name = slName;
+            sl.description = slDescription;
+            sl.dateUpdate = DateTime.Now;
+            contexto.SaveChanges();
+        }
+
         public void UpdateMarketItemToShoppingList(string publicID, int itemID, short units)
         {
             RepositorioShoppingLists repo = new RepositorioShoppingLists();

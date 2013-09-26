@@ -39,7 +39,16 @@ namespace EveShopping.Controllers
             string id = agente.CrearShoppingList(slName, slDescription);
 
             return RedirectToAction("ImportFits", new { id = id });
+        }
 
+        [HttpPost]
+        public ActionResult SaveShoppingListHeader(string slName, string slDescription)
+        {
+            AgenteShoppingList agente = new AgenteShoppingList();
+            string publicID = EstadoUsuario.CurrentListPublicId;
+            
+            agente.ActualizarShoppingListHeader(publicID, slName, slDescription);
+            return new EmptyResult();
         }
 
         public ActionResult ImportFits(string id = null)
@@ -97,6 +106,8 @@ namespace EveShopping.Controllers
             {
                 id = EstadoUsuario.CurrentListPublicId;
             }
+            EstadoUsuario.CurrentListPublicId = id;
+
             ViewBag.PublicID = id;
             AgenteShoppingList agente = new AgenteShoppingList();
             EVListSummary summ =  agente.SelectListSummaryPorPublicID(id);

@@ -10,6 +10,11 @@ $(function () {
     $('#help-container').show().accordion({ collapsible: true, active: false, heighStyle: "content", autoHeight: false, clearStyle: true });
 });
 
+function onSuccessSaveShoppingListHeader(data) {
+    var name = $('#slName').val();
+    $('#hListName').text(name);
+}
+
 function openMarketDatailsWindow(id) {
     try {
         CCPEVE.showMarketDetails(id);

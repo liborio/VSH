@@ -61,6 +61,12 @@ namespace EveShopping.Web.Agentes
             return logica.CrearShoppingList(name, description);
         }
 
+        public void ActualizarShoppingListHeader(string publicID, string slName, string slDescription)
+        {
+            LogicaShoppingLists logica = new LogicaShoppingLists();
+            logica.ActualizarShoppingListHeader(publicID, slName, slDescription);
+
+        }
 
 
         public EVFitting SelectFitPorID(string publicID, int fittingID)
