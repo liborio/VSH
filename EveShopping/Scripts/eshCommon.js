@@ -59,6 +59,10 @@ accordionState = {
 }
 
 infoDialog = {
+    warning: "warning",
+    info: "info",
+    error: "error",
+
     show: function (head, mainMessage, secondMessage, dialogType) {
         dialogType = typeof dialogType != 'undefined' ? dialogType : 'info';
 

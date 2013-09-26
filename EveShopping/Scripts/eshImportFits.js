@@ -39,6 +39,10 @@ function OnSuccessUseAnalysedFit(data) {
     setTotalPriceAndUnits();
 }
 
+function OnErrorUseAnalysedFit(data) {
+    infoDialog.show("Couldnt use fit", "There was a problem saving your fit in eve-shopping", data.statusText, infoDialog.warning);
+}
+
 function OnSuccessDeleteFitFromList() {
     $('[data-esh-fits-in-list]').children('[data-esh-id = "' + this + '"]').remove();
     accordionState.initAccordion($('#fitsInList'));

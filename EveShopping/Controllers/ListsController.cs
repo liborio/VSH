@@ -161,26 +161,35 @@ namespace EveShopping.Controllers
             return PartialView("AnalyzedFitList", fits);
         }
 
-        public PartialViewResult UseAnalysedFit(string fitName)
+        public ActionResult UseAnalysedFit(string fitName)
         {
-            //Obtenemos la fit del diccionario guardado en sesión, si no está, lanzamos un error
-            IDictionary<string, FittingAnalyzed> diccFits = (IDictionary<string, FittingAnalyzed>)Session["lastAnalysedFits"];
-            FittingAnalyzed fit = null;
-            if ((diccFits != null) && diccFits.ContainsKey(fitName))
+            try
             {
-                fit = diccFits[fitName];
+                //Obtenemos la fit del diccionario guardado en sesión, si no está, lanzamos un error
+                IDictionary<string, FittingAnalyzed> diccFits = (IDictionary<string, FittingAnalyzed>)Session["lastAnalysedFits"];
+                FittingAnalyzed fit = null;
+                if ((diccFits != null) && diccFits.ContainsKey(fitName))
+                {
+                    fit = diccFits[fitName];
+                }
+                if (fit == null) throw new ApplicationException("The fit is not recorded in our archives, try to analyse it again.");
+
+                //Guardamos la fit en base de datos
+                LogicaShoppingLists logica = new LogicaShoppingLists();
+                int fitID = logica.SaveAnalisedFit(EstadoUsuario.CurrentListPublicId, fit);
+
+                AgenteShoppingList agente = new AgenteShoppingList();
+                EVFitting evfit = agente.SelectFitPorID(EstadoUsuario.CurrentListPublicId, fitID);
+
+
+                return PartialView("PVFitInShoppingList", evfit);
+
             }
-            if (fit == null) throw new ApplicationException("The fit is not recorded in our archives, try to analyse it again.");
+            catch (Exception ex)
+            {
 
-            //Guardamos la fit en base de datos
-            LogicaShoppingLists logica = new LogicaShoppingLists();
-            int fitID = logica.SaveAnalisedFit(EstadoUsuario.CurrentListPublicId, fit);
-
-            AgenteShoppingList agente = new AgenteShoppingList();
-            EVFitting evfit = agente.SelectFitPorID(EstadoUsuario.CurrentListPublicId, fitID);
-
-
-            return PartialView("PVFitInShoppingList", evfit);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+            }
 
         }
 

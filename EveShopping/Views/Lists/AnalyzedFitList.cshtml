@@ -6,7 +6,7 @@
     <h3 data-esh-name="@item.Name" class="clearfix accordion-header">
         <span class="left">@item.Name</span>
         <span class="right">        @Ajax.ActionLink("Use fit", "UseAnalysedFit"
-             , new { fitName = item.Name }, new AjaxOptions { OnSuccess = "OnSuccessUseAnalysedFit" })</span></h3>
+             , new { fitName = item.Name }, new AjaxOptions { OnSuccess = "OnSuccessUseAnalysedFit", OnFailure = "OnErrorUseAnalysedFit" })</span></h3>
 
     <div data-esh-name="@item.Name" class="subs-wrapper-main" data-esh-secDesp-name="@item.Name">
         <table>
