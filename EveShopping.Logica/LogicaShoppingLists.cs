@@ -507,7 +507,7 @@ namespace EveShopping.Logica
             invType tipo = repo.SelectItemTypePorName(fithwd.Name);
             if (tipo == null)
             {
-                throw new ApplicationException(Messages.err_nombreItemAnalizadaNoExiste);
+                throw new ApplicationException(string.Format("{0}: {1}",Messages.err_nombreItemAnalizadaNoExiste, fithwd.Name));
             }
             eshFittingHardware salida = new eshFittingHardware();
             salida.typeID = tipo.typeID;

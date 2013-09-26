@@ -23,7 +23,10 @@ namespace EveShopping
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/normalize.min.css", 
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                "~/Content/jquery-ui-custom.css",
+                "~/Content/normalize.min.css",
+                "~/Content/simplemodal.css", 
                 "~/Content/main.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(

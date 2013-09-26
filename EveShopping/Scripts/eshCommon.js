@@ -59,8 +59,24 @@ accordionState = {
 }
 
 infoDialog = {
-    show: function (head, mainMessage, secondMessage) {
-        $("#info-dialog-message").first().attr["title"] = head;
+    show: function (head, mainMessage, secondMessage, dialogType) {
+        dialogType = typeof dialogType != 'undefined' ? dialogType : 'info';
+
+        var dlgClass;
+
+        switch (dialogType) {
+            case 'info':
+                dlgClass = 'simplemodal-container';
+                break;
+            case 'warning':
+                dlgClass = 'simplemodal-container-warning';
+                break;
+            case 'error':
+            default:
+                dlgClass = 'simplemodal-container-error';
+        }
+        
+        $("#info-dialog-header").text(head);
         $("#info-dialog-main-msg").text(mainMessage);
         $("#info-dialog-second-msg").text(secondMessage);
         $("#info-dialog-message").dialog({
@@ -71,17 +87,8 @@ infoDialog = {
                 }
             }
         });
-        $("#info-dialog-message").dialog("option", "position", "center");
-        var width = $("#info-dialog-message").width();
-        var height = $("#info-dialog-message").height();
-        var wwidth = $(window).width();
-        var wheight = $(window).height();
-
-        //alert(width + '-' + height);
-        //alert(wwidth + '-' + wheight);
-        
-
-
+        //$('#basic-modal-content').addClass(dlgClass);
+        $('#basic-modal-content').modal({containerId: dlgClass});
     }
 }
 
