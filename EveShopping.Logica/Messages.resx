@@ -124,7 +124,7 @@
     <value>The item is not found in the shopping list.</value>
   </data>
   <data name="err_nombreItemAnalizadaNoExiste" xml:space="preserve">
-    <value>The analysed fit contains an item with a name that cant be recognized.</value>
+    <value>The analysed fit contains an item with a name that cant be recognized</value>
   </data>
   <data name="err_notRecognisedFormat" xml:space="preserve">
     <value>The fitting doesn't have a recognised format.</value>

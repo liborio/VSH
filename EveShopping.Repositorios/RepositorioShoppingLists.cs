@@ -114,6 +114,31 @@ namespace EveShopping.Repositorios
             this.Contexto.eshFittings.Add(fit);
             this.Contexto.SaveChanges();
         }
+
+        public void ShoppingListUpdated(int id, EveShoppingContext context = null)
+        {
+            if (context == null)
+            {
+                context = new EveShoppingContext();
+            }
+
+            eshShoppingList sl = context.eshShoppingLists.Where(s => s.shoppingListID == id).FirstOrDefault();
+            sl.dateUpdate = System.DateTime.Now;
+            context.SaveChanges();
+
+
+        }
+
+        public void ShoppingListUpdated(string publicId, EveShoppingContext context = null)
+        {
+            if (context == null)
+            {
+                context = new EveShoppingContext();
+            }
+            eshShoppingList sl = context.eshShoppingLists.Where(s => s.publicID == publicId).FirstOrDefault();
+            sl.dateUpdate = System.DateTime.Now;
+            context.SaveChanges();
+        }
     }
 
 

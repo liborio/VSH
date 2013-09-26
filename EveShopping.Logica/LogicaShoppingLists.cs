@@ -56,7 +56,13 @@ namespace EveShopping.Logica
         {
             EveShoppingContext context = new EveShoppingContext();
             eshFitting fit = context.eshFittings.Where(f => f.fittingID == fittingID).FirstOrDefault();
-            context.eshFittings.Remove(fit);
+
+            RepositorioShoppingLists repo = new RepositorioShoppingLists();
+            foreach (var item in fit.eshShoppingListFittings)
+            {
+                repo.ShoppingListUpdated(item.shoppingListID, context);
+            }
+            context.eshFittings.Remove(fit);            
 
             context.SaveChanges();
         }
@@ -125,6 +131,7 @@ namespace EveShopping.Logica
                         GroupName = mg.marketGroupName,
                         Name = it.typeName,
                         TotalPrice = fh.units * p.avg,
+                        UnitPrice = p.avg,
                         Slot = fh.slotID,
                         SlotName = fh.eshFittingSlot.name,
                         Units = fh.units,
@@ -195,6 +202,7 @@ namespace EveShopping.Logica
             eshShoppingList list = repo.SelectShopingListPorPublicID(publicID);
             if (units < 1) units = 1;
             eshShoppingListInvType slit = repo.UpdateMarketItemEnShoppingList(list.shoppingListID, itemID, units);
+            repo.ShoppingListUpdated(list.shoppingListID);
         }
 
         public EVFitting SelectFitSummary(string publicID, int fittingID, IImageResolver imageResolver)
@@ -239,6 +247,7 @@ namespace EveShopping.Logica
                     GroupName = mg.marketGroupName,
                     Name = it.typeName,
                     TotalPrice = fh.units * p.avg,
+                    UnitPrice = fh.units,
                     Slot = fh.slotID,
                     SlotName = fh.eshFittingSlot.name,
                     Units = fh.units,
@@ -286,6 +295,7 @@ namespace EveShopping.Logica
                         Units = fit.Units,
                         Volume = fit.ShipVolume * fit.Units,
                         TotalPrice = fit.ShipPrice * fit.Units,
+                        UnitPrice = fit.ShipPrice,
                         ImageUrl32 = imageResolver.GetImageURL(fit.ShipID)
                     };
                 diccHwd.Add(fw.ItemID, fw);
@@ -301,6 +311,7 @@ namespace EveShopping.Logica
                         fwd.Units += fw.Units * fit.Units;
                         fw.Volume += fw.Volume * fit.Units;
                         fw.TotalPrice += fw.TotalPrice * fit.Units;
+                        fw.UnitPrice = fw.TotalPrice;
                     }
                     else
                     {
@@ -329,6 +340,7 @@ namespace EveShopping.Logica
                     fwd.ItemID = mi.ItemID;
                     fwd.Name = mi.Name;
                     fwd.TotalPrice = mi.TotalPrice;
+                    fwd.UnitPrice = mi.UnitPrice;
                     fwd.Units = mi.Units;
                     fwd.Volume = mi.Volume;
                     diccHwd.Add(fwd.ItemID, fwd);
@@ -354,6 +366,8 @@ namespace EveShopping.Logica
             if (slfit == null) throw new ApplicationException(Messages.err_fittingNoExiste);
             if (units < 1) units = 1;
             slfit.units = units;
+            RepositorioShoppingLists repo = new RepositorioShoppingLists();
+            repo.ShoppingListUpdated(slfit.shoppingListID, contexto);
             contexto.SaveChanges();
 
             //obtenemos la fitting
@@ -369,6 +383,7 @@ namespace EveShopping.Logica
             eshShoppingListInvType item = repo.SelectMarketItemEnShoppingListPorID(list.shoppingListID, itemID);
 
             contexto.eshShoppingListsInvTypes.Remove(item);
+            repo.ShoppingListUpdated(list.shoppingListID, contexto);
             contexto.SaveChanges();
         }
 
@@ -394,6 +409,7 @@ namespace EveShopping.Logica
                 relation.units = 1;
 
                 repo.CrearFitting(fit);
+                repo.ShoppingListUpdated(lista.shoppingListID);
 
                 scope.Complete();
             }
@@ -430,6 +446,7 @@ namespace EveShopping.Logica
                         Name = item.Name,
                         Units = item.Units,
                         TotalPrice = item.TotalPrice,
+                        UnitPrice = item.TotalPrice / item.Units,
                         Volume = RepositorioItems.GetVolume(item.invType) * item.Units,
                         ImageUrl32 = imageResolver.GetImageURL(item.ItemID)
 
@@ -466,6 +483,7 @@ namespace EveShopping.Logica
                 Name = qmi.Name,
                 Units = qmi.Units,
                 TotalPrice = qmi.TotalPrice,
+                UnitPrice = qmi.TotalPrice / qmi.Units,
                 Volume = RepositorioItems.GetVolume(qmi.ItemType) * qmi.Units,
                 ImageUrl32 = imageResolver.GetImageURL(qmi.ItemID)
             };

@@ -79,7 +79,7 @@ namespace EveShopping.Logica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The analysed fit contains an item with a name that cant be recognized..
+        ///   Looks up a localized string similar to The analysed fit contains an item with a name that cant be recognized.
         /// </summary>
         internal static string err_nombreItemAnalizadaNoExiste {
             get {

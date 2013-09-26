@@ -14,5 +14,6 @@ namespace EveShopping.Modelo.EV
         public string ImageUrl32 { get; set; }
         public int ItemID { get; set; }
         public double Volume { get; set; }
+        public decimal UnitPrice { get; set; }
     }
 }
