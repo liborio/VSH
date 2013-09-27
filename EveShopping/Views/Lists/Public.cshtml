@@ -23,11 +23,11 @@
             {
                 <fieldset>
                     <legend>Name</legend>
-                    <input readonly="true" type="text" name="slName" placeholder="Shopping list's name" required maxlength="100" value="@Model.Summary.Name" />
+                    <input readonly="true" class="disabled" type="text" name="slName" placeholder="Shopping list's name" required maxlength="100" value="@Model.Summary.Name" />
                 </fieldset>
                 <fieldset>
                     <legend>Description</legend>
-                    <textarea readonly="readonly" name="slDescription" rows="5" placeholder="Description for new shopping list" maxlength="3000" aria-valuetext="@Model.Summary.Description"></textarea>
+                    <textarea readonly="readonly" class="disabled" name="slDescription" rows="5" placeholder="Description for new shopping list" maxlength="3000">@Model.Summary.Description</textarea>
                 </fieldset>
             }
         </div>
