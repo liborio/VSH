@@ -23,14 +23,12 @@
                 if (hwdItem.Slot != ViewBag.prevSlot)
                 {
                     ViewBag.prevSlot = hwdItem.Slot;
-                    if (string.Equals(ViewBag.estilo, "fila-par"))
-                    {
-                        ViewBag.estilo = "fila-impar";
-                    }
-                    else
-                    {
-                        ViewBag.estilo = "fila-par";
-                    }
+                                <tr class="fila-par">
+                <td colspan="2">
+                    <img src="~/content/images/@EveShopping.Web.VSHMappings.GetImageName(hwdItem.Slot)" alt="" />
+                <span>@EveShopping.Web.VSHMappings.GetSlotName(hwdItem.Slot)</span></td>
+            </tr>
+
                 }
                 <tr class="@ViewBag.estilo">
                     <td>@hwdItem.Name</td>

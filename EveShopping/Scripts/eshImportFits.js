@@ -28,6 +28,7 @@ $(document).ready(function () {
 
 function ReactivateImportedFitsAccordion() {
     accordionState.initAccordion($("#fitsAnalysed"))
+    $("#rawFit").val('');
     //$(function () { $("#fitsAnalysed").accordion({ collapsible: true, active: false, heighStyle: "content", autoHeight: false, clearStyle: true }) });
 }
 
