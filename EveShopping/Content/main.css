@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
    ========================================================================== */
 
@@ -444,47 +444,42 @@ nav a {
 
 /* ========== mios ==============================    */
 
-input {
+input, textarea {
+    font-family: Helvetica,​Helvetica Neue,​Arial;
     padding: 5px;
     font-size: 15px;
-    text-shadow: 0px 1px 0px #fff;
+    /*text-shadow: 0px 1px 0px #fff;*/
     outline: none;
-    background: -webkit-gradient(linear, left top, left bottom, from(#bcbcbe), to(#fff));
-    background: -moz-linear-gradient(top, #bcbcbe, #fff);
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+    /*background: -webkit-gradient(linear, left top, left bottom, from(#bcbcbe), to(#fff));
+    background: -moz-linear-gradient(top, #bcbcbe, #fff);*/
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
     border: 1px solid #717171;
-    -webkit-box-shadow: 1px 1px 0px #1C1C1C;
+    /*-webkit-box-shadow: 1px 1px 0px #1C1C1C;
     -moz-box-shadow: 1px 1px 0px #1C1C1C;
-    box-shadow: 1px 1px 0px #1C1C1C;
+    box-shadow: 1px 1px 0px #1C1C1C;*/
 }
 
-    input:focus {
-        -webkit-box-shadow: 0px 0px 5px #4D809B;
-        -moz-box-shadow: 0px 0px 5px #4D809B;
-        box-shadow: 0px 0px 5px #4D809B;
+    input:focus, textarea:focus {
+        border: 1px solid #FFA500;
+        -webkit-box-shadow: 0px 0px 5px #FFA500;
+        -moz-box-shadow: 0px 0px 5px #FFA500;
+        box-shadow: 0px 0px 5px #FFA500;
     }
 
-textarea {
+/*textarea {
     padding: 5px;
     font-size: 15px;
     text-shadow: 0px 1px 0px #fff;
     outline: none;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
     border: 1px solid #ccc;
     -webkit-transition: .3s ease-in-out;
     -moz-transition: .3s ease-in-out;
-}
-
-    textarea:focus {
-        border: 1px solid #fafafa;
-        -webkit-box-shadow: 0px 0px 6px #4D809B;
-        -moz-box-shadow: 0px 0px 5px #4D809B;
-        box-shadow: 0px 0px 5px #4D809B;
-    }
+}*/
 
 
 #list-left-menu, #list-main, #help-container {
@@ -636,7 +631,7 @@ form {
     height: 25px;
 }
 
-/* Navegaci�n entre pasos ================================================*/
+/* Navegación entre pasos ================================================*/
 
 
 #links-navegacion-pasos-container {
@@ -749,8 +744,6 @@ div.subs-wrapper {
         background: url('images/arrow-down20.png') no-repeat;
         background-color: #1c1c1c;
         background-position: 0px 0.3em;
-        /*background: -webkit-gradient(linear, left top, left bottom, from(#030303), to(#636363));
-        background: -moz-linear-gradient(top, #030303, #636363);*/
     }
 
     div.subs-wrapper h3.ui-state-active {
@@ -868,20 +861,6 @@ body.loading {
 }
 
 /* a como botones ========================================================== */
-
-
-/* UI Widgets ===========================================================*/
-/*.ui-widget-content {
-    background: url("images/ui-bg_flat_75_ffffff_40x100.png") repeat-x scroll 50% 50% #272727;
-    border: 1px solid #1C1C1C;
-    color: #000000;
-}
-
-.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
-  font-family: Arial;
-      font-size: 1em;
-}*/
-
 
 /*footable =============================================*/
 .footable > tfoot .pagination {

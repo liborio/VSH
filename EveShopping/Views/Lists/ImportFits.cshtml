@@ -45,7 +45,7 @@
     <div id="list-left-menu">
         <div class="inside-section">
             <h3>Import fits</h3>
-            @using (Ajax.BeginForm("AnalyzeRawFit", new AjaxOptions { UpdateTargetId = "fitsAnalysed", OnSuccess = "ReactivateImportedFitsAccordion" }))
+            @using (Ajax.BeginForm("AnalyzeRawFit", new AjaxOptions { UpdateTargetId = "fitsAnalysed", OnSuccess = "ReactivateImportedFitsAccordion", OnFailure = "onFailureAnalyzeRawFit" }))
             {
                 <form id="payment">
                     <fieldset>

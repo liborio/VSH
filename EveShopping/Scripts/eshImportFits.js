@@ -39,8 +39,12 @@ function OnSuccessUseAnalysedFit(data) {
     setTotalPriceAndUnits();
 }
 
+function onFailureAnalyzeRawFit(data) {
+    infoDialog.show("Could'nt analyse fit", "There was a problem analysing your fit.", data.statusText, infoDialog.warning);
+}
+
 function OnErrorUseAnalysedFit(data) {
-    infoDialog.show("Couldnt use fit", "There was a problem saving your fit in eve-shopping", data.statusText, infoDialog.warning);
+    infoDialog.show("Could'nt use fit", "There was a problem saving your fit in eve-shopping", data.statusText, infoDialog.warning);
 }
 
 function OnSuccessDeleteFitFromList() {

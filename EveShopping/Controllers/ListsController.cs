@@ -152,12 +152,20 @@ namespace EveShopping.Controllers
 
         [HttpPost()]
         [ValidateInput(false)]
-        public PartialViewResult AnalyzeRawFit(string rawFit)
+        public ActionResult AnalyzeRawFit(string rawFit)
         {
             LogicaShoppingLists logica =
                 new LogicaShoppingLists();
-            IEnumerable<FittingAnalyzed> fits =
-                logica.ObtenerListaFits(rawFit);
+            IEnumerable<FittingAnalyzed> fits = null;
+            try
+            {
+                fits = logica.ObtenerListaFits(rawFit);
+            }
+            catch (Exception)
+            {
+
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "The fitting cant be analysed, doesnt seem to have a recognized format.");
+            }
 
             IDictionary<string, FittingAnalyzed> diccFits =
                 new Dictionary<string, FittingAnalyzed>();
