@@ -11,7 +11,8 @@
     <title>@ViewBag.FullTitle</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <link rel="shortcut icon" href="~/content/images/favicon.ico" />
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon" />
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
@@ -24,39 +25,37 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/eshCommon.js" type="text/javascript">
     </script>
+    <script type="text/javascript" src="~/scripts/responsive-nav.min.js"></script>
 
-    @RenderSection("scriptsHead", required: false);
+    @RenderSection("scriptsHead", required: false)
     @*    <link href="~/content/jquery-ui-custom.css" rel="stylesheet" type="text/css" />*@
+    <link href="~/content/responsive-nav.css" rel="stylesheet" type="text/css" />
     @Styles.Render("~/Content/css")
 </head>
 <body>
-
-    <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
-    @*<div id="fb-root"></div>
-<script>(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=152119533646";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>*@
-
-
-    @*    <div class="fb-like" data-href="http://www.eve-shopping.com" data-width="120" data-show-faces="false" data-send="false"></div>*@
     <div class="header-container">
         <header class="wrapper clearfix">
-            <h1 class="title">EVE-shopping</h1>
-            <nav>
+            <h1 class="title">
+                EVE-shopping
+            </h1>
+
+            @*            <nav>
                 <ul>
                     <li>@Html.ActionLink("Home", "Index", "Home", null, new { id = "navlink_home" })</li>
                     <li>@Html.ActionLink("New List", "New", "Lists", null, new { id = "navlink_newList" })</li>
                     <li><a href="#" id="navlink_about">About</a></li>
                 </ul>
-            </nav>
+            </nav>*@
         </header>
     </div>
+            <div class="nav-container">
+                <ul class="nav-collapse">
+                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { id = "navlink_home" })</li>
+                    <li>@Html.ActionLink("New List", "New", "Lists", null, new { id = "navlink_newList" })</li>
+                    <li><a href="#" id="navlink_about2">About</a></li>
+                </ul>
+
+            </div>
 
     <div class="main-container">
         @RenderSection("subheader", required: false)
@@ -86,7 +85,7 @@
 
     @RenderSection("scripts", required: false)
 
-@*    <div id="info-dialog-message" title="Market not available in this browser" style="display: none;">
+    @*    <div id="info-dialog-message" title="Market not available in this browser" style="display: none;">
         <p>
             <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
             <span id="info-dialog-main-msg">You can access market details for the items only from EVE Online browser.</span>
@@ -117,6 +116,8 @@
             g.src = '//www.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g, s)
         }(document, 'script'));
+
+        responsiveNav(".nav-collapse");
     </script>
 </body>
 </html>

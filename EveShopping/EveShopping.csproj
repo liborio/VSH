@@ -149,6 +149,7 @@
     <Compile Include="Properties\AssemblyInfo.log4net.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\flexnav.css" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\fonts\footable.svg" />
     <Content Include="Content\footable.core.css" />
@@ -167,6 +168,11 @@
     <Content Include="Content\images\iconLowSlot32.png" />
     <Content Include="Content\images\iconMidSlot32.png" />
     <Content Include="Content\images\iconRigSlot32.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\mainNavBG.png" />
+    <Content Include="Content\images\navMenuBack.png" />
+    <Content Include="Content\images\navMenuBackHover.png" />
+    <Content Include="Content\images\navMenuBackNormal.png" />
     <Content Include="Content\images\path-separator.ico" />
     <Content Include="Content\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -183,7 +189,10 @@
     <Content Include="Content\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\images\x.png" />
     <Content Include="Content\jquery-ui-custom.css" />
+    <Content Include="Content\responsive-nav.css" />
     <Content Include="Content\simplemodal.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Scripts\jquery.flexnav.min.js" />
     <Content Include="Scripts\jquery.simplemodal.1.4.4.min.js" />
     <Content Include="Content\main.css" />
     <Content Include="Content\normalize.css" />
@@ -326,6 +335,7 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\responsive-nav.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

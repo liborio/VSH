@@ -75,8 +75,13 @@ body {
    =================== */
 
 .header-container {
-    border-bottom: 20px solid #4D809B;
+    /*border-bottom: 20px solid #4D809B;*/
+    height: 60px;
 }
+
+    .header-container h1 {
+        margin: 15px;
+    }
 
 .footer-container,
 .main aside {
@@ -132,6 +137,53 @@ body {
     background: #1C1C1C;
 }
 
+div.nav-container {
+    background: url('./images/mainNavBG.png') repeat-x;
+}
+ul.nav-collapse {
+    list-style: none;
+    min-height:40px;
+    width:100%;
+    align-content: center;
+    margin-top:0px;
+    text-align:center;
+    padding: 0;
+}
+
+.nav-collapse li{
+    background-image: url('./images/navMenuBackNormal.png');
+	background-position: top center;
+	background-repeat: repeat-x; 
+    height: 40px;
+    text-align:center;
+    float: none;
+    width: 100%;
+    padding: 5px 1em 0;
+    margin-right:1px;
+    display: inline-block;
+}
+
+    .nav-collapse li:hover {
+            background-image: url('./images/navMenuBackHover.png');
+            cursor: pointer;
+
+    }
+
+
+
+.nav-collapse a, a.nav-toggle {
+    text-decoration:none;
+    color:white;
+}
+
+    .nav-collapse a:hover, a.nav-toggle {
+        cursor: pointer;
+    }
+
+a.nav-toggle {
+    text-decoration: underline;
+}
+
 /* ==============
     MOBILE: Menu
    ============== */
@@ -149,12 +201,14 @@ nav a {
     text-decoration: none;
     font-weight: bold;
     color: white;
-    background: #1F4E66;
+    background: url('./images/navMenuBack.png') repeat-x;
+    max-height:40px;
 }
 
     nav a:hover,
     nav a:visited {
         color: white;
+        background-position: 0 -40px;
     }
 
     nav a:hover {
@@ -202,11 +256,18 @@ nav a {
    Media Queries
    ========================================================================== */
 
+
+
 @media only screen and (min-width: 480px) {
 
     /* ====================
     INTERMEDIATE: Menu
    ==================== */
+
+    .nav-collapse li {
+    width: auto;
+}
+
 
     nav a {
         float: left;
