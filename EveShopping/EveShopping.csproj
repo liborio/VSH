@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\flexnav.css" />
+    <Content Include="Content\images\bg.jpg" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\fonts\footable.svg" />
     <Content Include="Content\footable.core.css" />

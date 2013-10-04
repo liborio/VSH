@@ -74,6 +74,10 @@ body {
     ALL: Orange Theme
    =================== */
 
+h1, h2, h3 {
+    color: #A3D0CD;
+}
+
 .header-container {
     /*border-bottom: 20px solid #4D809B;*/
     height: 60px;
@@ -97,7 +101,11 @@ body {
 
 .footer-container,
 .main aside {
-    background: #4D809B;
+    background: #1C1C1C;
+}
+
+.main aside {
+    background: #3A3A3A;
 }
 
 .title {
@@ -921,6 +929,12 @@ body.loading {
         width: 100%;
         margin-right: 0;
         margin-top: 5px;
+    }
+}
+
+@media (min-width:748px) {
+    body {
+        background-image: url('../../Content/Images/bg.jpg');
     }
 }
 
