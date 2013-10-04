@@ -163,6 +163,7 @@
     <Content Include="Content\images\arrow-up20.png" />
     <Content Include="Content\images\arrow-up24.png" />
     <Content Include="Content\images\arrow-up32.png" />
+    <Content Include="Content\images\eveLogo.png" />
     <Content Include="Content\images\iconCargoBay32.png" />
     <Content Include="Content\images\iconDroneBay32.png" />
     <Content Include="Content\images\iconHighSlot32.png" />
