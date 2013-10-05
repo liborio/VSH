@@ -75,7 +75,7 @@ body {
    =================== */
 
 h1, h2, h3 {
-    color: #A3D0CD;
+    color: #78B2CC;
 }
 
 .header-container {
@@ -147,14 +147,13 @@ h1, h2, h3 {
         }
 
             #subheader-container #menu-pasos li a {
-                color: white;
+                color: #FFA500;
                 text-decoration: none;
             }
 
 
                 #subheader-container #menu-pasos li a:hover {
                     cursor: pointer;
-                    color: #FF9013;
                     text-decoration: underline;
                 }
 
@@ -177,7 +176,7 @@ ul.nav-collapse {
 }
 
 .nav-collapse li {
-    background-image: url('./images/navMenuBackNormal.png');
+    background-image: url('./images/mainNavBG.png');
     background-position: top center;
     background-repeat: repeat-x;
     height: 40px;
@@ -191,14 +190,15 @@ ul.nav-collapse {
 
     .nav-collapse li:hover {
         background-image: url('./images/navMenuBackHover.png');
-        cursor: pointer;
     }
 
 
 
 .nav-collapse a, a.nav-toggle {
     text-decoration: none;
-    color: white;
+    color: #FFA500;
+    font-family: sans-serif;
+    font-size: 1.1em;
 }
 
     .nav-collapse a:hover, a.nav-toggle {

@@ -58,6 +58,15 @@ accordionState = {
     }
 }
 
+function openEoghanInfo() {
+    try {
+        CCPEVE.showInfo(1377, 310338229);
+    } catch (e) {
+        window.open( "https://gate.eveonline.com/Profile/Eoghan%20Gorthaur");
+    }
+}
+
+
 infoDialog = {
     warning: "warning",
     info: "info",
@@ -79,7 +88,7 @@ infoDialog = {
             default:
                 dlgClass = 'simplemodal-container-error';
         }
-        
+
         $("#info-dialog-header").text(head);
         $("#info-dialog-main-msg").text(mainMessage);
         $("#info-dialog-second-msg").text(secondMessage);
@@ -92,7 +101,7 @@ infoDialog = {
             }
         });
         //$('#basic-modal-content').addClass(dlgClass);
-        $('#basic-modal-content').modal({containerId: dlgClass});
+        $('#basic-modal-content').modal({ containerId: dlgClass });
     }
 }
 
@@ -126,7 +135,7 @@ $(document).ready(function () {
 });
 
 //<!-- UserVoice JavaScript SDK (only needed once on a page) -->
-(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/VYaVaE1xxoHzV5L41ThF9A.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+(function () { var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true; uv.src = '//widget.uservoice.com/VYaVaE1xxoHzV5L41ThF9A.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s) })();
 
 //<!-- A tab to launch the Classic Widget -->
 UserVoice = window.UserVoice || [];
