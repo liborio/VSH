@@ -81,6 +81,7 @@ h1, h2, h3 {
 .header-container {
     /*border-bottom: 20px solid #4D809B;*/
     height: 60px;
+    color: white;
 }
 
     .header-container h1 {
@@ -289,6 +290,10 @@ nav a {
         width: auto;
     }
 
+    .width33 {
+        width: 45%;
+    }
+
 
     nav a {
         float: left;
@@ -342,13 +347,19 @@ nav a {
     WIDE: Menu
    ============ */
 
-    .title {
+    .header-container .title {
         float: left;
     }
 
-    nav {
+
+
+    nav, .nav-header {
         float: right;
         width: 38%;
+    }   
+
+    .nav-header {
+        text-align: right;
     }
 
     /* ============
@@ -368,6 +379,11 @@ nav a {
         float: right;
         width: 28%;
     }
+
+    .width33 {
+        width: 32%;
+    }
+
 }
 
 @media only screen and (min-width: 1140px) {
@@ -380,6 +396,10 @@ nav a {
     .wrapper, #subheader-container {
         width: 1026px; /* 1140px - 10% for margins */
         margin: 0 auto;
+    }
+
+    .width33 {
+        width: 32%;
     }
 }
 
@@ -672,6 +692,23 @@ form {
         width: 95%;
     }
 
+        form fieldset input[type="submit"] {
+            width: auto;
+        }
+
+
+
+    input[type="checkbox"] {
+background: transparent;
+border: inherit;
+width: auto;
+}
+
+fieldset ol {
+padding: 0;
+list-style: none;
+}
+
 .buttonYellow, .buttonYellow-short {
     -moz-box-shadow: inset 0px 1px 0px 0px #fce2c1;
     -webkit-box-shadow: inset 0px 1px 0px 0px #fce2c1;
@@ -946,12 +983,15 @@ body.loading {
         margin-right: 0;
         margin-top: 5px;
     }
+
 }
 
 @media (min-width:748px) {
     body {
         background-image: url('../../Content/Images/bg.jpg');
     }
+
+
 }
 
 /* facebook */
@@ -1032,4 +1072,19 @@ body.loading {
 
 .dialog-error {
     background-color: lightcoral;
+}
+
+
+/*  Login ========================================== */
+
+#loginForm {
+border-right: solid 2px #3A3A3A;
+float: left;
+width: 55%;
+}
+
+#socialLoginForm {
+margin-left: 40px;
+float: left;
+width: 40%;
 }

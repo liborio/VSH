@@ -1,0 +1,36 @@
+﻿@model EveShopping.Models.RegisterExternalLoginModel
+@{
+    ViewBag.Title = "Register";
+}
+
+    <hgroup class="title">
+        <h1>@ViewBag.Title.</h1>
+        <h2>Associate your @ViewBag.ProviderDisplayName account.</h2>
+    </hgroup>
+
+
+@using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend class="hidden">Association Form</legend>
+        <p>
+            You've successfully authenticated with <strong>@ViewBag.ProviderDisplayName</strong>.
+        </p>
+            <p>Please enter a <strong>user name for this site</strong> below and click the Confirm button to finish</p>
+        <ol>
+            <li class="name width33">
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+        </ol>
+        @Html.HiddenFor(m => m.ExternalLoginData)
+        <input type="submit" value="Register" class="buttonYellow" />
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

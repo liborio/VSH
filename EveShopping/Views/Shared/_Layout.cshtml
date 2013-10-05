@@ -31,6 +31,8 @@
     @*    <link href="~/content/jquery-ui-custom.css" rel="stylesheet" type="text/css" />*@
     <link href="~/content/responsive-nav.css" rel="stylesheet" type="text/css" />
     @Styles.Render("~/Content/css")
+    <link rel="stylesheet" type="text/css" href="~/content/zocial/zocial.css" />
+
 </head>
 <body>
     <div class="header-container">
@@ -39,6 +41,9 @@
                 <img src="~/Content/images/eveLogo.png" />
                 shopping
             </h1>
+            <div class="nav-header">
+                @Html.Partial("_LoginPartial")
+            </div>
 
             @*            <nav>
                 <ul>
@@ -49,14 +54,22 @@
             </nav>*@
         </header>
     </div>
-            <div class="nav-container">
-                <ul class="nav-collapse">
-                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { id = "navlink_home" })</li>
-                    <li>@Html.ActionLink("New List", "New", "Lists", null, new { id = "navlink_newList" })</li>
-                    <li><a href="#" id="navlink_about2">About</a></li>
-                </ul>
+    <div class="nav-container">
+        <ul class="nav-collapse">
+            <li>@Html.ActionLink("Home", "Index", "Home", null, new { id = "navlink_home" })</li>
+            <li>@Html.ActionLink("New List", "New", "Lists", null, new { id = "navlink_newList" })</li>
+            @if (Request.IsAuthenticated)
+            {
+            <li>@Html.ActionLink("My Lists", "Manage", "Lists", null, new { id = "navlink_newList" })</li>
+                <li>
+                    @Html.ActionLink("My account", "Manage", "Account", routeValues: null, htmlAttributes: new {})
+                </li>
+            }
+            <li><a href="#" id="navlink_about2">About</a></li>
 
-            </div>
+        </ul>
+
+    </div>
 
     <div class="main-container">
         @RenderSection("subheader", required: false)
@@ -77,7 +90,7 @@
     <div class="footer-container">
         <footer class="wrapper">
             <p>If you like EVE-shopping and would like to help, you can donate some ISK to <a class="yellow-link" onclick="openEoghanInfo();">Eoghan Gorthaur</a>. If you have any suggestion or found any issue you can add it to our feedback site or mail to <a class="yellow-link" href="mailto:info@eve-shopping.com">info@eve-shopping.com</a>. Thanks !!!</p>
-             Material related to EVE-Online is used with limited permission of CCP Games hf. No official affiliation or endorsement by CCP Games hf is stated or implied.
+            Material related to EVE-Online is used with limited permission of CCP Games hf. No official affiliation or endorsement by CCP Games hf is stated or implied.
         </footer>
     </div>
 
