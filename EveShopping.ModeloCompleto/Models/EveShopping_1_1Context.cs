@@ -47,6 +47,9 @@ namespace EveShopping.Modelo.Models
         public DbSet<eshShoppingListFitting> eshShoppingListFittings { get; set; }
         public DbSet<eshShoppingListInvType> eshShoppingListInvTypes { get; set; }
         public DbSet<eshShoppingList> eshShoppingLists { get; set; }
+        public DbSet<eshShoppingListSummInvType> eshShoppingListSummInvTypes { get; set; }
+        public DbSet<eshSnapshot> eshSnapshots { get; set; }
+        public DbSet<eshSnapshotInvType> eshSnapshotInvTypes { get; set; }
         public DbSet<eshTradeHub> eshTradeHubs { get; set; }
         public DbSet<eveUnit> eveUnits { get; set; }
         public DbSet<invBlueprintType> invBlueprintTypes { get; set; }
@@ -138,6 +141,9 @@ namespace EveShopping.Modelo.Models
             modelBuilder.Configurations.Add(new eshShoppingListFittingMap());
             modelBuilder.Configurations.Add(new eshShoppingListInvTypeMap());
             modelBuilder.Configurations.Add(new eshShoppingListMap());
+            modelBuilder.Configurations.Add(new eshShoppingListSummInvTypeMap());
+            modelBuilder.Configurations.Add(new eshSnapshotMap());
+            modelBuilder.Configurations.Add(new eshSnapshotInvTypeMap());
             modelBuilder.Configurations.Add(new eshTradeHubMap());
             modelBuilder.Configurations.Add(new eveUnitMap());
             modelBuilder.Configurations.Add(new invBlueprintTypeMap());

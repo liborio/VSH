@@ -11,6 +11,8 @@ namespace EveShopping.Modelo.Models
             this.eshFittings = new List<eshFitting>();
             this.eshPrices = new List<eshPrice>();
             this.eshShoppingListInvTypes = new List<eshShoppingListInvType>();
+            this.eshShoppingListSummInvTypes = new List<eshShoppingListSummInvType>();
+            this.eshSnapshotInvTypes = new List<eshSnapshotInvType>();
         }
 
         public int typeID { get; set; }
@@ -30,5 +32,7 @@ namespace EveShopping.Modelo.Models
         public virtual ICollection<eshFitting> eshFittings { get; set; }
         public virtual ICollection<eshPrice> eshPrices { get; set; }
         public virtual ICollection<eshShoppingListInvType> eshShoppingListInvTypes { get; set; }
+        public virtual ICollection<eshShoppingListSummInvType> eshShoppingListSummInvTypes { get; set; }
+        public virtual ICollection<eshSnapshotInvType> eshSnapshotInvTypes { get; set; }
     }
 }
