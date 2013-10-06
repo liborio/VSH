@@ -67,13 +67,18 @@ namespace EveShopping.Controllers
 
             EstadoUsuario.CurrentListPublicId = id;
 
-            //cargamos las fits que puedan estar agregadadas a la shopping list
             AgenteShoppingList agente =
                 new AgenteShoppingList();
+
+            //Guardamos la shopping list en las de un usuario si se indica en la url
+            agente.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);            
+
+            //cargamos las fits que puedan estar agregadadas a la shopping list
             IEnumerable<EVFitting> fits = agente.SelectFitsEnShoppingList(id);
 
             EDVImportFits edv = new EDVImportFits();
-            edv.Fittings = fits;            
+            edv.Fittings = fits;
+            edv.IsShoppingListFree = agente.IsShoppingListFree(id);
 
             return View(edv);
         }
@@ -95,6 +100,9 @@ namespace EveShopping.Controllers
             
             if (summ.PublicID == id)
             {
+                //Guardamos la shopping list en las de un usuario si se indica en la url
+                agente.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);
+                edv.IsShoppingListFree = agente.IsShoppingListFree(id);
                 return View("Summary", edv);
             }
             else
@@ -128,7 +136,11 @@ namespace EveShopping.Controllers
 
             ViewBag.PublicID = id;
             AgenteShoppingList agente = new AgenteShoppingList();
-            EVListSummary summ =  agente.SelectListSummaryPorPublicID(id);
+
+            //Guardamos la shopping list en las de un usuario si se indica en la url
+            agente.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);            
+
+            EVListSummary summ =  agente.SelectListSummaryPorPublicID(id);            
 
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             string itemArray = serializer.Serialize(summ.Items);
@@ -137,6 +149,7 @@ namespace EveShopping.Controllers
             EDVSummary edv = new EDVSummary();
             edv.ItemArray = itemArray;
             edv.Summary = summ;
+            edv.IsShoppingListFree = agente.IsShoppingListFree(id);
 
             return View(edv);
         }
@@ -267,10 +280,16 @@ namespace EveShopping.Controllers
             }
             AgenteMarketItems agente = new AgenteMarketItems();
             AgenteShoppingList agenteShList = new AgenteShoppingList();
+
+            //Guardamos la shopping list en las de un usuario si se indica en la url
+            agenteShList.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);          
+
+
             IEnumerable<EVMarketItem> marketItems = agente.SelectMarketGroupsByParentID(null);
             IEnumerable<MarketItem> marketItemsEnShoppingList = agenteShList.SelectMarketItemsEnShoppingList(id);
             EDVAddMarketItems edv = new EDVAddMarketItems();
             edv.MarketItems = marketItems;
+            edv.IsShoppingListFree = agenteShList.IsShoppingListFree(id);
             edv.MarketItemsEnShoppingList = marketItemsEnShoppingList;
             return View(edv);
         }

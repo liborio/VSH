@@ -6,8 +6,10 @@ using EveShopping.Web.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace EveShopping.Web.Agentes
 {
@@ -55,6 +57,12 @@ namespace EveShopping.Web.Agentes
             return total;
         }
 
+        public bool IsShoppingListFree(string publicID)
+        {
+            LogicaShoppingLists logica = new LogicaShoppingLists();
+            return logica.IsShoppingListFree(publicID);
+        }
+
         public string CrearShoppingList(string name, string description, string userName = null)
         {            
             LogicaShoppingLists logica = new LogicaShoppingLists();
@@ -66,6 +74,15 @@ namespace EveShopping.Web.Agentes
             LogicaShoppingLists logica = new LogicaShoppingLists();
             logica.ActualizarShoppingListHeader(publicID, slName, slDescription);
 
+        }
+
+        public void SaveListInMyListsIfProceed(HttpRequestBase request, IIdentity identity, string publicId)
+        {
+            if (identity.IsAuthenticated && string.Equals(request.Params["save"], "1"))
+            {
+                LogicaShoppingLists logica = new LogicaShoppingLists();
+                logica.SaveListInMyLists(publicId, identity.Name);
+            }
         }
 
 

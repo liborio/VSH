@@ -7,7 +7,7 @@ using System.Web;
 
 namespace EveShopping.Models
 {
-    public class EDVSummary
+    public class EDVSummary : EDVShopingListBase
     {
         public string ItemArray { get; set; }
         public EVListSummary Summary { get; set; }

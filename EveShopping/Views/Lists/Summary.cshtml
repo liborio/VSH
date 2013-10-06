@@ -53,6 +53,7 @@
 
     <div id="links-navegacion-pasos-container">
         @Html.ActionLink("<< Add market items", "AddMarketItems", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
+        @Html.Partial("PVIncludeListInMyLists", new { ListDoesntHaveOwner = Model.IsShoppingListFree })
     </div>
 
 </div>
@@ -61,7 +62,7 @@
     <div id="subheader-container" class="wrapper clearfix">
         <ul id="menu-pasos">
             <li>@Html.ActionLink("Add ship fittings", "ImportFits", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
-            <li>@Html.ActionLink("Add market items", "AddMarketItems", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
+            <li>@Html.ActionLink("Add market", "AddMarketItems", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
             <li class="selected">@Html.ActionLink("Summary", "Summary", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
         </ul>
     </div>

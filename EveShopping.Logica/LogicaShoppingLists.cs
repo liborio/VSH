@@ -150,6 +150,19 @@ namespace EveShopping.Logica
             return fittings;
         }
 
+        public bool IsShoppingListFree(string publicID)
+        {
+            EveShoppingContext contexto =
+                new EveShoppingContext();
+            eshShoppingList list = contexto.eshShoppingLists.Where(sl => sl.publicID == publicID).FirstOrDefault();
+
+            if (list == null)
+            {
+                throw new ApplicationException(Messages.err_shoppingLisNoExiste);
+            }
+            return ! list.userID.HasValue;
+        }
+
         public eshShoppingList SelectShoppingListByPublicID(string publicID)
         {
             EveShoppingContext contexto =
@@ -219,6 +232,27 @@ namespace EveShopping.Logica
             contexto.eshShoppingLists.Add(lista);
             contexto.SaveChanges();
             return publicID;
+        }
+
+        public void SaveListInMyLists(string publicID, string userName)
+        {
+            EveShoppingContext contexto = new EveShoppingContext();
+            eshShoppingList list = contexto.eshShoppingLists.Where(sl => sl.publicID == publicID).FirstOrDefault();
+            if (list == null)
+            {
+                throw new ApplicationException(Messages.err_shoppingLisNoExiste);
+            }
+
+            //si la shopping list ya tiene un propietario no lo cambiamos.
+            if (list.userID.HasValue) return;
+
+            UserProfile user = contexto.userProfiles.Where(up => up.UserName == userName).FirstOrDefault();
+            if (user == null)
+            {
+                throw new ApplicationException(Messages.err_usuarioNoExiste);
+            }
+            list.userID = user.UserId;
+            contexto.SaveChanges();
         }
 
         public void ActualizarShoppingListHeader(string publicID, string slName, string slDescription)

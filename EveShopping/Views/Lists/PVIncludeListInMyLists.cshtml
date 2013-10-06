@@ -1,0 +1,12 @@
+﻿@if (this.Model.ListDoesntHaveOwner)
+{
+    if (Request.IsAuthenticated)
+    {
+        <a href="@string.Format("{0}?save=1",Request.Url)" class="buttonYellow">Save this list in my lists</a>
+    }
+    else
+    {
+        @Html.ActionLink("Save this list in my lists", "Login", "Account", new { returnUrl=string.Format("{0}?save=1",Request.Url) }, new { @class = "buttonYellow" })
+    }
+
+}
