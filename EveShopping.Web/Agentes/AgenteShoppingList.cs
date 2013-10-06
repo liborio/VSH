@@ -55,10 +55,10 @@ namespace EveShopping.Web.Agentes
             return total;
         }
 
-        public string CrearShoppingList(string name, string description)
-        {
+        public string CrearShoppingList(string name, string description, string userName = null)
+        {            
             LogicaShoppingLists logica = new LogicaShoppingLists();
-            return logica.CrearShoppingList(name, description);
+            return logica.CrearShoppingList(name, description, userName);
         }
 
         public void ActualizarShoppingListHeader(string publicID, string slName, string slDescription)
@@ -81,6 +81,12 @@ namespace EveShopping.Web.Agentes
             LogicaShoppingLists logica = new LogicaShoppingLists();
             string publicID = logica.GetPublidIDPorPublidIDRead(publicIDRead);
             return SelectListSummaryPorPublicID(publicID);
+        }
+
+        public IList<eshShoppingList> SelectShoppingListsByUserName(string userName)
+        {
+            LogicaShoppingLists logica = new LogicaShoppingLists();
+            return logica.SelectShoppingListsByUserName(userName);
         }
 
 

@@ -159,16 +159,39 @@ namespace EveShopping.Logica
                 .Include("eshShoppingListInvTypes.invType").Where(sl => sl.publicID == publicID).FirstOrDefault();
         }
 
+        public IList<eshShoppingList> SelectShoppingListsByUserName(string userName)
+        {
+            EveShoppingContext contexto =
+                new EveShoppingContext();
+
+            UserProfile user = contexto.userProfiles.Where(u => u.UserName.ToLower() == userName.ToLower()).FirstOrDefault();
+
+            if (user == null)
+            {
+                throw new ApplicationException(Messages.err_usuarioNoExiste);
+            }
+
+            return user.eshShoppingLists.OrderByDescending(sl => sl.dateAccess).ToList();
+        }
+
         public IEnumerable<eshShoppingListFitting> SelectFitsEnShoppingList(string publicID)
         {
             RepositorioShoppingLists repo = new RepositorioShoppingLists();
             return repo.SelectFitsEnShoppingList(publicID);
         }
 
-        public string CrearShoppingList(string name, string description)
+        public string CrearShoppingList(string name, string description, string userName = null)
         {
             string publicID = Guid.NewGuid().ToString();
             EveShoppingContext contexto = new EveShoppingContext();
+
+            int? userId = null;
+            if (userName != null){
+                UserProfile up = contexto.userProfiles.Where( p => p.UserName == userName).FirstOrDefault();
+                if (up == null) throw new ApplicationException(Messages.err_usuarioNoExiste);
+                userId = up.UserId;
+
+            }
 
             eshShoppingList sl = new eshShoppingList();
             sl.name = name;
@@ -177,7 +200,9 @@ namespace EveShopping.Logica
             sl.readOnlypublicID = Guid.NewGuid().ToString();
             sl.dateCreation = System.DateTime.Now;
             sl.dateUpdate = System.DateTime.Now;
+            sl.dateAccess = System.DateTime.Now;
             sl.tradeHubID = 30000142;
+            sl.userID = userId;
             contexto.eshShoppingLists.Add(sl);
             contexto.SaveChanges();
             return publicID;

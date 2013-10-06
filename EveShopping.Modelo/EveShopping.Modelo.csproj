@@ -83,7 +83,11 @@
     <Compile Include="Models\Mapping\invMarketGroupMap.cs" />
     <Compile Include="Models\Mapping\invTypeMap.cs" />
     <Compile Include="Models\Mapping\mapSolarSystemMap.cs" />
+    <Compile Include="Models\Mapping\UserProfileMap.cs" />
+    <Compile Include="Models\Mapping\webpages_RolesMap.cs" />
     <Compile Include="Models\mapSolarSystem.cs" />
+    <Compile Include="Models\UserProfile.cs" />
+    <Compile Include="Models\webpages_Roles.cs" />
     <Compile Include="Parciales\eshFittingHardware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

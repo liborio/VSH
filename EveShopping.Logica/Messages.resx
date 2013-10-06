@@ -132,4 +132,7 @@
   <data name="err_shoppingLisNoExiste" xml:space="preserve">
     <value>Cant find the shopping list in our acurate archives. Try to create it again.</value>
   </data>
+  <data name="err_usuarioNoExiste" xml:space="preserve">
+    <value>The user doesn't exist in our database.</value>
+  </data>
 </root>

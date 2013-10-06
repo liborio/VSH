@@ -10,6 +10,24 @@ namespace EveShopping.Web
 {
     public class VSHMappings
     {
+
+        public static ulong GetLongFromDate(DateTime date)
+        {
+            ulong res = 0;
+            res += (ulong)date.Second;
+            res += (ulong)date.Minute * 100;
+            res += (ulong)date.Hour * 10000;
+            res += (ulong)date.Day * 1000000;
+            res += (ulong)date.Month * 100000000;
+            res += (ulong)date.Year * 10000000000;
+            return res;
+        }
+
+        public static string GetGridDateFormat(DateTime date)
+        {
+            return string.Format("{0:dd MMM yyy, HH:mm}", date);
+        }
+
         public static string GetNormalizedPrice(decimal precio)
         {
             if (precio > 1000000)

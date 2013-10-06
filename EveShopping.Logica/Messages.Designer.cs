@@ -104,5 +104,14 @@ namespace EveShopping.Logica {
                 return ResourceManager.GetString("err_shoppingLisNoExiste", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The user doesn&apos;t exist in our database..
+        /// </summary>
+        internal static string err_usuarioNoExiste {
+            get {
+                return ResourceManager.GetString("err_usuarioNoExiste", resourceCulture);
+            }
+        }
     }
 }

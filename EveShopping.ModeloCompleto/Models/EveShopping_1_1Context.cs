@@ -98,8 +98,12 @@ namespace EveShopping.Modelo.Models
         public DbSet<trnTranslationColumn> trnTranslationColumns { get; set; }
         public DbSet<trnTranslationLanguage> trnTranslationLanguages { get; set; }
         public DbSet<trnTranslation> trnTranslations { get; set; }
+        public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<warCombatZone> warCombatZones { get; set; }
         public DbSet<warCombatZoneSystem> warCombatZoneSystems { get; set; }
+        public DbSet<webpages_Membership> webpages_Membership { get; set; }
+        public DbSet<webpages_OAuthMembership> webpages_OAuthMembership { get; set; }
+        public DbSet<webpages_Roles> webpages_Roles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -185,8 +189,12 @@ namespace EveShopping.Modelo.Models
             modelBuilder.Configurations.Add(new trnTranslationColumnMap());
             modelBuilder.Configurations.Add(new trnTranslationLanguageMap());
             modelBuilder.Configurations.Add(new trnTranslationMap());
+            modelBuilder.Configurations.Add(new UserProfileMap());
             modelBuilder.Configurations.Add(new warCombatZoneMap());
             modelBuilder.Configurations.Add(new warCombatZoneSystemMap());
+            modelBuilder.Configurations.Add(new webpages_MembershipMap());
+            modelBuilder.Configurations.Add(new webpages_OAuthMembershipMap());
+            modelBuilder.Configurations.Add(new webpages_RolesMap());
         }
     }
 }

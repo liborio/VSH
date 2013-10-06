@@ -36,7 +36,12 @@ namespace EveShopping.Controllers
         public ActionResult Create(string slName, string slDescription)
         {
             AgenteShoppingList agente = new AgenteShoppingList();
-            string id = agente.CrearShoppingList(slName, slDescription);
+            string userName = null;
+            if (Request.IsAuthenticated)
+            {
+                userName = User.Identity.Name;
+            }
+            string id = agente.CrearShoppingList(slName, slDescription, userName);
 
             return RedirectToAction("ImportFits", new { id = id });
         }
@@ -98,6 +103,19 @@ namespace EveShopping.Controllers
             }
 
 
+        }
+
+        [Authorize]
+        public ActionResult MyLists()
+        {
+            AgenteShoppingList agente = new AgenteShoppingList();
+            IEnumerable<eshShoppingList> lists =
+                agente.SelectShoppingListsByUserName(User.Identity.Name);
+            EDVMyLists edv = new EDVMyLists()
+            {
+                Lists = lists
+            };
+            return View(edv);
         }
 
         public ActionResult Summary(string id = null)

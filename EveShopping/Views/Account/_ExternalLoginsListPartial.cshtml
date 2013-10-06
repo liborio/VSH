@@ -15,14 +15,12 @@ else
     <fieldset id="socialLoginList">
         <p>If you prefere, you can use your favorite external login:</p>
         <legend class="hidden">Log in using another service</legend>
-        <p>
-        @foreach (AuthenticationClientData p in Model.OrderBy( b => b.AuthenticationClient.ProviderName))
+        @foreach (AuthenticationClientData p in Model)
         {
-            <div>
+        <p>
             <button type="submit" name="provider" class="zocial @p.AuthenticationClient.ProviderName.ToLower()" value="@p.AuthenticationClient.ProviderName" title="Log in using your @p.DisplayName account">@p.DisplayName</button>
-                </div>
-        }
         </p>
+        }
     </fieldset>
     }
 }

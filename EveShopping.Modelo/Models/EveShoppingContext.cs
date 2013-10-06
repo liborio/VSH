@@ -28,6 +28,8 @@ namespace EveShopping.Modelo.Models
         public DbSet<invType> invTypes { get; set; }
         public DbSet<invMarketGroup> invMarketGroups { get; set; }
         public DbSet<invGroup> invGroups { get; set; }
+        public DbSet<UserProfile> userProfiles { get; set; }
+        public DbSet<webpages_Roles> webPageRoles { get; set; }
         //public DbSet<staStation> staStations { get; set; }
         public DbSet<mapSolarSystem> mapSolarSystems { get; set; }
 
@@ -44,6 +46,8 @@ namespace EveShopping.Modelo.Models
             modelBuilder.Configurations.Add(new invTypeMap());
             modelBuilder.Configurations.Add(new invMarketGroupMap());
             modelBuilder.Configurations.Add(new invGroupMap());
+            modelBuilder.Configurations.Add(new UserProfileMap());
+            modelBuilder.Configurations.Add(new webpages_RolesMap());
             //modelBuilder.Configurations.Add(new staStationMap());
             modelBuilder.Configurations.Add(new mapSolarSystemMap());
         }
