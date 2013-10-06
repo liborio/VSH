@@ -216,6 +216,15 @@ namespace EveShopping.Web.Agentes
             return logica.SelectMarketItemByID(shoppingListPublidID, itemID, new Imagex32UrlResolver());
         }
 
+        public void UpdateDeltaToSummary(string publicID, int itemID, short units)
+        {
+            LogicaShoppingLists logica =
+                new LogicaShoppingLists();
+            logica.UpdateDeltaToSummary(publicID, itemID, units);
+        }
+
+
+
         public void DeleteMarketItemEnShoppingList(string shoppingListPublidID, int itemID)
         {
             LogicaShoppingLists logica =

@@ -7,7 +7,7 @@ namespace EveShopping.Modelo.Models
     {
         public int shoppingListID { get; set; }
         public int typeID { get; set; }
-        public int delta { get; set; }
+        public short delta { get; set; }
         public virtual eshShoppingList eshShoppingList { get; set; }
         public virtual invType invType { get; set; }
     }

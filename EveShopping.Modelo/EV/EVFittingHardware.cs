@@ -13,5 +13,7 @@ namespace EveShopping.Modelo.EV
         public string Size { get; set; }
         public string GroupName { get; set; }
         public string SlotName { get; set; }
+        public short Delta { get; set; }
+        public double UnitVolume { get; set; }
     }
 }

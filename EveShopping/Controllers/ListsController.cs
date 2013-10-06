@@ -325,6 +325,15 @@ namespace EveShopping.Controllers
             return PartialView("PVMarketItemEnShoppingList", item);
         }
 
+        public EmptyResult UpdateDeltaInSummary(int id, short units = 0)
+        {
+            AgenteShoppingList agente = new AgenteShoppingList();
+            agente.UpdateDeltaToSummary(EstadoUsuario.CurrentListPublicId, id, units);
+
+            return new EmptyResult();
+        }
+
+
         public ActionResult DeleteMarketItemToShoppingList(int id)
         {
             AgenteShoppingList agente = new AgenteShoppingList();

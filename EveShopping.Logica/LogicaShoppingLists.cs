@@ -90,14 +90,15 @@ namespace EveShopping.Logica
         {
             EveShoppingContext contexto =
                 new EveShoppingContext();
-            IEnumerable<EVFitting> fittings =
+            List<EVFitting> fittings = new List<EVFitting>(); 
+            var qfittings =
                 (from sl in contexto.eshShoppingLists
                  join slf in contexto.eshShoppingListsFittings on sl.shoppingListID equals slf.shoppingListID
                  join f in contexto.eshFittings on slf.fittingID equals f.fittingID
                  join it in contexto.invTypes on f.shipTypeID equals it.typeID
                  join p in contexto.eshPrices on new { sl.tradeHubID, it.typeID } equals new { tradeHubID = p.solarSystemID, p.typeID }
                  where sl.publicID == publicID
-                 select new EVFitting
+                 select new 
                  {
                      Description = f.description,
                      FittingID = f.fittingID,
@@ -108,12 +109,32 @@ namespace EveShopping.Logica
                      Units = slf.units,
                      ShipPrice = p.avg,
                      Price = p.avg * slf.units,
-                     Volume = f.shipVolume * slf.units
-                 }).ToList();
+                     Volume = f.shipVolume * slf.units,
+                     InvType = it,
+                     
+                 });
 
-            foreach (var fit in fittings)
+            foreach (var qfit in qfittings)
             {
-                fit.ShipImageUrl32 = imageResolver.GetImageURL(fit.ShipID);
+                EVFitting fit = new EVFitting
+                {
+                    Description = qfit.Description,
+                    FittingID = qfit.FittingID,
+                    Name = qfit.Name,
+                    ShipID = qfit.ShipID,
+                    ShipName = qfit.ShipName,
+                    ShipVolume = qfit.ShipVolume,
+                    Units = qfit.Units,
+                    ShipPrice = qfit.ShipPrice,
+                    Price = qfit.Price,
+                };
+                
+                fit.ShipImageUrl32 = imageResolver.GetImageURL(qfit.ShipID);
+                fit.ShipVolume = RepositorioItems.GetVolume(qfit.InvType);
+                fit.Volume = fit.ShipVolume * fit.Units;
+                fittings.Add(fit);
+
+
 
                 var qfittingHardwares =
                    (from sl in contexto.eshShoppingLists
@@ -263,6 +284,7 @@ namespace EveShopping.Logica
             sl.name = slName;
             sl.description = slDescription;
             sl.dateUpdate = DateTime.Now;
+            sl.dateAccess = DateTime.Now;
             contexto.SaveChanges();
         }
 
@@ -274,6 +296,42 @@ namespace EveShopping.Logica
             eshShoppingListInvType slit = repo.UpdateMarketItemEnShoppingList(list.shoppingListID, itemID, units);
             repo.ShoppingListUpdated(list.shoppingListID);
         }
+
+        public void UpdateDeltaToSummary(string publicID, int itemID, short units)
+        {
+            EveShoppingContext contexto = new EveShoppingContext();
+            eshShoppingList list = contexto.eshShoppingLists.Where(sl => sl.publicID == publicID).FirstOrDefault();
+            ChangesSummaryItem changes = new ChangesSummaryItem();
+
+            if (list == null) throw new ApplicationException(Messages.err_shoppingLisNoExiste);
+
+            eshShoppingListSummInvType summEntry = contexto.eshShoppingListSummInvTypes.Where(si => si.shoppingListID == list.shoppingListID && si.typeID == itemID).FirstOrDefault();
+
+            if (units != 0)
+            {
+                if (summEntry == null)
+                {
+                    summEntry = new eshShoppingListSummInvType();
+                    summEntry.typeID = itemID;
+                    summEntry.shoppingListID = list.shoppingListID;
+                    contexto.eshShoppingListSummInvTypes.Add(summEntry);
+                }
+                summEntry.delta = units;
+            }
+            else
+            {
+                if (summEntry != null)
+                {
+                    contexto.eshShoppingListSummInvTypes.Remove(summEntry);
+                }
+            }
+            list.dateUpdate = DateTime.Now;
+            list.dateAccess = DateTime.Now;
+
+            contexto.SaveChanges();
+        }
+
+
 
         public EVFitting SelectFitSummary(string publicID, int fittingID, IImageResolver imageResolver)
         {
@@ -364,6 +422,7 @@ namespace EveShopping.Logica
                         ItemID = fit.ShipID,
                         Units = fit.Units,
                         Volume = fit.ShipVolume * fit.Units,
+                        UnitVolume = fit.ShipVolume,
                         TotalPrice = fit.ShipPrice * fit.Units,
                         UnitPrice = fit.ShipPrice,
                         ImageUrl32 = imageResolver.GetImageURL(fit.ShipID)
@@ -388,6 +447,8 @@ namespace EveShopping.Logica
                         fw.Units *= fit.Units;
                         fw.Volume *= fit.Units;
                         fw.TotalPrice *= fit.Units;
+                        fw.UnitVolume = fw.Volume / fw.Units;
+                        fw.UnitPrice = fw.TotalPrice / fw.Units;
                         diccHwd.Add(fw.ItemID, fw);
                     }
                 }
@@ -413,15 +474,44 @@ namespace EveShopping.Logica
                     fwd.UnitPrice = mi.UnitPrice;
                     fwd.Units = mi.Units;
                     fwd.Volume = mi.Volume;
+                    fwd.UnitVolume = mi.Volume / mi.Units;
                     diccHwd.Add(fwd.ItemID, fwd);
                 }
             }
+
+            // Update summary changes
+            IEnumerable<eshShoppingListSummInvType> summInvs =
+                contexto.eshShoppingListSummInvTypes.Where(sls => sls.shoppingListID == summary.ShoppingListID);
+            foreach (var summInv in summInvs)
+            {
+                if (!diccHwd.ContainsKey(summInv.typeID))
+                {
+                    //if the item is not in the items dictionary, it doesnt exist anymore in the list, so we delete the delta
+                    contexto.eshShoppingListSummInvTypes.Remove(summInv);
+                }
+                else
+                {
+                    EVFittingHardware fwd = diccHwd[summInv.typeID];
+                    if ((summInv.delta < 0) && (summInv.delta * -1 > fwd.Units) )
+                    {
+                        summInv.delta = (short) (fwd.Units * -1);
+                    }
+                    fwd.TotalPrice += summInv.delta * fwd.UnitPrice;
+                    fwd.Volume += (fwd.Volume / fwd.Units) * summInv.delta;
+                    fwd.Units += summInv.delta;
+                    fwd.Delta = summInv.delta;
+                }
+
+            }
+
             foreach (var item in diccHwd.Values)
             {
                 summary.Items.Add(item);
                 summary.TotalPrice += item.TotalPrice;
-                summary.TotalVolume += item.Volume;                
+                summary.TotalVolume += item.Volume;
             }
+
+            contexto.SaveChanges();
 
             return summary;
 

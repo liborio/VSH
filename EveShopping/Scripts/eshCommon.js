@@ -11,6 +11,30 @@
     },
 }
 
+eshFormats = {
+    formatPrice: function (price) {
+        if (price > 1000000) {
+            return (price / 1000000).toFixed(2) + ' M';
+        }
+        if (price > 1000) {
+            return (price / 1000).toFixed(2) + ' K';
+        }
+        return price.toFixed(2);
+    },
+    formatVolume: function (vol) {
+        var ivol = Math.round(vol)
+        if (ivol == vol) {
+            return ivol + ' m3';
+        }
+        return vol.toFixed(2) + ' m3';
+    },
+    formatDelta: function (delta) {
+        if (delta > 0) {
+            return '+' + delta;
+        }
+        return delta;
+    }
+}
 
 accordionState = {
 
