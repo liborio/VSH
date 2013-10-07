@@ -27,21 +27,24 @@ $(document).ready(function () {
 
 });
 
- ajaxLoader = {
-    timer : 0,
+// ajaxLoader = {
+//    timer : 0,
 
-    initTimer : function(){
-        ajaxLoader.timer = setTimeout("$.blockUI({message: '<img src=\"../../content/images/ajax-loader4.gif\"/>', css: {backgroundColor: '#3A3A3A', border: '2px solid #1F4E66', padding: '10px 2em', width: '14%', left: '43%'}, overlayCSS: {opacity: '0.3'}})", 300);
-    },
+//    initTimer : function(){
+//        ajaxLoader.timer = setTimeout("$.blockUI({message: '<img src=\"../../content/images/ajax-loader4.gif\"/>', css: {backgroundColor: '#3A3A3A', border: '2px solid #1F4E66', padding: '10px 2em', width: '14%', left: '43%'}, overlayCSS: {opacity: '0.3'}})", 300);
+//    },
 
-    endTimer : function ()  {
-        clearTimeout(ajaxLoader.timer);
-        $.unblockUI();
-    },
-}
+//    endTimer : function ()  {
+//        clearTimeout(ajaxLoader.timer);
+//        $.unblockUI();
+//    },
+//}
 
-$(document).ajaxStart(ajaxLoader.initTimer)
-   .ajaxStop(ajaxLoader.endTimer);
+// $(document).ajaxStart(ajaxLoader.initTimer);
+// $(document).ajaxStop(ajaxLoader.endTimer);
+// $(document).ajaxSuccess(ajaxLoader.endTimer);
+// $(document).ajaxComplete(ajaxLoader.endTimer);
+// $(document).ajaxError(ajaxLoader.endTimer);
 
 
 function OnSuccessNavigateMarketGroup(data) {

@@ -5,13 +5,10 @@
 
 
 
-
 $(document).ready(function () {
     $('#help-container div').hide();
 });
 
-$(document).ajaxStart(ajaxLoader.initTimer)
-   .ajaxStop(ajaxLoader.endTimer);
 
 $(function () {
     $('#help-container div').show();

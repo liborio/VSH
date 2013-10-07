@@ -18,6 +18,7 @@
             }
 
         </span></h3>
+        <p>It is possible to change the units that you want for each fit in your shopping list.</p>
         <div id="fitsInList" class="subs-wrapper" data-esh-fits-in-list>
             @if ((this.Model.Fittings != null) && this.Model.Fittings.Count() > 0)
             {
@@ -46,6 +47,7 @@
     <div id="list-left-menu">
         <div class="inside-section">
             <h3>Import fits</h3>
+            <p>Use this panel to import your fits into the shopping list. You can see more information about how to export them in the help.</p>
             @using (Ajax.BeginForm("AnalyzeRawFit", new AjaxOptions { UpdateTargetId = "fitsAnalysed", OnSuccess = "ReactivateImportedFitsAccordion", OnFailure = "onFailureAnalyzeRawFit" }))
             {
                 <form id="payment">
@@ -75,13 +77,15 @@
 
 @section ayuda{
     <div id="help-container" class="notVisible">
-        <h3><span>Add fittings to shopping list</span></h3>
+        <h3><span>Add fittings to shopping list</span><span class="right">(open for help)</span></h3>
         <div>
-            <p>In this step you will be able to add any fit you want to include in the shopping list, follow the next steps:</p>
-            <p>Paste your fittings and analyse them on the analyse section. You can use fits exported from EVE Online (support file with multiple fittings) and EFT. </p>
-            <p>Select the fits that you want to use from the imported section</p>
-            <p>Edit them and set the amount of units of this fit that you want to include in your shopping list</p>
-            <p>Shopping list is completed in 3 steps, you can navigate following the buttons at the end of the main section or using the shopping list navigation bar.</p>
+            <p>In this step you will be able to add any fit you want to include in the shopping list. For that you need to copy in the clipboard your fitting and paste in the text area contained in the left panel of this screen.</p>
+            <p>The format recognised are <strong>EVE XML (recommended format)</strong>, EFT and DNA (not yet).</p>
+            <p>It is possible to import fits in different ways:</p>
+            <p>- Inside Eve: Drag your fit to any eve chat and copy the link (you need to actually enter the fit in the chat, is not enough to drag it and copy, need to drag and press enter in the chat). This will provide a DNA fit what you can paste in our text area. See a video here (add link to video).</p>
+            <p>- Export fits from EVE to xml in the EVE Docs folder. You can open the XML file with your favorite editor, copy the content and paste it to our text area. See a video here (add link to video).</p>
+            <p>- From your favorite EVE fitting tool, like EFT, Pyfa or EVEHQ. These tools have many ways to export their fits or copy them to clipboard. If you have the chance, export it to the prefered format: XML.</p>
+            <p>Once your fit is analysed, you can use it in your shopping list and set the units that you want to buy.</p>
         </div>
     </div>
 }

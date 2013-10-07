@@ -43,12 +43,16 @@ function editItemInSummary(id) {
     $(row).find('a').hide()
     var units = $(row).find('[data-esh-cdelta]').data('esh-cdelta');
 
-    var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='5' class='col-edit'><span><a onclick=\"setDeltaInSummary('" + id + "')\">Set</a><input data-esh-units type='number' value='" + units + "'>units to add (negative number will remove units from totals)</span><span><a onclick=\"cancelEditItemInShoppingList('" + id + "')\">Close edit</a></span>"
+    var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='5' class='col-edit'><span><a onclick=\"setDeltaInSummary('" + id + "')\">Set</a><input data-esh-units type='number' value='" + units + "'>units to add (negative number will remove units from totals)</span><span><a onclick=\"cancelEditSummary('" + id + "')\">Close edit</a></span>"
     $(filaControlesEdicion).insertAfter(row)
 
     var inputRows = $(filaControlesEdicion).find('input:text');
     $(inputRows).focus(function () { $(this).select(); });
     $(inputRows).focus();
+}
+
+function cancelEditSummary(id) {
+    cleanEdits();
 }
 
 function setDeltaInSummary(id) {
