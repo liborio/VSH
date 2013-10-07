@@ -19,6 +19,21 @@ namespace EveShopping.Logica
         {
             IConversorFit conv = null;
             IEnumerable<FittingAnalyzed> salida = null;
+
+            conv = new ConversorDNAToFitList();
+            try
+            {
+                salida = conv.ToFitList(fitOriginal);
+                if (salida != null)
+                {
+                    return salida;
+                }
+            }
+            catch (FittingFormatNotRecognisedException ex)
+            {
+            }
+
+            
             conv = new ConversorEFTToFitList();
             try
             {
@@ -438,17 +453,25 @@ namespace EveShopping.Logica
                     {
                         EVFittingHardware fwd = diccHwd[fw.ItemID];
                         fwd.Units += fw.Units * fit.Units;
-                        fw.Volume += fw.Volume * fit.Units;
-                        fw.TotalPrice += fw.TotalPrice * fit.Units;
-                        fw.UnitPrice = fw.TotalPrice;
+                        fwd.Volume += fw.Volume * fit.Units;
+                        fwd.TotalPrice += fw.TotalPrice * fit.Units;
+                        //fw.UnitPrice = fw.TotalPrice;
                     }
                     else
                     {
                         fw.Units *= fit.Units;
                         fw.Volume *= fit.Units;
                         fw.TotalPrice *= fit.Units;
-                        fw.UnitVolume = fw.Volume / fw.Units;
-                        fw.UnitPrice = fw.TotalPrice / fw.Units;
+                        if (fit.Units != 0)
+                        {
+                            fw.UnitVolume = fw.Volume / fw.Units;
+                            fw.UnitPrice = fw.TotalPrice / fw.Units;
+                        }
+                        else
+                        {
+                            fw.UnitVolume = fw.Volume;
+                            fw.UnitPrice = fw.TotalPrice;
+                        }
                         diccHwd.Add(fw.ItemID, fw);
                     }
                 }

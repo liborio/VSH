@@ -74,6 +74,10 @@
     <Compile Include="Models\EveShoppingContext.cs" />
     <Compile Include="Models\invGroup.cs" />
     <Compile Include="Models\invMarketGroup.cs" />
+    <Compile Include="Models\dgmEffect.cs" />
+    <Compile Include="Models\Mapping\dgmEffectMap.cs" />
+    <Compile Include="Models\dgmTypeEffect.cs" />
+    <Compile Include="Models\Mapping\dgmTypeEffectMap.cs" />
     <Compile Include="Models\Mapping\eshFittingHardwareMap.cs" />
     <Compile Include="Models\Mapping\eshFittingMap.cs" />
     <Compile Include="Models\Mapping\eshFittingSlotMap.cs" />

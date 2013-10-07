@@ -88,11 +88,29 @@ namespace EveShopping.Logica {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There was a module in the DNA expression with the wrong format..
+        /// </summary>
+        internal static string err_notRecognisedDNAFormat {
+            get {
+                return ResourceManager.GetString("err_notRecognisedDNAFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The fitting doesn&apos;t have a recognised format..
         /// </summary>
         internal static string err_notRecognisedFormat {
             get {
                 return ResourceManager.GetString("err_notRecognisedFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The analysed fit contains an item that doesnt exist..
+        /// </summary>
+        internal static string err_notRecognisedItemInFitting {
+            get {
+                return ResourceManager.GetString("err_notRecognisedItemInFitting", resourceCulture);
             }
         }
         

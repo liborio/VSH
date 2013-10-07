@@ -20,11 +20,12 @@ namespace EveShopping.Web
         public static string CurrentListPublicId{
             get
             {
-                return (string)Contexto.Session["eu_currentListPublicID"];
+                string[] segments = Contexto.Request.UrlReferrer.Segments;
+                string szguid = segments[segments.Count() - 1];
+                return szguid;
             }
             set
             {
-                Contexto.Session["eu_currentListPublicID"] = value;
             }
         }
     }

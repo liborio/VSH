@@ -28,7 +28,7 @@ namespace EveShopping.Logica
             var items =
                 (from it in contexto.invTypes
                  join ig in contexto.invGroups on it.groupID equals ig.groupID
-                 where it.marketGroupID != null &&  ig.categoryID != null &&categoryIDs.Contains(ig.categoryID.Value)
+                 where it.marketGroupID != null //&&  ig.categoryID != null &&categoryIDs.Contains(ig.categoryID.Value)
                  select new { typeID = it.typeID }).ToList();
                // contexto.invTypes.Where(t => t.marketGroupID != null && categoryIDs.Contains(t. ).ToList();
 

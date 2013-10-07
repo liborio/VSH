@@ -49,11 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conversion\ConversorDNAToFitList.cs" />
     <Compile Include="Conversion\ConversorEFTToFitList.cs" />
     <Compile Include="Conversion\ConversorEveXmlToFitList.cs" />
     <Compile Include="Conversion\ConversorFitList.cs" />
+    <Compile Include="Conversion\DNAIntermediateFit.cs" />
     <Compile Include="Conversion\FittingFormatNotRecognisedException.cs" />
     <Compile Include="Conversion\IConversorFit.cs" />
+    <Compile Include="Conversion\SlotDDBBInfo.cs" />
     <Compile Include="EveCentral\EveCentralAgent.cs" />
     <Compile Include="EveCentral\ItemPrices.cs" />
     <Compile Include="EveCentral\ItemPriceStats.cs" />

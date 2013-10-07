@@ -29,6 +29,8 @@ namespace EveShopping.Modelo.Models
         public DbSet<eshSnapshot> eshSnapshots { get; set; }
         public DbSet<eshSnapshotInvType> eshSnapshotInvTypes { get; set; }
 
+        public DbSet<dgmEffect> dmgEffects { get; set; }
+        public DbSet<dgmTypeEffect> dmgTypeEffects { get; set; }
         public DbSet<invType> invTypes { get; set; }
         public DbSet<invMarketGroup> invMarketGroups { get; set; }
         public DbSet<invGroup> invGroups { get; set; }
@@ -50,6 +52,8 @@ namespace EveShopping.Modelo.Models
             modelBuilder.Configurations.Add(new eshTradeHubMap());
             modelBuilder.Configurations.Add(new eshSnapshotMap());
             modelBuilder.Configurations.Add(new eshSnapshotInvTypeMap());
+            modelBuilder.Configurations.Add(new dgmEffectMap());
+            modelBuilder.Configurations.Add(new dgmTypeEffectMap());
             modelBuilder.Configurations.Add(new invTypeMap());
             modelBuilder.Configurations.Add(new invMarketGroupMap());
             modelBuilder.Configurations.Add(new invGroupMap());
