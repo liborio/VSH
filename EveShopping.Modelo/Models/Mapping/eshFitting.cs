@@ -18,8 +18,10 @@ namespace EveShopping.Modelo.Models
         public System.DateTime dateCreation { get; set; }
         public double shipVolume { get; set; }
         public double volume { get; set; }
+        public Nullable<int> userID { get; set; }
         public virtual ICollection<eshFittingHardware> eshFittingHardwares { get; set; }
         public virtual invType invType { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
         public virtual ICollection<eshShoppingListFitting> eshShoppingListFittings { get; set; }
     }
 }

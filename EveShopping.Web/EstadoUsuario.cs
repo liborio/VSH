@@ -22,7 +22,12 @@ namespace EveShopping.Web
             {
                 string[] segments = Contexto.Request.UrlReferrer.Segments;
                 string szguid = segments[segments.Count() - 1];
-                return szguid;
+                Guid test;
+                if (Guid.TryParse(szguid, out test))
+                {
+                    return szguid;
+                }
+                return null;
             }
             set
             {

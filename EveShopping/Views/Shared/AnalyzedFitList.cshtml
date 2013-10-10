@@ -1,12 +1,12 @@
-﻿@model IEnumerable<EveShopping.Modelo.EntidadesAux.FittingAnalyzed>
+﻿@model EveShopping.Models.EDVAnalysedFitList
 
-@foreach (var item in this.Model)
+@foreach (var item in this.Model.Fittings)
 {
  
     <h3 data-esh-name="@item.Name" class="clearfix accordion-header">
         <span class="left">@item.Name</span>
-        <span class="right">        @Ajax.ActionLink("Use fit", "UseAnalysedFit"
-             , new { fitName = item.Name }, new AjaxOptions { OnSuccess = "OnSuccessUseAnalysedFit", OnFailure = "OnErrorUseAnalysedFit" })</span></h3>
+        <span class="right">@Ajax.ActionLink(Model.UseText, "UseAnalysedFit", Model.ControllerName
+             , new { fitName = item.Name }, new AjaxOptions {  OnSuccess = "OnSuccessUseAnalysedFit", OnFailure = "OnErrorUseAnalysedFit" })</span></h3>
 
     <div data-esh-name="@item.Name" class="subs-wrapper-main" data-esh-secDesp-name="@item.Name">
         <table>
@@ -23,11 +23,11 @@
                 if (hwdItem.Slot != ViewBag.prevSlot)
                 {
                     ViewBag.prevSlot = hwdItem.Slot;
-                                <tr class="fila-par">
-                <td colspan="2">
-                    <img src="~/content/images/@EveShopping.Web.VSHMappings.GetImageName(hwdItem.Slot)" alt="" />
-                <span>@EveShopping.Web.VSHMappings.GetSlotName(hwdItem.Slot)</span></td>
-            </tr>
+                <tr class="fila-par">
+                    <td colspan="2">
+                        <img src="~/content/images/@EveShopping.Web.VSHMappings.GetImageName(hwdItem.Slot)" alt="" />
+                        <span>@EveShopping.Web.VSHMappings.GetSlotName(hwdItem.Slot)</span></td>
+                </tr>
 
                 }
                 <tr class="@ViewBag.estilo">

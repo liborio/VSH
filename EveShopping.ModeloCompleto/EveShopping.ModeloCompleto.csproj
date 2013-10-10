@@ -75,6 +75,7 @@
     <Compile Include="Models\eshFittingHardware.cs" />
     <Compile Include="Models\eshFittingSlot.cs" />
     <Compile Include="Models\eshPrice.cs" />
+    <Compile Include="Models\eshShipsMarketGroup.cs" />
     <Compile Include="Models\eshShoppingList.cs" />
     <Compile Include="Models\eshShoppingListFitting.cs" />
     <Compile Include="Models\eshShoppingListInvType.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Models\Mapping\eshFittingMap.cs" />
     <Compile Include="Models\Mapping\eshFittingSlotMap.cs" />
     <Compile Include="Models\Mapping\eshPriceMap.cs" />
+    <Compile Include="Models\Mapping\eshShipsMarketGroupMap.cs" />
     <Compile Include="Models\Mapping\eshShoppingListFittingMap.cs" />
     <Compile Include="Models\Mapping\eshShoppingListInvTypeMap.cs" />
     <Compile Include="Models\Mapping\eshShoppingListMap.cs" />
@@ -176,6 +178,7 @@
     <Compile Include="Models\Mapping\mapSolarSystemJumpMap.cs" />
     <Compile Include="Models\Mapping\mapSolarSystemMap.cs" />
     <Compile Include="Models\Mapping\mapUniverseMap.cs" />
+    <Compile Include="Models\Mapping\MSreplication_optionsMap.cs" />
     <Compile Include="Models\Mapping\planetSchematicMap.cs" />
     <Compile Include="Models\Mapping\planetSchematicsPinMapMap.cs" />
     <Compile Include="Models\Mapping\planetSchematicsTypeMapMap.cs" />
@@ -187,6 +190,11 @@
     <Compile Include="Models\Mapping\ramAssemblyLineTypeMap.cs" />
     <Compile Include="Models\Mapping\ramInstallationTypeContentMap.cs" />
     <Compile Include="Models\Mapping\ramTypeRequirementMap.cs" />
+    <Compile Include="Models\Mapping\spt_fallback_dbMap.cs" />
+    <Compile Include="Models\Mapping\spt_fallback_devMap.cs" />
+    <Compile Include="Models\Mapping\spt_fallback_usgMap.cs" />
+    <Compile Include="Models\Mapping\spt_monitorMap.cs" />
+    <Compile Include="Models\Mapping\spt_valuesMap.cs" />
     <Compile Include="Models\Mapping\staOperationMap.cs" />
     <Compile Include="Models\Mapping\staOperationServiceMap.cs" />
     <Compile Include="Models\Mapping\staServiceMap.cs" />
@@ -208,6 +216,8 @@
     <Compile Include="Models\mapSolarSystem.cs" />
     <Compile Include="Models\mapSolarSystemJump.cs" />
     <Compile Include="Models\mapUniverse.cs" />
+    <Compile Include="Models\masterContext.cs" />
+    <Compile Include="Models\MSreplication_options.cs" />
     <Compile Include="Models\planetSchematic.cs" />
     <Compile Include="Models\planetSchematicsPinMap.cs" />
     <Compile Include="Models\planetSchematicsTypeMap.cs" />
@@ -219,6 +229,11 @@
     <Compile Include="Models\ramAssemblyLineTypeDetailPerGroup.cs" />
     <Compile Include="Models\ramInstallationTypeContent.cs" />
     <Compile Include="Models\ramTypeRequirement.cs" />
+    <Compile Include="Models\spt_fallback_db.cs" />
+    <Compile Include="Models\spt_fallback_dev.cs" />
+    <Compile Include="Models\spt_fallback_usg.cs" />
+    <Compile Include="Models\spt_monitor.cs" />
+    <Compile Include="Models\spt_values.cs" />
     <Compile Include="Models\staOperation.cs" />
     <Compile Include="Models\staOperationService.cs" />
     <Compile Include="Models\staService.cs" />

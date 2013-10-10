@@ -10,12 +10,13 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using EveShopping.Filters;
 using EveShopping.Models;
+using EveShopping.Web.Modelo;
 
 namespace EveShopping.Controllers
 {
     [Authorize]
     [InitializeSimpleMembership]
-    public class AccountController : Controller
+    public class AccountController : VSHBaseController
     {
         //
         // GET: /Account/Login
@@ -23,6 +24,7 @@ namespace EveShopping.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -74,6 +76,7 @@ namespace EveShopping.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterModel model)
         {
+
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
@@ -127,6 +130,9 @@ namespace EveShopping.Controllers
 
         public ActionResult Manage(ManageMessageId? message)
         {
+            SetHeadCounters();
+
+
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."

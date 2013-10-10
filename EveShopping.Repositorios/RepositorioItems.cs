@@ -9,7 +9,8 @@ namespace EveShopping.Repositorios
 {
     public class RepositorioItems : RepositorioBase
     {
-        public RepositorioItems(EveShoppingContext contexto = null) : base(contexto)
+        public RepositorioItems(EveShoppingContext contexto = null)
+            : base(contexto)
         { }
 
 
@@ -24,7 +25,7 @@ namespace EveShopping.Repositorios
                 .OrderBy(g => g.typeName).ToList();
         }
 
-        public IList<invMarketGroup> GetParentGroupsChainStartingTop(int idGroup)
+        public IList<invMarketGroup> GetParentGroupsChainStartingTop(int idGroup, int topGroupId)
         {
             Stack<invMarketGroup> pilaGroups = new Stack<invMarketGroup>();
             IList<invMarketGroup> listaSalida = new List<invMarketGroup>();
@@ -38,12 +39,16 @@ namespace EveShopping.Repositorios
 
             pilaGroups.Push(group);
 
-            while (group.parentGroupID.HasValue)
+            while (group.parentGroupID.HasValue && group.parentGroupID != topGroupId)
             {
                 group = Contexto.invMarketGroups.Where(g => g.marketGroupID == group.parentGroupID.Value).FirstOrDefault();
-                pilaGroups.Push(group);
+
+                if (group.marketGroupID != topGroupId)
+                {
+                    pilaGroups.Push(group);
+                }
             }
-            
+
             while (pilaGroups.Count > 0)
             {
                 listaSalida.Add(pilaGroups.Pop());
@@ -53,7 +58,7 @@ namespace EveShopping.Repositorios
 
         public IEnumerable<invMarketGroup> SelectMarketGroupsByParentID(int? parentID)
         {
-            return Contexto.invMarketGroups.Where(g => parentID.HasValue? g.parentGroupID == parentID: ! g.parentGroupID.HasValue)
+            return Contexto.invMarketGroups.Where(g => parentID.HasValue ? g.parentGroupID == parentID : !g.parentGroupID.HasValue)
                 .OrderBy(g => g.marketGroupName).ToList();
         }
 
@@ -67,10 +72,10 @@ namespace EveShopping.Repositorios
                 //Attack battlecruiser
                 case 1201:
                     return 15000;
-                    //Battleship
+                //Battleship
                 case 27:
                     return 50000;
-                    //Black Ops
+                //Black Ops
                 case 898:
                     return 50000;
                 //Blockade Runner

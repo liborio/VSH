@@ -16,13 +16,14 @@ using System.Web.Script.Serialization;
 
 namespace EveShopping.Controllers
 {
-    public class ListsController : Controller
+    public class ListsController : VSHBaseController
     {
         //
         // GET: /Lists/
 
         public ActionResult Index()
         {
+
             return View();
         }
 
@@ -30,6 +31,7 @@ namespace EveShopping.Controllers
 
         public ActionResult New()
         {
+            SetHeadCounters();
             return View();
         }
 
@@ -51,7 +53,7 @@ namespace EveShopping.Controllers
         {
             AgenteShoppingList agente = new AgenteShoppingList();
             string publicID = EstadoUsuario.CurrentListPublicId;
-            
+
             agente.ActualizarShoppingListHeader(publicID, slName, slDescription);
             return new EmptyResult();
         }
@@ -71,20 +73,54 @@ namespace EveShopping.Controllers
                 new AgenteShoppingList();
 
             //Guardamos la shopping list en las de un usuario si se indica en la url
-            agente.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);            
+            agente.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);
 
             //cargamos las fits que puedan estar agregadadas a la shopping list
             IEnumerable<EVFitting> fits = agente.SelectFitsEnShoppingList(id);
 
             EDVImportFits edv = new EDVImportFits();
-            edv.Fittings = fits;
+            SetHeadCounters();
+            EDVFittingsList edvFitList = new EDVFittingsList();
+            edvFitList.Fittings = fits;
+            edv.Fittings = edvFitList;
             edv.IsShoppingListFree = agente.IsShoppingListFree(id);
+
+            if (Request.IsAuthenticated)
+            {
+                EDVMyFittings edvmyfit = FittingsController.GetEDVMyFittingsByUser(User.Identity.Name);
+                edv.MyFittings = edvmyfit;
+                SetupFitListForImportMenu(edvmyfit.Fittings);
+            }
 
             return View(edv);
         }
 
+        [Authorize]
+        public ActionResult NavigateMyFittingsMenu(int id, int selFitId = 0, string selFitName = null)
+        {
+            EDVMyFittings edv = FittingsController.CommonNavigateMarketGroup(id, selFitId, selFitName, User.Identity.Name);
+            SetupFitListForImportMenu(edv.Fittings);
+
+            return PartialView("../Fittings/PVPersonalFittingsMenu", edv);
+        }
+
+        private void SetupFitListForImportMenu(EDVFittingsList edv)
+        {
+            if (edv != null)
+            {
+                edv.ShowPriceAndVolume = false;
+                edv.ShowUnits = false;
+                edv.ShowUse = true;
+                edv.ShowEdit = false;
+                edv.DivID = "myFitList";
+            }
+        }
+
         public ActionResult GetList(string id)
         {
+            SetHeadCounters();
+
+
             AgenteShoppingList agente = new AgenteShoppingList();
             EVListSummary summ = agente.SelectListSummaryPorPublicIDRead(id);
 
@@ -97,7 +133,7 @@ namespace EveShopping.Controllers
             edv.ItemArray = itemArray;
             edv.Summary = summ;
 
-            
+
             if (summ.PublicID == id)
             {
                 //Guardamos la shopping list en las de un usuario si se indica en la url
@@ -123,6 +159,7 @@ namespace EveShopping.Controllers
             {
                 Lists = lists
             };
+            SetHeadCounters();
             return View(edv);
         }
 
@@ -134,22 +171,28 @@ namespace EveShopping.Controllers
             }
             EstadoUsuario.CurrentListPublicId = id;
 
+            EDVSummary edv = new EDVSummary();
+            SetHeadCounters();
+
+
             ViewBag.PublicID = id;
             AgenteShoppingList agente = new AgenteShoppingList();
 
             //Guardamos la shopping list en las de un usuario si se indica en la url
-            agente.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);            
+            agente.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);
 
-            EVListSummary summ =  agente.SelectListSummaryPorPublicID(id);            
+            EVListSummary summ = agente.SelectListSummaryPorPublicID(id);
 
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             string itemArray = serializer.Serialize(summ.Items);
 
 
-            EDVSummary edv = new EDVSummary();
             edv.ItemArray = itemArray;
             edv.Summary = summ;
             edv.IsShoppingListFree = agente.IsShoppingListFree(id);
+
+
+
 
             return View(edv);
         }
@@ -163,7 +206,7 @@ namespace EveShopping.Controllers
             string itemArray = serializer.Serialize(summ.Items);
 
             ViewBag.PublicID = id;
-            
+
             EDVSummary edv = new EDVSummary();
             edv.ItemArray = itemArray;
             edv.Summary = summ;
@@ -192,7 +235,7 @@ namespace EveShopping.Controllers
             {
                 fits = logica.ObtenerListaFits(rawFit);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "The fitting cant be analysed, doesnt seem to have a recognized format.");
@@ -208,8 +251,49 @@ namespace EveShopping.Controllers
             }
 
             Session["lastAnalysedFits"] = diccFits;
-            return PartialView("AnalyzedFitList", fits);
+
+            EDVAnalysedFitList edv = new EDVAnalysedFitList();
+            edv.Fittings = fits;
+            edv.UseText = "Use fit";
+
+            if (Request.UrlReferrer.AbsolutePath.Contains("MyFittings"))
+            {
+                edv.ControllerName = "Fittings";
+            }
+            else
+            {
+                edv.ControllerName = "Lists";
+            }
+
+
+            return PartialView("../Shared/AnalyzedFitList", edv);
         }
+
+        public ActionResult UseFitInMyList(int id)
+        {
+            try
+            {
+                AgenteShoppingList agente =
+                    new AgenteShoppingList();
+
+                agente.UseFitInList(EstadoUsuario.CurrentListPublicId, id);
+
+                EVFitting evfit = agente.SelectFitPorID(EstadoUsuario.CurrentListPublicId, id);
+
+                return PartialView("PVFitInShoppingList", evfit);
+
+            }
+            catch (Exception ex)
+            {
+
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+
+            }
+
+
+
+        }
+
 
         public ActionResult UseAnalysedFit(string fitName)
         {
@@ -225,12 +309,24 @@ namespace EveShopping.Controllers
                 if (fit == null) throw new ApplicationException("The fit is not recorded in our archives, try to analyse it again.");
 
                 //Guardamos la fit en base de datos
-                LogicaShoppingLists logica = new LogicaShoppingLists();
-                int fitID = logica.SaveAnalisedFit(EstadoUsuario.CurrentListPublicId, fit);
-
                 AgenteShoppingList agente = new AgenteShoppingList();
-                EVFitting evfit = agente.SelectFitPorID(EstadoUsuario.CurrentListPublicId, fitID);
+                string userName = null;
+                if (Request.IsAuthenticated)
+                {
+                    userName = User.Identity.Name;
+                }
+                int fitID;
+                EVFitting evfit = null;
+                try
+                {
+                    fitID = agente.SaveAnalysedFit(EstadoUsuario.CurrentListPublicId, userName, fit);
+                    evfit = agente.SelectFitPorID(EstadoUsuario.CurrentListPublicId, fitID);
+                }
+                catch (Exception ex)
+                {
 
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+                }
 
                 return PartialView("PVFitInShoppingList", evfit);
 
@@ -256,8 +352,9 @@ namespace EveShopping.Controllers
 
         public ActionResult DeleteFittingFromShoppingList(int id)
         {
+            string publicID = EstadoUsuario.CurrentListPublicId;
             AgenteShoppingList agente = new AgenteShoppingList();
-            agente.DeleteFitPorID(id);
+            agente.DeleteFitPorID(publicID, id);
 
             return Content(id.ToString());
             //return Json(new { Result = id });
@@ -282,12 +379,13 @@ namespace EveShopping.Controllers
             AgenteShoppingList agenteShList = new AgenteShoppingList();
 
             //Guardamos la shopping list en las de un usuario si se indica en la url
-            agenteShList.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);          
+            agenteShList.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);
 
 
             IEnumerable<EVMarketItem> marketItems = agente.SelectMarketGroupsByParentID(null);
             IEnumerable<MarketItem> marketItemsEnShoppingList = agenteShList.SelectMarketItemsEnShoppingList(id);
             EDVAddMarketItems edv = new EDVAddMarketItems();
+            SetHeadCounters();
             edv.MarketItems = marketItems;
             edv.IsShoppingListFree = agenteShList.IsShoppingListFree(id);
             edv.MarketItemsEnShoppingList = marketItemsEnShoppingList;
@@ -351,7 +449,6 @@ namespace EveShopping.Controllers
 
         #endregion
 
-            
 
 
     }

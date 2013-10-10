@@ -8,6 +8,7 @@ namespace EveShopping.Models
 {
     public class EDVImportFits : EDVShopingListBase
     {
-        public IEnumerable<EVFitting> Fittings { get; set; }
+        public EDVFittingsList Fittings { get; set; }
+        public EDVMyFittings MyFittings { get; set; }
     }
 }

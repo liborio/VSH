@@ -22,7 +22,7 @@ namespace EveShopping.Web.Agentes
             decimal total = 0;
             foreach (var item in fittings)
             {
-                total += item.Price;
+                total += item.TotalPrice;
             }
             return total;
         }
@@ -85,6 +85,11 @@ namespace EveShopping.Web.Agentes
             }
         }
 
+        public int SaveAnalysedFit(string publicID, string userName, FittingAnalyzed fitAnalysed)
+        {
+            LogicaShoppingLists logica = new LogicaShoppingLists();
+            return logica.SaveAnalisedFit(publicID, fitAnalysed, userName);
+        }
 
         public EVFitting SelectFitPorID(string publicID, int fittingID)
         {
@@ -98,6 +103,12 @@ namespace EveShopping.Web.Agentes
             LogicaShoppingLists logica = new LogicaShoppingLists();
             string publicID = logica.GetPublidIDPorPublidIDRead(publicIDRead);
             return SelectListSummaryPorPublicID(publicID);
+        }
+
+        public void UseFitInList(string publicID, int fitID)
+        {
+            LogicaShoppingLists logica = new LogicaShoppingLists();
+            logica.UseFitInList(publicID, fitID);
         }
 
         public IList<eshShoppingList> SelectShoppingListsByUserName(string userName)
@@ -181,11 +192,11 @@ namespace EveShopping.Web.Agentes
             
         }
 
-        public int DeleteFitPorID(int fittingID)
+        public int DeleteFitPorID(string publicID, int fittingID)
         {
             LogicaShoppingLists logica =
                 new LogicaShoppingLists();
-            logica.DeleteFitPorID(fittingID);
+            logica.DeleteFitFromShoppingLIST(publicID, fittingID);
             return fittingID;
         }
 
@@ -258,8 +269,8 @@ namespace EveShopping.Web.Agentes
             fit.ShipName = item.invType.typeName;
             fit.ShipVolume = item.shipVolume;
             fit.Volume = item.volume;
-            fit.FittingID = item.fittingID;
-            fit.ShipImageUrl32 = GetImageUrl32(item.invType.typeID);
+            fit.ItemID = item.fittingID;
+            fit.ImageUrl32 = GetImageUrl32(item.invType.typeID);
             fit.Units = units;
             foreach (var itemHwd in item.eshFittingHardwares)
             {

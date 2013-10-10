@@ -13,10 +13,10 @@ namespace EveShopping.Logica
     public class LogicaMarketItems
     {
 
-        public IList<invMarketGroup> GetParentGroupsChain(int idGroup)
+        public IList<invMarketGroup> GetParentGroupsChain(int idGroup, int topGroupId = -1)
         {
             RepositorioItems repo = new RepositorioItems();
-            return repo.GetParentGroupsChainStartingTop(idGroup);
+            return repo.GetParentGroupsChainStartingTop(idGroup, topGroupId);
         }
 
         public IEnumerable<invMarketGroup> SelectMarketGroupsByParentID(int? parentID)

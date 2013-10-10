@@ -171,6 +171,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\VSHBaseController.cs" />
+    <Compile Include="Controllers\FittingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Controllers\ListsController.cs" />
@@ -185,10 +188,13 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\EDVAddMarketItems.cs" />
+    <Compile Include="Models\EDVAnalysedFitList.cs" />
     <Compile Include="Models\EDVImportFits.cs" />
+    <Compile Include="Models\EDVMyFittings.cs" />
     <Compile Include="Models\EDVMyLists.cs" />
     <Compile Include="Models\EDVShopingListBase.cs" />
     <Compile Include="Models\EDVSummary.cs" />
+    <Compile Include="Models\EDVFittingsList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.log4net.cs" />
   </ItemGroup>
@@ -240,6 +246,8 @@
     <Content Include="Content\zocial\zocial-regular-webfont.svg" />
     <Content Include="Content\zocial\zocial.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Scripts\eshMyFittings.js" />
+    <Content Include="Scripts\eshpAnalyseFits.js" />
     <Content Include="Scripts\jquery.flexnav.min.js" />
     <Content Include="Scripts\jquery.simplemodal.1.4.4.min.js" />
     <Content Include="Content\main.css" />
@@ -404,7 +412,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Lists\ImportFits.cshtml" />
-    <Content Include="Views\Lists\AnalyzedFitList.cshtml" />
+    <Content Include="Views\Shared\AnalyzedFitList.cshtml" />
     <Content Include="Views\Lists\UserFitList.cshtml" />
     <Content Include="Views\Lists\PVFitsInShoppingList.cshtml" />
     <Content Include="Views\Lists\PVFitInShoppingList.cshtml" />
@@ -429,6 +437,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Lists\MyLists.cshtml" />
     <Content Include="Views\Lists\PVIncludeListInMyLists.cshtml" />
+    <Content Include="Views\Fittings\MyFittings.cshtml" />
+    <Content Include="Views\Fittings\PVPersonalFittingsMenu.cshtml" />
+    <Content Include="Views\Shared\PVImportFits.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

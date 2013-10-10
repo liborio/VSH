@@ -26,11 +26,15 @@ namespace EveShopping.Modelo.Models.Mapping
             this.Property(t => t.dateCreation).HasColumnName("dateCreation");
             this.Property(t => t.shipVolume).HasColumnName("shipVolume");
             this.Property(t => t.volume).HasColumnName("volume");
+            this.Property(t => t.userID).HasColumnName("userID");
 
             // Relationships
             this.HasOptional(t => t.invType)
                 .WithMany(t => t.eshFittings)
                 .HasForeignKey(d => d.shipTypeID);
+            this.HasOptional(t => t.UserProfile)
+                .WithMany(t => t.eshFittings)
+                .HasForeignKey(d => d.userID);
 
         }
     }

@@ -8,9 +8,9 @@
 <div id="list-main">
     <div class="inside-section">
         <h3 class="main-title clearfix"><span>Fits in shopping list </span><span class="right">
-            @if (Model.Fittings.Count() > 0)
+            @if (Model.Fittings != null && Model.Fittings.Fittings != null && Model.Fittings.Fittings.Count() > 0)
             {
-                <span id="total-price-vol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalPrice(Model.Fittings)) - @EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalVolume(Model.Fittings) m3</span>
+                <span id="total-price-vol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalPrice(Model.Fittings.Fittings)) - @EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalVolume(Model.Fittings.Fittings) m3</span>
             }
             else
             {
@@ -19,8 +19,8 @@
 
         </span></h3>
         <p>It is possible to change the units that you want for each fit in your shopping list.</p>
-        <div id="fitsInList" class="subs-wrapper" data-esh-fits-in-list>
-            @if ((this.Model.Fittings != null) && this.Model.Fittings.Count() > 0)
+        <div id="@Model.Fittings.DivID" class="subs-wrapper" data-esh-fits-in-list>
+            @if (this.Model.Fittings != null && (this.Model.Fittings.Fittings != null) && this.Model.Fittings.Fittings.Count() > 0)
             {
                 Html.RenderPartial("PVFitsInShoppingList", this.Model.Fittings);
             }
@@ -42,26 +42,21 @@
 }
 
 @section izquierda{
-
-
     <div id="list-left-menu">
         <div class="inside-section">
-            <h3>Import fits</h3>
-            <p>Use this panel to import your fits into the shopping list. You can see more information about how to export them in the help.</p>
-            @using (Ajax.BeginForm("AnalyzeRawFit", new AjaxOptions { UpdateTargetId = "fitsAnalysed", OnSuccess = "ReactivateImportedFitsAccordion", OnFailure = "onFailureAnalyzeRawFit" }))
+            @Html.Partial("../Shared/PVImportFits")
+            @if (Request.IsAuthenticated)
             {
-                <form id="payment">
-                    <fieldset>
-                        <legend>Raw fit</legend>
-                        <textarea id="rawFit" name="rawFit" rows="5" placeholder="Paste here the fit that you want to import from EVE or supported fitting tools" required></textarea>
-                        <button type="submit" class="buttonYellow" value="Analyse">Analyse</button>
-                    </fieldset>
-                </form>
+                <h3>My personal fittings</h3>
+                <div id="personal-fittings-menu">
+                    @Html.Partial("../Fittings/PVPersonalFittingsMenu", Model.MyFittings)
+                </div>
+
             }
-            <div id="fitsAnalysed" class="subs-wrapper" data-esh-analysed-fits>
-            </div>
         </div>
     </div>
+
+
 }
 
 @section subheader{

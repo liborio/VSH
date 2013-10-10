@@ -10,6 +10,7 @@ namespace EveShopping.Modelo.Models
             this.eshFittingHardwares = new List<eshFittingHardware>();
             this.eshFittings = new List<eshFitting>();
             this.eshPrices = new List<eshPrice>();
+            this.eshShipsMarketGroups = new List<eshShipsMarketGroup>();
             this.eshShoppingListInvTypes = new List<eshShoppingListInvType>();
             this.eshShoppingListSummInvTypes = new List<eshShoppingListSummInvType>();
             this.eshSnapshotInvTypes = new List<eshSnapshotInvType>();
@@ -31,6 +32,7 @@ namespace EveShopping.Modelo.Models
         public virtual ICollection<eshFittingHardware> eshFittingHardwares { get; set; }
         public virtual ICollection<eshFitting> eshFittings { get; set; }
         public virtual ICollection<eshPrice> eshPrices { get; set; }
+        public virtual ICollection<eshShipsMarketGroup> eshShipsMarketGroups { get; set; }
         public virtual ICollection<eshShoppingListInvType> eshShoppingListInvTypes { get; set; }
         public virtual ICollection<eshShoppingListSummInvType> eshShoppingListSummInvTypes { get; set; }
         public virtual ICollection<eshSnapshotInvType> eshSnapshotInvTypes { get; set; }

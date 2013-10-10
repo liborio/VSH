@@ -61,6 +61,15 @@ namespace EveShopping.Logica {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The fitting is already used in this shopping list..
+        /// </summary>
+        internal static string err_fittigAlreadyUsed {
+            get {
+                return ResourceManager.GetString("err_fittigAlreadyUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is no record of this fitting in our registers.
         /// </summary>
         internal static string err_fittingNoExiste {

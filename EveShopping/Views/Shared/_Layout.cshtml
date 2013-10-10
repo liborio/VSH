@@ -60,9 +60,14 @@
             <li>@Html.ActionLink("New list", "New", "Lists", null, new { id = "navlink_newList" })</li>
             @if (Request.IsAuthenticated)
             {
-            <li>@Html.ActionLink("My lists", "MyLists", "Lists", null, new { id = "navlink_newList" })</li>
+
+              <li><a href="~/Fittings/MyFittings">My fittings[<span id="fittingCount">@ViewBag.FittingCount</span>]</a></li>
+              <li><a href="~/Lists/MyLists">My lists[<span id="listCount">@ViewBag.ListCount</span>]</a></li>
+                @*
+            <li>@Html.ActionLink(string.Format("{0}({1})", "My fittings", Model.FittingCount), "MyFittings", "Fittings", null, new { id = "navlink_newList" })</li>
+            <li>@Html.ActionLink(string.Format("{0}({1})", "My lists", Model.ListCount), "MyLists", "Lists", null, new { id = "navlink_newList" })</li>*@
                 <li>
-                    @Html.ActionLink("My account", "Manage", "Account", routeValues: null, htmlAttributes: new {})
+                    @Html.ActionLink("My account", "Manage", "Account", routeValues: null, htmlAttributes: new { })
                 </li>
             }
             <li><a href="#" id="navlink_about2">About</a></li>

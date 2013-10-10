@@ -1,20 +1,21 @@
 ﻿@model EveShopping.Modelo.EV.EVFitting
 
-<h3 data-esh-name="@Model.Name" data-esh-id="@Model.FittingID" data-esh-units="@Model.Units" class="clearfix accordion-header" data-esh-price="@Model.Price" data-esh-vol="@Model.Volume">
-    <span class="left">@Model.Name</span>
+<h3 data-esh-name="@Model.Name" data-esh-id="@Model.ItemID" data-esh-units="@Model.Units" class="clearfix accordion-header" data-esh-price="@Model.TotalPrice" data-esh-vol="@Model.Volume">
+    <span class="left"><img src="@Model.ImageUrl32" alt="@Model.Name" /></span>
+    <span class="left leftMargin">@Model.Name</span>
     <span class="right">
-        <a data-esh-edit-link onclick="editFitInShoppingList('@Model.FittingID')">Edit</a>
+        <a data-esh-edit-link onclick="editFitInShoppingList('@Model.ItemID')">Edit</a>
 
     </span>
-    <span class="right">x @Model.Units (@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.Price) - @Model.Volume m3)</span>
+    <span class="right">x @Model.Units (@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.TotalPrice ) - @Model.Volume m3)</span>
 
 </h3>
 
-<div class="subs-wrapper-main" data-esh-name="@Model.Name" data-esh-id="@Model.FittingID" data-esh-secDesp-name="@Model.Name">
+<div class="subs-wrapper-main" data-esh-name="@Model.Name" data-esh-id="@Model.ItemID" data-esh-secDesp-name="@Model.Name">
     <table>
         <tr class="fila-impar">
             <td>
-                <img src="@Model.ShipImageUrl32" alt="@Model.Name" /></td>
+                <img src="@Model.ImageUrl32" alt="@Model.Name" /></td>
             <td>@Model.ShipName</td>
             <td>x 1</td>
             <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.ShipPrice)</td>
@@ -47,7 +48,7 @@
         }
         <tr class="fila-ultima">
             <td colspan="3">Totals x 1 unit</td>
-            <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.Price/Model.Units)</td>
+            <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.TotalPrice/Model.Units)</td>
             <td class="numericCol">@(Model.Volume/Model.Units) m3</td>
         </tr>
     </table>

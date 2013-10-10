@@ -988,7 +988,7 @@ body.loading {
 
 @media (min-width:748px) {
     body {
-        background-image: url('../../Content/Images/bg.jpg');
+        background: url('../../Content/Images/bg.jpg') #000000 no-repeat;
     }
 
 
@@ -1087,4 +1087,13 @@ width: 55%;
 margin-left: 40px;
 float: left;
 width: 40%;
+}
+
+.leftMargin {
+    margin-left: 0.5em;
+}
+
+.right {
+    margin-left: 0.5em;
+    float: right;
 }

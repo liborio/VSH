@@ -47,6 +47,7 @@
     <Compile Include="Constantes.cs" />
     <Compile Include="EntidadesAux\FittingAnalyzed.cs" />
     <Compile Include="EntidadesAux\FittingHardwareAnalyzed.cs" />
+    <Compile Include="EntidadesAux\TreeNode.cs" />
     <Compile Include="EV\BaseItem.cs" />
     <Compile Include="EV\ChangesSummaryItem.cs" />
     <Compile Include="EV\IItem.cs" />
@@ -55,12 +56,16 @@
     <Compile Include="EV\EVFittingHardware.cs" />
     <Compile Include="EV\EVListSummary.cs" />
     <Compile Include="Enumerados.cs" />
+    <Compile Include="EV\ShipMarketGroup.cs" />
     <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
-    <Compile Include="Models\eshFitting.cs" />
+    <Compile Include="Models\eshShipsMarketGroup.cs" />
+    <Compile Include="Models\invMarketGroup.cs" />
+    <Compile Include="Models\invType.cs" />
+    <Compile Include="Models\Mapping\eshFitting.cs" />
     <Compile Include="Models\eshFittingHardware.cs" />
     <Compile Include="Models\eshFittingSlot.cs" />
     <Compile Include="Models\eshPrice.cs" />
@@ -73,7 +78,6 @@
     <Compile Include="Models\eshTradeHub.cs" />
     <Compile Include="Models\EveShoppingContext.cs" />
     <Compile Include="Models\invGroup.cs" />
-    <Compile Include="Models\invMarketGroup.cs" />
     <Compile Include="Models\dgmEffect.cs" />
     <Compile Include="Models\Mapping\dgmEffectMap.cs" />
     <Compile Include="Models\dgmTypeEffect.cs" />
@@ -82,10 +86,10 @@
     <Compile Include="Models\Mapping\eshFittingMap.cs" />
     <Compile Include="Models\Mapping\eshFittingSlotMap.cs" />
     <Compile Include="Models\Mapping\eshPriceMap.cs" />
+    <Compile Include="Models\Mapping\eshShipsMarketGroupMap.cs" />
     <Compile Include="Models\Mapping\eshShoppingListFittingMap.cs" />
     <Compile Include="Models\Mapping\eshShoppingListInvTypeMap.cs" />
     <Compile Include="Models\Mapping\eshShoppingListMap.cs" />
-    <Compile Include="Models\invType.cs" />
     <Compile Include="Models\Mapping\eshShoppingListSummInvTypeMap.cs" />
     <Compile Include="Models\Mapping\eshSnapshotInvTypeMap.cs" />
     <Compile Include="Models\Mapping\eshSnapshotMap.cs" />

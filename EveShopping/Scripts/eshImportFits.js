@@ -3,12 +3,15 @@
 /// <reference path="eshCommon.js" />
 
 
-
-
 $(document).ready(function () {
     $('#help-container div').hide();
 });
 
+$("#rawFit").keyup(function (event) {
+    if (event.keyCode == 13) {
+        $("#idAnalyseBtn").click();
+    }
+});
 
 $(function () {
     $('#help-container div').show();
@@ -20,33 +23,31 @@ $(document).ready(function () {
     $('.header-container').find('a').removeClass('selected');
     $('.header-container').find('#navlink_newList').addClass('selected');
     accordionState.initAccordion($('#fitsInList'));
+    accordionState.initAccordion($('#myFitList'));
 });
 
 
 function ReactivateImportedFitsAccordion() {
     accordionState.initAccordion($("#fitsAnalysed"))
     $("#rawFit").val('');
-    //$(function () { $("#fitsAnalysed").accordion({ collapsible: true, active: false, heighStyle: "content", autoHeight: false, clearStyle: true }) });
 }
-
-function OnSuccessUseAnalysedFit(data) {
-    $(data).prependTo($("[data-esh-fits-in-list]").first());
-    var name = $(data).first().attr('data-esh-name');
-    $('[data-esh-analysed-fits]').children('[data-esh-name = "' + name + '"]').remove();
-    accordionState.initAccordion($('#fitsInList'), 0);
-    setTotalPriceAndUnits();
-}
-
 function onFailureAnalyzeRawFit(data) {
     infoDialog.show("Could'nt analyse fit", "There was a problem analysing your fit.", data.statusText, infoDialog.warning);
 }
 
-function OnErrorUseAnalysedFit(data) {
-    infoDialog.show("Could'nt use fit", "There was a problem saving your fit in eve-shopping", data.statusText, infoDialog.warning);
+
+function OnSuccessUseAnalysedFit(data) {
+    $(data).prependTo($("#fitsInList").first());
+    var name = $(data).first().attr('data-esh-name');
+    $('[data-esh-analysed-fits]').children('[data-esh-name = "' + name + '"]').remove();
+    accordionState.initAccordion($('#fitsInList'), 0);
+    menuCounters.incFittings();
+    setTotalPriceAndUnits();
 }
 
+
 function OnSuccessDeleteFitFromList() {
-    $('[data-esh-fits-in-list]').children('[data-esh-id = "' + this + '"]').remove();
+    $('#fitsInList').children('[data-esh-id = "' + this + '"]').remove();
     accordionState.initAccordion($('#fitsInList'));
     cleanEdits();
     setTotalPriceAndUnits();
@@ -54,9 +55,9 @@ function OnSuccessDeleteFitFromList() {
 
 function onSetUnitsInShoppingListSuccess(data) {
     var id = this;
-    var fitsContainer = $('[data-esh-fits-in-list]');
+    var fitsContainer = $('#fitsInList');
     $(fitsContainer).find('[data-esh-id = ' + id + '] + div').remove();
-    $(data).replaceAll('[data-esh-id = ' + id + ']');
+    $(data).replaceAll($('#fitsInList').find('[data-esh-id = ' + id + ']'));
     
     accordionState.initAccordion($('#fitsInList'));
     accordionState.openPanel($('#fitsInList'), id);
@@ -67,17 +68,17 @@ function onSetUnitsInShoppingListSuccess(data) {
 
 
 function cleanEdits() {
-    $('[data-esh-fits-in-list]').find('[data-esh-row-edit]').remove();
-    $('[data-esh-fits-in-list]').find('[data-esh-edit-link]').show();
+    $('#fitsInList').find('[data-esh-row-edit]').remove();
+    $('#fitsInList').find('[data-esh-edit-link]').show();
 }
 
     function editFitInShoppingList(id) {
         cleanEdits();
-        var row = $('[data-esh-fits-in-list]').find('[data-esh-id="' + id + '"]').find('tr').first();
-        var units = $('[data-esh-fits-in-list]').find('h3[data-esh-id="' + id + '"]').data('esh-units')
+        var row = $('#fitsInList').find('[data-esh-id="' + id + '"]').find('tr').first();
+        var units = $('#fitsInList').find('h3[data-esh-id="' + id + '"]').data('esh-units')
         $(row).addClass('row-edit');
 
-        $('[data-esh-fits-in-list]').find('[data-esh-edit-link]').hide();
+        $('#fitsInList').find('[data-esh-edit-link]').hide();
         var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='4' class='col-edit'><span><a onclick=\"setUnitsItemInShoppingList('" + id + "')\">Set</a> <input  data-esh-units type='number' min='1' value='" + units + "'>units</span><span><a onclick=\"deleteItemInShoppingList('" + id + "')\">Delete</a></span><span><a onclick=\"cancelEditItemInShoppingList('" + id + "')\">Close edit</a></span>";
         $(filaControlesEdicion).insertBefore(row);
 
@@ -107,7 +108,7 @@ function cleanEdits() {
 
     function setUnitsItemInShoppingList(id) {
 
-        var units = $('[data-esh-fits-in-list]').find('[data-esh-id=' + id + '] + div').find('[data-esh-units]').val();
+        var units = $('#fitsInList').find('[data-esh-id=' + id + '] + div').find('[data-esh-units]').val();
         $.ajax({
             type: 'POST',
             url: '/Lists/SetUnitsToFitInShoppingList',
@@ -127,4 +128,37 @@ function cleanEdits() {
         });
     }
 
+/// personal fits navigation
+    function OnSuccessNavigateMarketGroup(data) {
+        $('[data-esh-marketMenu]').replaceWith(data);
+        accordionState.initAccordion($('#myFitList'));
+    }
 
+    function navigateMarketGroup(id) {
+        $.ajax({
+            url: '/Lists/NavigateMyFittingsMenu/' + id,
+            success: OnSuccessNavigateMarketGroup,
+            dataType: 'html'
+        });
+    }
+
+    function onSuccessUseFitInMyList(data) {
+        $(data).prependTo( $('#fitsInList').first());
+        accordionState.initAccordion($('#fitsInList'), 0);
+        setTotalPriceAndUnits();
+    }
+
+
+
+    function useFitInMyList(id) {
+        $.ajax({
+            url: '/Lists/UseFitInMyList/' + id,
+            success: onSuccessUseFitInMyList,
+            error: onErrorUseFitInMyList,
+            dataType: 'html'
+        });
+    }
+
+    function onErrorUseFitInMyList(data) {
+        infoDialog.show("Could'nt use fit", "There was a problem adding the fit to your shopping list.", data.statusText, infoDialog.warning);
+    }

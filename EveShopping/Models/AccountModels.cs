@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EveShopping.Web.Modelo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -36,7 +37,7 @@ namespace EveShopping.Models
         public string ExternalLoginData { get; set; }
     }
 
-    public class LocalPasswordModel
+    public class LocalPasswordModel : EDVBase
     {
         [Required]
         [DataType(DataType.Password)]
@@ -70,7 +71,7 @@ namespace EveShopping.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterModel
+    public class RegisterModel : EDVBase
     {
         [Required]
         [Display(Name = "User name")]

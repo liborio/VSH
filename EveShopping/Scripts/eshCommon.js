@@ -97,6 +97,42 @@ function openEoghanInfo() {
     }
 }
 
+menuCounters = {
+    incFittings: function (units) {
+        if (typeof units === "undefined") {
+            units = 1;
+        }
+        actual = parseInt($("#fittingCount").text());
+        actual += units;
+        $("#fittingCount").text(actual)
+    },
+    decFittings: function (units) {
+        if (typeof units === "undefined") {
+            units = 1;
+        }
+        actual = parseInt($("#fittingCount").text());
+        actual -= units;
+        $("#fittingCount").text(actual)
+    },
+    incLists: function (units) {
+        if (typeof units === "undefined") {
+            units = 1;
+        }
+        actual = parseInt($("#listCount").text());
+        actual += units;
+        $("#listCount").text(actual)
+
+    },
+    decLists: function (units) {
+        if (typeof units === "undefined") {
+            units = 1;
+        }
+        actual = parseInt($("#listCount").text());
+        actual -= units;
+        $("#listCount").text(actual)
+    }
+}
+
 
 infoDialog = {
     warning: "warning",

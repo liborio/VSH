@@ -43,13 +43,16 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agentes\AgenteFittings.cs" />
     <Compile Include="Agentes\AgenteMarketItems.cs" />
+    <Compile Include="Agentes\AgenteShared.cs" />
     <Compile Include="Agentes\AgenteShoppingList.cs" />
     <Compile Include="EstadoUsuario.cs" />
     <Compile Include="Imagex32UrlResolver.cs" />
     <Compile Include="IsGuidConstrain.cs" />
     <Compile Include="Mappings.cs" />
     <Compile Include="Modelo\ConvertToJavaScriptArray.cs" />
+    <Compile Include="Modelo\EDVBase.cs" />
     <Compile Include="Modelo\EVMarketItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -34,7 +34,7 @@
     </div>
 
 <div id="itemsInSummary" class="subs-wrapper">
-    <p>Items contained in the shopping list. You can edit to add or remove units (+ / - column) from the amount that you added previously in the <strong>Add ship fittings</strong> and <strong>Add market</strong> screens.</p>
+    <p>Items contained in the shopping list. You can edit to add or remove units (+ / - column) from the amount that you added previously in the <strong>Add ship fittings</strong> and <strong>Add market items</strong> screens.</p>
     @Html.Partial("PVSummaryItems", Model.Summary)
 </div>
 
@@ -63,7 +63,7 @@
     <div id="subheader-container" class="wrapper clearfix">
         <ul id="menu-pasos">
             <li>@Html.ActionLink("Add ship fittings", "ImportFits", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
-            <li>@Html.ActionLink("Add market", "AddMarketItems", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
+            <li>@Html.ActionLink("Add market items", "AddMarketItems", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
             <li class="selected">@Html.ActionLink("Summary", "Summary", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
         </ul>
     </div>
