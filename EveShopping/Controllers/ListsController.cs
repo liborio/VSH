@@ -186,15 +186,33 @@ namespace EveShopping.Controllers
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             string itemArray = serializer.Serialize(summ.Items);
 
+            edv.StaticLists = agente.SelectStaticListsByShoppingListPublicID(id);
 
             edv.ItemArray = itemArray;
             edv.Summary = summ;
             edv.IsShoppingListFree = agente.IsShoppingListFree(id);
 
-
-
-
             return View(edv);
+        }
+
+        public ActionResult Static(string id )
+        {
+            SetHeadCounters();
+            EDVStatic list = new EDVStatic();
+            AgenteShoppingList agente = new AgenteShoppingList();
+            list.StaticLists = agente.SelectStaticListByPublicID(id);
+            
+            return View(list);
+        }
+
+        public ActionResult NewStaticShoppingList()
+        {
+            AgenteShoppingList agente =
+                new AgenteShoppingList();
+            agente.CreateStaticShoppingList(EstadoUsuario.CurrentListPublicId);
+            IEnumerable<eshSnapshot> sslist = agente.SelectStaticListsByShoppingListPublicID(EstadoUsuario.CurrentListPublicId);
+
+            return PartialView("PVStaticShoppingLists", sslist);
         }
 
         public ActionResult Public(string id)

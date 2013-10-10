@@ -1,0 +1,59 @@
+﻿@model EveShopping.Models.EDVStatic
+
+@{
+    ViewBag.Title = "Static list";
+    ViewBag.FullTitle = "EVE-shopping, static list:  " + Model.StaticLists.name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="main-title clearfix"><span>Summary</span>
+    <span class="right">
+        @if (Model.StaticLists.eshSnapshotInvTypes.Count() > 0)
+        {
+            <span id="total-price-vol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.StaticLists.totalPrice) - @Model.StaticLists.totalVolume m3</span>
+        }
+
+    </span>
+</h3>
+
+    <div id="help-container" class="notVisible">
+        <h3 ><span>@Model.StaticLists.name - @EveShopping.Web.VSHMappings.GetGridDateFormat(Model.StaticLists.creationDate)</span><span class="right">(open to view name and description)</span></h3>
+        <div>
+            @using (Html.BeginForm("SaveShoppingListHeader", "Lists", FormMethod.Post))
+            {
+                <fieldset>
+                    <legend>Name</legend>
+                    <input readonly="true" class="disabled" type="text" name="slName" placeholder="Shopping list's name" required maxlength="100" value="@Model.StaticLists.name" />
+                </fieldset>
+                <fieldset>
+                    <legend>Description</legend>
+                    <textarea readonly="readonly" class="disabled" name="slDescription" rows="5" placeholder="Description for new shopping list" maxlength="3000">@Model.StaticLists.description</textarea>
+                </fieldset>
+            }
+        </div>
+    </div>
+
+<div id="itemsInSummary" class="subs-wrapper">
+    @Html.Partial("PVStaticListItems", Model.StaticLists.eshSnapshotInvTypes.OrderByDescending(i => i.unitPrice))
+</div>
+
+
+@section ayuda{
+
+
+}
+
+
+@section scriptsHead{
+
+}
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/eshStatic.js"></script>
+
+    <link href="~/content/footable.core.css" rel="stylesheet" type="text/css" />
+    <script src="~/scripts/footable/footable.js" type="text/javascript"></script>
+    <script src="~/scripts/footable/footable.sort.js" type="text/javascript"></script>
+    <script src="~/scripts/footable/footable.paginate.js" type="text/javascript"></script>
+    <script src="~/scripts/bootstrap-tab.js" type="text/javascript"></script>
+    }

@@ -9,5 +9,7 @@ namespace EveShopping.Modelo.Models
         public int Code { get; set; }
         public short Severity { get; set; }
         public string Message { get; set; }
+        public System.DateTime Date { get; set; }
+        public Nullable<int> UserId { get; set; }
     }
 }

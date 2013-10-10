@@ -111,6 +111,24 @@ namespace EveShopping.Web.Agentes
             logica.UseFitInList(publicID, fitID);
         }
 
+        public eshSnapshot CreateStaticShoppingList(string publicID)
+        {
+            LogicaSnapshots logica = new LogicaSnapshots();
+            return logica.CreateStaticShoppingList(publicID, null, new Imagex32UrlResolver());
+        }
+
+        public IEnumerable<eshSnapshot> SelectStaticListsByShoppingListPublicID(string publicID)
+        {
+            LogicaSnapshots logica = new LogicaSnapshots();
+            return logica.SelectStaticListsByShoppingListPublidID(publicID);
+        }
+
+        public eshSnapshot SelectStaticListByPublicID(string publicID)
+        {
+            LogicaSnapshots logica = new LogicaSnapshots();
+            return logica.SelectStaticListByPublicID(publicID);
+        }
+
         public IList<eshShoppingList> SelectShoppingListsByUserName(string userName)
         {
             LogicaShoppingLists logica = new LogicaShoppingLists();

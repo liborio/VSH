@@ -10,6 +10,7 @@ namespace EveShopping.Modelo.Models.Mapping
             // Primary Key
             this.HasKey(t => t.LogID);
 
+            // Properties
             this.Property(t => t.Message)
                 .IsRequired();
 
@@ -20,7 +21,7 @@ namespace EveShopping.Modelo.Models.Mapping
             this.Property(t => t.Severity).HasColumnName("Severity");
             this.Property(t => t.Message).HasColumnName("Message");
             this.Property(t => t.Date).HasColumnName("Date");
-            this.Property(t => t.UserID).HasColumnName("UserID");
+            this.Property(t => t.UserId).HasColumnName("UserId");
         }
     }
 }

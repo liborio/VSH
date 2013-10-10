@@ -1,4 +1,5 @@
-﻿using EveShopping.Modelo;
+﻿using EveShopping.Logica;
+using EveShopping.Modelo;
 using EveShopping.Web.Modelo;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,18 @@ namespace EveShopping.Web
 {
     public class VSHMappings
     {
+
+        private static IImageResolver Image32Resolver { get; set; }
+
+        static VSHMappings()
+        {
+            Image32Resolver = new Imagex32UrlResolver();
+        }
+
+        public static string ResolveImage32(int id)
+        {
+            return Image32Resolver.GetImageURL(id);
+        }
 
         public static ulong GetLongFromDate(DateTime date)
         {

@@ -43,6 +43,22 @@ eshFormats = {
     }
 }
 
+eveapi = {
+    openMarketDatailsWindow: function (id) {
+        try {
+            CCPEVE.showMarketDetails(id);
+        } catch (e) {
+            $(function () {
+                infoDialog.show(
+                    "Market not available in this browser"
+                    , "You can access market details for the items only from EVE Online browser."
+                    , "Clicking in this link from in game browser will open market details window.");
+            });
+        }
+
+    }
+}
+
 general = {
     authenticated: false
 }

@@ -10,22 +10,17 @@ $(function () {
     $('#help-container').show().accordion({ collapsible: true, active: false, heighStyle: "content", autoHeight: false, clearStyle: true });
 });
 
+$(document).ready(function () {
+    $("#lnkCreateStaticList").click(function () { createStaticList();});
+});
+
 function onSuccessSaveShoppingListHeader(data) {
     var name = $('#slName').val();
     $('#hListName').text(name);
 }
 
 function openMarketDatailsWindow(id) {
-    try {
-        CCPEVE.showMarketDetails(id);
-    } catch (e) {
-        $(function () {
-            infoDialog.show(
-                "Market not available in this browser"
-                , "You can access market details for the items only from EVE Online browser."
-                , "Clicking in this link from in game browser will open market details window.");
-        });
-    }
+    eveapi.openMarketDatailsWindow(id);
 }
 
 function cleanEdits() {
@@ -107,4 +102,20 @@ function updateDeltaInSummary(id, funcSuccess, units) {
         data: { id: id, units: units },
         dataType: 'html'
     });
+}
+
+/////////// Static lists
+
+function createStaticList() {
+    var name = $("#hListName").text();
+    $.ajax({
+        url: '/Lists/NewStaticShoppingList',
+        success: onCreateStaticListSuccess,
+        dataType: 'html',
+        data: { name: name }
+    });
+}
+
+function onCreateStaticListSuccess(data) {
+    $("#tableStaticLists").replaceWith(data);
 }

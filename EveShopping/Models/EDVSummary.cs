@@ -1,4 +1,5 @@
 ﻿using EveShopping.Modelo.EV;
+using EveShopping.Modelo.Models;
 using EveShopping.Web.Modelo;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,6 @@ namespace EveShopping.Models
     {
         public string ItemArray { get; set; }
         public EVListSummary Summary { get; set; }
+        public IEnumerable<eshSnapshot> StaticLists {get; set;}
     }
 }

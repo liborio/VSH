@@ -24,7 +24,7 @@ namespace EveShopping.Loggin
                 UserProfile usu = contexto.userProfiles.Where(u => u.UserName == userName).FirstOrDefault();
                 if (usu != null)
                 {
-                    log.UserID = usu.UserId;
+                    log.UserId = usu.UserId;
                 }
             }
 

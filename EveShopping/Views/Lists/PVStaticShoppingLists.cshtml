@@ -1,0 +1,36 @@
+﻿@model IEnumerable<EveShopping.Modelo.Models.eshSnapshot>
+
+
+<table id="tableStaticLists">
+<thead>
+    <tr>
+        <th data-sort-ignore="true">Name</th>
+        <th data-sort-ignore="true">Creation date</th>
+        <th data-sort-ignore="true">Price</th>
+        <th data-sort-ignore="true">Volume</th>
+        <th data-sort-ignore="true"></th>
+        <th data-sort-ignore="true"></th>
+    </tr>
+</thead>
+ <tbody>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.name</td>
+        <td>@EveShopping.Web.VSHMappings.GetGridDateFormat( item.creationDate)</td>
+        <td>@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.totalPrice)</td>
+        <td>@item.totalVolume m3</td>
+        <td>@Html.ActionLink("View", "Static", new { id = item.publicID }, null)</td>
+        <td>(delete)</td>
+    </tr>
+}
+</tbody>
+<tfoot>
+        <tr>
+        <td colspan="7">
+            <div class="pagination pagination-centered"></div>
+        </td>
+    </tr>
+
+</tfoot>
+</table>

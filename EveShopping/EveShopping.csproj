@@ -193,6 +193,7 @@
     <Compile Include="Models\EDVMyFittings.cs" />
     <Compile Include="Models\EDVMyLists.cs" />
     <Compile Include="Models\EDVShopingListBase.cs" />
+    <Compile Include="Models\EDVStatic.cs" />
     <Compile Include="Models\EDVSummary.cs" />
     <Compile Include="Models\EDVFittingsList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -248,6 +249,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Scripts\eshMyFittings.js" />
     <Content Include="Scripts\eshpAnalyseFits.js" />
+    <Content Include="Scripts\eshStatic.js" />
     <Content Include="Scripts\jquery.flexnav.min.js" />
     <Content Include="Scripts\jquery.simplemodal.1.4.4.min.js" />
     <Content Include="Content\main.css" />
@@ -440,6 +442,9 @@
     <Content Include="Views\Fittings\MyFittings.cshtml" />
     <Content Include="Views\Fittings\PVPersonalFittingsMenu.cshtml" />
     <Content Include="Views\Shared\PVImportFits.cshtml" />
+    <Content Include="Views\Lists\PVStaticShoppingLists.cshtml" />
+    <Content Include="Views\Lists\Static.cshtml" />
+    <Content Include="Views\Lists\PVStaticListItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

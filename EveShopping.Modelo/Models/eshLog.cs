@@ -10,7 +10,6 @@ namespace EveShopping.Modelo.Models
         public short Severity { get; set; }
         public string Message { get; set; }
         public System.DateTime Date { get; set; }
-        public Nullable<int> UserID { get; set; }
-
+        public Nullable<int> UserId { get; set; }
     }
 }

@@ -38,23 +38,16 @@
     @Html.Partial("PVSummaryItems", Model.Summary)
 </div>
 
-<div class="clearfix">
-    <article class="full">
-        <section>
-            <p>Next link is readonly link, you can provide it to anybody that you find convenient:</p>
-            <a class="yellow-link" href="http://www.findeldia.com/lists/@Model.Summary.ReadOnlyPublicID">Readonly link for sharing</a>
-            <p>You can edit the shopping list anytime, just access next link. Take care if you give it to anybody, he will be able to modify your list:</p>
-            <a class="yellow-link" href="http://www.findeldia.com/lists/@Model.Summary.PublicID">Link for shopping list edition</a>
-        </section>
-    </article>
-</div>
+
+<h3 class="main-title clearfix">Static shopping lists related</h3>
+<p>A static shopping list is a picture of a shopping list in a moment of time. It is readonly and will keep inmutable even if the shopping list changes later. They are perfect to provide to someone or to use by yourself when you do your shopping, it will not show items with 0 units in the summary.</p>
+@Html.Partial("PVStaticShoppingLists", Model.StaticLists)
+<a id="lnkCreateStaticList" class="buttonYellow">Create new static sopping list</a>
 
 <div id="full-main">
-
-
     <div id="links-navegacion-pasos-container">
         @Html.ActionLink("<< Add market items", "AddMarketItems", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
-        @Html.Partial("PVIncludeListInMyLists", new { ListDoesntHaveOwner = Model.IsShoppingListFree })
+@*        @Html.Partial("PVIncludeListInMyLists", new { ListDoesntHaveOwner = Model.IsShoppingListFree })*@
     </div>
 
 </div>
