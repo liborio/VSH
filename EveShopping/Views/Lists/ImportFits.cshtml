@@ -37,13 +37,23 @@
 
 
 @section scripts{
+
+    @if (Request.IsAuthenticated)
+    {
+        <script type="text/javascript">
+            general.authenticated = true;
+        </script>
+    }
+
+
     <script src="~/Scripts/eshImportFits.js" type="text/javascript">
     </script>
+
 }
 
 @section izquierda{
     <div id="list-left-menu">
-        <div class="inside-section">
+        <div class="inside-section" id="import-fits-accordion">
             @Html.Partial("../Shared/PVImportFits")
             @if (Request.IsAuthenticated)
             {

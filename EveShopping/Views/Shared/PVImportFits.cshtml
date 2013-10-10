@@ -1,15 +1,17 @@
-﻿            <h3>Import fits</h3>
-            <p>Use this panel to import your fits into the shopping list. You can see more information about how to export them in the help.</p>
-            @using (Ajax.BeginForm("AnalyzeRawFit", "Lists", new AjaxOptions { UpdateTargetId = "fitsAnalysed", OnSuccess = "ReactivateImportedFitsAccordion", OnFailure = "onFailureAnalyzeRawFit" }))
-            {
-                <form id="payment">
-                    <fieldset>
-                        <legend>Raw fit</legend>
-                        <p style="color: red;">(Here allow the chance to upload file, make life easier for XML files...)</p>
-                        <textarea id="rawFit" name="rawFit" rows="5" placeholder="Paste here the fit that you want to import from EVE or supported fitting tools" required></textarea>
-                        <button id="idAnalyseBtn" type="submit" class="buttonYellow" value="Analyse">Analyse</button>
-                    </fieldset>
-                </form>
+﻿<h3>Import fits</h3>
+<div>
+    <p>Use this panel to import your fits into the shopping list. You can see more information about how to export them in the help.</p>
+    @using (Ajax.BeginForm("AnalyzeRawFit", "Lists", new AjaxOptions { UpdateTargetId = "fitsAnalysed", OnSuccess = "ReactivateImportedFitsAccordion", OnFailure = "onFailureAnalyzeRawFit" }))
+    {
+        <form id="payment">
+            <fieldset>
+                <legend>Raw fit</legend>
+                <p style="color: red;">(Here allow the chance to upload file, make life easier for XML files...)</p>
+                <textarea id="rawFit" name="rawFit" rows="5" placeholder="Paste here the fit that you want to import from EVE or supported fitting tools" required></textarea>
+                <button id="idAnalyseBtn" type="submit" class="buttonYellow" value="Analyse">Analyse</button>
+            </fieldset>
+        </form>
             }
-            <div id="fitsAnalysed" class="subs-wrapper" data-esh-analysed-fits>
-            </div>
+    <div id="fitsAnalysed" class="subs-wrapper" data-esh-analysed-fits>
+    </div>
+</div>

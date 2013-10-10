@@ -7,22 +7,27 @@ function findMember(t) {
     alert(t);
 }
 
+$(function () {
+    accordionState.initAccordion($('#market-items-accordion'));
+    accordionState.openPanelByIndex($('#market-items-accordion'), 1);
+});
+
 $(document).ready(function () {
     $('.header-container').find('a').removeClass('selected');
     $('.header-container').find('#navlink_newList').addClass('selected');
-    accordionState.initAccordion($('#market-items-accordion'));
 
     $("#searchButton").click(function () {
         searchMarketItem($("#searchText").val())
     });
 
-    accordionState.openPanelByIndex($('#market-items-accordion'), 1);
 
     $("#searchText").keyup(function (event) {
         if (event.keyCode == 13) {
             $("#searchButton").click();
         }
     });
+
+    accordionState.openPanelByIndex($('#market-items-accordion'), 1);
 
 });
 

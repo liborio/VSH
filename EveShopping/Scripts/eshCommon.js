@@ -43,6 +43,10 @@ eshFormats = {
     }
 }
 
+general = {
+    authenticated: false
+}
+
 accordionState = {
 
     initAccordion: function (acc, index) {

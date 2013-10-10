@@ -3,6 +3,7 @@
 /// <reference path="eshCommon.js" />
 
 
+
 $(document).ready(function () {
     $('#help-container div').hide();
 });
@@ -19,11 +20,22 @@ $(function () {
 });
 
 
+if (general.authenticated) {
+    accordionState.initAccordion($('#import-fits-accordion'), 1);
+    accordionState.openPanelByIndex($('#import-fits-accordion'), 1);
+}
+
+
 $(document).ready(function () {
     $('.header-container').find('a').removeClass('selected');
     $('.header-container').find('#navlink_newList').addClass('selected');
     accordionState.initAccordion($('#fitsInList'));
     accordionState.initAccordion($('#myFitList'));
+
+    if (general.authenticated) {
+        accordionState.openPanelByIndex($('#import-fits-accordion'), 1);
+    }
+
 });
 
 

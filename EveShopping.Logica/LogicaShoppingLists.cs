@@ -11,6 +11,7 @@ using System.Transactions;
 using EveShopping.Repositorios;
 using EveShopping.Modelo.EV;
 using EveShopping.Logica.QEntities;
+using EveShopping.Loggin;
 
 namespace EveShopping.Logica
 {
@@ -30,44 +31,52 @@ namespace EveShopping.Logica
 
         public IEnumerable<FittingAnalyzed> ObtenerListaFits(string fitOriginal)
         {
-            IConversorFit conv = null;
-            IEnumerable<FittingAnalyzed> salida = null;
-
-            conv = new ConversorDNAToFitList();
             try
             {
-                salida = conv.ToFitList(fitOriginal);
-                if (salida != null)
+                IConversorFit conv = null;
+                IEnumerable<FittingAnalyzed> salida = null;
+
+                conv = new ConversorDNAToFitList();
+                try
                 {
-                    return salida;
+                    salida = conv.ToFitList(fitOriginal);
+                    if (salida != null)
+                    {
+                        return salida;
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-            }
-
-            
-            conv = new ConversorEFTToFitList();
-            try
-            {
-                salida = conv.ToFitList(fitOriginal);
-                if (salida != null)
+                catch (Exception ex)
                 {
-                    return salida;
                 }
-            }
-            catch (FittingFormatNotRecognisedException ex)
-            {
-            }
 
-            conv = new ConversorEveXmlToFitList();
-            salida = conv.ToFitList(fitOriginal);
 
-            if (salida == null)
-            {
-                throw new FittingFormatNotRecognisedException(Messages.err_fittingNoExiste);
+                conv = new ConversorEFTToFitList();
+                try
+                {
+                    salida = conv.ToFitList(fitOriginal);
+                    if (salida != null)
+                    {
+                        return salida;
+                    }
+                }
+                catch (FittingFormatNotRecognisedException ex)
+                {
+                }
+
+                conv = new ConversorEveXmlToFitList();
+                salida = conv.ToFitList(fitOriginal);
+
+                if (salida == null)
+                {
+                    throw new FittingFormatNotRecognisedException(Messages.err_fittingNoExiste);
+                }
+                return salida;
             }
-            return salida;
+            catch (Exception)
+            {
+                VSHLoggin.Log(eLogSeverity.warning, ErrCodes.ERR_FailAnalysingFit, fitOriginal);
+                throw;
+            }
         }
 
         public eshFitting SelectFitPorID(int fittingID)

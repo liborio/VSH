@@ -61,11 +61,15 @@
     <Compile Include="EveCentral\ItemPrices.cs" />
     <Compile Include="EveCentral\ItemPriceStats.cs" />
     <Compile Include="IImageResolver.cs" />
+    <Compile Include="Loggin\eLogSeverity.cs" />
+    <Compile Include="Loggin\ErrCodes.cs" />
     <Compile Include="LogicaAdmin.cs" />
     <Compile Include="LogicaEveCentral.cs" />
     <Compile Include="LogicaFittings.cs" />
+    <Compile Include="Loggin\VSHLoggin.cs" />
     <Compile Include="LogicaMarketItems.cs" />
     <Compile Include="LogicaShoppingLists.cs" />
+    <Compile Include="LogicaSnapshots.cs" />
     <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
