@@ -129,7 +129,7 @@ namespace EveShopping.Web.Agentes
             return logica.SelectStaticListByPublicID(publicID);
         }
 
-        public IList<eshShoppingList> SelectShoppingListsByUserName(string userName)
+        public IList<EVShoppingListHeader> SelectShoppingListsByUserName(string userName)
         {
             LogicaShoppingLists logica = new LogicaShoppingLists();
             return logica.SelectShoppingListsByUserName(userName);

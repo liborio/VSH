@@ -7,7 +7,7 @@
 
 }
 
-<h3 class="main-title clearfix"><span>My shopping lists  (NEED TO UPDATE SCREEN TO SHOW STATIC LISTS!!!)</span>
+<h3 class="main-title clearfix"><span>My shopping lists</span>
 </h3>
 <p>Select any or your shopping lists and you will able to view, edit or delete it.</p>
 
@@ -15,6 +15,7 @@
     <thead>
         <tr>
             <th>Name</th>
+            <th data-sort-ignore="true">Statics</th>
             <th data-hide="phone" class="numericCol" data-hide="phone">Creation</th>
             <th data-hide="phone" class="numericCol" data-hide="phone">Last update</th>
             <th data-hide="phone" data-sort-ignore="true"></th>
@@ -26,6 +27,12 @@
         {
             <tr>
                 <td>@item.name</td>
+                <td>@if (item.staticCount == 0){
+                    }
+                    else{
+                        <a data-esh-list-publicid="@item.publicID" class="yellow-link">Show [@item.staticCount]</a>
+                    }
+                </td>
                 <td class="numericCol" data-value="@EveShopping.Web.VSHMappings.GetLongFromDate(item.dateCreation)" >@EveShopping.Web.VSHMappings.GetGridDateFormat( item.dateCreation)</td>
                 <td class="numericCol" data-value="@EveShopping.Web.VSHMappings.GetLongFromDate(item.dateUpdate)">@EveShopping.Web.VSHMappings.GetGridDateFormat( item.dateUpdate)</td>
                 <td class="numericCol">@Html.ActionLink("Edit", "Summary", "Lists", new { id = item.publicID }, null)</td>
@@ -46,7 +53,7 @@
 </table>
 
 @section scripts{
-@*    <script type="text/javascript" src="~/Scripts/eshSummary.js"></script>*@
+    <script type="text/javascript" src="~/Scripts/eshMyLists.js"></script>
     <link href="~/content/footable.core.css" rel="stylesheet" type="text/css" />
     <script src="~/scripts/footable/footable.js" type="text/javascript"></script>
     <script src="~/scripts/footable/footable.sort.js" type="text/javascript"></script>

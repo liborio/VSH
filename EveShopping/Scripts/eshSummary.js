@@ -72,8 +72,9 @@ function onSuccessUpdateDeltaInSummary(data) {
     $(row).find('[data-esh-cvolume]').text(eshFormats.formatVolume(volume * newunits));
     $(row).find('[data-esh-cdelta]').text(eshFormats.formatDelta(newdelta));
     //update data info
-    $(row).find('[data-esh-cdelta]').data('esh-cdelta', newdelta);
-    $(row).find('[data-esh-cdelta]').data('value', newdelta);
+    $(row).attr('data-esh-delta', newdelta);
+    $(row).find('[data-esh-cdelta]').attr('data-esh-cdelta', newdelta);
+    $(row).find('[data-esh-cdelta]').attr('data-value', newdelta);
     $(row).find('[data-esh-cunits]').data('value', newunits);
     $(row).find('[data-esh-cvolume]').data('value', volume * newunits);
     $(row).find('[data-esh-cprice]').data('value', price * newunits);

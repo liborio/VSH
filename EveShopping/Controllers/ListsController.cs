@@ -153,7 +153,7 @@ namespace EveShopping.Controllers
         public ActionResult MyLists()
         {
             AgenteShoppingList agente = new AgenteShoppingList();
-            IEnumerable<eshShoppingList> lists =
+            IEnumerable<EVShoppingListHeader> lists =
                 agente.SelectShoppingListsByUserName(User.Identity.Name);
             EDVMyLists edv = new EDVMyLists()
             {
@@ -205,14 +205,21 @@ namespace EveShopping.Controllers
             return View(list);
         }
 
+        public ActionResult GetShoppingListsByListPublicID(string id)
+        {
+            AgenteShoppingList agente =
+                new AgenteShoppingList();
+            IEnumerable<eshSnapshot> sslist = agente.SelectStaticListsByShoppingListPublicID(id);
+
+            return PartialView("PVStaticShoppingLists", sslist);
+        }
+
         public ActionResult NewStaticShoppingList()
         {
             AgenteShoppingList agente =
                 new AgenteShoppingList();
             agente.CreateStaticShoppingList(EstadoUsuario.CurrentListPublicId);
-            IEnumerable<eshSnapshot> sslist = agente.SelectStaticListsByShoppingListPublicID(EstadoUsuario.CurrentListPublicId);
-
-            return PartialView("PVStaticShoppingLists", sslist);
+            return GetShoppingListsByListPublicID(EstadoUsuario.CurrentListPublicId);
         }
 
         public ActionResult Public(string id)

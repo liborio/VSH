@@ -27,7 +27,7 @@ namespace EveShopping.Logica
             
             foreach (var item in summ.Items)
             {
-                if ((item.Units + item.Delta) > 0)
+                if ((item.Units) > 0)
                 {
                     eshSnapshotInvType shotitem = new eshSnapshotInvType();
                     shotitem.typeID = item.ItemID;

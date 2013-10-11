@@ -189,7 +189,7 @@ namespace EveShopping.Logica
                 .Include("eshShoppingListInvTypes.invType").Where(sl => sl.publicID == publicID).FirstOrDefault();
         }
 
-        public IList<eshShoppingList> SelectShoppingListsByUserName(string userName)
+        public IList<EVShoppingListHeader> SelectShoppingListsByUserName(string userName)
         {
             EveShoppingContext contexto =
                 new EveShoppingContext();
@@ -201,7 +201,20 @@ namespace EveShopping.Logica
                 throw new ApplicationException(Messages.err_usuarioNoExiste);
             }
 
-            return user.eshShoppingLists.OrderByDescending(sl => sl.dateAccess).ToList();
+            var query = from u in contexto.userProfiles
+                        join sl in contexto.eshShoppingLists on u.UserId equals sl.userID.Value
+                        where u.UserName == userName
+                        select new EVShoppingListHeader
+                        {
+                             dateCreation = sl.dateCreation,
+                             dateUpdate = sl.dateUpdate,
+                             name = sl.name,
+                             publicID = sl.publicID,
+                             staticCount = sl.eshSnapshots.Count
+                        };
+            return query.ToList();
+
+            //return user.eshShoppingLists.OrderByDescending(sl => sl.dateAccess).ToList();
         }
 
         public IEnumerable<eshShoppingListFitting> SelectFitsEnShoppingList(string publicID)
@@ -268,6 +281,15 @@ namespace EveShopping.Logica
             {
                 throw new ApplicationException(Messages.err_usuarioNoExiste);
             }
+
+            foreach (var slf in list.eshShoppingListFittings)
+            {
+                if (slf.eshFitting != null && !slf.eshFitting.userID.HasValue)
+                {
+                    slf.eshFitting.userID = user.UserId;
+                }
+            }
+
             list.userID = user.UserId;
             contexto.SaveChanges();
         }

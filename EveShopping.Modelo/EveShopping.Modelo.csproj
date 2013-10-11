@@ -50,6 +50,7 @@
     <Compile Include="EntidadesAux\TreeNode.cs" />
     <Compile Include="EV\BaseItem.cs" />
     <Compile Include="EV\ChangesSummaryItem.cs" />
+    <Compile Include="EV\EVShoppingListHeader.cs" />
     <Compile Include="EV\IItem.cs" />
     <Compile Include="EV\MarketItem.cs" />
     <Compile Include="EV\EVFitting.cs" />

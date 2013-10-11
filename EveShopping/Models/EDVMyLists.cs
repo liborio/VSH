@@ -1,4 +1,5 @@
-﻿using EveShopping.Modelo.Models;
+﻿using EveShopping.Modelo.EV;
+using EveShopping.Modelo.Models;
 using EveShopping.Web.Modelo;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,6 @@ namespace EveShopping.Models
 {
     public class EDVMyLists : EDVBase
     {
-        public IEnumerable<eshShoppingList> Lists { get; set; }
+        public IEnumerable<EVShoppingListHeader> Lists { get; set; }
     }
 }

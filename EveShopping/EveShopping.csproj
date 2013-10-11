@@ -248,6 +248,7 @@
     <Content Include="Content\zocial\zocial.css" />
     <Content Include="favicon.ico" />
     <Content Include="Scripts\eshMyFittings.js" />
+    <Content Include="Scripts\eshMyLists.js" />
     <Content Include="Scripts\eshpAnalyseFits.js" />
     <Content Include="Scripts\eshStatic.js" />
     <Content Include="Scripts\jquery.flexnav.min.js" />
