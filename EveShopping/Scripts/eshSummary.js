@@ -11,8 +11,10 @@ $(function () {
 });
 
 $(document).ready(function () {
-    $("#lnkCreateStaticList").click(function () { createStaticList();});
-});
+    $("#lnkCreateStaticList").click(function () { createStaticList(); });
+    refreshDeleteEvents();
+ });
+
 
 function onSuccessSaveShoppingListHeader(data) {
     var name = $('#slName').val();
@@ -107,6 +109,15 @@ function updateDeltaInSummary(id, funcSuccess, units) {
 
 /////////// Static lists
 
+function refreshDeleteEvents() {
+    $("[data-esh-delete-static]").click(function () {
+        var id = $(this).parents("tr").attr("data-esh-static-publicid");
+        deleteStaticList(id);
+    })
+
+}
+
+
 function createStaticList() {
     var name = $("#hListName").text();
     $.ajax({
@@ -119,4 +130,27 @@ function createStaticList() {
 
 function onCreateStaticListSuccess(data) {
     $("#tableStaticLists").replaceWith(data);
+    refreshDeleteEvents();
+
+}
+
+function deleteStaticList(id) {
+    //confirmDialog.show("Are you sure to delete the static shopping list?", function () { confirmedDeleteStaticList(id); });
+    confirm("Are you sure to delete the static shopping list?", function () { confirmedDeleteStaticList(id); });
+}
+
+function confirmedDeleteStaticList(id) {
+    $.ajax({
+        type: 'POST',
+        url: '/Lists/DeleteStaticShoppingList',
+        context: id,
+        success: onCreateStaticListSuccess,
+        error: onErrorDeleteStaticList,
+        data: { id: id },
+        dataType: 'html'
+    });
+}
+
+function onErrorDeleteStaticList(data) {
+    infoDialog.show("Couldn't delete the list", "There was a problem deleting your static list.", data.statusText, infoDialog.warning);
 }

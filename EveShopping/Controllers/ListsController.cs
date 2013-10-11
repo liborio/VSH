@@ -205,6 +205,12 @@ namespace EveShopping.Controllers
             return View(list);
         }
 
+        public ActionResult GetShoppingListsByListPublicIDMyLists(string id)
+        {
+            ViewBag.AllowDelete = false;
+            return GetShoppingListsByListPublicID(id);
+        }
+
         public ActionResult GetShoppingListsByListPublicID(string id)
         {
             AgenteShoppingList agente =
@@ -220,6 +226,29 @@ namespace EveShopping.Controllers
                 new AgenteShoppingList();
             agente.CreateStaticShoppingList(EstadoUsuario.CurrentListPublicId);
             return GetShoppingListsByListPublicID(EstadoUsuario.CurrentListPublicId);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteStaticShoppingList(string id)
+        {
+            try
+            {
+                AgenteShoppingList agente =
+                    new AgenteShoppingList();
+                string userName = null;
+                if (Request.IsAuthenticated)
+                {
+                    userName = User.Identity.Name;
+                }
+                agente.DeleteStaticShoppingList(id, userName);
+                return GetShoppingListsByListPublicID(EstadoUsuario.CurrentListPublicId);
+
+            }
+            catch (Exception ex)
+            {
+
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "The static list doesnt exist or you don't have the right to delete it.");
+            }
         }
 
         public ActionResult Public(string id)

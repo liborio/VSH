@@ -202,6 +202,7 @@
   <ItemGroup>
     <Content Include="Content\flexnav.css" />
     <Content Include="Content\images\bg.jpg" />
+    <Content Include="Content\images\delete-icon.png" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\fonts\footable.svg" />
     <Content Include="Content\footable.core.css" />
@@ -241,6 +242,8 @@
     <Content Include="Content\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\images\x.png" />
+    <Content Include="Content\img\confirm\button.gif" />
+    <Content Include="Content\img\confirm\header.gif" />
     <Content Include="Content\jquery-ui-custom.css" />
     <Content Include="Content\responsive-nav.css" />
     <Content Include="Content\simplemodal.css" />
@@ -448,7 +451,7 @@
     <Content Include="Views\Lists\PVStaticListItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Scripts\footable\App_Data\" />
     <Folder Include="Views\Info\" />
   </ItemGroup>
   <ItemGroup>

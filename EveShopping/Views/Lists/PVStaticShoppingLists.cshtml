@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<EveShopping.Modelo.Models.eshSnapshot>
 
+@if (ViewBag.AllowDelete == null) { ViewBag.AllowDelete = true; }
 
 <table id="tableStaticLists">
 <thead>
@@ -9,25 +10,29 @@
         <th data-sort-ignore="true">Price</th>
         <th data-sort-ignore="true">Volume</th>
         <th data-sort-ignore="true"></th>
+        @if (ViewBag.AllowDelete == true){
         <th data-sort-ignore="true"></th>
+        }
     </tr>
 </thead>
  <tbody>
 @foreach (var item in Model)
-{
-    <tr>
+{    
+    <tr data-esh-static-publicid="@item.publicID">
         <td>@item.name</td>
-        <td>@EveShopping.Web.VSHMappings.GetGridDateFormat( item.creationDate)</td>
-        <td>@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.totalPrice)</td>
-        <td>@item.totalVolume m3</td>
-        <td>@Html.ActionLink("View", "Static", new { id = item.publicID }, null)</td>
-        <td>(delete)</td>
+        <td class="numericCol">@EveShopping.Web.VSHMappings.GetGridDateFormat( item.creationDate)</td>
+        <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.totalPrice)</td>
+        <td class="numericCol">@item.totalVolume m3</td>
+        <td class="numericCol"><a href="@Url.Action("Static", "Lists", new { id = item.publicID })" class="yellow-button">View</a></td>
+        @if(ViewBag.AllowDelete == true){
+            <td class="numericCol"><a data-esh-delete-static class="yellow-button">Delete</a></td>
+        }
     </tr>
 }
 </tbody>
 <tfoot>
         <tr>
-        <td colspan="7">
+        <td colspan="(@ViewBag.AllowDelete?7:6)">
             <div class="pagination pagination-centered"></div>
         </td>
     </tr>

@@ -114,6 +114,24 @@
             Clicking in this link from in game browser will open market details window.
         </p>
     </div>*@
+        <!-- confirm dialog -->
+	<div id='content'>
+		<div id='confirm-dialog'>
+		</div>
+		
+		<!-- modal content -->
+		<div id='confirm'>
+			<div class='header'><span>Confirm</span></div>
+			<div class='message'></div>
+			<div class='buttons'>
+@*				<div class='no simplemodal-close'>No</div><div class='yes'>Yes</div>*@
+                <a class="no simplemodal-close buttonYellow right">No</a>
+                <a class="yes buttonYellow right">Yes</a>
+			</div>
+		</div>
+	</div>
+
+
     <!-- modal content -->
     <div id="basic-modal-content">
         <h3 id="info-dialog-header">Basic Modal Dialog</h3>
@@ -123,6 +141,7 @@
         </p>
         <p id="info-dialog-second-msg"></p>
     </div>
+
 
     <!-- preload the images -->
     <div style='display: none'>

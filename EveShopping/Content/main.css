@@ -1074,6 +1074,30 @@ body.loading {
     background-color: lightcoral;
 }
 
+/*
+ * SimpleModal Confirm Modal Dialog
+ */
+
+#confirm {display:none;}
+
+/* Overlay */
+#confirm-overlay {background-color:#eee;}
+
+/* Container */
+#confirm-container {height:240px; width:480px; text-align:left; background:#3A3A3A; border:2px solid #1C1C1C; padding:0.5em}
+#confirm-container .header {height:30px; line-height:30px; width:100%; background: #1c1c1c repeat-x; color:#78b2cc; font-size:1.2em;}
+#confirm-container .header span {padding-left:8px;}
+#confirm-container .message {color:white; margin:0; padding:12px 4px 12px 8px;}
+#confirm-container .buttons {line-height:26px; width:160px; float:right; padding:10px 8px 0;} 
+#confirm-container .buttons div {float:right; margin-left:4px; width:70px; height:26px; color:#666; font-weight:bold; text-align:center; background:url(../img/confirm/button.gif) repeat-x; border:1px solid #bbb; cursor:pointer;} 
+#confirm-container a.modal-close,
+#confirm-container a.modal-close:link,
+#confirm-container a.modal-close:active,
+#confirm-container a.modal-close:visited {text-decoration:none; font-weight:bold; position:absolute; right:10px; top:2px; color:#ffa500; margin: 2px 2px 0 0;}
+#confirm-container a.modal-close:hover {color:#ccc;}
+    #confirm-container p {
+        color: white;
+    }
 
 /*  Login ========================================== */
 
@@ -1097,3 +1121,4 @@ width: 40%;
     margin-left: 0.5em;
     float: right;
 }
+

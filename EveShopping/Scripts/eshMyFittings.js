@@ -57,4 +57,3 @@ function OnSuccessUseAnalysedFit(data) {
 function OnErrorUseAnalysedFit(data) {
 }
 
-
