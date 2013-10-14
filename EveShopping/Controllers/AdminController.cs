@@ -1,4 +1,5 @@
 ﻿using EveShopping.Logica;
+using EveShopping.Web.Agentes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,14 @@ namespace EveShopping.Controllers
         {
             return View();
         }
+
+        public EmptyResult UpdatePrices()
+        {
+            AgenteShoppingList agente = new AgenteShoppingList();
+            agente.UpdatePrices();
+            return new EmptyResult();
+        }
+
 
         public EmptyResult RefillShipGroups()
         {

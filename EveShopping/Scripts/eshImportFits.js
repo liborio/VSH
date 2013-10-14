@@ -39,6 +39,8 @@ $(document).ready(function () {
 });
 
 
+
+
 function ReactivateImportedFitsAccordion() {
     accordionState.initAccordion($("#fitsAnalysed"))
     $("#rawFit").val('');
@@ -82,6 +84,7 @@ function onSetUnitsInShoppingListSuccess(data) {
 function cleanEdits() {
     $('#fitsInList').find('[data-esh-row-edit]').remove();
     $('#fitsInList').find('[data-esh-edit-link]').show();
+    $('#fitsInList').find('[data-esh-del-fit-link]').show();
 }
 
     function editFitInShoppingList(id) {
@@ -91,7 +94,8 @@ function cleanEdits() {
         $(row).addClass('row-edit');
 
         $('#fitsInList').find('[data-esh-edit-link]').hide();
-        var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='4' class='col-edit'><span><a onclick=\"setUnitsItemInShoppingList('" + id + "')\">Set</a> <input  data-esh-units type='number' min='1' value='" + units + "'>units</span><span><a onclick=\"deleteItemInShoppingList('" + id + "')\">Delete</a></span><span><a onclick=\"cancelEditItemInShoppingList('" + id + "')\">Close edit</a></span>";
+        $('#fitsInList').find('[data-esh-del-fit-link]').hide();
+        var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='4' class='col-edit'><span><a onclick=\"setUnitsItemInShoppingList('" + id + "')\">Set</a> <input  data-esh-units type='number' min='1' value='" + units + "'>units</span><span><a onclick=\"cancelEditItemInShoppingList('" + id + "')\">Close edit</a></span>";
         $(filaControlesEdicion).insertBefore(row);
 
         var acc = $('#fitsInList');
@@ -108,6 +112,12 @@ function cleanEdits() {
 
         //$('[data-esch-marketitemsinshoppinglist]').find('[data-esh-row-edit]').find('input:text').focus();
     }
+
+
+    function delFitInShoppingList(id) {
+        confirmDialog.show("Are you sure to delete the fit from your shopping list?", function () { deleteItemInShoppingList(id); });
+    }
+
 
     function disableFitInShoppingListPanels() {
         accordionState.disableAccordion($("#fitsAnalysed"));
@@ -139,6 +149,9 @@ function cleanEdits() {
             dataType: 'html'
         });
     }
+
+
+
 
 /// personal fits navigation
     function OnSuccessNavigateMarketGroup(data) {

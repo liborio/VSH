@@ -4,6 +4,14 @@ $(document).ready(function () {
     $('#help-container div').hide();
 });
 
+
+function regenerateModifyLinks() {
+    $("[data-esh-del-fit-link]").click(function () {
+        var id = $(this).parents("h3").attr("data-esh-id");
+        deleteFitting(id);
+    });
+}
+
 $("#rawFit").keyup(function (event) {
     if (event.keyCode == 13) {
         $("#idAnalyseBtn").click();
@@ -30,6 +38,7 @@ function onFailureAnalyzeRawFit(data) {
 function OnSuccessNavigateMarketGroup(data) {
     $('[data-esh-marketMenu]').replaceWith(data);
     accordionState.initAccordion($('#fitsInList'));
+    regenerateModifyLinks();
 }
 
 function navigateMarketGroup(id) {
@@ -56,4 +65,32 @@ function OnSuccessUseAnalysedFit(data) {
 
 function OnErrorUseAnalysedFit(data) {
 }
+
+/// CRUD
+function deleteFitting(id) {
+    confirmDialog.show("Are you sure to delete the fit from your personal fittings?", function () { confirmedDeleteFitting(id); });
+}
+
+function confirmedDeleteFitting(id) {
+    $.ajax({
+        type: 'POST',
+        url: '/Fittings/DeleteFitting',
+        context: id,
+        success: onSuccessDeleteFitting,
+        error: onErrorDeleteFitting,
+        data: { id: id },
+        dataType: 'html'
+    });
+}
+
+function onErrorDeleteFitting(data) {
+    infoDialog.show("Couldn't delete the fitting", "There was a problem deleting your fitting.", data.statusText, infoDialog.warning);
+}
+
+function onSuccessDeleteFitting(data) {
+    var id = this;
+    $("#personal-fittings-menu").find("[data-esh-id='" + id + "']").remove();
+    menuCounters.decFittings();
+}
+
 

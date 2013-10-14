@@ -44,6 +44,47 @@ namespace EveShopping.Logica
             return shot;
         }
 
+        public void DeleteStaticShoppingList(eshSnapshot snap, string userName, EveShoppingContext contexto)
+        {
+            if (snap == null) throw new ApplicationException(Messages.err_staticShoppingListNoExiste);
+
+            if (userName == null)
+            {
+                if (snap.eshShoppingList.userID.HasValue)
+                {
+                    throw new ApplicationException(Messages.err_notOwner);
+                }
+            }
+            UserProfile user = contexto.userProfiles.Where(u => u.UserName == userName).FirstOrDefault();
+            if (user == null) throw new ApplicationException(Messages.err_usuarioNoExiste);
+
+            if (snap.eshShoppingList.userID.HasValue && snap.eshShoppingList.userID.Value != user.UserId)
+            {
+                throw new ApplicationException(Messages.err_notOwner);
+            }
+
+
+            Repositorios.RepositorioShoppingLists repo =
+                new Repositorios.RepositorioShoppingLists(contexto);
+            repo.ShoppingListUpdated(snap.eshShoppingList.shoppingListID);
+            IEnumerable<eshSnapshotInvType> sit = snap.eshSnapshotInvTypes.Where(s => s.snapshotID == snap.snapshotID).ToList();
+            foreach (var item in sit)
+            {
+                contexto.eshSnapshotInvTypes.Remove(item);
+            }
+            contexto.eshSnapshots.Remove(snap);
+            contexto.SaveChanges();
+
+        }
+
+        public void DeleteStaticShoppingList(string staticPublicID, string userName)
+        {
+            EveShoppingContext contexto = new EveShoppingContext();
+            eshSnapshot snap = contexto.eshSnapshots.Where(s => s.publicID == staticPublicID).FirstOrDefault();
+            DeleteStaticShoppingList(snap, userName, contexto);
+        }
+
+
         public IEnumerable<eshSnapshot> SelectStaticListsByShoppingListPublidID(string publicID)
         {
             EveShoppingContext contexto = new EveShoppingContext();

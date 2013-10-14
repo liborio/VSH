@@ -69,6 +69,12 @@ namespace EveShopping.Web.Agentes
             return logica.CrearShoppingList(name, description, userName);
         }
 
+        public void DeleteShoppingList(string publicID, string userName)
+        {
+            LogicaShoppingLists logica = new LogicaShoppingLists();
+            logica.DeleteShoppingList(publicID, userName);
+        }
+
         public void ActualizarShoppingListHeader(string publicID, string slName, string slDescription)
         {
             LogicaShoppingLists logica = new LogicaShoppingLists();
@@ -115,6 +121,12 @@ namespace EveShopping.Web.Agentes
         {
             LogicaSnapshots logica = new LogicaSnapshots();
             return logica.CreateStaticShoppingList(publicID, null, new Imagex32UrlResolver());
+        }
+
+        public void DeleteStaticShoppingList(string publicID, string userName)
+        {
+            LogicaSnapshots logica = new LogicaSnapshots();
+             logica.DeleteStaticShoppingList(publicID, userName);
         }
 
         public IEnumerable<eshSnapshot> SelectStaticListsByShoppingListPublicID(string publicID)

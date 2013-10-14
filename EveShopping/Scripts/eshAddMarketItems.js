@@ -121,15 +121,13 @@ function editItemInShoppingList(id) {
     $(row).find('a').hide()
     var units = $(row).data('esh-units');
 
-    var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='5' class='col-edit'><span><a onclick=\"setUnitsItemInShoppingList('" + id + "')\">Set</a><input data-esh-units type='number' min='1' value='" + units + "'>units</span><span><a onclick=\"deleteItemInShoppingList('" + id + "')\">Delete</a></span><span><a onclick=\"cancelEditItemInShoppingList('" + id + "')\">Close edit</a></span>"
+    var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='5' class='col-edit'><span><a onclick=\"setUnitsItemInShoppingList('" + id + "')\">Set</a><input data-esh-units type='number' min='1' value='" + units + "'>units</span><span><a onclick=\"cancelEditItemInShoppingList('" + id + "')\">Close edit</a></span>"
     $(filaControlesEdicion).insertAfter(row)
 
     var inputRows = $(filaControlesEdicion).find('input:text');
     $(inputRows).focus(function () { $(this).select(); });
     $(inputRows).focus();
     $(inputRows).spinner();
-
-
 }
 
 
@@ -152,6 +150,11 @@ function setUnitsItemInShoppingList(id) {
 }
 
 function deleteItemInShoppingList(id) {
+    confirmDialog.show("Are you sure to delete the item from your shopping list?", function () { confirmedDeleteItemInShoppingList(id); });
+
+}
+
+function confirmedDeleteItemInShoppingList(id) {
     $.ajax({
         url: '/Lists/DeleteMarketItemToShoppingList/' + id,
         context: id,

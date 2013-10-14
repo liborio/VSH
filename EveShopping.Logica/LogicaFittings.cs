@@ -8,11 +8,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace EveShopping.Logica
 {
     public class LogicaFittings
     {
+        public void DeleteFitting(int fittingID, string userName)
+        {
+            EveShoppingContext context = new EveShoppingContext();
+
+
+            using (TransactionScope scope = new TransactionScope())
+            {
+                eshFitting fit = context.eshFittings.Where(f => f.fittingID == fittingID).FirstOrDefault();
+                if (fit == null) throw new ApplicationException(Messages.err_fittingNoExiste);
+                UserProfile up = context.userProfiles.Where(u => u.UserName == userName).FirstOrDefault();
+                if (up == null) throw new ApplicationException(Messages.err_usuarioNoExiste);
+                if (fit.userID.HasValue && fit.userID != up.UserId) throw new ApplicationException(Messages.err_notOwner);
+
+                //if fitting is used in any shopping list, we cant completly remove it, will just not relate to this user
+                if (fit.eshShoppingListFittings.Count >= 0)
+                {
+                    fit.userID = null;
+                }
+                //else, the fitting is not used, we can delete it completly
+                else
+                {
+                    IEnumerable<eshFittingHardware> fithwds = fit.eshFittingHardwares.ToList();
+                    foreach (var item in fithwds)
+                    {
+                        context.eshFittingHardwares.Remove(item);
+                    }
+                    context.eshFittings.Remove(fit);
+                }
+                context.SaveChanges();
+                scope.Complete();
+            }
+
+        }
+
 
         public int GetFittingCountByUser(string userName)
         {

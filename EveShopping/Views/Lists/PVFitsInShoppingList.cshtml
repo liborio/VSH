@@ -7,18 +7,29 @@
         <span class="left">
             <img src="@item.ImageUrl32" alt="@item.Name" /></span>
         <span class="left leftMargin">@item.Name</span>
+        <div class="right">
         @if (this.Model.ShowEdit)
         {
-            <span class="right">
-                <a class="yellow-link" data-esh-edit-link onclick="editFitInShoppingList('@item.ItemID')">Edit</a>
+            <span>
+                <img class="edit" src="~/Content/images/empty24.png" data-esh-edit-link onclick="editFitInShoppingList('@item.ItemID')" />
+@*                <a class="yellow-link" data-esh-edit-link onclick="editFitInShoppingList('@item.ItemID')">Edit</a>*@
             </span>
+        }
+        @if (this.Model.ShowDelete)
+        {
+            <span>
+                <img class="delete" data-esh-del-fit-link src="~/Content/images/empty24.png" onclick="delFitInShoppingList('@item.ItemID')" />
+            </span>
+            
         }
         @if (this.Model.ShowUse)
         {
-            <span class="right">
+            <span >
                 <a class="yellow-link" data-esh-edit-link onclick="useFitInMyList('@item.ItemID')">Use</a>
             </span>
         }
+
+        </div>
         <span class="right">
             @if (this.Model.ShowUnits)
             {

@@ -33,42 +33,49 @@ namespace EveShopping.Logica
                // contexto.invTypes.Where(t => t.marketGroupID != null && categoryIDs.Contains(t. ).ToList();
 
             List<int> ItemIds = new List<int>();
-            foreach (var item in items)
+
+            foreach (var hub in hubIdList)
             {
-                try
-                {
+                int[] singlehubList = new int[] { hub };
 
-                    if (ItemIds.Count <= 10)
+                foreach (var item in items)
+                {
+                    try
                     {
-                        ItemIds.Add(item.typeID);
-                    }
-                    else
-                    {
-                        IEnumerable<ItemPrice> prices = agente.GetPrices(ItemIds, hubIdList);
-                        foreach (var price in prices)
+
+                        if (ItemIds.Count <= 10)
                         {
-                            eshPrice eprice = contexto.eshPrices.Where(p => p.typeID == price.ItemID && p.solarSystemID == price.HubID).FirstOrDefault();
-                            if (eprice == null)
-                            {
-                                eprice = new eshPrice();
-                                contexto.eshPrices.Add(eprice);
-                                eprice.typeID = price.ItemID;
-                                eprice.solarSystemID = price.HubID;
-                            }
-                            eprice.avg = price.Stats.Avg;
-                            eprice.updateTime = System.DateTime.Now;
+                            ItemIds.Add(item.typeID);
                         }
-                        ItemIds.Clear();
-                        contexto.SaveChanges();
-                    }
+                        else
+                        {
+                            IEnumerable<ItemPrice> prices = agente.GetPrices(ItemIds, singlehubList);
+                            foreach (var price in prices)
+                            {
+                                eshPrice eprice = contexto.eshPrices.Where(p => p.typeID == price.ItemID && p.solarSystemID == price.HubID).FirstOrDefault();
+                                if (eprice == null)
+                                {
+                                    eprice = new eshPrice();
+                                    contexto.eshPrices.Add(eprice);
+                                    eprice.typeID = price.ItemID;
+                                    eprice.solarSystemID = price.HubID;
+                                }
+                                eprice.avg = price.Stats.Avg;
+                                eprice.updateTime = System.DateTime.Now;
+                            }
+                            ItemIds.Clear();
+                            contexto.SaveChanges();
+                        }
 
-                }
-                catch (Exception ex)
-                {
-                    Logging.Logger.Error(string.Format("Error recuperando precios"));
-                    Logging.Logger.Error(ex.ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        Logging.Logger.Error(string.Format("Error recuperando precios"));
+                        Logging.Logger.Error(ex.ToString());
+                    }
                 }
             }
+
         }
     }
 }

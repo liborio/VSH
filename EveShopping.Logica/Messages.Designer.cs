@@ -97,6 +97,15 @@ namespace EveShopping.Logica {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You dont seem to be the rightful owner of the element that you want to delete..
+        /// </summary>
+        internal static string err_notOwner {
+            get {
+                return ResourceManager.GetString("err_notOwner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There was a module in the DNA expression with the wrong format..
         /// </summary>
         internal static string err_notRecognisedDNAFormat {
@@ -129,6 +138,15 @@ namespace EveShopping.Logica {
         internal static string err_shoppingLisNoExiste {
             get {
                 return ResourceManager.GetString("err_shoppingLisNoExiste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The static shopping list doesnt exist in our archives..
+        /// </summary>
+        internal static string err_staticShoppingListNoExiste {
+            get {
+                return ResourceManager.GetString("err_staticShoppingListNoExiste", resourceCulture);
             }
         }
         

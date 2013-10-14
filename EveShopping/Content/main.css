@@ -1081,7 +1081,7 @@ body.loading {
 #confirm {display:none;}
 
 /* Overlay */
-#confirm-overlay {background-color:#eee;}
+#confirm-overlay {background-color:#000;}
 
 /* Container */
 #confirm-container {height:240px; width:480px; text-align:left; background:#3A3A3A; border:2px solid #1C1C1C; padding:0.5em}
@@ -1122,3 +1122,21 @@ width: 40%;
     float: right;
 }
 
+img.delete {
+    background: url('./images/delete-icon.png') no-repeat;
+    padding: 3px;
+    background-position-x:3px;
+    background-position-y:3px;
+}
+
+img.edit {
+    background: url('./images/edit-icon.png') no-repeat;
+    padding: 3px;
+    background-position-x:3px;
+    background-position-y:3px;
+}
+
+img.delete:hover, img.edit:hover {
+    border: solid 1px #FFA500;
+    cursor: pointer;
+}

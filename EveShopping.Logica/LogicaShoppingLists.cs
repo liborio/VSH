@@ -85,21 +85,63 @@ namespace EveShopping.Logica
             return repo.SelectFitPorID(fittingID);
         }
 
-        /// <summary>
-        /// si el id no existe no se hace nada
-        /// </summary>
-        /// <param name="fittingID"></param>
-        public void DeleteFitFromShoppingLIST(string publicID, int fittingID)
+        public void DeleteShoppingList(string publicID, string userName)
         {
-            EveShoppingContext context = new EveShoppingContext();
+            EveShoppingContext contexto = new EveShoppingContext();
+
+            using (TransactionScope scope = new TransactionScope())
+            {
+
+
+                eshShoppingList sl = contexto.eshShoppingLists.Where(s => s.publicID == publicID).FirstOrDefault();
+                if (sl == null) throw new ApplicationException(Messages.err_shoppingLisNoExiste);
+
+                if (sl.userID.HasValue && userName == null) throw new ApplicationException(Messages.err_notOwner);
+
+                UserProfile user = contexto.userProfiles.Where(u => u.UserName == userName).FirstOrDefault();
+
+                if (sl.userID.HasValue && sl.userID.Value != user.UserId) throw new ApplicationException(Messages.err_notOwner);
+
+                //passed the user right test, the shopping list can be deleted based on the owner.
+
+                //At this moment we dont make any further test regarding if the list used or not, it is possible to delete only based on the ownership.
+
+                //Delete the related static lists
+                LogicaSnapshots logicaSnaps = new LogicaSnapshots();
+                List<eshSnapshot> listSnapshots = sl.eshSnapshots.ToList();
+                foreach (var snp in listSnapshots)
+                {
+                    logicaSnaps.DeleteStaticShoppingList(snp, userName, contexto);
+                }
+                List<eshShoppingListFitting> listFittings = sl.eshShoppingListFittings.ToList();
+                foreach (var fit in listFittings)
+                {
+                    this.DeleteFitFromShoppingLIST(sl.shoppingListID, fit.fittingID, contexto);
+                }
+                List<eshShoppingListInvType> listInvtTypes = sl.eshShoppingListInvTypes.ToList();
+                foreach (var it in listInvtTypes)
+                {
+                    this.DeleteItemFromShoppingList(sl.shoppingListID, it.typeID, contexto);
+                }
+
+                ClearAllDeltaFromSummary(sl, contexto);
+
+                contexto.eshShoppingLists.Remove(sl);
+
+                contexto.SaveChanges();
+                scope.Complete();
+            }
+            
+        }
+
+
+        public void DeleteFitFromShoppingLIST(int id, int fittingID, EveShoppingContext context)
+        {
             eshFitting fit = context.eshFittings.Where(f => f.fittingID == fittingID).FirstOrDefault();
 
-            eshShoppingList sl = context.eshShoppingLists.Where(s => s.publicID == publicID).FirstOrDefault();
-            if (sl == null) throw new ApplicationException(Messages.err_shoppingLisNoExiste);
-
-            eshShoppingListFitting slf = context.eshShoppingListsFittings.Where(s => s.shoppingListID == sl.shoppingListID && s.fittingID == fit.fittingID).FirstOrDefault() ;
+            eshShoppingListFitting slf = context.eshShoppingListsFittings.Where(s => s.shoppingListID == id && s.fittingID == fit.fittingID).FirstOrDefault();
             context.eshShoppingListsFittings.Remove(slf);
-            
+
             if (!fit.userID.HasValue)
             {
                 context.eshFittings.Remove(fit);
@@ -110,9 +152,25 @@ namespace EveShopping.Logica
             {
                 repo.ShoppingListUpdated(item.shoppingListID, context);
             }
-                    
+
 
             context.SaveChanges();
+        }
+
+        /// <summary>
+        /// si el id no existe no se hace nada
+        /// </summary>
+        /// <param name="fittingID"></param>
+        public void DeleteFitFromShoppingLIST(string publicID, int fittingID)
+        {
+            EveShoppingContext  context = new EveShoppingContext();
+
+            eshShoppingList sl = context.eshShoppingLists.Where(s => s.publicID == publicID).FirstOrDefault();
+            if (sl == null) throw new ApplicationException(Messages.err_shoppingLisNoExiste);
+            if (sl != null)
+            {
+                DeleteFitFromShoppingLIST(sl.shoppingListID, fittingID, context);
+            }
         }
 
         public string GetPublidIDPorPublidIDRead(string publicIDRead)
@@ -314,6 +372,20 @@ namespace EveShopping.Logica
             eshShoppingListInvType slit = repo.UpdateMarketItemEnShoppingList(list.shoppingListID, itemID, units);
             repo.ShoppingListUpdated(list.shoppingListID);
         }
+
+        public void ClearAllDeltaFromSummary(string publicID)
+        {
+            EveShoppingContext contexto = new EveShoppingContext();
+            eshShoppingList list = contexto.eshShoppingLists.Where(sl => sl.publicID == publicID).FirstOrDefault();
+        }
+
+        internal void ClearAllDeltaFromSummary(eshShoppingList sl, EveShoppingContext contexto)
+        {
+            sl.eshShoppingListSummInvTypes.Clear();
+            contexto.SaveChanges();
+        }
+
+        
 
         public void UpdateDeltaToSummary(string publicID, int itemID, short units)
         {
@@ -594,17 +666,24 @@ namespace EveShopping.Logica
             return this.SelectFitSummary(publicID, fittingID, imageResolver);
         }
 
+        internal void DeleteItemFromShoppingList(int id, int itemID, EveShoppingContext contexto = null)
+        {
+            RepositorioShoppingLists repo = new RepositorioShoppingLists(contexto);
+            eshShoppingListInvType item = repo.SelectMarketItemEnShoppingListPorID(id, itemID);
+
+            contexto.eshShoppingListsInvTypes.Remove(item);
+            repo.ShoppingListUpdated(id, contexto);
+            contexto.SaveChanges();
+
+        }
+
         public void DeleteItemFromShoppingList(string publicID, int itemID)
         {
             EveShoppingContext contexto = new EveShoppingContext();
+
             RepositorioShoppingLists repo = new RepositorioShoppingLists(contexto);
             eshShoppingList list = repo.SelectShopingListPorPublicID(publicID);
 
-            eshShoppingListInvType item = repo.SelectMarketItemEnShoppingListPorID(list.shoppingListID, itemID);
-
-            contexto.eshShoppingListsInvTypes.Remove(item);
-            repo.ShoppingListUpdated(list.shoppingListID, contexto);
-            contexto.SaveChanges();
         }
 
         public int SaveAnalisedFit(string listPublicId, FittingAnalyzed fitAnalysed, string userName = null)

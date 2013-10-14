@@ -11,6 +11,13 @@ namespace EveShopping.Web.Agentes
 {
     public class AgenteFittings
     {
+
+        public void DeleteFitting(int id, string userName)
+        {
+            LogicaFittings logica = new LogicaFittings();
+            logica.DeleteFitting(id, userName);
+        }
+
         public IEnumerable<ShipMarketGroup> SelectMarketGroupsByParentID(int parentID, string userName)
         {
             LogicaFittings logica = new LogicaFittings();

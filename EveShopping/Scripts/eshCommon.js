@@ -179,7 +179,7 @@ function confirm(message, callback) {
 
 confirmDialog = {
     show: function (message, callback) {
-        $('#confirm-dialog').modal({
+        $('#confirm').modal({
             closeHTML: "<a href='#' title='Close' class='modal-close'>x</a>",
             position: ["20%", ],
             overlayId: 'confirm-overlay',

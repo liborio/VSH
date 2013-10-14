@@ -49,6 +49,31 @@ namespace EveShopping.Controllers
         }
 
         [HttpPost]
+        public ActionResult DeleteShoppingList(string id)
+        {
+            try
+            {
+                AgenteShoppingList agente =
+                    new AgenteShoppingList();
+                string userName = null;
+                if (Request.IsAuthenticated)
+                {
+                    userName = User.Identity.Name;
+                }
+                agente.DeleteShoppingList(id, userName);
+                return new EmptyResult();
+
+            }
+            catch (Exception ex)
+            {
+
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "The shopping list doesnt exist or you don't have the right to delete it.");
+            }
+        }
+
+
+
+        [HttpPost]
         public ActionResult SaveShoppingListHeader(string slName, string slDescription)
         {
             AgenteShoppingList agente = new AgenteShoppingList();
@@ -112,6 +137,7 @@ namespace EveShopping.Controllers
                 edv.ShowUnits = false;
                 edv.ShowUse = true;
                 edv.ShowEdit = false;
+                edv.ShowDelete = false;
                 edv.DivID = "myFitList";
             }
         }
@@ -494,12 +520,6 @@ namespace EveShopping.Controllers
             return null;
         }
 
-        public EmptyResult UpdatePrices()
-        {
-            AgenteShoppingList agente = new AgenteShoppingList();
-            agente.UpdatePrices();
-            return new EmptyResult();
-        }
 
         #endregion
 

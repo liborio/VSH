@@ -10,6 +10,8 @@ namespace EveShopping.Logica
 {
     public class LogicaAdmin
     {
+
+
         public void FillShipGroupsTable()
         {
             IDictionary<int, IList<int>> dicc = CreateShipGroupsDictionary();

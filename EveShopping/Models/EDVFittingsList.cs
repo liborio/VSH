@@ -12,6 +12,7 @@ namespace EveShopping.Models
         public bool ShowEdit { get; set; }
         public bool ShowPriceAndVolume { get; set; }
         public bool ShowUse { get; set; }
+        public bool ShowDelete { get; set; }
 
         public string DivID { get; set; }
 
@@ -23,6 +24,7 @@ namespace EveShopping.Models
             ShowEdit = true;
             ShowPriceAndVolume = true;
             ShowUse = false;
+            ShowDelete = true;
             DivID = "fitsInList";
         }
 

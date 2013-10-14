@@ -79,6 +79,22 @@ namespace EveShopping.Controllers
 
         }
 
+        [Authorize]
+        [HttpPost]
+        public ActionResult DeleteFitting(int id)
+        {
+            try
+            {
+                AgenteFittings agente = new AgenteFittings();
+                agente.DeleteFitting(id, User.Identity.Name);
+
+                return new EmptyResult();
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
 
         [Authorize]
         public PartialViewResult NavigateMarketGroup(int id, int selFitId = 0, string selFitName = null)
@@ -87,6 +103,7 @@ namespace EveShopping.Controllers
 
             edv.Fittings.ShowUnits = false;
             edv.Fittings.ShowEdit = false;
+            edv.Fittings.ShowDelete = true;
 
             return PartialView("PVPersonalFittingsMenu", edv);
         }

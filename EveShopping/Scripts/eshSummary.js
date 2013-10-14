@@ -136,7 +136,7 @@ function onCreateStaticListSuccess(data) {
 
 function deleteStaticList(id) {
     //confirmDialog.show("Are you sure to delete the static shopping list?", function () { confirmedDeleteStaticList(id); });
-    confirm("Are you sure to delete the static shopping list?", function () { confirmedDeleteStaticList(id); });
+    confirmDialog.show("Are you sure to delete the static shopping list?", function () { confirmedDeleteStaticList(id); });
 }
 
 function confirmedDeleteStaticList(id) {

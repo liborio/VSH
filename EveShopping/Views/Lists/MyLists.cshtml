@@ -25,7 +25,7 @@
     <tbody>
         @foreach (var item in this.Model.Lists)
         {
-            <tr>
+            <tr data-esh-list-publicid="@item.publicID"  >
                 <td>@item.name</td>
                 <td>@if (item.staticCount == 0){
                     }
@@ -36,7 +36,7 @@
                 <td class="numericCol" data-value="@EveShopping.Web.VSHMappings.GetLongFromDate(item.dateCreation)" >@EveShopping.Web.VSHMappings.GetGridDateFormat( item.dateCreation)</td>
                 <td class="numericCol" data-value="@EveShopping.Web.VSHMappings.GetLongFromDate(item.dateUpdate)">@EveShopping.Web.VSHMappings.GetGridDateFormat( item.dateUpdate)</td>
                 <td class="numericCol">@Html.ActionLink("Edit", "Summary", "Lists", new { id = item.publicID }, null)</td>
-                <td class="numericCol">(delete)</td>
+                <td class="numericCol"><a data-esh-delete-list class="yellow-button">Delete</a></td>
             </tr>
         }
     </tbody>
