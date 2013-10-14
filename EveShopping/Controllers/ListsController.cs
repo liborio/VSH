@@ -511,6 +511,21 @@ namespace EveShopping.Controllers
             return new EmptyResult();
         }
 
+        [HttpPost]
+        public ActionResult ClearAllDelta(string id)
+        {
+            try
+            {
+                AgenteShoppingList agente = new AgenteShoppingList();
+                agente.ClearAllDeltaInSummary(id);
+                return new EmptyResult();
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+            }
+            
+        }
 
         public ActionResult DeleteMarketItemToShoppingList(int id)
         {

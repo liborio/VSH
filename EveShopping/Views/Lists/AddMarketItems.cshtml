@@ -42,7 +42,8 @@
     </div>
     <div id="links-navegacion-pasos-container">
         @Html.ActionLink("<< Add ship fittings", "ImportFits", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
-        @Html.Partial("PVIncludeListInMyLists", new { ListDoesntHaveOwner = Model.IsShoppingListFree })
+        @{ ViewBag.ListDoesntHaveOwner = Model.IsShoppingListFree;  }
+        @Html.Partial("PVIncludeListInMyLists")
         @Html.ActionLink("Summary >>", "Summary", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
     </div>
 

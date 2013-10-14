@@ -377,6 +377,7 @@ namespace EveShopping.Logica
         {
             EveShoppingContext contexto = new EveShoppingContext();
             eshShoppingList list = contexto.eshShoppingLists.Where(sl => sl.publicID == publicID).FirstOrDefault();
+            ClearAllDeltaFromSummary(list, contexto); 
         }
 
         internal void ClearAllDeltaFromSummary(eshShoppingList sl, EveShoppingContext contexto)

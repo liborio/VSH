@@ -841,10 +841,15 @@ td.col-edit input {
     text-align: right;
 }
 
-td.col-edit span {
+td.col-edit span, span.link-menu {
     margin-right: 1em;
     padding-right: 1em;
     border-right: 1px dotted #1C1C1C;
+}
+
+span.link-menu {
+    margin-right: 0.5em;
+    padding-right: 0.5em;
 }
 
 

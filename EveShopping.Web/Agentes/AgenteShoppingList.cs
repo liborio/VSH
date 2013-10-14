@@ -264,6 +264,12 @@ namespace EveShopping.Web.Agentes
             logica.UpdateDeltaToSummary(publicID, itemID, units);
         }
 
+        public void ClearAllDeltaInSummary(string publicID)
+        {
+            LogicaShoppingLists logica =
+                new LogicaShoppingLists();
+            logica.ClearAllDeltaFromSummary(publicID);
+        }
 
 
         public void DeleteMarketItemEnShoppingList(string shoppingListPublidID, int itemID)

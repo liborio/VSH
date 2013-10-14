@@ -36,6 +36,7 @@
 <div id="itemsInSummary" class="subs-wrapper">
     <p>Items contained in the shopping list. You can edit to add or remove units (+ / - column) from the amount that you added previously in the <strong>Add ship fittings</strong> and <strong>Add market items</strong> screens.</p>
     @Html.Partial("PVSummaryItems", Model.Summary)
+    <a id="lnkClearAllDelta" onclick="clearAllDelta('@Model.Summary.PublicID');" class="buttonYellow-short">Clear <strong>all</strong> (+ / -)</a>
 </div>
 
 
@@ -47,7 +48,8 @@
 <div id="full-main">
     <div id="links-navegacion-pasos-container">
         @Html.ActionLink("<< Add market items", "AddMarketItems", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
-        @Html.Partial("PVIncludeListInMyLists", new { ListDoesntHaveOwner = Model.IsShoppingListFree })
+        @{ ViewBag.ListDoesntHaveOwner = Model.IsShoppingListFree;  }
+        @Html.Partial("PVIncludeListInMyLists")
     </div>
 
 </div>
