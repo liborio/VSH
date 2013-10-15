@@ -8,8 +8,8 @@ function findMember(t) {
 }
 
 $(function () {
-    accordionState.initAccordion($('#market-items-accordion'));
-    accordionState.openPanelByIndex($('#market-items-accordion'), 1);
+    //accordionState.initAccordion($('#market-items-accordion'));
+    //accordionState.openPanelByIndex($('#market-items-accordion'), 1);
 });
 
 $(document).ready(function () {
@@ -27,6 +27,7 @@ $(document).ready(function () {
         }
     });
 
+    accordionState.initAccordion($('#market-items-accordion'), 1);
     accordionState.openPanelByIndex($('#market-items-accordion'), 1);
 
 });

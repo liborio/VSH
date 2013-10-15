@@ -14,8 +14,12 @@
 $(document).ajaxStart(ajaxLoader.initTimer);
 $(document).ajaxStop(ajaxLoader.endTimer);
 $(document).ajaxSuccess(ajaxLoader.endTimer);
-$(document).ajaxComplete(ajaxLoader.endTimer);
+$(document).ajaxComplete(function () { ajaxLoader.endTimer(); accordionState.removeHeight(); });
 $(document).ajaxError(ajaxLoader.endTimer);
+
+$(window).load(function () {
+    accordionState.removeHeight();
+});
 
 
 eshFormats = {
@@ -66,10 +70,23 @@ general = {
 accordionState = {
 
     initAccordion: function (acc, index) {
-        $(function () { $(acc).accordion("destroy").accordion({ collapsible: true, active: false, heighStyle: "content", autoHeight: false, clearStyle: true }) });
+        $(function () {
+            try {
+                $(acc).accordion("destroy");
+            }
+            catch (ex){
+            }
+            $(acc).accordion({ collapsible: true, active: false, autoHeight: false, clearStyle: true })
+        });
         if (index != null) {
-            $(acc).accordion({ active: index });
+            $(acc).accordion({ collapsible: true, active: false, autoHeight: false, clearStyle: true, active: index });
         }
+        accordionState.removeHeight();
+    },
+
+    removeHeight: function(){
+        var style = $(".ui-accordion-content").css("height", "100%");
+
     },
 
     disableAccordion: function (acc) {

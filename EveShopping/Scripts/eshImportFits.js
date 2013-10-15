@@ -4,6 +4,7 @@
 
 
 
+
 $(document).ready(function () {
     $('#help-container div').hide();
 });
@@ -14,16 +15,16 @@ $("#rawFit").keyup(function (event) {
     }
 });
 
-$(function () {
-    $('#help-container div').show();
-    $('#help-container').show().accordion({ collapsible: true, active: false, heighStyle: "content", autoHeight: false, clearStyle: true });
-});
+//$(function () {
+//    $('#help-container div').show();
+//    $('#help-container').show().accordion({ collapsible: true, active: false, heighStyle: "content", autoHeight: false, clearStyle: true });
+//});
 
 
-if (general.authenticated) {
-    accordionState.initAccordion($('#import-fits-accordion'), 1);
-    accordionState.openPanelByIndex($('#import-fits-accordion'), 1);
-}
+//if (general.authenticated) {
+//    accordionState.initAccordion($('#import-fits-accordion'), 1);
+//    accordionState.openPanelByIndex($('#import-fits-accordion'), 1);
+//}
 
 
 $(document).ready(function () {
@@ -33,21 +34,21 @@ $(document).ready(function () {
     accordionState.initAccordion($('#myFitList'));
 
     if (general.authenticated) {
+        accordionState.initAccordion($('#import-fits-accordion'), 1);
+        accordionState.openPanelByIndex($('#import-fits-accordion'), 1);
+    }
+
+    $('#help-container div').show();
+    $('#help-container').show().accordion({ collapsible: true, active: false, heighStyle: "content", autoHeight: false, clearStyle: true });
+
+    if (general.authenticated) {
+        accordionState.initAccordion($('#import-fits-accordion'), 1);
         accordionState.openPanelByIndex($('#import-fits-accordion'), 1);
     }
 
 });
 
 
-
-
-function ReactivateImportedFitsAccordion() {
-    accordionState.initAccordion($("#fitsAnalysed"))
-    $("#rawFit").val('');
-}
-function onFailureAnalyzeRawFit(data) {
-    infoDialog.show("Could'nt analyse fit", "There was a problem analysing your fit.", data.statusText, infoDialog.warning);
-}
 
 
 function OnSuccessUseAnalysedFit(data) {
@@ -179,11 +180,11 @@ function cleanEdits() {
         $.ajax({
             url: '/Lists/UseFitInMyList/' + id,
             success: onSuccessUseFitInMyList,
-            error: onErrorUseFitInMyList,
+            error: OnErrorUseAnalysedFit,
             dataType: 'html'
         });
     }
 
-    function onErrorUseFitInMyList(data) {
+    function OnErrorUseAnalysedFit(data) {
         infoDialog.show("Could'nt use fit", "There was a problem adding the fit to your shopping list.", data.statusText, infoDialog.warning);
     }

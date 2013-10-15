@@ -83,6 +83,7 @@ namespace EveShopping.Controllers
             return new EmptyResult();
         }
 
+
         public ActionResult ImportFits(string id = null)
         {
             if (id == null)
@@ -118,6 +119,24 @@ namespace EveShopping.Controllers
             }
 
             return View(edv);
+        }
+
+        [HttpPost]
+        public JsonResult FileUpload()
+        {
+            HttpPostedFileBase myFile = Request.Files[0];
+            bool isUploaded = false;
+            string message = "File upload failed";
+
+            if (myFile != null && myFile.ContentLength != 0)
+            {
+                using (System.IO.StreamReader reader = new System.IO.StreamReader(myFile.InputStream))
+                {
+                    message = reader.ReadToEnd();
+                    isUploaded = true;
+                }
+            }
+            return Json(new { message = message });
         }
 
         [Authorize]

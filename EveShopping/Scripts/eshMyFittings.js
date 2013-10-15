@@ -24,14 +24,6 @@ $(function () {
 });
 
 
-//////////////////////////////  import fittings
-function ReactivateImportedFitsAccordion() {
-    accordionState.initAccordion($("#fitsAnalysed"))
-    $("#rawFit").val('');
-}
-function onFailureAnalyzeRawFit(data) {
-    infoDialog.show("Could'nt analyse fit", "There was a problem analysing your fit.", data.statusText, infoDialog.warning);
-}
 //////////////////////////////
 
 /// personal fits navigation
@@ -64,10 +56,11 @@ function OnSuccessUseAnalysedFit(data) {
 }
 
 function OnErrorUseAnalysedFit(data) {
+    infoDialog.show("Could'nt use fit", "There was a problem adding the fit to your shopping list.", data.statusText, infoDialog.warning);
 }
 
 /// CRUD
-function deleteFitting(id) {
+function delFitInShoppingList(id) {
     confirmDialog.show("Are you sure to delete the fit from your personal fittings?", function () { confirmedDeleteFitting(id); });
 }
 
