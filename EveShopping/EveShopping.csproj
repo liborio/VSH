@@ -310,6 +310,7 @@
     <Content Include="Content\FileUpload\img\progressblue.gif" />
     <Content Include="Content\flexnav.css" />
     <Content Include="Content\images\bg.jpg" />
+    <Content Include="Content\images\export-icon.png" />
     <Content Include="Content\images\edit-icon.png" />
     <Content Include="Content\images\edit-icon-hover.png" />
     <Content Include="Content\images\empty24.png" />
@@ -427,6 +428,7 @@
     <Content Include="Scripts\eshMyFittings.js" />
     <Content Include="Scripts\eshMyLists.js" />
     <Content Include="Scripts\eshpAnalyseFits.js" />
+    <Content Include="Scripts\eshpFits.js" />
     <Content Include="Scripts\eshStatic.js" />
     <Content Include="Scripts\eshUploadXML.js" />
     <Content Include="Scripts\fileupload\angularjs\angular.debug.js" />

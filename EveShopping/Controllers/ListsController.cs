@@ -157,6 +157,7 @@ namespace EveShopping.Controllers
                 edv.ShowUse = true;
                 edv.ShowEdit = false;
                 edv.ShowDelete = false;
+                edv.ShowExport = false;
                 edv.DivID = "myFitList";
             }
         }

@@ -29,7 +29,8 @@
                 <td>@if (item.staticCount == 0){
                     }
                     else{
-                        <a data-esh-list-publicid="@item.publicID" class="yellow-link">Show [@item.staticCount]</a>
+                        <a data-esh-list-linkshow data-esh-list-publicid="@item.publicID" class="yellow-link">Show [@item.staticCount]</a>
+                        <a data-esh-list-linkhide class="yellow-link notVisible">Hide</a>
                     }
                 </td>
                 <td class="numericCol" data-value="@EveShopping.Web.VSHMappings.GetLongFromDate(item.dateCreation)" >@EveShopping.Web.VSHMappings.GetGridDateFormat( item.dateCreation)</td>

@@ -8,26 +8,33 @@
             <img src="@item.ImageUrl32" alt="@item.Name" /></span>
         <span class="left leftMargin">@item.Name</span>
         <div class="right">
-        @if (this.Model.ShowEdit)
-        {
-            <span>
-                <img class="edit" src="~/Content/images/empty24.png" data-esh-edit-link onclick="editFitInShoppingList('@item.ItemID')" />
-@*                <a class="yellow-link" data-esh-edit-link onclick="editFitInShoppingList('@item.ItemID')">Edit</a>*@
-            </span>
-        }
-        @if (this.Model.ShowDelete)
-        {
-            <span>
-                <img class="delete" data-esh-del-fit-link src="~/Content/images/empty24.png" onclick="delFitInShoppingList('@item.ItemID')" />
-            </span>
+            @if (this.Model.ShowExport)
+            {
+                <span>
+                    <img class="export" title="Export" data-esh-del-fit-link src="~/Content/images/empty24.png" onclick="exportFit('@item.ItemID')" />
+                </span>
+            }
+
+            @if (this.Model.ShowEdit)
+            {
+                <span>
+                    <img class="edit" title="Edit" src="~/Content/images/empty24.png" data-esh-edit-link onclick="editFitInShoppingList('@item.ItemID')" />
+                    @*                <a class="yellow-link" data-esh-edit-link onclick="editFitInShoppingList('@item.ItemID')">Edit</a>*@
+                </span>
+            }
+            @if (this.Model.ShowDelete)
+            {
+                <span>
+                    <img class="delete" title="Delete" data-esh-del-fit-link src="~/Content/images/empty24.png" onclick="delFitInShoppingList('@item.ItemID')" />
+                </span>
             
-        }
-        @if (this.Model.ShowUse)
-        {
-            <span >
-                <a class="yellow-link" data-esh-edit-link onclick="useFitInMyList('@item.ItemID')">Use</a>
-            </span>
-        }
+            }
+            @if (this.Model.ShowUse)
+            {
+                <span>
+                    <a class="yellow-link" data-esh-edit-link onclick="useFitInMyList('@item.ItemID')">Use</a>
+                </span>
+            }
 
         </div>
         <span class="right">
@@ -48,7 +55,7 @@
 
     <div class="subs-wrapper-main" data-esh-name="@item.Name" data-esh-id="@item.ItemID" data-esh-secDesp-name="@item.Name">
         <table>
-            <tr class="fila-impar">
+            <tr class="fila-impar" data-esh-inslot="0" data-esh-itemid="@item.ShipID">
                 <td>
                     <img src="@item.ImageUrl32" alt="@item.Name" /></td>
                 <td>@item.ShipName</td>
@@ -71,11 +78,11 @@
                 <tr class="fila-par">
                     <td>
                         <img src="~/content/images/@EveShopping.Web.VSHMappings.GetImageName(hwdItem.Slot)" alt="" /></td>
-                    <td colspan="@(Model.ShowPriceAndVolume?4:2)">@EveShopping.Web.VSHMappings.GetSlotName(hwdItem.Slot)</td>
+                    <td colspan="@(Model.ShowPriceAndVolume ? 4 : 2)">@EveShopping.Web.VSHMappings.GetSlotName(hwdItem.Slot)</td>
                 </tr>
 
                 }
-                <tr class="@ViewBag.estilo">
+                <tr class="@ViewBag.estilo" data-esh-itemid="@hwdItem.ItemID" data-esh-inslot="@hwdItem.Slot">
                     <td>
                         <img src="@hwdItem.ImageUrl32" alt="@hwdItem.Name" /></td>
                     <td>@hwdItem.Name</td>
@@ -88,11 +95,11 @@
                 </tr>
             }
             <tr class="fila-ultima">
-                <td colspan="@(Model.ShowPriceAndVolume?5:3)">
+                <td colspan="@(Model.ShowPriceAndVolume ? 5 : 3)">
                     <span>Totals x 1 unit</span>
                     <span class="leftMargin right">@(item.Volume / item.Units) m3</span>
                     <span class="leftMargin right">@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.TotalPrice / item.Units)</span>
-                    </td>
+                </td>
             </tr>
         </table>
     </div>

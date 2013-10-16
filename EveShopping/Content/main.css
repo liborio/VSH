@@ -111,7 +111,6 @@ h1, h2, h3 {
 }
 
     .footer-container footer {
-        width: 1024px;
         padding: 5px 15px;
             color: white;
             font-size:0.8em;
@@ -393,7 +392,7 @@ nav a {
    =============== */
 
 
-    .wrapper, #subheader-container {
+    .wrapper, #subheader-container,  .footer-container footer{
         width: 1026px; /* 1140px - 10% for margins */
         margin: 0 auto;
     }
@@ -873,7 +872,7 @@ div.subs-wrapper {
     div.subs-wrapper h3 {
         color: #FFF;
         border: solid 1px #1C1C1C;
-        padding: 2px 1em 2px 24px;
+        padding: 2px 2px 2px 24px;
         font-size: 100%;
         margin: 2px 0 0;
         background: url('images/arrow-down20.png') no-repeat;
@@ -1141,7 +1140,15 @@ img.edit {
     background-position-y:3px;
 }
 
-img.delete:hover, img.edit:hover {
+img.export {
+    background: url('./images/export-icon.png') no-repeat;
+    padding: 3px;
+    background-position-x:3px;
+    background-position-y:3px;
+}
+
+
+img.delete:hover, img.edit:hover, img.export:hover {
     border: solid 1px #FFA500;
     cursor: pointer;
 }

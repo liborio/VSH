@@ -59,7 +59,18 @@ eveapi = {
                     , "Clicking in this link from in game browser will open market details window.");
             });
         }
+    },
 
+    openFitWindow: function(dna){
+        try {
+            CCPEVE.showFitting(dna);
+        } catch (e) {
+            $(function () {
+                infoDialog.show(
+                    "Not using EVE Online's ingame browser.", null
+                    , "To export your fitting to the EVE client you need to be using the ingame browser.");
+            });
+        }
     }
 }
 
@@ -244,8 +255,16 @@ infoDialog = {
         }
 
         $("#info-dialog-header").text(head);
-        $("#info-dialog-main-msg").text(mainMessage);
-        $("#info-dialog-second-msg").text(secondMessage);
+        var msg = ""
+        if (mainMessage != null) {
+            msg += '<p>' + mainMessage + "</p><p>";
+        }
+        msg += secondMessage;
+        if (mainMessage != null) {
+            msg += "</p>";
+        }
+        //$("#info-dialog-main-msg").html(mainMessage);
+        $("#info-dialog-second-msg").html(msg);
         $("#info-dialog-message").dialog({
             modal: true,
             buttons: {
@@ -262,7 +281,7 @@ infoDialog = {
 function setTotalPriceAndUnits() {
     var vol = 0;
     $('[data-esh-vol]').each(function () { vol += Number($(this).attr('data-esh-vol')); })
-
+    
     var price = 0;
     $('[data-esh-price]').each(function () { price += Number($(this).attr('data-esh-price')); })
     var formated = null;

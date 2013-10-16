@@ -81,13 +81,6 @@ function onSetUnitsInShoppingListSuccess(data) {
 }
 
 
-
-function cleanEdits() {
-    $('#fitsInList').find('[data-esh-row-edit]').remove();
-    $('#fitsInList').find('[data-esh-edit-link]').show();
-    $('#fitsInList').find('[data-esh-del-fit-link]').show();
-}
-
     function editFitInShoppingList(id) {
         cleanEdits();
         var row = $('#fitsInList').find('[data-esh-id="' + id + '"]').find('tr').first();
@@ -122,11 +115,6 @@ function cleanEdits() {
 
     function disableFitInShoppingListPanels() {
         accordionState.disableAccordion($("#fitsAnalysed"));
-    }
-
-    function cancelEditItemInShoppingList(id) {
-        cleanEdits();
-        accordionState.enableAccordion($('#fitsInList'));
     }
 
     function setUnitsItemInShoppingList(id) {
