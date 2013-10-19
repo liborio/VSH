@@ -11,48 +11,21 @@
 </h3>
 <p>Select any or your shopping lists and you will able to view, edit or delete it.</p>
 
-<table id="summary-table" data-page-size="15">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th data-sort-ignore="true">Statics</th>
-            <th data-hide="phone" class="numericCol" data-hide="phone">Creation</th>
-            <th data-hide="phone" class="numericCol" data-hide="phone">Last update</th>
-            <th data-hide="phone" data-sort-ignore="true"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in this.Model.Lists)
-        {
-            <tr data-esh-list-publicid="@item.publicID"  >
-                <td>@item.name</td>
-                <td>@if (item.staticCount == 0){
-                    }
-                    else{
-                        <a data-esh-list-linkshow data-esh-list-publicid="@item.publicID" class="yellow-link">Show [@item.staticCount]</a>
-                        <a data-esh-list-linkhide class="yellow-link notVisible">Hide</a>
-                    }
-                </td>
-                <td class="numericCol" data-value="@EveShopping.Web.VSHMappings.GetLongFromDate(item.dateCreation)" >@EveShopping.Web.VSHMappings.GetGridDateFormat( item.dateCreation)</td>
-                <td class="numericCol" data-value="@EveShopping.Web.VSHMappings.GetLongFromDate(item.dateUpdate)">@EveShopping.Web.VSHMappings.GetGridDateFormat( item.dateUpdate)</td>
-                <td class="numericCol">
-                    <span class="link-menu">@Html.ActionLink("Edit", "Summary", "Lists", new { id = item.publicID }, null)</span>
-                    <span><a data-esh-delete-list class="yellow-button">Delete</a></span>
-                </td>
-            </tr>
-        }
-    </tbody>
-    @if (Model.Lists.Count() > 15)
-    {
-        <tfoot>
-            <tr>
-                <td colspan="4">
-                    <div class="pagination pagination-centered"></div>
-                </td>
-            </tr>
-        </tfoot>
-    }
-</table>
+@{ViewBag.Controller = "Lists";}
+<div id="idShoppingLists">
+@Html.Partial("PVShoppingListsList", this.Model.Lists)
+    </div>
+
+@if (Model.GroupLists != null && Model.GroupLists.Count() > 0)
+{
+    <h3 class="main-title clearfix"><span>My group shopping lists</span>
+    </h3>
+    ViewBag.Controller = "Group";
+    <div id="idGroupShoppingLists">
+        @Html.Partial("PVShoppingListsList", this.Model.GroupLists)
+    </div>
+}
+
 
 @section scripts{
     <script type="text/javascript" src="~/Scripts/eshMyLists.js"></script>

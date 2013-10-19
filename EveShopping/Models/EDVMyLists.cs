@@ -11,5 +11,6 @@ namespace EveShopping.Models
     public class EDVMyLists : EDVBase
     {
         public IEnumerable<EVShoppingListHeader> Lists { get; set; }
+        public IEnumerable<EVShoppingListHeader> GroupLists { get; set; }
     }
 }

@@ -24,7 +24,10 @@ fitsConvert = {
     toEFT: function (fit) {
         var eft = "";
         var name = $(fit).data("esh-name");
-        eft += '[' + name + ']';
+
+        var shipName = $($(fit).find("[data-esh-inslot='0']").find("td")[1]).html();
+
+        eft += '[' + shipName + ", " + name + ']';
         var slot;
         eft += "\r\n";
         $(fit).find("[data-esh-inslot='3']").each(function () {

@@ -1,9 +1,14 @@
 ﻿$(document).load(function () {
+
 });
 
-$("[data-esh-delete-list]").click(function () {
+$("#idShoppingLists").find("[data-esh-delete-list]").click(function () {
     var id = $(this).parents("tr").attr("data-esh-list-publicid");
     deleteList(id);
+});
+$("#idGroupShoppingLists").find("[data-esh-delete-list]").click(function () {
+    var id = $(this).parents("tr").attr("data-esh-list-publicid");
+    deleteGroupList(id);
 });
 
 $("[data-esh-list-publicid]").click(function () {
@@ -35,13 +40,28 @@ function onGetStaticListsSuccess(data) {
 
 function deleteList(id) {
     //confirmDialog.show("Are you sure to delete the static shopping list?", function () { confirmedDeleteStaticList(id); });
-    confirmDialog.show("Are you sure to delete the shopping list?", function () { confirmedDeleteList(id); });
+    confirmDialog.show("Are you sure to delete the shopping list?", function () { confirmedDeleteShoppingList(id); });
+};
+
+function deleteGroupList(id) {
+    //confirmDialog.show("Are you sure to delete the static shopping list?", function () { confirmedDeleteStaticList(id); });
+    confirmDialog.show("Are you sure to delete the group shopping list?", function () { confirmedDeleteGroupList(id); });
+};
+
+
+function confirmedDeleteShoppingList(id) {
+    confirmedDeleteList(id, "/Lists/DeleteShoppingList");
 }
 
-function confirmedDeleteList(id) {
+function confirmedDeleteGroupList(id) {
+    confirmedDeleteList(id, "/Group/DeleteList");
+}
+
+
+function confirmedDeleteList(id, url) {
     $.ajax({
         type: 'POST',
-        url: '/Lists/DeleteShoppingList',
+        url: url,
         context: id,
         success: onSuccessDeleteList,
         error: onErrorDeleteList,
@@ -49,6 +69,7 @@ function confirmedDeleteList(id) {
         dataType: 'html'
     });
 }
+
 
 function onErrorDeleteList(data) {
     infoDialog.show("Couldn't delete the list", "There was a problem deleting your shopping list.", data.statusText, infoDialog.warning);
@@ -58,4 +79,5 @@ function onSuccessDeleteList(data) {
     var id = this;
     $("[data-esh-list-publicid='" + id + "']").remove();
 }
+
 

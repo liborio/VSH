@@ -186,6 +186,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BackloadDemoController.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\VSHBaseController.cs" />
     <Compile Include="Controllers\FittingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -201,6 +202,7 @@
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\EDVAddListsToGroup.cs" />
     <Compile Include="Models\EDVAddMarketItems.cs" />
     <Compile Include="Models\EDVAnalysedFitList.cs" />
     <Compile Include="Models\EDVImportFits.cs" />
@@ -604,6 +606,9 @@
     <Content Include="Views\Lists\Static.cshtml" />
     <Content Include="Views\Lists\PVStaticListItems.cshtml" />
     <Content Include="Views\BackloadDemo\Index.cshtml" />
+    <Content Include="Views\Group\ImportLinks.cshtml" />
+    <Content Include="Views\Lists\PVShoppingListsList.cshtml" />
+    <Content Include="Views\Group\Summary.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>

@@ -304,7 +304,9 @@ function setTotalPriceAndUnits() {
 
 
 $(document).ready(function () {
-    $(function () { $('#help-container').accordion(); });
+    if ($('#help-container').length > 0) {
+        $(function () { $('#help-container').accordion(); });
+    }
 });
 
 //<!-- UserVoice JavaScript SDK (only needed once on a page) -->

@@ -37,6 +37,18 @@ namespace EveShopping.Controllers
 
         public ActionResult Create(string slName, string slDescription)
         {
+            if (!Request.Form.AllKeys.Contains("btnCreateGroupList"))
+            {
+                return CreateShoppingList(slName, slDescription);
+            }
+            else
+            {
+                return CreateGroupShoppingList(slName, slDescription);
+            }
+        }
+
+        private ActionResult CreateShoppingList(string slName, string slDescription)
+        {
             AgenteShoppingList agente = new AgenteShoppingList();
             string userName = null;
             if (Request.IsAuthenticated)
@@ -46,6 +58,20 @@ namespace EveShopping.Controllers
             string id = agente.CrearShoppingList(slName, slDescription, userName);
 
             return RedirectToAction("ImportFits", new { id = id });
+        }
+
+        [Authorize]
+        private ActionResult CreateGroupShoppingList(string slName, string slDescription)
+        {
+            AgenteGroupLists agente = new AgenteGroupLists();
+            string userName = null;
+            if (Request.IsAuthenticated)
+            {
+                userName = User.Identity.Name;
+            }
+            string id = agente.CreateGroupList(userName, slName, slDescription);
+
+            return RedirectToAction("ImportLinks", "Group", new { id = id });
         }
 
         [HttpPost]
@@ -201,9 +227,13 @@ namespace EveShopping.Controllers
             AgenteShoppingList agente = new AgenteShoppingList();
             IEnumerable<EVShoppingListHeader> lists =
                 agente.SelectShoppingListsByUserName(User.Identity.Name);
+            AgenteGroupLists agenteGroup = new AgenteGroupLists();
+            IEnumerable<EVShoppingListHeader> groupLists =
+                agenteGroup.SelectGroupListsByUserName(User.Identity.Name);
             EDVMyLists edv = new EDVMyLists()
             {
-                Lists = lists
+                Lists = lists,
+                GroupLists = groupLists
             };
             SetHeadCounters();
             return View(edv);

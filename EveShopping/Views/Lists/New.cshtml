@@ -17,11 +17,19 @@
         <legend>Description</legend>
         <textarea name="slDescription" rows="5" placeholder="Description for new shopping list" maxlength="3000"></textarea>
     </fieldset>
-    <button type="submit" class="buttonYellow" value="Create">Create</button>
+    <button id="btnCreateList" name="btnCreateList" type="submit" class="buttonYellow" value="Create">Create new shopping list</button>
+    if(Request.IsAuthenticated){
+        <button id="btnCreateGroupList" name="btnCreateGroupList"  type="submit" class="buttonYellow" value="Create">Create new <strong>group</strong> shopping list</button>
+    }
+    <p>
+        Shopping list: You will be able to add in next step your fittings or any item that you want from the market. Name and description can be modified later in the summary.
+    </p>
+    if(Request.IsAuthenticated){
+    <p>Group shopping list: It allows to combine different shopping list in a group one. It is specially useful if you want to do a combined shopping for you and some friends. Instead of adding fittings and market items, you will add final shopping list links to be merged in the grouped one.</p>
+    }
 }
 
 @section scripts{
-    @Scripts.Render("~/bundles/jqueryui")
 
     <script src="~/Scripts/eshImportFits.js" type="text/javascript">
     </script>
