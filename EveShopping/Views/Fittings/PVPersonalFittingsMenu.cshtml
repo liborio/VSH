@@ -1,0 +1,34 @@
+﻿@model EveShopping.Models.EDVMyFittings
+
+<div class="menu-market" data-esh-marketmenu data-esh-context-selfitid="@Model.ContextSelectedFitID" data-esh-context-selfitname="@Model.ContextSelectedFitName">
+    @if (Model.MarketChain != null)
+    {
+        <div class="clearfix">
+            <ul id="market-path">
+                @foreach (var item in Model.MarketChain)
+                {
+                    <li class="market-path-val" data-esh-id="@item.marketGroupID" onclick="navigateMarketGroup(@item.marketGroupID)">@item.marketGroupName</li>
+                    <li class="market-path-sep">></li>
+                }
+                <li class="market-path-actual">@Model.GroupName</li>
+            </ul>
+        </div>
+    }
+    <div class="clearfix">
+        <ul>
+            @foreach (var item in Model.MarketItems)
+            {
+                <li class="fila-impar">
+                    <div onclick="navigateMarketGroup(@item.marketGroupID)">
+                        <span class="nombre" data-esh-id="@item.marketGroupID">@item.name [@item.units]</span>
+                    </div>
+                </li>
+            }
+        </ul>
+        <div id="@Model.Fittings.DivID" class="subs-wrapper" data-esh-fits-in-list>
+            @Html.Partial("../Lists/PVFitsInShoppingList", this.Model.Fittings)
+        </div>
+    </div>
+</div>
+
+
