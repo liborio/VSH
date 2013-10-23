@@ -23,9 +23,17 @@ namespace EveShopping.Logica
             EveShoppingContext contexto = new EveShoppingContext();
             var count =
                 (from f in contexto.eshShoppingLists
-                join u in contexto.userProfiles on f.userID equals u.UserId
-                where u.UserName == userName
-                select f.shoppingListID).Count();
+                 join u in contexto.userProfiles on f.userID equals u.UserId
+                 where u.UserName == userName
+                 select f.shoppingListID).Count();
+
+            count +=
+                (from f in contexto.eshGroupShoppingLists
+                    join u in contexto.userProfiles on f.userID equals u.UserId
+                    where u.UserName == userName
+                    select f.groupShoppingListID).Count();
+
+
             return count;
         }
 
@@ -131,7 +139,7 @@ namespace EveShopping.Logica
                 contexto.SaveChanges();
                 scope.Complete();
             }
-            
+
         }
 
 
@@ -163,7 +171,7 @@ namespace EveShopping.Logica
         /// <param name="fittingID"></param>
         public void DeleteFitFromShoppingLIST(string publicID, int fittingID)
         {
-            EveShoppingContext  context = new EveShoppingContext();
+            EveShoppingContext context = new EveShoppingContext();
 
             eshShoppingList sl = context.eshShoppingLists.Where(s => s.publicID == publicID).FirstOrDefault();
             if (sl == null) throw new ApplicationException(Messages.err_shoppingLisNoExiste);
@@ -196,7 +204,7 @@ namespace EveShopping.Logica
         {
             EveShoppingContext contexto =
                 new EveShoppingContext();
-            List<EVFitting> fittings = new List<EVFitting>(); 
+            List<EVFitting> fittings = new List<EVFitting>();
             IEnumerable<QFitting> qfittings =
                 (from sl in contexto.eshShoppingLists
                  join slf in contexto.eshShoppingListsFittings on sl.shoppingListID equals slf.shoppingListID
@@ -217,9 +225,9 @@ namespace EveShopping.Logica
                      Price = p.avg * slf.units,
                      Volume = f.shipVolume * slf.units,
                      InvType = it
-                     
+
                  });
-            int tradeHubID = contexto.eshShoppingLists.Where( s => s.publicID == publicID).FirstOrDefault().tradeHubID;
+            int tradeHubID = contexto.eshShoppingLists.Where(s => s.publicID == publicID).FirstOrDefault().tradeHubID;
 
             LogicaFittings logicaFittings = new LogicaFittings();
             return logicaFittings.MountFittingCommon(contexto, qfittings, imageResolver, tradeHubID);
@@ -235,7 +243,7 @@ namespace EveShopping.Logica
             {
                 throw new ApplicationException(Messages.err_shoppingLisNoExiste);
             }
-            return ! list.userID.HasValue;
+            return !list.userID.HasValue;
         }
 
         public eshShoppingList SelectShoppingListByPublicID(string publicID)
@@ -264,11 +272,11 @@ namespace EveShopping.Logica
                         where u.UserName == userName
                         select new EVShoppingListHeader
                         {
-                             dateCreation = sl.dateCreation,
-                             dateUpdate = sl.dateUpdate,
-                             name = sl.name,
-                             publicID = sl.publicID,
-                             staticCount = sl.eshSnapshots.Count
+                            dateCreation = sl.dateCreation,
+                            dateUpdate = sl.dateUpdate,
+                            name = sl.name,
+                            publicID = sl.publicID,
+                            staticCount = sl.eshSnapshots.Count
                         };
             return query.ToList();
 
@@ -287,8 +295,9 @@ namespace EveShopping.Logica
             EveShoppingContext contexto = new EveShoppingContext();
 
             int? userId = null;
-            if (userName != null){
-                UserProfile up = contexto.userProfiles.Where( p => p.UserName == userName).FirstOrDefault();
+            if (userName != null)
+            {
+                UserProfile up = contexto.userProfiles.Where(p => p.UserName == userName).FirstOrDefault();
                 if (up == null) throw new ApplicationException(Messages.err_usuarioNoExiste);
                 userId = up.UserId;
 
@@ -377,7 +386,7 @@ namespace EveShopping.Logica
         {
             EveShoppingContext contexto = new EveShoppingContext();
             eshShoppingList list = contexto.eshShoppingLists.Where(sl => sl.publicID == publicID).FirstOrDefault();
-            ClearAllDeltaFromSummary(list, contexto); 
+            ClearAllDeltaFromSummary(list, contexto);
         }
 
         internal void ClearAllDeltaFromSummary(eshShoppingList sl, EveShoppingContext contexto)
@@ -386,7 +395,7 @@ namespace EveShopping.Logica
             contexto.SaveChanges();
         }
 
-        
+
 
         public void UpdateDeltaToSummary(string publicID, int itemID, short units)
         {
@@ -507,13 +516,15 @@ namespace EveShopping.Logica
             foreach (var fit in fittings)
             {
                 EVFittingHardware fw = null;
-                if (diccHwd.ContainsKey(fit.ShipID)){
+                if (diccHwd.ContainsKey(fit.ShipID))
+                {
                     fw = diccHwd[fit.ShipID];
                     fw.Units += fit.Units;
                     fw.Volume += fit.Units * fit.ShipVolume;
                     fw.TotalPrice += fit.ShipPrice * fit.Units;
                 }
-                else{
+                else
+                {
                     fw = new EVFittingHardware
                     {
                         Name = fit.ShipName,
@@ -525,7 +536,7 @@ namespace EveShopping.Logica
                         UnitPrice = fit.ShipPrice,
                         ImageUrl32 = imageResolver.GetImageURL(fit.ShipID)
                     };
-                diccHwd.Add(fw.ItemID, fw);
+                    diccHwd.Add(fw.ItemID, fw);
                 }
 
 
@@ -601,9 +612,9 @@ namespace EveShopping.Logica
                 else
                 {
                     EVFittingHardware fwd = diccHwd[summInv.typeID];
-                    if ((summInv.delta < 0) && (summInv.delta * -1 > fwd.Units) )
+                    if ((summInv.delta < 0) && (summInv.delta * -1 > fwd.Units))
                     {
-                        summInv.delta = (short) (fwd.Units * -1);
+                        summInv.delta = (short)(fwd.Units * -1);
                     }
                     fwd.TotalPrice += summInv.delta * fwd.UnitPrice;
                     fwd.Volume += (fwd.Volume / fwd.Units) * summInv.delta;
@@ -690,13 +701,13 @@ namespace EveShopping.Logica
         public int SaveAnalisedFit(string listPublicId, FittingAnalyzed fitAnalysed, string userName = null)
         {
             EveShoppingContext contexto = new EveShoppingContext();
-            
+
             eshShoppingList lista = null;
             eshFitting fit = null;
             using (TransactionScope scope = new TransactionScope())
             {
                 fit = MountFittingFromFittingAnalysed(fitAnalysed);
-                
+
                 RepositorioShoppingLists repo = new RepositorioShoppingLists(contexto);
                 if (!string.IsNullOrEmpty(listPublicId))
                 {
@@ -831,7 +842,7 @@ namespace EveShopping.Logica
             invType tipo = repo.SelectItemTypePorName(fithwd.Name);
             if (tipo == null)
             {
-                throw new ApplicationException(string.Format("{0}: {1}",Messages.err_nombreItemAnalizadaNoExiste, fithwd.Name));
+                throw new ApplicationException(string.Format("{0}: {1}", Messages.err_nombreItemAnalizadaNoExiste, fithwd.Name));
             }
             eshFittingHardware salida = new eshFittingHardware();
             salida.typeID = tipo.typeID;

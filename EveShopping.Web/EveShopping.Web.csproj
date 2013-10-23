@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agentes\AgenteFittings.cs" />
+    <Compile Include="Agentes\AgenteGroupLists.cs" />
     <Compile Include="Agentes\AgenteMarketItems.cs" />
     <Compile Include="Agentes\AgenteShared.cs" />
     <Compile Include="Agentes\AgenteShoppingList.cs" />

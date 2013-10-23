@@ -7,6 +7,7 @@ namespace EveShopping.Modelo.Models
     {
         public eshSnapshot()
         {
+            this.eshGroupShoppingListSnapshots = new List<eshGroupShoppingListSnapshot>();
             this.eshSnapshotInvTypes = new List<eshSnapshotInvType>();
         }
 
@@ -18,6 +19,7 @@ namespace EveShopping.Modelo.Models
         public string publicID { get; set; }
         public string name { get; set; }
         public string description { get; set; }
+        public virtual ICollection<eshGroupShoppingListSnapshot> eshGroupShoppingListSnapshots { get; set; }
         public virtual eshShoppingList eshShoppingList { get; set; }
         public virtual ICollection<eshSnapshotInvType> eshSnapshotInvTypes { get; set; }
     }

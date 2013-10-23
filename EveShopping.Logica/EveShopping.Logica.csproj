@@ -67,6 +67,7 @@
     <Compile Include="LogicaEveCentral.cs" />
     <Compile Include="LogicaFittings.cs" />
     <Compile Include="Loggin\VSHLoggin.cs" />
+    <Compile Include="LogicaGroupLists.cs" />
     <Compile Include="LogicaMarketItems.cs" />
     <Compile Include="LogicaShoppingLists.cs" />
     <Compile Include="LogicaSnapshots.cs" />
