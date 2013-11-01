@@ -5,8 +5,11 @@
         <tr>
             <th data-sort-ignore="true"></th>
             <th>Name</th>
-            <th class="numericCol" data-hide="phone">( + / - )</th>
+            @if (Model.ShowDelta)
+            {
+                <th class="numericCol" data-hide="phone">( + / - )</th>
             <th data-hide="phone" data-sort-ignore="true"></th>
+            }
             <th class="numericCol" data-hide="phone">Volume</th>
             <th class="numericCol" data-hide="phone">Total price</th>
             <th class="numericCol" data-hide="phone">Unit price</th>
@@ -21,8 +24,11 @@
                 <td>
                     <img src="@item.ImageUrl32" alt="@item.Name" /></td>
                 <td>@item.Name</td>
-                <td class="numericCol" data-esh-cdelta="@item.Delta" data-value="@item.Delta">@(item.Delta>0?string.Format("+{0}",item.Delta):item.Delta.ToString())</td>
+                @if (Model.ShowDelta)
+                {
+                    <td class="numericCol" data-esh-cdelta="@item.Delta" data-value="@item.Delta">@(item.Delta > 0 ? string.Format("+{0}", item.Delta) : item.Delta.ToString())</td>
                 <td class="numericCol"><a onclick="editItemInSummary(@item.ItemID)">Edit</a></td>
+                }
                 <td class="numericCol" data-esh-cvolume="@item.UnitVolume" data-value="@item.Volume">@item.Volume m3</td>
                 <td class="numericCol" data-esh-cprice="@decimal.ToDouble(item.UnitPrice)" data-value="@decimal.ToDouble(item.TotalPrice)">@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.TotalPrice)</td>
                 <td class="numericCol" data-value="@decimal.ToDouble(item.UnitPrice)">@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.UnitPrice)</td>
@@ -35,7 +41,7 @@
     {
         <tfoot>
             <tr>
-                <td colspan="9">
+                <td colspan="@Model.ColCount">
                     <div class="pagination pagination-centered"></div>
                 </td>
             </tr>

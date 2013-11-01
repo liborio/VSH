@@ -1,4 +1,7 @@
-﻿using EveShopping.Web.Agentes;
+﻿using EveShopping.Modelo.EV;
+using EveShopping.Models;
+using EveShopping.Web;
+using EveShopping.Web.Agentes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,17 +24,70 @@ namespace EveShopping.Controllers
         public ActionResult ImportLinks(string id)
         {
             SetHeadCounters();
+            this.ViewBag.PublicID = id;
 
-            return View();
+            AgenteGroupLists agente = new AgenteGroupLists();
+            IEnumerable<EVStaticList> lists =  agente.SelectStaticListsHeadersByGroupId(EstadoUsuario.CurrentListPublicId);
+            EDVImportLinks edv = new EDVImportLinks { Lists = lists };
+            ViewBag.ShowGroupInfo = true;
+            return View(edv);
         }
 
         [Authorize]
         public ActionResult Summary(string id)
         {
             SetHeadCounters();
+            this.ViewBag.PublicID = id;
 
-            return View();
+            AgenteGroupLists agente = new AgenteGroupLists();
+            EVListSummary ev = agente.SelectGroupListSummaryPorPublicID(id);
+            EDVGroupSummary edv = new EDVGroupSummary();
+            edv.Summary = ev;
+            edv.Summary.ShowDelta = false;
+
+            IEnumerable<EVStaticList> lists = agente.SelectStaticListsHeadersByGroupId(id);
+            edv.Lists = lists;
+            ViewBag.AllowDelete = false;
+            ViewBag.ShowGroupInfo = true;
+            return View(edv);
         }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult RemoveListFromGroup(string id)
+        {
+            AgenteGroupLists agente = new AgenteGroupLists();
+            try
+            {
+                agente.RemoveListFromGroup(EstadoUsuario.CurrentListPublicId, id, User.Identity.Name);
+                return new EmptyResult();
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult SaveGroupListHeader(string slName, string slDescription){
+            AgenteGroupLists agente = new AgenteGroupLists();
+            string publicID = EstadoUsuario.CurrentListPublicId;
+
+            agente.ActualizarGroupListHeader(publicID, User.Identity.Name, slName, slDescription);
+            return new EmptyResult();
+        }
+
+        [Authorize]
+        public ActionResult IncludeStaticListInGroup(string id, string nick)
+        {
+            AgenteGroupLists agente = new AgenteGroupLists();
+            agente.IncludeStaticListInGroup(id, EstadoUsuario.CurrentListPublicId, User.Identity.Name, nick);
+            EVStaticList ev = agente.SelectStaticListHeaderById(EstadoUsuario.CurrentListPublicId, id);
+            ViewBag.ShowGroupInfo = true;
+            ViewBag.AllowDelete = true;
+            return PartialView("../Lists/PVStaticShoppingList", ev);
+        }   
 
         [Authorize]
         public ActionResult DeleteList(string id)

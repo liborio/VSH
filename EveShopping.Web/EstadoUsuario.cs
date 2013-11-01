@@ -17,17 +17,29 @@ namespace EveShopping.Web
             }
         }
 
+        private static string GetUrlGUID(Uri _uri)
+        {
+            if (_uri == null) return null;
+
+            string[] segments = _uri.Segments;
+            string szguid = segments[segments.Count() - 1];
+            Guid test;
+            if (Guid.TryParse(szguid, out test))
+            {
+                return szguid;
+            }
+            return null;
+        }
+
         public static string CurrentListPublicId{
             get
             {
-                string[] segments = Contexto.Request.UrlReferrer.Segments;
-                string szguid = segments[segments.Count() - 1];
-                Guid test;
-                if (Guid.TryParse(szguid, out test))
+                string strguid = GetUrlGUID(Contexto.Request.Url);
+                if (strguid == null)
                 {
-                    return szguid;
+                    strguid = GetUrlGUID(Contexto.Request.UrlReferrer);
                 }
-                return null;
+                return strguid;
             }
             set
             {

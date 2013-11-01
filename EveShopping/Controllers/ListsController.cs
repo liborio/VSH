@@ -291,7 +291,7 @@ namespace EveShopping.Controllers
         {
             AgenteShoppingList agente =
                 new AgenteShoppingList();
-            IEnumerable<eshSnapshot> sslist = agente.SelectStaticListsByShoppingListPublicID(id);
+            IEnumerable<EVStaticList> sslist = agente.SelectStaticListsByShoppingListPublicID(id);
 
             return PartialView("PVStaticShoppingLists", sslist);
         }
@@ -589,6 +589,6 @@ namespace EveShopping.Controllers
         #endregion
 
 
-
+                
     }
 }

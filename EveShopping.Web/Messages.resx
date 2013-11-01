@@ -117,40 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="err_fittigAlreadyUsed" xml:space="preserve">
-    <value>The fitting is already used in this shopping list.</value>
-  </data>
-  <data name="err_fittingNoExiste" xml:space="preserve">
-    <value>There is no record of this fitting in our registers</value>
-  </data>
-  <data name="err_itemNoEnShoppingList" xml:space="preserve">
-    <value>The item is not found in the shopping list.</value>
-  </data>
-  <data name="err_nombreItemAnalizadaNoExiste" xml:space="preserve">
-    <value>The analysed fit contains an item with a name that cant be recognized</value>
-  </data>
-  <data name="err_notOwner" xml:space="preserve">
-    <value>You dont seem to be the rightful owner of the element that you want to delete.</value>
-  </data>
-  <data name="err_notRecognisedDNAFormat" xml:space="preserve">
-    <value>There was a module in the DNA expression with the wrong format.</value>
-  </data>
-  <data name="err_notRecognisedFormat" xml:space="preserve">
-    <value>The fitting doesn't have a recognised format.</value>
-  </data>
-  <data name="err_notRecognisedItemInFitting" xml:space="preserve">
-    <value>The analysed fit contains an item that doesnt exist.</value>
-  </data>
   <data name="err_providedUrlNotValid" xml:space="preserve">
     <value>The provided URL is not valid.</value>
-  </data>
-  <data name="err_shoppingLisNoExiste" xml:space="preserve">
-    <value>Cant find the shopping list in our acurate archives. Try to create it again.</value>
-  </data>
-  <data name="err_staticShoppingListNoExiste" xml:space="preserve">
-    <value>The static shopping list doesnt exist in our archives.</value>
-  </data>
-  <data name="err_usuarioNoExiste" xml:space="preserve">
-    <value>The user doesn't exist in our database.</value>
   </data>
 </root>

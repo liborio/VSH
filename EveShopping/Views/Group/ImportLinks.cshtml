@@ -1,4 +1,4 @@
-﻿@model EveShopping.Models.EDVMyLists
+﻿@model EveShopping.Models.EDVImportLinks
 
 @{
     ViewBag.Title = "AddLists";
@@ -6,4 +6,37 @@
 }
 
 <h2>Import static shopping lists</h2>
-<h2>---------------- This page is under construction !!!</h2>
+<p>
+    To add a static list to your shopping list group, you have to add the nick name for the user that provided it to you and a link to that static list.
+</p>
+<p>As static lists are anonymous, the nick name will be useful for you to remember the name of the person that gave you the link. Write in this field anything that you will find useful to know who the static list belongs to.</p>
+
+<form>
+    <fieldset>
+        <legend>Nick for the user who provided you the link</legend>
+        <input id="idNick" type="text" name="slName" placeholder="Write anything that you find usefull to remember who the static list belongs to" required maxlength="100" />
+    </fieldset>
+    <fieldset>
+        <legend>URL of the static list that you want to inclue</legend>
+        <input id="idStaticUrl" type="text" name="slName" placeholder="Static list's URL" required maxlength="100" />
+        <a id="idIncludeBtn" class="buttonYellow-short">Include in group list   </a>
+    </fieldset>
+</form>
+
+<div id="idStaticLists">
+    @Html.Partial("../Lists/PVStaticShoppingLists", Model.Lists)
+</div>
+
+<div id="links-navegacion-pasos-container">
+    @Html.ActionLink("Summary >>", "Summary", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/eshImportLinks.js" type="text/javascript">
+    </script>
+    <!-- We use Backloads. bundeling feature to register only those client side javascript and style files of the jQuery File Upload Plugin that are needed  -->
+
+}
+
+

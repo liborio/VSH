@@ -1,0 +1,27 @@
+﻿@model EveShopping.Modelo.EV.EVStaticList
+
+@if (ViewBag.ShowGroupInfo == null) { ViewBag.ShowGroupInfo = false; }
+
+<tr data-esh-static-publicid="@Model.publicID">
+    <td>@Model.name</td>
+    @if (Model.IsGroup)
+    {
+        <td class="numericCol">@Model.ownerNick</td>
+        <td class="numericCol">@EveShopping.Web.VSHMappings.GetGridDateFormat(Model.inGroupDate.Value)</td>        
+    }
+    else
+    {
+        <td class="numericCol">@EveShopping.Web.VSHMappings.GetGridDateFormat(Model.creationDate)</td>
+    }
+    <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.totalPrice)</td>
+    <td class="numericCol">@Model.totalVolume m3</td>
+    <td class="numericCol">
+        <span class="link-menu"><a href="@Url.Action("Static", "Lists", new { id = Model.publicID })" class="yellow-button">View</a></span>
+        @if (ViewBag.AllowDelete == true)
+        {
+            <span><a data-esh-delete-static class="yellow-button">Delete</a></span>
+        }
+    </td>
+</tr>
+
+

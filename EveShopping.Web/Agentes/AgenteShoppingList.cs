@@ -129,7 +129,7 @@ namespace EveShopping.Web.Agentes
              logica.DeleteStaticShoppingList(publicID, userName);
         }
 
-        public IEnumerable<eshSnapshot> SelectStaticListsByShoppingListPublicID(string publicID)
+        public IEnumerable<EVStaticList> SelectStaticListsByShoppingListPublicID(string publicID)
         {
             LogicaSnapshots logica = new LogicaSnapshots();
             return logica.SelectStaticListsByShoppingListPublidID(publicID);

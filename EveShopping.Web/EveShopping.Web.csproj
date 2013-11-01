@@ -52,6 +52,11 @@
     <Compile Include="Imagex32UrlResolver.cs" />
     <Compile Include="IsGuidConstrain.cs" />
     <Compile Include="Mappings.cs" />
+    <Compile Include="Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\ConvertToJavaScriptArray.cs" />
     <Compile Include="Modelo\EDVBase.cs" />
     <Compile Include="Modelo\EVMarketItem.cs" />
@@ -66,6 +71,12 @@
       <Project>{0850a85e-c6c0-439e-83a7-c88a720e9285}</Project>
       <Name>EveShopping.Modelo</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

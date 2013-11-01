@@ -205,7 +205,9 @@
     <Compile Include="Models\EDVAddListsToGroup.cs" />
     <Compile Include="Models\EDVAddMarketItems.cs" />
     <Compile Include="Models\EDVAnalysedFitList.cs" />
+    <Compile Include="Models\EDVGroupSummary.cs" />
     <Compile Include="Models\EDVImportFits.cs" />
+    <Compile Include="Models\EDVImportLinks.cs" />
     <Compile Include="Models\EDVMyFittings.cs" />
     <Compile Include="Models\EDVMyLists.cs" />
     <Compile Include="Models\EDVShopingListBase.cs" />
@@ -431,6 +433,7 @@
     <Content Include="Scripts\eshMyLists.js" />
     <Content Include="Scripts\eshpAnalyseFits.js" />
     <Content Include="Scripts\eshpFits.js" />
+    <Content Include="Scripts\eshpStaticLists.js" />
     <Content Include="Scripts\eshStatic.js" />
     <Content Include="Scripts\eshUploadXML.js" />
     <Content Include="Scripts\fileupload\angularjs\angular.debug.js" />
@@ -459,6 +462,7 @@
     <Content Include="Scripts\fileupload\jqueryui\jquery.ui.widget.js" />
     <Content Include="Scripts\fileupload\load-image.debug.js" />
     <Content Include="Scripts\fileupload\tmpl.debug.js" />
+    <Content Include="Scripts\eshImportLinks.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
@@ -609,6 +613,7 @@
     <Content Include="Views\Group\ImportLinks.cshtml" />
     <Content Include="Views\Lists\PVShoppingListsList.cshtml" />
     <Content Include="Views\Group\Summary.cshtml" />
+    <Content Include="Views\Lists\PVStaticShoppingList.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>

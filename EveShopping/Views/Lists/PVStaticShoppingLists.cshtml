@@ -1,40 +1,38 @@
-﻿@model IEnumerable<EveShopping.Modelo.Models.eshSnapshot>
+﻿@model IEnumerable<EveShopping.Modelo.EV.EVStaticList>
 
 @if (ViewBag.AllowDelete == null) { ViewBag.AllowDelete = true; }
+@if (ViewBag.ShowGroupInfo == null) { ViewBag.ShowGroupInfo = false; }
 
 <table id="tableStaticLists">
-<thead>
-    <tr>
-        <th data-sort-ignore="true">Name</th>
-        <th class="numericCol" data-sort-ignore="true">Creation date</th>
-        <th class="numericCol" data-sort-ignore="true">Price</th>
-        <th class="numericCol" data-sort-ignore="true">Volume</th>
-        <th data-sort-ignore="true"></th>
-    </tr>
-</thead>
- <tbody>
-@foreach (var item in Model)
-{    
-    <tr data-esh-static-publicid="@item.publicID">
-        <td>@item.name</td>
-        <td class="numericCol">@EveShopping.Web.VSHMappings.GetGridDateFormat( item.creationDate)</td>
-        <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.totalPrice)</td>
-        <td class="numericCol">@item.totalVolume m3</td>
-        <td class="numericCol">
-            <span class="link-menu"><a href="@Url.Action("Static", "Lists", new { id = item.publicID })" class="yellow-button">View</a></span>
-        @if(ViewBag.AllowDelete == true){
-            <span><a data-esh-delete-static class="yellow-button">Delete</a></span>
-        }
-            </td>
-    </tr>
-}
-</tbody>
-<tfoot>
+    <thead>
         <tr>
-        <td colspan="6">
-            <div class="pagination pagination-centered"></div>
-        </td>
-    </tr>
+            <th data-sort-ignore="true">Name</th>
+            @if (ViewBag.ShowGroupInfo || Model.First().IsGroup)
+            {
+                <th class="numericCol" data-sort-ignore="true">Owner nick</th>
+                <th class="numericCol" data-sort-ignore="true">Added to group</th>
+            }
+            else
+            {
+                <th class="numericCol" data-sort-ignore="true">Creation date</th>
+            }
+            <th class="numericCol" data-sort-ignore="true">Price</th>
+            <th class="numericCol" data-sort-ignore="true">Volume</th>
+            <th data-sort-ignore="true"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (EveShopping.Modelo.EV.EVStaticList item in Model)
+        {
+            @Html.Partial("../Lists/PVStaticShoppingList", item)    
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="6">
+                <div class="pagination pagination-centered"></div>
+            </td>
+        </tr>
 
-</tfoot>
+    </tfoot>
 </table>

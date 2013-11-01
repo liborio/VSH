@@ -75,8 +75,19 @@ eveapi = {
 }
 
 general = {
-    authenticated: false
+    authenticated: false,
+
+    setEnter: function (idSender, idDest) {
+        $(idSender).keyup(function (event) {
+            if (event.keyCode == 13) {
+                $(idDest).click();
+            }
+        });
+
+    }
 }
+    
+
 
 accordionState = {
 

@@ -85,7 +85,7 @@ namespace EveShopping.Logica
         }
 
 
-        public IEnumerable<eshSnapshot> SelectStaticListsByShoppingListPublidID(string publicID)
+        public IEnumerable<EVStaticList> SelectStaticListsByShoppingListPublidID(string publicID)
         {
             EveShoppingContext contexto = new EveShoppingContext();
             var query =
@@ -93,7 +93,19 @@ namespace EveShopping.Logica
                 join ssl in contexto.eshSnapshots.Include("eshSnapshotInvTypes").Include("eshSnapshotInvTypes.invType") on sl.shoppingListID equals ssl.shoppingListID
                 where sl.publicID == publicID
                 orderby ssl.creationDate descending
-                select ssl;
+                select new EVStaticList
+                {
+                    creationDate = ssl.creationDate,
+                    description = ssl.description,
+                    inGroupDate = null,
+                    name = ssl.name,
+                    ownerNick = null,
+                    publicID = ssl.publicID,
+                    shoppingListID = ssl.shoppingListID,
+                    snapshotID = ssl.snapshotID,
+                    totalPrice = ssl.totalPrice,
+                    totalVolume = ssl.totalVolume
+                };
 
             return query.ToList();
         }

@@ -133,7 +133,7 @@ function onSetUnitsInShoppingListSuccess(data) {
     function deleteItemInShoppingList(id) {
         $.ajax({
             url: '/Lists/DeleteFittingFromShoppingList/' + id,
-            context: id,
+            context: id,    
             success: OnSuccessDeleteFitFromList,
             dataType: 'html'
         });

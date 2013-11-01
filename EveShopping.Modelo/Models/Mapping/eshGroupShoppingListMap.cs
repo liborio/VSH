@@ -16,8 +16,7 @@ namespace EveShopping.Modelo.Models.Mapping
                 .HasMaxLength(50);
 
             this.Property(t => t.description)
-                .IsFixedLength()
-                .HasMaxLength(10);
+                .HasMaxLength(3990);
 
             this.Property(t => t.publicID)
                 .IsRequired()
