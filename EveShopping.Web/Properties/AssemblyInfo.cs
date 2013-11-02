@@ -32,7 +32,7 @@ using System.Web.UI;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("1.0.1")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: WebResource("EveShopping.Web.ClientControl1.js", "text/javascript")]
 [assembly: ScriptResource("EveShopping.Web.ClientControl1.js",

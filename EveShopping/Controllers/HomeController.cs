@@ -22,5 +22,17 @@ namespace EveShopping.Controllers
             return View();
         }
 
+        public ActionResult Videos()
+        {
+            SetHeadCounters();
+            return View();
+        }
+
+        public ActionResult About()
+        {
+            SetHeadCounters();
+            return View();
+        }
+
     }
 }

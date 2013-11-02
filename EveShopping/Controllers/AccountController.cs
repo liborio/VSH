@@ -63,8 +63,9 @@ namespace EveShopping.Controllers
         // GET: /Account/Register
 
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Register(string returnUrl = null)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -74,7 +75,7 @@ namespace EveShopping.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterModel model)
+        public ActionResult Register(RegisterModel model,string ReturnUrl = null)
         {
 
             if (ModelState.IsValid)
@@ -84,7 +85,14 @@ namespace EveShopping.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+                    if (string.IsNullOrEmpty (ReturnUrl))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        return Redirect(ReturnUrl);
+                    }
                 }
                 catch (MembershipCreateUserException e)
                 {

@@ -614,6 +614,8 @@
     <Content Include="Views\Lists\PVShoppingListsList.cshtml" />
     <Content Include="Views\Group\Summary.cshtml" />
     <Content Include="Views\Lists\PVStaticShoppingList.cshtml" />
+    <Content Include="Views\Home\Videos.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>

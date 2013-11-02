@@ -148,6 +148,19 @@ accordionState = {
     }
 }
 
+function joinEveShoppingChannel() {
+    try {
+        CCPEVE.joinChannel("eve-shopping");
+    } catch (e) {
+        $(function () {
+            infoDialog.show(
+                "Can't join an EVE channel in this browser"
+                , "You can join an in-game EVE channel only from EVE Online browser."
+                , "Clicking in this link from in game browser will join you to eve-shopping channel.");
+        });
+    }
+}
+
 function openEoghanInfo() {
     try {
         CCPEVE.showInfo(1377, 310338229);

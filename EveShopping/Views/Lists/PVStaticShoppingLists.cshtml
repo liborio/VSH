@@ -7,7 +7,7 @@
     <thead>
         <tr>
             <th data-sort-ignore="true">Name</th>
-            @if (ViewBag.ShowGroupInfo || Model.First().IsGroup)
+            @if (ViewBag.ShowGroupInfo || ( Model.Count() >0 && Model.First().IsGroup))
             {
                 <th class="numericCol" data-sort-ignore="true">Owner nick</th>
                 <th class="numericCol" data-sort-ignore="true">Added to group</th>

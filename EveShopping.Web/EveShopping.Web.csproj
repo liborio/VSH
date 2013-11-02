@@ -61,6 +61,7 @@
     <Compile Include="Modelo\EDVBase.cs" />
     <Compile Include="Modelo\EVMarketItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EveShopping.Logica\EveShopping.Logica.csproj">

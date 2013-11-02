@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>About</h2>
+<p>EVE-shopping is a tool designed to help pilots to do their shopping in EVE Online. The original idea came from the own necesity of its programmer to keep his ship hangar updated. </p>
+<p>The current version of EVE-shopping is v<span>@EveShopping.Web.Utils.GetVersion()</span></p>
+<h3>Contact</h3>
+<p>In-game channel: <a class="yellow-link" onclick="joinEveShoppingChannel();">eve-shopping</a></p>
+<p>Contact in-game to: <a class="yellow-link" onclick="openEoghanInfo();">Eoghan Gorthaur</a></p>
+<p>Send mail to: <a href="mailto:info@eve-shopping.com" class="yellow-link">info@eve-shopping.com</a></p>
+<h3>Coming soon in Version 1.1</h3>
+<p>- EVE-shopping will be responsive and 100% usable from smartphones.</p>
+<p>- Will be possible to edit the fits saved in personal fittings.</p>
+<h3>Change log</h3>
+<p>There are no new versions yet.</p>

@@ -106,6 +106,8 @@ namespace EveShopping.Logica.Conversion
                 short initialUnits = 1;
                 FittingHardwareAnalyzed fha = null;
                 hwdname = item.Trim();
+                //Si es un Empty slot lo quitamos
+                if (hwdname.ToLower().StartsWith("[empty")) break;
                 //quitamos la coma para eliminar las ammo de los items que las admiten
                 if (hwdname.Contains(',')){
                     hwdname = hwdname.Split(',').First();

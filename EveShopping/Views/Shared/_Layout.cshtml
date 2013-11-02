@@ -71,8 +71,8 @@
                     @Html.ActionLink("My account", "Manage", "Account", routeValues: null, htmlAttributes: new { })
                 </li>
             }
-            <li><a href="#" id="navlink_about2">About</a></li>
-
+            <li>@Html.ActionLink("Video tutorials", "Videos", "Home", null, null)</li>
+            <li>@Html.ActionLink("About", "About", "Home", null, null)</li>
         </ul>
 
     </div>
@@ -95,7 +95,7 @@
 
     <div class="footer-container">
         <footer class="wrapper">
-            <p>If you like EVE-shopping and would like to help, you can donate some ISK to <a class="yellow-link" onclick="openEoghanInfo();">Eoghan Gorthaur</a>. If you have any suggestion or found any issue you can add it to our feedback site or mail to <a class="yellow-link" href="mailto:info@eve-shopping.com">info@eve-shopping.com</a>. Thanks !!!</p>
+            <p>EVE-shopping v<span>@EveShopping.Web.Utils.GetVersion()</span>. If you like EVE-shopping and would like to help, you can donate some ISK to <a class="yellow-link" onclick="openEoghanInfo();">Eoghan Gorthaur</a>. If you have any suggestion or found any issue you can add it to our feedback site or mail to <a class="yellow-link" href="mailto:info@eve-shopping.com">info@eve-shopping.com</a>. Thanks !!!</p>
             Material related to EVE-Online is used with limited permission of CCP Games hf. No official affiliation or endorsement by CCP Games hf is stated or implied.
         </footer>
     </div>

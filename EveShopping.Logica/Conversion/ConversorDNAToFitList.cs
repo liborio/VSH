@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace EveShopping.Logica.Conversion
 {
@@ -15,7 +16,12 @@ namespace EveShopping.Logica.Conversion
         public IEnumerable<FittingAnalyzed> ToFitList(string fitExterna)
         {
             string nombre = null;
-            string cadenaDNA = ObtenerCadenaDNA(fitExterna, out nombre);
+
+            string cadenaDNA = ObtenerCadenaDNAFromXML(fitExterna, out nombre);
+            if (cadenaDNA == null)
+            {
+                cadenaDNA = ObtenerCadenaDNA(fitExterna, out nombre);
+            }
 
             if (string.IsNullOrEmpty(cadenaDNA))
             {
@@ -148,6 +154,21 @@ namespace EveShopping.Logica.Conversion
                 }
             }
             return modsSalida;
+        }
+
+        private string ObtenerCadenaDNAFromXML(string fitExterna, out string nombre)
+        {
+            try
+            {
+                XElement elem = XElement.Parse(fitExterna);
+                nombre = elem.Value;
+                return elem.Attribute("url").Value;
+            }
+            catch
+            {
+                nombre = null;
+                return null;
+            }
         }
 
         private string ObtenerCadenaDNA(string fitExterna, out string nombre)
