@@ -17,9 +17,9 @@ namespace EveShopping
 
             OAuthWebSecurity.RegisterGoogleClient();
 
-        //    OAuthWebSecurity.RegisterFacebookClient(
-        //appId: "343050129164564",
-        //appSecret: "6576a6253624845a4b40de37e63f9362");
+            OAuthWebSecurity.RegisterFacebookClient(
+        appId: "343050129164564",
+        appSecret: "6576a6253624845a4b40de37e63f9362");
 
         //    OAuthWebSecurity.RegisterTwitterClient(
         //        consumerKey: "Ao1rpYXjeTauCGwDEpg5w",

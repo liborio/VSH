@@ -36,17 +36,26 @@
 
 </head>
 <body>
-    <div class="header-container">
+<div id="fb-root"></div>
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=343050129164564";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+        <div class="header-container">
         <header class="wrapper clearfix">
             <h1 class="title">
                 <img src="~/Content/images/eveLogo.png" />
                 shopping
             </h1>
             <div class="nav-header">
+<div class="fb-like" style="float: left;" data-href="http://www.eve-shopping.com" data-colorscheme="dark" data-height="50px" data-width="300px" data-layout="standard" data-action="like" data-show-faces="false" data-send="false"></div>
                 @Html.Partial("_LoginPartial")
             </div>
-
-            @*            <nav>
+                        @*            <nav>
                 <ul>
                     <li>@Html.ActionLink("Home", "Index", "Home", null, new { id = "navlink_home" })</li>
                     <li>@Html.ActionLink("New List", "New", "Lists", null, new { id = "navlink_newList" })</li>
@@ -62,9 +71,9 @@
             @if (Request.IsAuthenticated)
             {
 
-              <li><a href="~/Fittings/MyFittings">My fittings[<span id="fittingCount">@ViewBag.FittingCount</span>]</a></li>
-              <li><a href="~/Lists/MyLists">My lists[<span id="listCount">@ViewBag.ListCount</span>]</a></li>
-                @*
+                <li><a href="~/Fittings/MyFittings">My fittings[<span id="fittingCount">@ViewBag.FittingCount</span>]</a></li>
+                <li><a href="~/Lists/MyLists">My lists[<span id="listCount">@ViewBag.ListCount</span>]</a></li>
+@*
             <li>@Html.ActionLink(string.Format("{0}({1})", "My fittings", Model.FittingCount), "MyFittings", "Fittings", null, new { id = "navlink_newList" })</li>
             <li>@Html.ActionLink(string.Format("{0}({1})", "My lists", Model.ListCount), "MyLists", "Lists", null, new { id = "navlink_newList" })</li>*@
                 <li>
@@ -115,28 +124,28 @@
             Clicking in this link from in game browser will open market details window.
         </p>
     </div>*@
-        <!-- confirm dialog -->
-	<div id='content'>
-		<div id='confirm-dialog'>
-		</div>
-		
-		<!-- modal content -->
-		<div id='confirm'>
-			<div class='header'><span>Confirm</span></div>
-			<div class='message'></div>
-			<div class='buttons'>
-@*				<div class='no simplemodal-close'>No</div><div class='yes'>Yes</div>*@
+    <!-- confirm dialog -->
+    <div id='content'>
+        <div id='confirm-dialog'>
+        </div>
+
+        <!-- modal content -->
+        <div id='confirm'>
+            <div class='header'><span>Confirm</span></div>
+            <div class='message'></div>
+            <div class='buttons'>
+                @*				<div class='no simplemodal-close'>No</div><div class='yes'>Yes</div>*@
                 <a class="no simplemodal-close buttonYellow right">No</a>
                 <a class="yes buttonYellow right">Yes</a>
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- modal content -->
     <div id="basic-modal-content">
         <h3 id="info-dialog-header">Basic Modal Dialog</h3>
-@*        <p>
+        @*        <p>
             <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
             <span id="info-dialog-main-msg"></span>
         </p>*@
@@ -159,6 +168,18 @@
 
         responsiveNav(".nav-collapse");
 
+
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-45392558-1', 'eve-shopping.com');
+        ga('send', 'pageview');
 
     </script>
 </body>

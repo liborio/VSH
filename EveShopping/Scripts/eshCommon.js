@@ -17,7 +17,7 @@ $(document).ajaxSuccess(ajaxLoader.endTimer);
 $(document).ajaxComplete(function () { ajaxLoader.endTimer(); accordionState.removeHeight(); });
 $(document).ajaxError(ajaxLoader.endTimer);
 
-$(window).load(function () {
+$(document).ready(function () {
     accordionState.removeHeight();
 });
 
@@ -117,6 +117,8 @@ accordionState = {
 
     enableAccordion: function (acc) {
         $(function () { $(acc).accordion("enable") });
+        accordionState.removeHeight();
+
     },
 
     openPanel: function (acc, idItem) {
@@ -125,6 +127,7 @@ accordionState = {
         if (index !== currentActive) {
             $(acc).accordion({ active: index });
         }
+        accordionState.removeHeight();
     },
 
     openPanelByIndex: function (acc, index) {
@@ -132,6 +135,8 @@ accordionState = {
         if (index !== currentActive) {
             $(acc).accordion({ active: index });
         }
+        accordionState.removeHeight();
+
     },
 
     getIndex: function (acc, idItem) {
