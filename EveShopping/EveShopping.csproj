@@ -211,6 +211,7 @@
     <Compile Include="Models\EDVMyFittings.cs" />
     <Compile Include="Models\EDVMyLists.cs" />
     <Compile Include="Models\EDVShopingListBase.cs" />
+    <Compile Include="Models\EDVShopping.cs" />
     <Compile Include="Models\EDVStatic.cs" />
     <Compile Include="Models\EDVSummary.cs" />
     <Compile Include="Models\EDVFittingsList.cs" />
@@ -434,6 +435,7 @@
     <Content Include="Scripts\eshpAnalyseFits.js" />
     <Content Include="Scripts\eshpFits.js" />
     <Content Include="Scripts\eshpStaticLists.js" />
+    <Content Include="Scripts\eshShopping.js" />
     <Content Include="Scripts\eshStatic.js" />
     <Content Include="Scripts\eshUploadXML.js" />
     <Content Include="Scripts\fileupload\angularjs\angular.debug.js" />

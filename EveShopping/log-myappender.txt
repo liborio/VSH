@@ -5027,3 +5027,21 @@ The statement has been terminated.
    at EveShopping.Logica.EveCentral.EveCentralAgent.GetPricesForHub(IEnumerable`1 itemsID, Int32 hub) in c:\Desarrollo\VSH\EveShopping.Logica\EveCentral\EveCentralAgent.cs:line 41
    at EveShopping.Logica.EveCentral.EveCentralAgent.GetPrices(IEnumerable`1 itemId, IEnumerable`1 hubs) in c:\Desarrollo\VSH\EveShopping.Logica\EveCentral\EveCentralAgent.cs:line 68
    at EveShopping.Logica.LogicaEveCentral.UpdatePrices() in c:\Desarrollo\VSH\EveShopping.Logica\LogicaEveCentral.cs:line 40
+05-11-2013 02:00:57 [(null)] - Error recuperando precios
+05-11-2013 02:00:57 [(null)] - System.Net.WebException: Error en el servidor remoto: (500) Error interno del servidor.
+   en System.Net.HttpWebRequest.GetResponse()
+   en EveShopping.Logica.EveCentral.EveCentralAgent.GetPricesForHub(IEnumerable`1 itemsID, Int32 hub) en c:\desarrollo\VSH\EveShopping.Logica\EveCentral\EveCentralAgent.cs:línea 41
+   en EveShopping.Logica.EveCentral.EveCentralAgent.GetPrices(IEnumerable`1 itemId, IEnumerable`1 hubs) en c:\desarrollo\VSH\EveShopping.Logica\EveCentral\EveCentralAgent.cs:línea 68
+   en EveShopping.Logica.LogicaEveCentral.UpdatePrices() en c:\desarrollo\VSH\EveShopping.Logica\LogicaEveCentral.cs:línea 53
+05-11-2013 03:01:13 [(null)] - Error recuperando precios
+05-11-2013 03:01:13 [(null)] - System.Net.WebException: Error en el servidor remoto: (500) Error interno del servidor.
+   en System.Net.HttpWebRequest.GetResponse()
+   en EveShopping.Logica.EveCentral.EveCentralAgent.GetPricesForHub(IEnumerable`1 itemsID, Int32 hub) en c:\desarrollo\VSH\EveShopping.Logica\EveCentral\EveCentralAgent.cs:línea 41
+   en EveShopping.Logica.EveCentral.EveCentralAgent.GetPrices(IEnumerable`1 itemId, IEnumerable`1 hubs) en c:\desarrollo\VSH\EveShopping.Logica\EveCentral\EveCentralAgent.cs:línea 68
+   en EveShopping.Logica.LogicaEveCentral.UpdatePrices() en c:\desarrollo\VSH\EveShopping.Logica\LogicaEveCentral.cs:línea 53
+05-11-2013 04:01:06 [(null)] - Error recuperando precios
+05-11-2013 04:01:06 [(null)] - System.Net.WebException: Error en el servidor remoto: (500) Error interno del servidor.
+   en System.Net.HttpWebRequest.GetResponse()
+   en EveShopping.Logica.EveCentral.EveCentralAgent.GetPricesForHub(IEnumerable`1 itemsID, Int32 hub) en c:\desarrollo\VSH\EveShopping.Logica\EveCentral\EveCentralAgent.cs:línea 41
+   en EveShopping.Logica.EveCentral.EveCentralAgent.GetPrices(IEnumerable`1 itemId, IEnumerable`1 hubs) en c:\desarrollo\VSH\EveShopping.Logica\EveCentral\EveCentralAgent.cs:línea 68
+   en EveShopping.Logica.LogicaEveCentral.UpdatePrices() en c:\desarrollo\VSH\EveShopping.Logica\LogicaEveCentral.cs:línea 53

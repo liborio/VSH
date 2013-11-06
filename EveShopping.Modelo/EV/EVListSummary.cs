@@ -29,7 +29,7 @@ namespace EveShopping.Modelo.EV
         {
             get
             {
-                int total = 9;
+                int total = 10;
                 if (!ShowDelta) total-=2;
                 return total;
             }

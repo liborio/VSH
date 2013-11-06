@@ -31,6 +31,11 @@ namespace EveShopping.Web
             return null;
         }
 
+        public static bool IsIGB()
+        {
+            return HttpContext.Current.Request.UserAgent.EndsWith("EVE-IGB");
+        }
+
         public static string CurrentListPublicId{
             get
             {

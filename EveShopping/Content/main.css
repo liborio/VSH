@@ -809,10 +809,6 @@ tr {
         background-color: #3A3A3A;
     }
 
-    tr.fila-impar {
-        background-color: #272727;
-    }
-
     tr.fila-ultima {
         background-color: #1C1C1C;
     }
@@ -1159,3 +1155,7 @@ img.delete:hover, img.edit:hover, img.export:hover {
     border: solid 1px #FFA500;
     cursor: pointer;
 }
+
+    tr.fila-impar, tr.seleccionada {
+        background-color: #272727;
+    }

@@ -49,6 +49,7 @@ namespace EveShopping.Logica
                         }
                         else
                         {
+                            ItemIds.Add(item.typeID);
                             IEnumerable<ItemPrice> prices = agente.GetPrices(ItemIds, singlehubList);
                             foreach (var price in prices)
                             {

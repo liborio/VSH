@@ -9,6 +9,11 @@
             <th class="numericCol" data-hide="phone">Total price</th>
             <th class="numericCol" data-hide="phone">Unit price</th>
             <th class="numericCol">Units</th>
+            @if (EveShopping.Web.EstadoUsuario.IsIGB())
+            {
+                <th data-esh-shopping data-hide="phone" class="numericCol">Bought</th>
+            }
+
             <th data-hide="phone" data-sort-ignore="true"></th>
         </tr>
     </thead>
@@ -17,13 +22,18 @@
         {
             <tr data-esh-id="@item.typeID">
                 <td>
-                    <img src="@EveShopping.Web.VSHMappings.ResolveImage32( item.typeID)" alt="@item.invType.typeName" /></td>
+                    <img src="@EveShopping.Web.VSHMappings.ResolveImage32(item.typeID)" alt="@item.invType.typeName" /></td>
                 <td>@item.invType.typeName</td>
                 <td class="numericCol" data-value="@item.volume">@item.volume m3</td>
                 <td class="numericCol" data-value="@decimal.ToDouble(item.unitPrice * item.units)">@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.unitPrice * item.units)</td>
                 <td class="numericCol" data-value="@decimal.ToDouble(item.unitPrice)">@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.unitPrice)</td>
                 <td class="numericCol" data-value="@item.units">x @item.units</td>
-                <td class="numericCol"><a onclick="eveapi.openMarketDatailsWindow(@item.typeID)">Market</a></td>
+                @if (EveShopping.Web.EstadoUsuario.IsIGB())
+                {
+                    <td class="numericCol" data-esh-shopping data-value="0">
+                        <input data-esh-boughtchk type="checkbox" value="false" /></td>
+                }
+                <td class="numericCol"><a onclick="openMarketDatailsWindow(@item.typeID)">Market</a></td>
             </tr>
         }
     </tbody>

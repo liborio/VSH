@@ -11,7 +11,7 @@ $("#idGroupShoppingLists").find("[data-esh-delete-list]").click(function () {
     deleteGroupList(id);
 });
 
-$("[data-esh-list-publicid]").click(function () {
+$("[data-esh-list-linkshow]").click(function () {
     var id = $(this).parents("tr").attr("data-esh-list-publicid");
     clearAllInner();
     getStaticLists(id, $(this).parents("tr").first());
@@ -33,6 +33,7 @@ function getStaticLists(id, ctx) {
 }
 
 function onGetStaticListsSuccess(data) {
+    ajaxLoader.endTimer();
     var rowClicked = $(this);
     $(rowClicked).after($("<tr data-esh-table-internal class='inner-table'><td colspan='5'>" + data + "</td></tr>"));
     $(data).footable();

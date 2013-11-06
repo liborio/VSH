@@ -133,6 +133,15 @@ namespace EveShopping.Logica {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The list doesnt contains the item..
+        /// </summary>
+        internal static string err_notRecognisedItemInList {
+            get {
+                return ResourceManager.GetString("err_notRecognisedItemInList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The provided URL is not valid..
         /// </summary>
         internal static string err_providedUrlNotValid {

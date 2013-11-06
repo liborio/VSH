@@ -141,6 +141,9 @@
   <data name="err_notRecognisedItemInFitting" xml:space="preserve">
     <value>The analysed fit contains an item that doesnt exist.</value>
   </data>
+  <data name="err_notRecognisedItemInList" xml:space="preserve">
+    <value>The list doesnt contains the item.</value>
+  </data>
   <data name="err_providedUrlNotValid" xml:space="preserve">
     <value>The provided URL is not valid.</value>
   </data>

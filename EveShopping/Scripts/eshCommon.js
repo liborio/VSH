@@ -11,11 +11,11 @@
     },
 }
 
-$(document).ajaxStart(ajaxLoader.initTimer);
-$(document).ajaxStop(ajaxLoader.endTimer);
-$(document).ajaxSuccess(ajaxLoader.endTimer);
-$(document).ajaxComplete(function () { ajaxLoader.endTimer(); accordionState.removeHeight(); });
-$(document).ajaxError(ajaxLoader.endTimer);
+$(document).ajaxStart(ajaxLoader.initTimer());
+$(document).ajaxStop(ajaxLoader.endTimer());
+$(document).ajaxSuccess(ajaxLoader.endTimer());
+$(document).ajaxComplete(function () { ajaxLoader.endTimer(); try{accordionState.removeHeight();}catch(ex){} });
+$(document).ajaxError(ajaxLoader.endTimer());
 
 $(document).ready(function () {
     accordionState.removeHeight();
