@@ -103,7 +103,7 @@ namespace EveShopping.Logica.Conversion
             string hwdname = null;
             foreach (var item in lines)
             {
-                short initialUnits = 1;
+                int initialUnits = 1;
                 FittingHardwareAnalyzed fha = null;
                 hwdname = item.Trim();
                 //Si es un Empty slot lo quitamos
@@ -119,7 +119,7 @@ namespace EveShopping.Logica.Conversion
                     if (posX >= 0)
                     {
                         string szunits = hwdname.Substring(posX + 2, hwdname.Length - posX - 2);
-                        if (short.TryParse(szunits, out initialUnits))
+                        if (int.TryParse(szunits, out initialUnits))
                         {
                             hwdname = hwdname.Substring(0, posX);
                         }
@@ -131,7 +131,7 @@ namespace EveShopping.Logica.Conversion
                     fha = new FittingHardwareAnalyzed();
                     fha.Name = hwdname;
                     fha.Slot = (short)slot;
-                    fha.Units = (short)(initialUnits - 1);
+                    fha.Units = (initialUnits - 1);
                     fwdicc.Add(hwdname, fha);
                 }
                 else

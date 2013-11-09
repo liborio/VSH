@@ -1,5 +1,7 @@
 ﻿@model EveShopping.Modelo.EV.MarketItem
 
+@if (ViewBag.allowEdit == null) { ViewBag.allowEdit = true; }
+
 <tr class="fila-impar" data-esh-id="@Model.ItemID" data-esh-units="@Model.Units" data-esh-vol="@Model.Volume" data-esh-price="@Model.TotalPrice">
     <td>
         <img src="@Model.ImageUrl32" alt="@Model.Name" /></td>
@@ -8,7 +10,10 @@
     <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.TotalPrice)</td>
     <td class="numericCol">@Model.Volume m3</td>
     <td class="numericCol">
-        <img class="edit" src="~/Content/images/empty24.png" data-esh-edit-link onclick="editItemInShoppingList(@Model.ItemID)" />
-        <img class="delete" data-esh-del-fit-link src="~/Content/images/empty24.png" onclick="deleteItemInShoppingList(@Model.ItemID)" />
+        @if (ViewBag.allowEdit)
+        {
+            <img class="edit" src="~/Content/images/empty24.png" data-esh-edit-link onclick="editItemInShoppingList(@Model.ItemID)" />
+            <img class="delete" data-esh-del-fit-link src="~/Content/images/empty24.png" onclick="deleteItemInShoppingList(@Model.ItemID)" />
+        }
     </td>
 </tr>

@@ -19,6 +19,9 @@ namespace EveShopping.Modelo.Models
         public double shipVolume { get; set; }
         public double volume { get; set; }
         public Nullable<int> userID { get; set; }
+        public int? urlID { get; set; }
+        public string publicID { get; set; }
+        public virtual eshTinyUrlMapping eshTinyUrlMapping { get; set; }
         public virtual ICollection<eshFittingHardware> eshFittingHardwares { get; set; }
         public virtual invType invType { get; set; }
         public virtual UserProfile UserProfile { get; set; }

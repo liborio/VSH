@@ -1,4 +1,5 @@
-﻿using EveShopping.Modelo.EntidadesAux;
+﻿using EveShopping.Logica.TinyURL;
+using EveShopping.Modelo.EntidadesAux;
 using EveShopping.Modelo.Models;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,20 @@ namespace EveShopping.Logica
             }
             contexto.SaveChanges();
         }
+
+        public void GenerateTinyUrlNumbers(int from, int to)
+        {
+            EveShoppingContext contexto = new EveShoppingContext();
+            NumberGenerator generator = new NumberGenerator();
+
+            IEnumerable<int> numbers = generator.Generate(from, to);
+
+            foreach (var n in numbers)
+            {
+
+            }
+
+        }     
 
         #region "Auxiliares"
 

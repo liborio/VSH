@@ -1,0 +1,18 @@
+﻿@model EveShopping.Models.EDVFitting
+
+@{
+    ViewBag.Title = "Fitting";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.allowEdit = false;
+}
+
+<h2>Fitting</h2>
+        <div id="fitsInList" class="subs-wrapper-no-acc" data-esh-fits-in-list>
+
+@Html.Partial("../Lists/PVFitInShoppingList", @Model.Fitting )
+            </div>
+
+@section scripts{
+    <script src="~/Scripts/eshpFits.js" type="text/javascript">
+    </script>
+}

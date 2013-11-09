@@ -68,6 +68,7 @@
     <Compile Include="Models\eshGroupShoppingListSnapshot.cs" />
     <Compile Include="Models\eshLog.cs" />
     <Compile Include="Models\eshShipsMarketGroup.cs" />
+    <Compile Include="Models\eshTinyUrlMapping.cs" />
     <Compile Include="Models\invMarketGroup.cs" />
     <Compile Include="Models\invType.cs" />
     <Compile Include="Models\eshFitting.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Models\Mapping\eshShoppingListSummInvTypeMap.cs" />
     <Compile Include="Models\Mapping\eshSnapshotInvTypeMap.cs" />
     <Compile Include="Models\Mapping\eshSnapshotMap.cs" />
+    <Compile Include="Models\Mapping\eshTinyUrlMap.cs" />
     <Compile Include="Models\Mapping\eshTradeHubMap.cs" />
     <Compile Include="Models\Mapping\invGroupMap.cs" />
     <Compile Include="Models\Mapping\invMarketGroupMap.cs" />

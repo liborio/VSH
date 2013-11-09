@@ -63,6 +63,12 @@ namespace EveShopping.Web.Agentes
             return logica.IsShoppingListFree(publicID);
         }
 
+        public bool IsShoppingListOwner(string publicID, string userName = null)
+        {
+            LogicaShoppingLists logica = new LogicaShoppingLists();
+            return logica.IsShoppingListOwner(publicID, userName);
+        }
+
         public string CrearShoppingList(string name, string description, string userName = null)
         {            
             LogicaShoppingLists logica = new LogicaShoppingLists();
@@ -230,7 +236,7 @@ namespace EveShopping.Web.Agentes
             return fittingID;
         }
 
-        public EVFitting SetUnitsToFitInShoppingList(string publicID, int id, short units)
+        public EVFitting SetUnitsToFitInShoppingList(string publicID, int id, int units)
         {
             LogicaShoppingLists logica =
                 new LogicaShoppingLists();
@@ -249,7 +255,7 @@ namespace EveShopping.Web.Agentes
             return fitsSalida;
         }
 
-        public MarketItem AddOrUpdateMarketItemEnShoppingList(string shoppingListPublidID, int itemID, short units)
+        public MarketItem AddOrUpdateMarketItemEnShoppingList(string shoppingListPublidID, int itemID, int units)
         {
             LogicaShoppingLists logica =
                 new LogicaShoppingLists();
@@ -257,7 +263,7 @@ namespace EveShopping.Web.Agentes
             return logica.SelectMarketItemByID(shoppingListPublidID, itemID, new Imagex32UrlResolver());
         }
 
-        public void UpdateDeltaToSummary(string publicID, int itemID, short units)
+        public void UpdateDeltaToSummary(string publicID, int itemID, int units)
         {
             LogicaShoppingLists logica =
                 new LogicaShoppingLists();
@@ -301,6 +307,7 @@ namespace EveShopping.Web.Agentes
         {
             EVFitting fit = new EVFitting();
             fit.Description = item.description;
+            fit.PublicID = item.publicID;
             fit.Name = item.name;
             fit.ShipName = item.invType.typeName;
             fit.ShipVolume = item.shipVolume;

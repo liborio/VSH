@@ -16,5 +16,7 @@ namespace EveShopping.Models
         public IEnumerable<MarketItem> MarketItemsEnShoppingList { get; set; }
 
         public string GroupName { get; set; }
+        public bool allowEdit { get; set; }
+
     }
 }

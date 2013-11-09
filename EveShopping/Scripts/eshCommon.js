@@ -17,10 +17,10 @@ $(document).ajaxSuccess(ajaxLoader.endTimer());
 $(document).ajaxComplete(function () { ajaxLoader.endTimer(); try{accordionState.removeHeight();}catch(ex){} });
 $(document).ajaxError(ajaxLoader.endTimer());
 
+
 $(document).ready(function () {
     accordionState.removeHeight();
 });
-
 
 eshFormats = {
     formatPrice: function (price) {

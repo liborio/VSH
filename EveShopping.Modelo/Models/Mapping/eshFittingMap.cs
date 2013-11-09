@@ -27,6 +27,8 @@ namespace EveShopping.Modelo.Models.Mapping
             this.Property(t => t.shipVolume).HasColumnName("shipVolume");
             this.Property(t => t.volume).HasColumnName("volume");
             this.Property(t => t.userID).HasColumnName("userID");
+            this.Property(t => t.publicID).HasColumnName("publicID");
+            this.Property(t => t.urlID).HasColumnName("urlID");
 
             // Relationships
             this.HasOptional(t => t.invType)
@@ -35,6 +37,11 @@ namespace EveShopping.Modelo.Models.Mapping
             this.HasOptional(t => t.UserProfile)
                 .WithMany(t => t.eshFittings)
                 .HasForeignKey(d => d.userID);
+            this.HasOptional(t => t.eshTinyUrlMapping)
+                .WithMany(t => t.eshFittings)
+                .HasForeignKey(t => t.urlID);
+
+            
 
         }
     }

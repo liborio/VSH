@@ -24,6 +24,8 @@ namespace EveShopping.Modelo.Models
         public System.DateTime dateAccess { get; set; }
         public bool allowEditForAll { get; set; }
         public Nullable<int> userID { get; set; }
+        public int? urlID { get; set; }
+        public virtual eshTinyUrlMapping eshTinyUrlMapping { get; set; }
         public virtual ICollection<eshShoppingListFitting> eshShoppingListFittings { get; set; }
         public virtual ICollection<eshShoppingListInvType> eshShoppingListInvTypes { get; set; }
         public virtual eshTradeHub eshTradeHub { get; set; }

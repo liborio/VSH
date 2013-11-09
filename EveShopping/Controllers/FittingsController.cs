@@ -96,6 +96,16 @@ namespace EveShopping.Controllers
             }
         }
 
+        public ActionResult Fitting(string id)
+        {
+            base.SetHeadCounters();
+            AgenteFittings agente = new AgenteFittings();
+            EDVFitting edv = new EDVFitting();
+            edv.Fitting = agente.SelectFitByPublicID(id);
+            return View(edv);
+        }
+
+
         [Authorize]
         public PartialViewResult NavigateMarketGroup(int id, int selFitId = 0, string selFitName = null)
         {

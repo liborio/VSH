@@ -10,6 +10,6 @@ namespace EveShopping.Modelo.EntidadesAux
     {
         public string Name { get; set; }
         public short Slot { get; set; }
-        public short Units { get; set; }
+        public int Units { get; set; }
     }
 }

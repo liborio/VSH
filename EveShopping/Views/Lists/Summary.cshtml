@@ -3,9 +3,15 @@
 @{
     ViewBag.Title = "Summary";
     ViewBag.FullTitle = "EVE-shopping, list summary:  " + Model.Summary.Name;
+    ViewBag.allowEdit = Model.allowEdit;
 }
 
+
 <h3 class="main-title clearfix"><span>Summary</span>
+    <span class="margin-left" style="margin-left: 1em; vertical-align: bottom">@TwitterGoodies.TweetButton(TwitterGoodies.DataCount.None, string.Format("Shopping list - {0}: http://eve-shopping.com/s/nsl/{1}", @Model.Summary.Name, @Model.Summary.PublicID), "", TwitterGoodies.Languages.English, "", "", "")</span>
+
+    @*            <div class="fb-share-button margin-left" data-href="http://developers.facebook.com/docs/plugins/" data-type="button"></div>*@
+
     <span class="right">
         @if (Model.Summary.Items.Count() > 0)
         {
@@ -15,40 +21,58 @@
     </span>
 </h3>
 
-    <div id="help-container" class="notVisible">
-        <h3 ><span id="hListName">@Model.Summary.Name</span><span class="right">(open to edit name and description)</span></h3>
-        <div>
-            @using (Ajax.BeginForm("SaveShoppingListHeader", "Lists", new AjaxOptions {  HttpMethod =  "Post", OnSuccess="onSuccessSaveShoppingListHeader"}))
+<div id="help-container" class="notVisible">
+    @if (Model.allowEdit)
+    {
+        <h3><span id="hListName">@Model.Summary.Name</span><span class="right">(open to edit name and description)</span></h3>
+    }
+    else
+    {
+        <h3><span id="hListName">@Model.Summary.Name</span><span class="right">(open to show name and description)</span></h3>
+    }
+    <div>
+        @using (Ajax.BeginForm("SaveShoppingListHeader", "Lists", new AjaxOptions { HttpMethod = "Post", OnSuccess = "onSuccessSaveShoppingListHeader" }))
+        {
+            <fieldset>
+                <legend>Name</legend>
+                <input type="text" id="slName" name="slName" placeholder="Shopping list's name" required maxlength="100" readonly="@Model.allowEdit?false:true" value="@Model.Summary.Name" />
+            </fieldset>
+            <fieldset>
+                <legend>Description</legend>
+                <textarea name="slDescription" rows="5" placeholder="Description for new shopping list" maxlength="3000" readonly="@Model.allowEdit?false:true">@Model.Summary.Description</textarea>
+            </fieldset>
+            if (Model.allowEdit)
             {
-                <fieldset>
-                    <legend>Name</legend>
-                    <input type="text" id="slName" name="slName" placeholder="Shopping list's name" required maxlength="100" value="@Model.Summary.Name" />
-                </fieldset>
-                <fieldset>
-                    <legend>Description</legend>
-                    <textarea name="slDescription" rows="5" placeholder="Description for new shopping list" maxlength="3000">@Model.Summary.Description</textarea>
-                </fieldset>
-                <button type="submit" class="buttonYellow" value="Save">Save</button>
+            <button type="submit" class="buttonYellow" value="Save">Save</button>
             }
-        </div>
+        }
     </div>
-
-<div id="itemsInSummary" class="subs-wrapper">
-    <p>Items contained in the shopping list. You can edit to add or remove units (+ / - column) from the amount that you added previously in the <strong>Add ship fittings</strong> and <strong>Add market items</strong> screens.</p>
-    <p>Adjusting the units that you want may be useful if you already have some of the items in the hangar and dont want to buy all units needed for your fits.</p>
-    @Html.Partial("PVSummaryItems", Model.Summary)
-    <a id="lnkClearAllDelta" onclick="clearAllDelta('@Model.Summary.PublicID');" class="buttonYellow-short">Clear <strong>all</strong> (+ / -)</a>
 </div>
 
+<div id="itemsInSummary" class="subs-wrapper">
+    @if (Model.allowEdit)
+    {
+        <p>Items contained in the shopping list. You can edit to add or remove units (+ / - column) from the amount that you added previously in the <strong>Add ship fittings</strong> and <strong>Add market items</strong> screens.</p>
+        <p>Adjusting the units that you want may be useful if you already have some of the items in the hangar and dont want to buy all units needed for your fits.</p>
+    }
+    @Html.Partial("PVSummaryItems", Model.Summary)
+    @if (Model.allowEdit)
+    {
+        <a id="lnkClearAllDelta" onclick="clearAllDelta('@Model.Summary.PublicID');" class="buttonYellow-short">Clear <strong>all</strong> (+ / -)</a>
+    }
+</div>
 
-<h3 class="main-title clearfix">Static shopping lists related</h3>
-<p>A static shopping list is a picture of a shopping list in a moment of time. It is readonly and will keep inmutable even if the shopping list changes later. They are perfect to provide to someone or to use by yourself when you do your shopping, it will not show items with 0 units in the summary.</p>
-@Html.Partial("PVStaticShoppingLists", Model.StaticLists)
-<a id="lnkCreateStaticList" class="buttonYellow">Create new static shopping list</a>
-
+@if (Model.allowEdit)
+{
+    <h3 class="main-title clearfix">Static shopping lists related    <span></span>
+    </h3>
+    <p>A static shopping list is a picture of a shopping list in a moment of time. It is readonly and will keep inmutable even if the shopping list changes later. They are perfect to provide to someone or to use by yourself when you do your shopping, it will not show items with 0 units in the summary.</p>
+    Html.Partial("PVStaticShoppingLists", Model.StaticLists);
+    <a id="lnkCreateStaticList" class="buttonYellow">Create new static shopping list</a>
+}
 <div id="full-main">
     <div id="links-navegacion-pasos-container">
-        @Html.ActionLink("<< Add market items", "AddMarketItems", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
+        @Html.ActionLink("<< Market items", "AddMarketItems", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
         @{ ViewBag.ListDoesntHaveOwner = Model.IsShoppingListFree;  }
         @Html.Partial("PVIncludeListInMyLists")
     </div>
@@ -58,8 +82,8 @@
 @section subheader{
     <div id="subheader-container" class="wrapper clearfix">
         <ul id="menu-pasos">
-            <li>@Html.ActionLink("Add ship fittings", "ImportFits", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
-            <li>@Html.ActionLink("Add market items", "AddMarketItems", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
+            <li>@Html.ActionLink("Ship fittings", "ImportFits", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
+            <li>@Html.ActionLink("Market items", "AddMarketItems", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
             <li class="selected">@Html.ActionLink("Summary", "Summary", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
         </ul>
     </div>

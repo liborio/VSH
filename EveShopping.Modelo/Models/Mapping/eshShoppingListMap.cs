@@ -38,6 +38,7 @@ namespace EveShopping.Modelo.Models.Mapping
             this.Property(t => t.dateAccess).HasColumnName("dateAccess");
             this.Property(t => t.allowEditForAll).HasColumnName("allowEditForAll");
             this.Property(t => t.userID).HasColumnName("userID");
+            this.Property(t => t.urlID).HasColumnName("urlID");
 
             // Relationships
             this.HasRequired(t => t.eshTradeHub)

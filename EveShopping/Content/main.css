@@ -99,7 +99,10 @@ h1, h2, h3 {
     /*border-top: 20px solid #4D809B;*/
 }
 
-
+.header-subtitle {
+    font-style: italic;
+    margin-left: 1em;
+}
 
 .header-container {
     background: url('../../Content/images/titleBackground.png') repeat-x #030303;
@@ -110,15 +113,15 @@ h1, h2, h3 {
     background: #1C1C1C;
 }
 
-    .footer-container footer {
-        padding: 5px 15px;
-            color: white;
-            font-size:0.8em;
-    }
+.footer-container footer {
+    padding: 5px 15px;
+    color: white;
+    font-size: 0.8em;
+}
 
-        .footer-container footer p {
-            margin:0px;
-        }
+    .footer-container footer p {
+        margin: 0px;
+    }
 
 .main aside {
     background: #3A3A3A;
@@ -342,20 +345,24 @@ nav a {
         box-shadow: 0 5px 10px #aaa;
     }
 
-    /* ============
+        /* ============
     WIDE: Menu
    ============ */
 
-    .header-container .title {
-        float: left;
-    }
+        .header-container .title {
+            float: left;
+        }
 
 
 
-    nav, .nav-header {
+    nav {
         float: right;
         width: 38%;
-    }   
+    }
+
+    .social-header {
+        margin-left: 9em;
+    }
 
     .nav-header {
         text-align: right;
@@ -382,7 +389,6 @@ nav a {
     .width33 {
         width: 32%;
     }
-
 }
 
 @media only screen and (min-width: 1140px) {
@@ -392,7 +398,7 @@ nav a {
    =============== */
 
 
-    .wrapper, #subheader-container,  .footer-container footer{
+    .wrapper, #subheader-container, .footer-container footer {
         width: 1026px; /* 1140px - 10% for margins */
         margin: 0 auto;
     }
@@ -697,15 +703,15 @@ form {
 
 
 
-    input[type="checkbox"] {
-background: transparent;
-border: inherit;
-width: auto;
+input[type="checkbox"] {
+    background: transparent;
+    border: inherit;
+    width: auto;
 }
 
 fieldset ol {
-padding: 0;
-list-style: none;
+    padding: 0;
+    list-style: none;
 }
 
 .buttonYellow, .buttonYellow-short {
@@ -831,7 +837,7 @@ tfoot tr:hover {
 
 
 td.col-edit input {
-    width: 3em;
+    width: 4em;
     margin: 0px 0.5em 0px;
     text-align: right;
 }
@@ -860,20 +866,22 @@ td a, .ui-widget-content td a, .yellow-link {
     }
 
 
-
 div.subs-wrapper {
     /*margin-bottom: 1em;*/
 }
 
     div.subs-wrapper h3 {
+        background: url('images/arrow-down20.png') no-repeat;
+        background-position: 0px 0.3em;
+    }
+
+    div.subs-wrapper h3, div.subs-wrapper-no-acc h3 {
         color: #FFF;
         border: solid 1px #1C1C1C;
         padding: 2px 2px 2px 24px;
         font-size: 100%;
         margin: 2px 0 0;
-        background: url('images/arrow-down20.png') no-repeat;
         background-color: #1c1c1c;
-        background-position: 0px 0.3em;
     }
 
         div.subs-wrapper h3.ui-state-active {
@@ -881,6 +889,10 @@ div.subs-wrapper {
             background-color: #1c1c1c;
             background-position: 0px 0.3em;
         }
+
+div.subs-wrapper-no-acc h3 {
+    padding-left: 4px;
+}
 
 div.subs-link-bar {
     width: 100%;
@@ -983,15 +995,12 @@ body.loading {
         margin-right: 0;
         margin-top: 5px;
     }
-
 }
 
 @media (min-width:748px) {
     body {
         background: url('../../Content/Images/bg.jpg') #000000 no-repeat;
     }
-
-
 }
 
 /* facebook */
@@ -1078,42 +1087,100 @@ body.loading {
  * SimpleModal Confirm Modal Dialog
  */
 
-#confirm {display:none;}
+#confirm {
+    display: none;
+}
 
 /* Overlay */
-#confirm-overlay {background-color:#000;}
+#confirm-overlay {
+    background-color: #000;
+}
 
 /* Container */
-#confirm-container {height:240px; width:480px; text-align:left; background:#3A3A3A; border:2px solid #1C1C1C; padding:0.5em}
-#confirm-container .header {height:30px; line-height:30px; width:100%; background: #1c1c1c repeat-x; color:#78b2cc; font-size:1.2em;}
-#confirm-container .header span {padding-left:8px;}
-#confirm-container .message {color:white; margin:0; padding:12px 4px 12px 8px;}
-#confirm-container .buttons {line-height:26px; width:160px; float:right; padding:10px 8px 0;} 
-#confirm-container .buttons div {float:right; margin-left:4px; width:70px; height:26px; color:#666; font-weight:bold; text-align:center; background:url(../img/confirm/button.gif) repeat-x; border:1px solid #bbb; cursor:pointer;} 
-#confirm-container a.modal-close,
-#confirm-container a.modal-close:link,
-#confirm-container a.modal-close:active,
-#confirm-container a.modal-close:visited {text-decoration:none; font-weight:bold; position:absolute; right:10px; top:2px; color:#ffa500; margin: 2px 2px 0 0;}
-#confirm-container a.modal-close:hover {color:#ccc;}
+#confirm-container {
+    height: 240px;
+    width: 480px;
+    text-align: left;
+    background: #3A3A3A;
+    border: 2px solid #1C1C1C;
+    padding: 0.5em;
+}
+
+    #confirm-container .header {
+        height: 30px;
+        line-height: 30px;
+        width: 100%;
+        background: #1c1c1c repeat-x;
+        color: #78b2cc;
+        font-size: 1.2em;
+    }
+
+        #confirm-container .header span {
+            padding-left: 8px;
+        }
+
+    #confirm-container .message {
+        color: white;
+        margin: 0;
+        padding: 12px 4px 12px 8px;
+    }
+
+    #confirm-container .buttons {
+        line-height: 26px;
+        width: 160px;
+        float: right;
+        padding: 10px 8px 0;
+    }
+
+        #confirm-container .buttons div {
+            float: right;
+            margin-left: 4px;
+            width: 70px;
+            height: 26px;
+            color: #666;
+            font-weight: bold;
+            text-align: center;
+            background: url(../img/confirm/button.gif) repeat-x;
+            border: 1px solid #bbb;
+            cursor: pointer;
+        }
+
+    #confirm-container a.modal-close,
+    #confirm-container a.modal-close:link,
+    #confirm-container a.modal-close:active,
+    #confirm-container a.modal-close:visited {
+        text-decoration: none;
+        font-weight: bold;
+        position: absolute;
+        right: 10px;
+        top: 2px;
+        color: #ffa500;
+        margin: 2px 2px 0 0;
+    }
+
+        #confirm-container a.modal-close:hover {
+            color: #ccc;
+        }
+
     #confirm-container p {
         color: white;
     }
 
 
-    
+
 
 /*  Login ========================================== */
 
 #loginForm {
-border-right: solid 2px #3A3A3A;
-float: left;
-width: 55%;
+    border-right: solid 2px #3A3A3A;
+    float: left;
+    width: 55%;
 }
 
 #socialLoginForm {
-margin-left: 40px;
-float: left;
-width: 40%;
+    margin-left: 40px;
+    float: left;
+    width: 40%;
 }
 
 .leftMargin {
@@ -1132,30 +1199,30 @@ width: 40%;
 img.delete {
     background: url('./images/delete-icon.png') no-repeat;
     padding: 3px;
-    background-position-x:3px;
-    background-position-y:3px;
+    background-position-x: 3px;
+    background-position-y: 3px;
 }
 
 img.edit {
     background: url('./images/edit-icon.png') no-repeat;
     padding: 3px;
-    background-position-x:3px;
-    background-position-y:3px;
+    background-position-x: 3px;
+    background-position-y: 3px;
 }
 
 img.export {
     background: url('./images/export-icon.png') no-repeat;
     padding: 3px;
-    background-position-x:3px;
-    background-position-y:3px;
+    background-position-x: 3px;
+    background-position-y: 3px;
 }
 
 
-img.delete:hover, img.edit:hover, img.export:hover {
-    border: solid 1px #FFA500;
-    cursor: pointer;
-}
-
-    tr.fila-impar, tr.seleccionada {
-        background-color: #272727;
+    img.delete:hover, img.edit:hover, img.export:hover {
+        border: solid 1px #FFA500;
+        cursor: pointer;
     }
+
+tr.fila-impar, tr.seleccionada {
+    background-color: #272727;
+}

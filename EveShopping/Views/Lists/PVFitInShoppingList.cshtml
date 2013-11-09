@@ -1,5 +1,8 @@
 ﻿@model EveShopping.Modelo.EV.EVFitting
 
+@if (ViewBag.allowEdit == null) { ViewBag.allowEdit = true; }
+
+
 <h3 data-esh-name="@Model.Name" data-esh-id="@Model.ItemID" data-esh-units="@Model.Units" class="clearfix accordion-header" data-esh-price="@Model.TotalPrice" data-esh-vol="@Model.Volume">
     <span class="left">
         <img src="@Model.ImageUrl32" alt="@Model.Name" /></span>
@@ -8,12 +11,15 @@
         <span>
             <img class="export" data-esh-del-fit-link src="~/Content/images/empty24.png" onclick="exportFit('@Model.ItemID')" />
         </span>
-        <span>
-            <img class="edit" src="~/Content/images/empty24.png" data-esh-edit-link onclick="editFitInShoppingList('@Model.ItemID')" />
-        </span>
-        <span>
-            <img class="delete" data-esh-del-fit-link src="~/Content/images/empty24.png" onclick="delFitInShoppingList('@Model.ItemID')" />
-        </span>
+        @if (ViewBag.allowEdit)
+        {
+            <span>
+                <img class="edit" src="~/Content/images/empty24.png" data-esh-edit-link onclick="editFitInShoppingList('@Model.ItemID')" />
+            </span>
+            <span>
+                <img class="delete" data-esh-del-fit-link src="~/Content/images/empty24.png" onclick="delFitInShoppingList('@Model.ItemID')" />
+            </span>
+        }
     </span>
     <span class="right">x @Model.Units (@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.TotalPrice) - @Model.Volume m3)</span>
 
@@ -60,5 +66,8 @@
             <td class="numericCol">@(Model.Volume / Model.Units) m3</td>
         </tr>
     </table>
+    <div>
+        <span class="margin-left">@TwitterGoodies.TweetButton(TwitterGoodies.DataCount.None, string.Format("[{0}] {1}: http://eve-shopping.com/s/fit/{2}", @Model.ShipName, @Model.Name, @Model.PublicID), "", TwitterGoodies.Languages.English, "", "", "fitting")</span>
+    </div>
 </div>
 

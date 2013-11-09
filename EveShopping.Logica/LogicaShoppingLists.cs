@@ -87,6 +87,8 @@ namespace EveShopping.Logica
             }
         }
 
+        
+
         public eshFitting SelectFitPorID(int fittingID)
         {
             RepositorioShoppingLists repo = new RepositorioShoppingLists();
@@ -215,6 +217,7 @@ namespace EveShopping.Logica
                  select new QFitting
                  {
                      Description = f.description,
+                     PublicID = f.publicID,
                      FittingID = f.fittingID,
                      Name = f.name,
                      ShipID = f.shipTypeID.Value,
@@ -245,6 +248,22 @@ namespace EveShopping.Logica
             }
             return !list.userID.HasValue;
         }
+
+        public bool IsShoppingListOwner(string publicID, string userName = null)
+        {
+            EveShoppingContext contexto =
+                new EveShoppingContext();
+            eshShoppingList list = contexto.eshShoppingLists.Where(sl => sl.publicID == publicID).FirstOrDefault();
+            if (!list.userID.HasValue) return true;
+
+            UserProfile user = contexto.userProfiles.Where(u => u.UserName == userName).FirstOrDefault();
+
+            if (user == null) return false;
+            if (list.userID.Value == user.UserId) return true;
+
+            return false;
+        }
+
 
         public eshShoppingList SelectShoppingListByPublicID(string publicID)
         {
@@ -373,7 +392,7 @@ namespace EveShopping.Logica
             contexto.SaveChanges();
         }
 
-        public void UpdateMarketItemToShoppingList(string publicID, int itemID, short units)
+        public void UpdateMarketItemToShoppingList(string publicID, int itemID, int units)
         {
             RepositorioShoppingLists repo = new RepositorioShoppingLists();
             eshShoppingList list = repo.SelectShopingListPorPublicID(publicID);
@@ -397,7 +416,7 @@ namespace EveShopping.Logica
 
 
 
-        public void UpdateDeltaToSummary(string publicID, int itemID, short units)
+        public void UpdateDeltaToSummary(string publicID, int itemID, int units)
         {
             EveShoppingContext contexto = new EveShoppingContext();
             eshShoppingList list = contexto.eshShoppingLists.Where(sl => sl.publicID == publicID).FirstOrDefault();
@@ -431,6 +450,36 @@ namespace EveShopping.Logica
             contexto.SaveChanges();
         }
 
+        public EVFitting SelectFitSummaryByPublicID(string fittingPublicId, IImageResolver imageResolver, int tradeHubID)
+        {
+            EveShoppingContext contexto = new EveShoppingContext();
+
+            EVFitting fit =
+(from f in contexto.eshFittings 
+ join it in contexto.invTypes on f.shipTypeID equals it.typeID
+ join p in contexto.eshPrices on new { tradeHubID = tradeHubID, it.typeID } equals new { tradeHubID = tradeHubID, p.typeID }
+ where f.publicID == fittingPublicId
+ select new EVFitting
+ {
+     Description = f.description,
+     ItemID = f.fittingID,
+     Name = f.name,
+     ShipID = f.shipTypeID.Value,
+     ShipName = f.invType.typeName,
+     ShipVolume = f.shipVolume,
+     Units = 1,
+     ShipPrice = p.avg,
+     TotalPrice = p.avg ,
+     Volume = f.shipVolume,
+     PublicID = f.publicID
+ }).FirstOrDefault();
+
+            fit.ImageUrl32 = imageResolver.GetImageURL(fit.ShipID);
+
+            AddFittingHardwareToFittingSummary(imageResolver, contexto, fit);
+
+            return fit;
+        }
 
 
         public EVFitting SelectFitSummary(string publicID, int fittingID, IImageResolver imageResolver)
@@ -454,11 +503,20 @@ namespace EveShopping.Logica
          Units = slf.units,
          ShipPrice = p.avg,
          TotalPrice = p.avg * slf.units,
-         Volume = f.shipVolume * slf.units
+         Volume = f.shipVolume * slf.units,
+         PublicID = f.publicID
      }).FirstOrDefault();
 
             fit.ImageUrl32 = imageResolver.GetImageURL(fit.ShipID);
 
+            AddFittingHardwareToFittingSummary(imageResolver, contexto, fit);
+
+            return fit;
+
+        }
+
+        private static void AddFittingHardwareToFittingSummary(IImageResolver imageResolver, EveShoppingContext contexto, EVFitting fit)
+        {
             var qfittingHardwares =
                (from sl in contexto.eshShoppingLists
                 join slf in contexto.eshShoppingListsFittings on sl.shoppingListID equals slf.shoppingListID
@@ -489,9 +547,6 @@ namespace EveShopping.Logica
                 fit.TotalPrice += item.TotalPrice * fit.Units;
                 fit.Volume += item.Volume * fit.Units;
             }
-
-            return fit;
-
         }
 
         public EVListSummary SelectListSummaryPorPublicID(string publicID, IImageResolver imageResolver)
@@ -661,7 +716,7 @@ namespace EveShopping.Logica
         }
 
 
-        public EVFitting SetUnitsToFitInShoppingList(string publicID, int fittingID, short units, IImageResolver imageResolver)
+        public EVFitting SetUnitsToFitInShoppingList(string publicID, int fittingID, int units, IImageResolver imageResolver)
         {
             EveShoppingContext contexto = new EveShoppingContext();
 

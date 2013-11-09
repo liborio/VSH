@@ -10,5 +10,7 @@ namespace EveShopping.Models
     {
         public EDVFittingsList Fittings { get; set; }
         public EDVMyFittings MyFittings { get; set; }
+        public bool allowEdit { get; set; }
+
     }
 }

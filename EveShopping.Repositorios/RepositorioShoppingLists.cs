@@ -39,7 +39,7 @@ namespace EveShopping.Repositorios
             return Contexto.eshShoppingListsInvTypes.Where(slit => slit.shoppingListID == listID && slit.typeID == itemID).FirstOrDefault();
         }
 
-        public eshShoppingListInvType CreateMarketItemEnShoppingList(int listID, int itemID, short units)
+        public eshShoppingListInvType CreateMarketItemEnShoppingList(int listID, int itemID, int units)
         {
             eshShoppingListInvType slit = new eshShoppingListInvType();
             slit.typeID = itemID;
@@ -58,7 +58,7 @@ namespace EveShopping.Repositorios
             return slit;
         }
 
-        public eshShoppingListInvType UpdateMarketItemEnShoppingList(int listID, int itemID, short units)
+        public eshShoppingListInvType UpdateMarketItemEnShoppingList(int listID, int itemID, int units)
         {
             eshShoppingListInvType slit = SelectMarketItemEnShoppingListPorID(listID, itemID);
 
@@ -110,6 +110,7 @@ namespace EveShopping.Repositorios
 
         public void CrearFitting(eshFitting fit)
         {
+            if (string.IsNullOrEmpty(fit.publicID)) { fit.publicID = Guid.NewGuid().ToString(); }
             fit.dateCreation = System.DateTime.Now;            
             this.Contexto.eshFittings.Add(fit);
             this.Contexto.SaveChanges();

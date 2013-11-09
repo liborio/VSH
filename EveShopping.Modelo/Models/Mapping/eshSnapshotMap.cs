@@ -31,12 +31,15 @@ namespace EveShopping.Modelo.Models.Mapping
             this.Property(t => t.publicID).HasColumnName("publicID");
             this.Property(t => t.name).HasColumnName("name");
             this.Property(t => t.description).HasColumnName("description");
+            this.Property(t => t.urlID).HasColumnName("urlID");
 
             // Relationships
             this.HasRequired(t => t.eshShoppingList)
                 .WithMany(t => t.eshSnapshots)
                 .HasForeignKey(d => d.shoppingListID);
-
+            this.HasOptional(t => t.eshTinyUrlMapping)
+                .WithMany(t => t.eshSnapshots)
+                .HasForeignKey(t => t.urlID);
         }
     }
 }

@@ -100,7 +100,6 @@ namespace EveShopping.Logica
             return lista;
         }
 
-
         public IEnumerable<EVFitting> SelectFitsByMarketGroup(string userName, int marketGroupID, IImageResolver imageResolver, int tradeHubID)
         {
             EveShoppingContext contexto =
@@ -115,6 +114,7 @@ namespace EveShopping.Logica
                  select new QFitting
                  {
                      Description = f.description,
+                     PublicID = f.publicID,
                      FittingID = f.fittingID,
                      Name = f.name,
                      ShipID = f.shipTypeID.Value,
@@ -143,12 +143,15 @@ namespace EveShopping.Logica
 
         internal IEnumerable<EVFitting> MountFittingCommon(EveShoppingContext contexto, IEnumerable<QFitting> qfittings, IImageResolver imageResolver, int tradeHubID)
         {
+
             List<EVFitting> fittings = new List<EVFitting>();
             foreach (var qfit in qfittings)
             {
+                if (string.IsNullOrEmpty(qfit.PublicID)) { qfit.PublicID = Guid.NewGuid().ToString(); }
                 EVFitting fit = new EVFitting
                 {
                     Description = qfit.Description,
+                    PublicID = qfit.PublicID,
                     ItemID = qfit.FittingID,
                     Name = qfit.Name,
                     ShipID = qfit.ShipID,

@@ -132,6 +132,8 @@ namespace EveShopping.Controllers
 
             EDVImportFits edv = new EDVImportFits();
             SetHeadCounters();
+            edv.allowEdit = agente.IsShoppingListOwner(EstadoUsuario.CurrentListPublicId, this.User.Identity == null ? null : this.User.Identity.Name);
+
             EDVFittingsList edvFitList = new EDVFittingsList();
             edvFitList.Fittings = fits;
             edv.Fittings = edvFitList;
@@ -253,6 +255,8 @@ namespace EveShopping.Controllers
 
             ViewBag.PublicID = id;
             AgenteShoppingList agente = new AgenteShoppingList();
+
+            edv.allowEdit = agente.IsShoppingListOwner(EstadoUsuario.CurrentListPublicId, this.User.Identity == null ? null : this.User.Identity.Name);
 
             //Guardamos la shopping list en las de un usuario si se indica en la url
             agente.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);
@@ -470,7 +474,7 @@ namespace EveShopping.Controllers
         }
 
         [HttpPost()]
-        public PartialViewResult SetUnitsToFitInShoppingList(int id, short units)
+        public PartialViewResult SetUnitsToFitInShoppingList(int id, int units)
         {
             AgenteShoppingList agente = new AgenteShoppingList();
             string publicID = EstadoUsuario.CurrentListPublicId;
@@ -508,6 +512,8 @@ namespace EveShopping.Controllers
             AgenteMarketItems agente = new AgenteMarketItems();
             AgenteShoppingList agenteShList = new AgenteShoppingList();
 
+
+
             //Guardamos la shopping list en las de un usuario si se indica en la url
             agenteShList.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);
 
@@ -515,6 +521,7 @@ namespace EveShopping.Controllers
             IEnumerable<EVMarketItem> marketItems = agente.SelectMarketGroupsByParentID(null);
             IEnumerable<MarketItem> marketItemsEnShoppingList = agenteShList.SelectMarketItemsEnShoppingList(id);
             EDVAddMarketItems edv = new EDVAddMarketItems();
+            edv.allowEdit = agenteShList.IsShoppingListOwner(EstadoUsuario.CurrentListPublicId, this.User.Identity == null ? null : this.User.Identity.Name);
             SetHeadCounters();
             edv.MarketItems = marketItems;
             edv.IsShoppingListFree = agenteShList.IsShoppingListFree(id);
@@ -545,7 +552,7 @@ namespace EveShopping.Controllers
             return PartialView("PVMarketMenu", edv);
         }
 
-        public PartialViewResult UpdateMarketItemToShoppingList(int id, short units = 1)
+        public PartialViewResult UpdateMarketItemToShoppingList(int id, int units = 1)
         {
             AgenteShoppingList agente = new AgenteShoppingList();
             MarketItem item = agente.AddOrUpdateMarketItemEnShoppingList(EstadoUsuario.CurrentListPublicId, id, units);
@@ -553,7 +560,7 @@ namespace EveShopping.Controllers
             return PartialView("PVMarketItemEnShoppingList", item);
         }
 
-        public EmptyResult UpdateDeltaInSummary(int id, short units = 0)
+        public EmptyResult UpdateDeltaInSummary(int id, int units = 0)
         {
             AgenteShoppingList agente = new AgenteShoppingList();
             agente.UpdateDeltaToSummary(EstadoUsuario.CurrentListPublicId, id, units);

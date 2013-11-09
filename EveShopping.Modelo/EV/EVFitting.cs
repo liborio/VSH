@@ -19,6 +19,7 @@ namespace EveShopping.Modelo.EV{
         //public string ImageUrl32 { get; set; } //ShipImageUrl32
         public decimal ShipPrice { get; set; }
         //public decimal TotalPrice { get; set; } //Price
+        public string PublicID { get; set; }
         public EVFitting()
         {
             FittingHardwares = new List<EVFittingHardware>();

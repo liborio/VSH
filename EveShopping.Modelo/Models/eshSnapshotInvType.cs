@@ -7,7 +7,7 @@ namespace EveShopping.Modelo.Models
     {
         public int snapshotID { get; set; }
         public int typeID { get; set; }
-        public short units { get; set; }
+        public int units { get; set; }
         public decimal unitPrice { get; set; }
         public Nullable<double> volume { get; set; }
         public virtual eshSnapshot eshSnapshot { get; set; }

@@ -1,5 +1,7 @@
 ﻿@model EveShopping.Modelo.EV.EVListSummary
 
+@if (ViewBag.allowEdit == null) { ViewBag.allowEdit = true; }
+
 <table id="summary-table" data-page-size="15">
     <thead>
         <tr>
@@ -8,7 +10,10 @@
             @if (Model.ShowDelta)
             {
                 <th class="numericCol" data-hide="phone">( + / - )</th>
+                if (ViewBag.allowEdit)
+                {
                 <th data-hide="phone" data-sort-ignore="true"></th>
+                }
             }
             <th class="numericCol" data-hide="phone">Volume</th>
             <th class="numericCol" data-hide="phone">Total price</th>
@@ -31,7 +36,10 @@
                 @if (Model.ShowDelta)
                 {
                     <td class="numericCol" data-esh-cdelta="@item.Delta" data-value="@item.Delta">@(item.Delta > 0 ? string.Format("+{0}", item.Delta) : item.Delta.ToString())</td>
+                    if (ViewBag.allowEdit)
+                    {
                     <td class="numericCol"><a onclick="editItemInSummary(@item.ItemID)">Edit</a></td>
+                    }
                 }
                 <td class="numericCol" data-esh-cvolume="@item.UnitVolume" data-value="@item.Volume">@item.Volume m3</td>
                 <td class="numericCol" data-esh-cprice="@decimal.ToDouble(item.UnitPrice)" data-value="@decimal.ToDouble(item.TotalPrice)">@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.TotalPrice)</td>

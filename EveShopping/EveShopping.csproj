@@ -187,6 +187,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BackloadDemoController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
+    <Compile Include="Controllers\SController.cs" />
     <Compile Include="Controllers\VSHBaseController.cs" />
     <Compile Include="Controllers\FittingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="Models\EDVAddListsToGroup.cs" />
     <Compile Include="Models\EDVAddMarketItems.cs" />
     <Compile Include="Models\EDVAnalysedFitList.cs" />
+    <Compile Include="Models\EDVFitting.cs" />
     <Compile Include="Models\EDVGroupSummary.cs" />
     <Compile Include="Models\EDVImportFits.cs" />
     <Compile Include="Models\EDVImportLinks.cs" />
@@ -466,6 +468,7 @@
     <Content Include="Scripts\fileupload\tmpl.debug.js" />
     <Content Include="Scripts\eshImportLinks.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="App_Code\TwitterGoodies.cshtml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
@@ -618,6 +621,7 @@
     <Content Include="Views\Lists\PVStaticShoppingList.cshtml" />
     <Content Include="Views\Home\Videos.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Fittings\Fitting.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>

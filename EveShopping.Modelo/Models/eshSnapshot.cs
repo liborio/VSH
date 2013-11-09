@@ -19,6 +19,8 @@ namespace EveShopping.Modelo.Models
         public string publicID { get; set; }
         public string name { get; set; }
         public string description { get; set; }
+        public int? urlID { get; set; }
+        public virtual eshTinyUrlMapping eshTinyUrlMapping { get; set; }
         public virtual ICollection<eshGroupShoppingListSnapshot> eshGroupShoppingListSnapshots { get; set; }
         public virtual eshShoppingList eshShoppingList { get; set; }
         public virtual ICollection<eshSnapshotInvType> eshSnapshotInvTypes { get; set; }

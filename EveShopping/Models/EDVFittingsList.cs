@@ -16,6 +16,7 @@ namespace EveShopping.Models
         public bool ShowExport { get; set; }
 
         public string DivID { get; set; }
+        public string PublicID { get; set; }
 
         public IEnumerable<EVFitting> Fittings { get; set; }
 

@@ -1,5 +1,7 @@
 ﻿@model EveShopping.Models.EDVFittingsList
 
+@if (ViewBag.allowEdit == null) { ViewBag.allowEdit = true; }
+
 @foreach (var item in this.Model.Fittings)
 {
 
@@ -14,26 +16,28 @@
                     <img class="export" title="Export" data-esh-del-fit-link src="~/Content/images/empty24.png" onclick="exportFit('@item.ItemID')" />
                 </span>
             }
-
-            @if (this.Model.ShowEdit)
+            @if (ViewBag.allowEdit)
             {
+                if (this.Model.ShowEdit)
+                {
                 <span>
                     <img class="edit" title="Edit" src="~/Content/images/empty24.png" data-esh-edit-link onclick="editFitInShoppingList('@item.ItemID')" />
                     @*                <a class="yellow-link" data-esh-edit-link onclick="editFitInShoppingList('@item.ItemID')">Edit</a>*@
                 </span>
-            }
-            @if (this.Model.ShowDelete)
-            {
+                }
+                if (this.Model.ShowDelete)
+                {
                 <span>
                     <img class="delete" title="Delete" data-esh-del-fit-link src="~/Content/images/empty24.png" onclick="delFitInShoppingList('@item.ItemID')" />
                 </span>
             
-            }
-            @if (this.Model.ShowUse)
-            {
+                }
+                if (this.Model.ShowUse)
+                {
                 <span>
                     <a class="yellow-link" data-esh-edit-link onclick="useFitInMyList('@item.ItemID')">Use</a>
                 </span>
+                }
             }
 
         </div>
@@ -102,6 +106,10 @@
                 </td>
             </tr>
         </table>
+        <div>
+            <span class="margin-left">@TwitterGoodies.TweetButton(TwitterGoodies.DataCount.None, string.Format("[{0}] {1}: http://eve-shopping.com/s/fit/{2}", @item.ShipName, @item.Name, @item.PublicID), "", TwitterGoodies.Languages.English, "", "", "fitting")</span>
+
+        </div>
     </div>
 
 }

@@ -34,6 +34,12 @@ namespace EveShopping.Web.Agentes
             return salida;
         }
 
+        public EVFitting SelectFitByPublicID(string publicID)
+        {
+            LogicaShoppingLists logica = new LogicaShoppingLists();
+            return logica.SelectFitSummaryByPublicID(publicID, new Imagex32UrlResolver(), 30000142);
+        }
+
         public IEnumerable<EVFitting> SelectFitsByMarketGroup(string userName, int marketGroupID)
         {
             LogicaFittings logica = new LogicaFittings();

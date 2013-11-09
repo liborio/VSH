@@ -32,7 +32,7 @@ namespace EveShopping.Logica
                     eshSnapshotInvType shotitem = new eshSnapshotInvType();
                     shotitem.typeID = item.ItemID;
                     shotitem.unitPrice = item.UnitPrice;
-                    shotitem.units = (short)item.Units;
+                    shotitem.units = item.Units;
                     shotitem.volume = item.Volume;
                     shot.eshSnapshotInvTypes.Add(shotitem);
                 }
