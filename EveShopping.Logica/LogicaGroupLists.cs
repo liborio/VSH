@@ -13,6 +13,8 @@ namespace EveShopping.Logica
     {
         public bool IsListOwner(string publicID, string userName)
         {
+            if (userName == null) return false;
+
             EveShoppingContext contexto = new EveShoppingContext();
 
             var query = from g in contexto.eshGroupShoppingLists
@@ -115,13 +117,31 @@ namespace EveShopping.Logica
             contexto.SaveChanges();
         }
 
-        public void AddListToGroup(string groupPublicID, string listPublicID, string userName, string nick)
+        public string AddListToGroup(string groupPublicID, string listPublicID, string userName, string nick, IImageResolver resolver = null)
         {
             EveShoppingContext contexto = new EveShoppingContext();
+            string snapPublicID = null;
 
             eshGroupShoppingList sl;
             eshSnapshot snap;
-            CommonTestGetForGroupShoppingListUpdate(groupPublicID, listPublicID, userName, contexto, out sl, out snap);
+            CommonTestGetForGroupShoppingListUpdate(groupPublicID, listPublicID, userName, contexto, out sl);
+
+            LogicaSnapshots logicaSnap = new LogicaSnapshots();
+
+            snap = logicaSnap.SelectStaticListByPublicID(listPublicID);
+            //if not snapshot, we check if it is a normal list
+            if (snap == null)
+            {
+                snap = logicaSnap.CreateStaticShoppingList(listPublicID, null, resolver);
+            }
+            // if not snapshot, we check if it is a group list
+            //if (snap == null)
+            //{
+
+            //    snap = logicaSnap.CreateStaticShoppingListFromGroup(listPublicID, null, resolver);
+            //}
+            if (snap == null) throw new ApplicationException(Messages.err_staticShoppingListNoExiste);
+
 
             eshGroupShoppingListSnapshot rel = new eshGroupShoppingListSnapshot();
             rel.groupShoppingListID = sl.groupShoppingListID;
@@ -133,6 +153,8 @@ namespace EveShopping.Logica
             contexto.eshGroupShoppingListSnapshots.Add(rel);
 
             contexto.SaveChanges();
+
+            return snap.publicID;
         }
 
         private static void CommonTestGetForGroupShoppingListUpdate(string groupPublicID, string userName, EveShoppingContext contexto, out eshGroupShoppingList sl)
@@ -148,20 +170,18 @@ namespace EveShopping.Logica
         }
 
 
-        private static void CommonTestGetForGroupShoppingListUpdate(string groupPublicID, string listPublicID, string userName, EveShoppingContext contexto, out eshGroupShoppingList sl, out eshSnapshot snap)
+        private static void CommonTestGetForGroupShoppingListUpdate(string groupPublicID, string listPublicID, string userName, EveShoppingContext contexto, out eshGroupShoppingList sl)
         {
             CommonTestGetForGroupShoppingListUpdate(groupPublicID, userName, contexto, out sl);
 
-            LogicaSnapshots logicaSnap = new LogicaSnapshots();
-            snap = logicaSnap.SelectStaticListByPublicID(listPublicID);
-
-            if (snap == null) throw new ApplicationException(Messages.err_staticShoppingListNoExiste);
         }
 
         public EVListSummary SelectGroupListSummaryPorPublicID(string publicID, IImageResolver imageResolver)
         {
             EveShoppingContext contexto = new EveShoppingContext();
             eshGroupShoppingList shoppingList = contexto.eshGroupShoppingLists.Where(sl => sl.publicID == publicID).FirstOrDefault();
+
+            if (shoppingList == null) { return null; }
 
             EVListSummary summary =
                 new EVListSummary();
@@ -221,7 +241,12 @@ namespace EveShopping.Logica
 
             eshGroupShoppingList sl;
             eshSnapshot snap;
-            CommonTestGetForGroupShoppingListUpdate(groupPublicID, listPublicID, userName, contexto, out sl, out snap);
+            CommonTestGetForGroupShoppingListUpdate(groupPublicID, listPublicID, userName, contexto, out sl);
+
+            LogicaSnapshots logicaSnap = new LogicaSnapshots();
+            snap = logicaSnap.SelectStaticListByPublicID(listPublicID);
+            if (snap == null) { throw new ApplicationException(Messages.err_staticShoppingListNoExiste); }
+
 
             eshGroupShoppingListSnapshot gsls = contexto.eshGroupShoppingListSnapshots.Where(gs => gs.snapshotID == snap.snapshotID && gs.groupShoppingListID == sl.groupShoppingListID).FirstOrDefault();
 

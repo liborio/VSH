@@ -8,7 +8,7 @@
 
 
 <h3 class="main-title clearfix"><span>Summary</span>
-    <span class="margin-left" style="margin-left: 1em; vertical-align: bottom">@TwitterGoodies.TweetButton(TwitterGoodies.DataCount.None, string.Format("Shopping list - {0}: http://eve-shopping.com/s/nsl/{1}", @Model.Summary.Name, @Model.Summary.PublicID), "", TwitterGoodies.Languages.English, "", "", "")</span>
+    <span class="margin-left" style="margin-left: 1em; vertical-align: bottom">@TwitterGoodies.TweetButton(TwitterGoodies.DataCount.None, string.Format("Shopping list - {0}: ", @Model.Summary.Name), string.Format("http://eve-shopping.com/s/nsl/{0}", @Model.Summary.PublicID), TwitterGoodies.Languages.English, "", "", "")</span>
 
     @*            <div class="fb-share-button margin-left" data-href="http://developers.facebook.com/docs/plugins/" data-type="button"></div>*@
 
@@ -35,11 +35,11 @@
         {
             <fieldset>
                 <legend>Name</legend>
-                <input type="text" id="slName" name="slName" placeholder="Shopping list's name" required maxlength="100" readonly="@Model.allowEdit?false:true" value="@Model.Summary.Name" />
+                <input type="text" id="slName" name="slName" placeholder="Shopping list's name" required maxlength="100" readonly="@(Model.allowEdit?false:true)" value="@Model.Summary.Name" />
             </fieldset>
             <fieldset>
                 <legend>Description</legend>
-                <textarea name="slDescription" rows="5" placeholder="Description for new shopping list" maxlength="3000" readonly="@Model.allowEdit?false:true">@Model.Summary.Description</textarea>
+                <textarea name="slDescription" rows="5" placeholder="Description for new shopping list" maxlength="3000" readonly="@(Model.allowEdit?false:true)">@Model.Summary.Description</textarea>
             </fieldset>
             if (Model.allowEdit)
             {

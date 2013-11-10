@@ -5,11 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Import static shopping lists</h2>
+<h2>Import new shopping lists</h2>
 <p>
-    To add a static list to your shopping list group, you have to add the nick name for the user that provided it to you and a link to that static list.
+    To add a new list to your shopping list group, you have to add the nick name for the user that provided it to you and a link to that new list.
 </p>
-<p>As static lists are anonymous, the nick name will be useful for you to remember the name of the person that gave you the link. Write in this field anything that you will find useful to know who the static list belongs to.</p>
+<p>
+    You can include in the group this kind of shopping list: Normal and static (other group list NOT supported yet).
+</p>
+<p>As shopping lists are anonymous, the nick will be useful for you to remember the name of the person that gave you the link. Write in this field anything that you will find useful to remember who the new list belongs to.</p>
 
 <form>
     <fieldset>
@@ -17,7 +20,7 @@
         <input id="idNick" type="text" name="slName" placeholder="Write anything that you find usefull to remember who the static list belongs to" required maxlength="100" />
     </fieldset>
     <fieldset>
-        <legend>URL of the static list that you want to inclue</legend>
+        <legend>URL of the shopping list that you want to include</legend>
         <input id="idStaticUrl" type="text" name="slName" placeholder="Static list's URL" required maxlength="100" />
         <a id="idIncludeBtn" class="buttonYellow-short">Include in group list   </a>
     </fieldset>

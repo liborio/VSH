@@ -67,7 +67,7 @@
         </tr>
     </table>
     <div>
-        <span class="margin-left">@TwitterGoodies.TweetButton(TwitterGoodies.DataCount.None, string.Format("[{0}] {1}: http://eve-shopping.com/s/fit/{2}", @Model.ShipName, @Model.Name, @Model.PublicID), "", TwitterGoodies.Languages.English, "", "", "fitting")</span>
+        <span class="margin-left">@TwitterGoodies.TweetButton(TwitterGoodies.DataCount.None, string.Format("[{0}] {1}: ", @Model.ShipName, @Model.Name), string.Format("http://eve-shopping.com/s/fit/{0}",@Model.PublicID), TwitterGoodies.Languages.English, "", "", "fitting")</span>
     </div>
 </div>
 

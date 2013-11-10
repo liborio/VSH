@@ -7,7 +7,7 @@
 }
 
 <h3 class="main-title clearfix"><span>Summary</span>
-            <span class="margin-left" style="margin-left: 1em; vertical-align:bottom">@TwitterGoodies.TweetButton(TwitterGoodies.DataCount.None, string.Format("Static list - {0}: http://eve-shopping.com/s/ssl/{1}", @Model.StaticLists.name, @Model.StaticLists.publicID), "", TwitterGoodies.Languages.English, "", "", "")</span>
+            <span class="margin-left" style="margin-left: 1em; vertical-align:bottom">@TwitterGoodies.TweetButton(TwitterGoodies.DataCount.None, string.Format("Static list - {0}: ", @Model.StaticLists.name), string.Format("http://eve-shopping.com/s/ssl/{0}", @Model.StaticLists.publicID), TwitterGoodies.Languages.English, "", "", "")</span>
     <span class="right">
         @if (Model.StaticLists.eshSnapshotInvTypes.Count() > 0)
         {

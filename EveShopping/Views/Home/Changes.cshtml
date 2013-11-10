@@ -1,0 +1,24 @@
+﻿@model EveShopping.Models.EDVChangeLog
+
+@{
+    ViewBag.Title = "Changes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.FullTitle = "EVE-shopping, Changes: v1.0.0.4";    
+}
+
+<h3>Changes in v1.0.0.4 </h3>
+<h4>twitter integration</h4>
+<ul>
+    <li>Created @@eveshopping user</li>
+    <li>Follow button added to header</li>
+    <li>Fits and Shopping lists an be tweeted</li>
+</ul>
+<h4>Readonly views for normal shopping lists</h4>
+<p>
+    Created a read-only view for notmal shopping lists.
+</p>
+<p>
+    When someone has a link to a shopping list and access to it, it can see the list, will not know who is the owner, but can't modify it.
+</p>
+<h4>Bugs fixed</h4>
+<p>- Units were not allowing numbers over 32767. Now they allow until 2147483647.</p>

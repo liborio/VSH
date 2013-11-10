@@ -129,6 +129,9 @@
   <data name="err_nombreItemAnalizadaNoExiste" xml:space="preserve">
     <value>The analysed fit contains an item with a name that cant be recognized</value>
   </data>
+  <data name="err_notAnyKindOfList" xml:space="preserve">
+    <value>The url/id provided doesnt belong to any list in our database.</value>
+  </data>
   <data name="err_notOwner" xml:space="preserve">
     <value>You dont seem to be the rightful owner of the element that you want to delete.</value>
   </data>

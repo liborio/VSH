@@ -1226,3 +1226,11 @@ img.export {
 tr.fila-impar, tr.seleccionada {
     background-color: #272727;
 }
+
+.fileinput-button input {
+    max-height: 8px;
+}
+
+div.container-input {
+    overflow-x: hidden;
+}

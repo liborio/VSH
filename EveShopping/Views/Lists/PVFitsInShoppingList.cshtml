@@ -107,8 +107,7 @@
             </tr>
         </table>
         <div>
-            <span class="margin-left">@TwitterGoodies.TweetButton(TwitterGoodies.DataCount.None, string.Format("[{0}] {1}: http://eve-shopping.com/s/fit/{2}", @item.ShipName, @item.Name, @item.PublicID), "", TwitterGoodies.Languages.English, "", "", "fitting")</span>
-
+        <span class="margin-left">@TwitterGoodies.TweetButton(TwitterGoodies.DataCount.None, string.Format("[{0}] {1}: ", @item.ShipName, @item.Name), string.Format("http://eve-shopping.com/s/fit/{0}",@item.PublicID), TwitterGoodies.Languages.English, "", "", "fitting")</span>
         </div>
     </div>
 

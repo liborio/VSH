@@ -30,6 +30,13 @@ namespace EveShopping.Controllers
 
         public ActionResult About()
         {
+            base.SetHeadCounters();
+            SetHeadCounters();
+            return View();
+        }
+
+        public ActionResult Changes(string id)
+        {
             SetHeadCounters();
             return View();
         }

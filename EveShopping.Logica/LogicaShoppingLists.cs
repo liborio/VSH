@@ -554,6 +554,8 @@ namespace EveShopping.Logica
             EveShoppingContext contexto = new EveShoppingContext();
             eshShoppingList shoppingList = contexto.eshShoppingLists.Where(sl => sl.publicID == publicID).FirstOrDefault();
 
+            if (shoppingList == null) return null;
+
             EVListSummary summary =
                 new EVListSummary();
             summary.Description = shoppingList.description;

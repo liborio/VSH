@@ -97,6 +97,15 @@ namespace EveShopping.Logica {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The url/id provided doesnt belong to any list in our database..
+        /// </summary>
+        internal static string err_notAnyKindOfList {
+            get {
+                return ResourceManager.GetString("err_notAnyKindOfList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You dont seem to be the rightful owner of the element that you want to delete..
         /// </summary>
         internal static string err_notOwner {

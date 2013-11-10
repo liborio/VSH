@@ -10,5 +10,7 @@ namespace EveShopping.Models
     {
         public EVListSummary Summary { get; set; }
         public IEnumerable<EVStaticList> Lists { get; set; }
+
+        public bool allowEdit {get; set;}
     }
 }

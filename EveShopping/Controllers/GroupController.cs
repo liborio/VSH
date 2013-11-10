@@ -33,7 +33,6 @@ namespace EveShopping.Controllers
             return View(edv);
         }
 
-        [Authorize]
         public ActionResult Summary(string id)
         {
             SetHeadCounters();
@@ -47,6 +46,7 @@ namespace EveShopping.Controllers
 
             IEnumerable<EVStaticList> lists = agente.SelectStaticListsHeadersByGroupId(id);
             edv.Lists = lists;
+            edv.allowEdit = agente.IsGroupListOwner(id, this.User.Identity == null ? null : this.User.Identity.Name);
             ViewBag.AllowDelete = false;
             ViewBag.ShowGroupInfo = true;
             return View(edv);
@@ -82,8 +82,8 @@ namespace EveShopping.Controllers
         public ActionResult IncludeStaticListInGroup(string id, string nick)
         {
             AgenteGroupLists agente = new AgenteGroupLists();
-            agente.IncludeStaticListInGroup(id, EstadoUsuario.CurrentListPublicId, User.Identity.Name, nick);
-            EVStaticList ev = agente.SelectStaticListHeaderById(EstadoUsuario.CurrentListPublicId, id);
+            string publicID = agente.IncludeStaticListInGroup(id, EstadoUsuario.CurrentListPublicId, User.Identity.Name, nick);
+            EVStaticList ev = agente.SelectStaticListHeaderById(EstadoUsuario.CurrentListPublicId, publicID);
             ViewBag.ShowGroupInfo = true;
             ViewBag.AllowDelete = true;
             return PartialView("../Lists/PVStaticShoppingList", ev);

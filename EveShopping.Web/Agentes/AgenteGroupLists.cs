@@ -16,6 +16,14 @@ namespace EveShopping.Web.Agentes
             return logica.CreateGroupList(userName, name, description);
         }
 
+        public bool IsGroupListOwner(string publicID, string userName = null)
+        {
+            
+
+            LogicaGroupLists logica = new LogicaGroupLists();
+            return logica.IsListOwner(publicID, userName);
+        }
+
         public void RemoveListFromGroup(string groupPublicID, string listPublicID, string userName)
         {
             LogicaGroupLists logica = new LogicaGroupLists();
@@ -48,11 +56,11 @@ namespace EveShopping.Web.Agentes
             return strguid;
         }
 
-        public void IncludeStaticListInGroup(string staticUrl, string publicID, string userName, string nick)
+        public string IncludeStaticListInGroup(string staticUrl, string publicID, string userName, string nick)
         {
             string strguid = GetStaticPublicIDFromURL(staticUrl);
             LogicaGroupLists logica = new LogicaGroupLists();
-            logica.AddListToGroup(publicID, strguid, userName, nick);
+            return logica.AddListToGroup(publicID, strguid, userName, nick, new Imagex32UrlResolver());
         }
 
         public void ActualizarGroupListHeader(string publicID, string userName, string name, string description)
@@ -75,7 +83,7 @@ namespace EveShopping.Web.Agentes
 
         public EVStaticList SelectStaticListHeaderById(string groupID, string staticUrl)
         {
-            string strguid = GetStaticPublicIDFromURL(staticUrl);
+            string strguid = staticUrl; //GetStaticPublicIDFromURL(staticUrl);
             LogicaGroupLists logica = new LogicaGroupLists();
             return logica.SelectStaticListHeaderById(groupID, strguid);
         }

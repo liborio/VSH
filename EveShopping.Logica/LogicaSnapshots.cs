@@ -10,19 +10,45 @@ namespace EveShopping.Logica
 {
     public class LogicaSnapshots
     {
+        public eshSnapshot CreateStaticShoppingListFromGroup(string groupPublicID, string name, IImageResolver iresolver)
+        {
+            LogicaGroupLists logica = new LogicaGroupLists();
+            EVListSummary ev = logica.SelectGroupListSummaryPorPublicID(groupPublicID, iresolver);
+            eshSnapshot snap = new eshSnapshot();
+            if (ev == null) return null;
+            snap.name = ev.Name;
+            snap.description = ev.Description;
+            snap.totalVolume = ev.TotalVolume;
+            snap.totalPrice = ev.TotalPrice;
+            snap.publicID = Guid.NewGuid().ToString();
+            snap.creationDate = System.DateTime.Now;            
+            foreach (var item in ev.Items)
+            {
+                eshSnapshotInvType sit = new eshSnapshotInvType();
+                sit.typeID = item.ItemID;
+                sit.unitPrice = item.UnitPrice;
+                sit.units = item.Units;
+                sit.volume= item.Volume;
+                snap.eshSnapshotInvTypes.Add(sit);
+            }
+            return snap;
+        }
+
+
         public eshSnapshot CreateStaticShoppingList(string publicID, string name, IImageResolver iresolver){
             LogicaShoppingLists logica =
                 new LogicaShoppingLists();
 
             EVListSummary summ = logica.SelectListSummaryPorPublicID(publicID, iresolver);
-
+            if (summ == null) return null;
+            
             eshSnapshot shot = new eshSnapshot();
             shot.creationDate = System.DateTime.Now;
             shot.shoppingListID = summ.ShoppingListID;
             shot.totalPrice = summ.TotalPrice;
             shot.totalVolume = summ.TotalVolume;
             shot.publicID = Guid.NewGuid().ToString();
-            shot.name = summ.Name;
+            shot.name =  (string.IsNullOrEmpty(name))? summ.Name:name;
             shot.description = summ.Description;
             
             foreach (var item in summ.Items)

@@ -206,6 +206,7 @@
     <Compile Include="Models\EDVAddListsToGroup.cs" />
     <Compile Include="Models\EDVAddMarketItems.cs" />
     <Compile Include="Models\EDVAnalysedFitList.cs" />
+    <Compile Include="Models\EDVChangeLog.cs" />
     <Compile Include="Models\EDVFitting.cs" />
     <Compile Include="Models\EDVGroupSummary.cs" />
     <Compile Include="Models\EDVImportFits.cs" />
@@ -568,6 +569,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\responsive-nav.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="sitemap.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -622,6 +624,7 @@
     <Content Include="Views\Home\Videos.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Fittings\Fitting.cshtml" />
+    <Content Include="Views\Home\Changes.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>
