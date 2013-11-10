@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     $('[data-esh-boughtchk]').change(function () { onBoughtLnkChange(this); });
 
-    refreshDeleteEvents();
+    refreshDeleteEvents();    
 });
 
 function onBoughtLnkChange(lnk) {

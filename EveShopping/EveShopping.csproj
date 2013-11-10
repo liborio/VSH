@@ -186,6 +186,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BackloadDemoController.cs" />
+    <Compile Include="Controllers\ChangesController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\SController.cs" />
     <Compile Include="Controllers\VSHBaseController.cs" />
@@ -625,6 +626,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Fittings\Fitting.cshtml" />
     <Content Include="Views\Home\Changes.cshtml" />
+    <Content Include="Views\Changes\v.cshtml" />
+    <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Home\Scenarios.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>

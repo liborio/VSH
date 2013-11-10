@@ -67,7 +67,7 @@
     <h3 class="main-title clearfix">Static shopping lists related    <span></span>
     </h3>
     <p>A static shopping list is a picture of a shopping list in a moment of time. It is readonly and will keep inmutable even if the shopping list changes later. They are perfect to provide to someone or to use by yourself when you do your shopping, it will not show items with 0 units in the summary.</p>
-    Html.Partial("PVStaticShoppingLists", Model.StaticLists);
+    Html.RenderPartial("PVStaticShoppingLists", Model.StaticLists);
     <a id="lnkCreateStaticList" class="buttonYellow">Create new static shopping list</a>
 }
 <div id="full-main">

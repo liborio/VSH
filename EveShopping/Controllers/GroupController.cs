@@ -27,6 +27,12 @@ namespace EveShopping.Controllers
             this.ViewBag.PublicID = id;
 
             AgenteGroupLists agente = new AgenteGroupLists();
+
+            if (!agente.IsGroupListOwner(id, User.Identity.Name))
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, Messages.err_notAuthorizedForPage);
+            }
+
             IEnumerable<EVStaticList> lists =  agente.SelectStaticListsHeadersByGroupId(EstadoUsuario.CurrentListPublicId);
             EDVImportLinks edv = new EDVImportLinks { Lists = lists };
             ViewBag.ShowGroupInfo = true;
@@ -81,12 +87,19 @@ namespace EveShopping.Controllers
         [Authorize]
         public ActionResult IncludeStaticListInGroup(string id, string nick)
         {
-            AgenteGroupLists agente = new AgenteGroupLists();
-            string publicID = agente.IncludeStaticListInGroup(id, EstadoUsuario.CurrentListPublicId, User.Identity.Name, nick);
-            EVStaticList ev = agente.SelectStaticListHeaderById(EstadoUsuario.CurrentListPublicId, publicID);
-            ViewBag.ShowGroupInfo = true;
-            ViewBag.AllowDelete = true;
-            return PartialView("../Lists/PVStaticShoppingList", ev);
+            try
+            {
+                AgenteGroupLists agente = new AgenteGroupLists();
+                string publicID = agente.IncludeStaticListInGroup(id, EstadoUsuario.CurrentListPublicId, User.Identity.Name, nick);
+                EVStaticList ev = agente.SelectStaticListHeaderById(EstadoUsuario.CurrentListPublicId, publicID);
+                ViewBag.ShowGroupInfo = true;
+                ViewBag.AllowDelete = true;
+                return PartialView("../Lists/PVStaticShoppingList", ev);
+            }
+            catch (Exception)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "We couldnt include the provided list in the group. It may not be a correct link or the provided list may not exist.");                
+            }
         }   
 
         [Authorize]

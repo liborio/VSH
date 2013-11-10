@@ -18,4 +18,13 @@
 <url>
   <loc>http://eve-shopping.com/Home/About</loc>
 </url>
+  <url>
+    <loc>http://eve-shopping.com/Home/FAQ</loc>
+  </url>
+  <url>
+    <loc>http://eve-shopping.com/changes/v/1-0-4</loc>
+  </url>
+  <url>
+    <loc>http://eve-shopping.com/changes/v/1-0-5</loc>
+  </url>
 </urlset>

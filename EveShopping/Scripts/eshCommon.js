@@ -11,15 +11,15 @@
     },
 }
 
-$(document).ajaxStart(ajaxLoader.initTimer());
-$(document).ajaxStop(ajaxLoader.endTimer());
-$(document).ajaxSuccess(ajaxLoader.endTimer());
-$(document).ajaxComplete(function () { ajaxLoader.endTimer(); try{accordionState.removeHeight();}catch(ex){} });
-$(document).ajaxError(ajaxLoader.endTimer());
+
 
 
 $(document).ready(function () {
-    accordionState.removeHeight();
+    $(document).ajaxStart(function () { ajaxLoader.initTimer(); });
+    $(document).ajaxStop(function () { ajaxLoader.endTimer() });
+    $(document).ajaxSuccess(function () { ajaxLoader.endTimer() });
+    $(document).ajaxComplete(function () { ajaxLoader.endTimer(); try { accordionState.removeHeight(); } catch (ex) { } });
+    $(document).ajaxError(function () { ajaxLoader.endTimer(); });
 });
 
 eshFormats = {
@@ -95,6 +95,7 @@ accordionState = {
         $(function () {
             try {
                 $(acc).accordion("destroy");
+                accordionState.removeHeight();
             }
             catch (ex){
             }
@@ -103,7 +104,7 @@ accordionState = {
         if (index != null) {
             $(acc).accordion({ collapsible: true, active: false, autoHeight: false, clearStyle: true, active: index });
         }
-        accordionState.removeHeight();
+
     },
 
     removeHeight: function(){
@@ -116,26 +117,25 @@ accordionState = {
     },
 
     enableAccordion: function (acc) {
-        $(function () { $(acc).accordion("enable") });
-        accordionState.removeHeight();
-
+        $(function () { $(acc).accordion("enable"); accordionState.removeHeight(); });
+        
     },
 
     openPanel: function (acc, idItem) {
+        accordionState.removeHeight();
         var index = accordionState.getIndex(acc, idItem);
         var currentActive = $(acc).accordion("option", "active");
         if (index !== currentActive) {
             $(acc).accordion({ active: index });
         }
-        accordionState.removeHeight();
     },
 
     openPanelByIndex: function (acc, index) {
+        accordionState.removeHeight();
         var currentActive = $(acc).accordion("option", "active");
         if (index !== currentActive) {
             $(acc).accordion({ active: index });
         }
-        accordionState.removeHeight();
 
     },
 

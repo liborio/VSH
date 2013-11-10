@@ -23,6 +23,7 @@ function includeStaticListInGroup(id, nick) {
         url: '/Group/IncludeStaticListInGroup',
         context: id,
         success: onSuccessIncludeStaticListInGroup,
+        error: onErrorIncludeStaticListInGroup,
         data: { id: id, nick: nick},    
         dataType: 'html'
     });
@@ -34,7 +35,7 @@ function onSuccessIncludeStaticListInGroup(data) {
 }
 
 function onErrorIncludeStaticListInGroup(data) {
-    infoDialog.show("Couldn't include the list", "There was a problem adding your static list to the group.", data.statusText, infoDialog.warning);
+    infoDialog.show("Couldn't include the list", "There was a problem adding your list to the group.", data.statusText, infoDialog.warning);
 }
 
 

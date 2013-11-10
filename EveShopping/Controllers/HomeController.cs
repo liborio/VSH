@@ -37,7 +37,20 @@ namespace EveShopping.Controllers
 
         public ActionResult Changes(string id)
         {
-            SetHeadCounters();
+            id = id.ToLower();
+            id = id.Trim(new char[] { 'v' });
+            return RedirectToAction("v", "Changes", new { id = id });
+        }
+
+        public ActionResult FAQ()
+        {
+            base.SetHeadCounters();
+            return View();
+        }
+
+        public ActionResult Scenarios()
+        {
+            base.SetHeadCounters();
             return View();
         }
 

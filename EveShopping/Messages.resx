@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="err_notAuthorizedForPage" xml:space="preserve">
+    <value>Sorry, you are not the owner of the resource that you want access and only the owner can see it.</value>
+  </data>
   <data name="err_requestWithoutPublicID" xml:space="preserve">
     <value>The shopping list's public ID has not being received.</value>
   </data>

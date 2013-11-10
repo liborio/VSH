@@ -1,0 +1,48 @@
+﻿@model EveShopping.Models.EDVChangeLog
+
+@{
+    ViewBag.Title = "Change";
+    ViewBag.FullTitle = "EVE-shopping, change log:  " + Model.Version;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Model.Version.Equals("1.0.4"))
+{
+
+    <h3>Changes in version 1.0.4 </h3>
+    <h4>twitter integration</h4>
+    <ul>
+        <li>Created @@eveshopping user</li>
+        <li>Follow button added to header</li>
+        <li>Fits and Shopping lists an be tweeted</li>
+    </ul>
+    <h4>Readonly views for normal shopping lists</h4>
+    <p>
+        Created a read-only view for notmal shopping lists.
+    </p>
+    <p>
+        When someone has a link to a shopping list and access to it, it can see the list, will not know who is the owner, but can't modify it.
+    </p>
+    <h4>Bugs fixed</h4>
+        <ul>
+        <li>Units were not allowing numbers over 32767. Now they allow until 2147483647.</li>
+    </ul>
+}
+
+@if (Model.Version.Equals("1.0.5"))
+{
+
+    <h3>Changes in version 1.0.5 </h3>
+    <h4>Group lists</h4>
+    <ul>
+        <li>Added a readonly version of group lists. When a user has a link to a group list and is not the owner, he can see it, but not modify. Owner remains anonymous for the viewer.</li>
+        <li>Added tweet buttom.</li>
+        <li>Now is posible to attach to a group list a normal shopping lists and, also, static lists. Before was possible only statics.</li>
+    </ul>
+    <h4>Bugs fixed</h4>
+    <ul>
+        <li>The upload xml buttom was taking place in the fitting list section in some browsers.</li>
+    </ul>
+    
+}

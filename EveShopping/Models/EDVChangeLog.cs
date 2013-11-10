@@ -7,5 +7,6 @@ namespace EveShopping.Models
 {
     public class EDVChangeLog
     {
+        public string Version { get; set; }
     }
 }
