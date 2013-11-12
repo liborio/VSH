@@ -1,4 +1,4 @@
-﻿using EveShopping.Modelo.Models;
+﻿using EveShopping.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace EveShopping.Loggin
             if (System.Threading.Thread.CurrentPrincipal.Identity.IsAuthenticated)
             {
                 string userName = System.Threading.Thread.CurrentPrincipal.Identity.Name;
-                UserProfile usu = contexto.userProfiles.Where(u => u.UserName == userName).FirstOrDefault();
+                UserProfile usu = contexto.UserProfiles.Where(u => u.UserName == userName).FirstOrDefault();
                 if (usu != null)
                 {
                     log.UserId = usu.UserId;

@@ -1,7 +1,7 @@
 ﻿using EveShopping.Logica.QEntities;
 using EveShopping.Modelo.EntidadesAux;
 using EveShopping.Modelo.EV;
-using EveShopping.Modelo.Models;
+using EveShopping.Modelo;
 using EveShopping.Repositorios;
 using System;
 using System.Collections.Generic;
@@ -23,7 +23,7 @@ namespace EveShopping.Logica
             {
                 eshFitting fit = context.eshFittings.Where(f => f.fittingID == fittingID).FirstOrDefault();
                 if (fit == null) throw new ApplicationException(Messages.err_fittingNoExiste);
-                UserProfile up = context.userProfiles.Where(u => u.UserName == userName).FirstOrDefault();
+                UserProfile up = context.UserProfiles.Where(u => u.UserName == userName).FirstOrDefault();
                 if (up == null) throw new ApplicationException(Messages.err_usuarioNoExiste);
                 if (fit.userID.HasValue && fit.userID != up.UserId) throw new ApplicationException(Messages.err_notOwner);
 
@@ -54,7 +54,7 @@ namespace EveShopping.Logica
                         EveShoppingContext contexto = new EveShoppingContext();
             var count =
                 (from f in contexto.eshFittings
-                join u in contexto.userProfiles on f.userID equals u.UserId
+                join u in contexto.UserProfiles on f.userID equals u.UserId
                 where u.UserName == userName
                 select f.fittingID).Count();
             return count;
@@ -69,7 +69,7 @@ namespace EveShopping.Logica
             //Get the ships contained in user fittings
             var queryShips = (from it in contexto.invTypes.Include("invMarketGroups")
                              join f in contexto.eshFittings on it.typeID equals f.shipTypeID
-                             join u in contexto.userProfiles on f.userID equals u.UserId
+                             join u in contexto.UserProfiles on f.userID equals u.UserId
                              where u.UserName == userName
                              select it.typeID).Distinct().ToList();
 
@@ -85,7 +85,7 @@ namespace EveShopping.Logica
             {
                 var queryUnits = (from it in contexto.eshShipsMarketGroups
                                   join f in contexto.eshFittings on it.typeID equals f.shipTypeID
-                                    join u in contexto.userProfiles on f.userID equals u.UserId
+                                    join u in contexto.UserProfiles on f.userID equals u.UserId
                                   where it.marketGroupID == item.marketGroupID && u.UserName == userName
                                   select it.typeID).Count();
                 ShipMarketGroup smg = new ShipMarketGroup
@@ -109,7 +109,7 @@ namespace EveShopping.Logica
                  join it in contexto.invTypes on f.shipTypeID equals it.typeID
                  join mg in contexto.invMarketGroups on it.marketGroupID equals mg.marketGroupID
                  join p in contexto.eshPrices on new { tradeHubID, it.typeID } equals new { tradeHubID = p.solarSystemID, p.typeID }
-                 join u in contexto.userProfiles on f.userID equals u.UserId
+                 join u in contexto.UserProfiles on f.userID equals u.UserId
                  where u.UserName == userName && it.marketGroupID == marketGroupID
                  select new QFitting
                  {

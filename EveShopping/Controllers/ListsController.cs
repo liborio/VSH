@@ -2,7 +2,7 @@
 using EveShopping.Modelo;
 using EveShopping.Modelo.EntidadesAux;
 using EveShopping.Modelo.EV;
-using EveShopping.Modelo.Models;
+using EveShopping.Modelo;
 using EveShopping.Models;
 using EveShopping.Web;
 using EveShopping.Web.Agentes;

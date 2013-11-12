@@ -1,5 +1,5 @@
 ﻿using EveShopping.Modelo.EV;
-using EveShopping.Modelo.Models;
+using EveShopping.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace EveShopping.Logica
             EveShoppingContext contexto = new EveShoppingContext();
 
             var query = from g in contexto.eshGroupShoppingLists
-                        join u in contexto.userProfiles on g.userID equals u.UserId
+                        join u in contexto.UserProfiles on g.userID equals u.UserId
                         where u.UserName == userName && g.publicID == publicID
                         select g.groupShoppingListID;
 
@@ -31,7 +31,7 @@ namespace EveShopping.Logica
             {
                 EveShoppingContext contexto = new EveShoppingContext();
 
-                UserProfile up = contexto.userProfiles.Where(u => u.UserName == userName).FirstOrDefault();
+                UserProfile up = contexto.UserProfiles.Where(u => u.UserName == userName).FirstOrDefault();
                 if (up == null) throw new ApplicationException(Messages.err_usuarioNoExiste);
 
                 eshGroupShoppingList group =
@@ -164,7 +164,7 @@ namespace EveShopping.Logica
 
             if (userName == null) throw new ApplicationException(Messages.err_notOwner);
 
-            UserProfile user = contexto.userProfiles.Where(u => u.UserName == userName).FirstOrDefault();
+            UserProfile user = contexto.UserProfiles.Where(u => u.UserName == userName).FirstOrDefault();
 
             if (sl.userID != user.UserId) throw new ApplicationException(Messages.err_notOwner);
         }
@@ -271,7 +271,7 @@ namespace EveShopping.Logica
 
                 if (userName == null) throw new ApplicationException(Messages.err_notOwner);
 
-                UserProfile user = contexto.userProfiles.Where(u => u.UserName == userName).FirstOrDefault();
+                UserProfile user = contexto.UserProfiles.Where(u => u.UserName == userName).FirstOrDefault();
 
                 if (sl.userID != user.UserId) throw new ApplicationException(Messages.err_notOwner);
 
@@ -299,14 +299,14 @@ namespace EveShopping.Logica
             EveShoppingContext contexto =
                 new EveShoppingContext();
 
-            UserProfile user = contexto.userProfiles.Where(u => u.UserName.ToLower() == userName.ToLower()).FirstOrDefault();
+            UserProfile user = contexto.UserProfiles.Where(u => u.UserName.ToLower() == userName.ToLower()).FirstOrDefault();
 
             if (user == null)
             {
                 throw new ApplicationException(Messages.err_usuarioNoExiste);
             }
 
-            var query = from u in contexto.userProfiles
+            var query = from u in contexto.UserProfiles
                         join sl in contexto.eshGroupShoppingLists on u.UserId equals sl.userID
                         where u.UserName == userName
                         select new EVShoppingListHeader

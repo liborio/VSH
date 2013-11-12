@@ -1,6 +1,6 @@
 ﻿using EveShopping.Logica.TinyURL;
 using EveShopping.Modelo.EntidadesAux;
-using EveShopping.Modelo.Models;
+using EveShopping.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;

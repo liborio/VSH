@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EveAI.Core">
+      <HintPath>..\External\EveAI.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EveAI.Live">
+      <HintPath>..\External\EveAI.Live.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,6 +49,7 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgenteAPI.cs" />
     <Compile Include="Agentes\AgenteFittings.cs" />
     <Compile Include="Agentes\AgenteGroupLists.cs" />
     <Compile Include="Agentes\AgenteHome.cs" />
@@ -69,9 +76,9 @@
       <Project>{43ff78f1-f8a1-457e-b2cc-aff73f1c58d8}</Project>
       <Name>EveShopping.Logica</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EveShopping.Modelo\EveShopping.Modelo.csproj">
-      <Project>{0850a85e-c6c0-439e-83a7-c88a720e9285}</Project>
-      <Name>EveShopping.Modelo</Name>
+    <ProjectReference Include="..\EveShopping.Modelo2\EveShopping.Modelo2.csproj">
+      <Project>{a2714bc3-9282-4a00-b87a-b47106004a62}</Project>
+      <Name>EveShopping.Modelo2</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

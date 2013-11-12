@@ -19,6 +19,23 @@ else
 { 
     @Html.Partial("_SetPasswordPartial")
 }
+<h3>EVE API</h3>
+@using(Html.BeginForm("CheckAPI", "Account",FormMethod.Post)){
+    <fieldset>
+        <legend>Key ID</legend>
+        <input type="text" name="keyID" placeholder="Shopping list's name" required maxlength="7" />
+    </fieldset>
+    <fieldset>
+        <legend>Verification Code</legend>
+        <input type="text" name="vCode" placeholder="Shopping list's name" required maxlength="100" />
+    </fieldset>
+        <ul>
+            <li><a class="yellow-link" href="https://community.eveonline.com/support/api-key/">Manage your API keys in EVE</a></li>
+            <li><a class="yellow-link" href="https://community.eveonline.com/support/api-key/CreatePredefined?accessMask=8">Create a new key with minimal access permissions</a></li>
+        </ul>
+    <button id="btnCheckAccount" name="btnCreateList" type="submit" class="buttonYellow" value="Create">Check account</button>
+}
+
 
 <section id="externalLogins">
     @Html.Action("RemoveExternalLogins")

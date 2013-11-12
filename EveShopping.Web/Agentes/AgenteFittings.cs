@@ -1,6 +1,6 @@
 ﻿using EveShopping.Logica;
 using EveShopping.Modelo.EV;
-using EveShopping.Modelo.Models;
+using EveShopping.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;

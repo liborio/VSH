@@ -1,5 +1,5 @@
 ﻿using EveShopping.Modelo.EV;
-using EveShopping.Modelo.Models;
+using EveShopping.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,7 +81,7 @@ namespace EveShopping.Logica
                     throw new ApplicationException(Messages.err_notOwner);
                 }
             }
-            UserProfile user = contexto.userProfiles.Where(u => u.UserName == userName).FirstOrDefault();
+            UserProfile user = contexto.UserProfiles.Where(u => u.UserName == userName).FirstOrDefault();
             if (user == null) throw new ApplicationException(Messages.err_usuarioNoExiste);
 
             if (snap.eshShoppingList.userID.HasValue && snap.eshShoppingList.userID.Value != user.UserId)

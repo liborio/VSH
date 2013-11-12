@@ -11,6 +11,8 @@ using WebMatrix.WebData;
 using EveShopping.Filters;
 using EveShopping.Models;
 using EveShopping.Web.Modelo;
+using EveShopping.Web;
+using EveAI.Live;
 
 namespace EveShopping.Controllers
 {
@@ -416,6 +418,18 @@ namespace EveShopping.Controllers
                     return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
             }
         }
+        #endregion
+
+        #region EVE API
+
+        [HttpPost]
+        public ActionResult CheckAPI(string keyID, string vCode){
+            AgenteAPI agente = new AgenteAPI();
+            EveApi api = agente.SaveAPIInformation(long.Parse(keyID), vCode);
+            return View();
+        }
+
+
         #endregion
     }
 }

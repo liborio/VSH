@@ -1,6 +1,6 @@
 ﻿using EveShopping.Comun;
 using EveShopping.Logica.EveCentral;
-using EveShopping.Modelo.Models;
+using EveShopping.Modelo;
 using log4net.Core;
 using System;
 using System.Collections.Generic;

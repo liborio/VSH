@@ -1,6 +1,6 @@
 ﻿using EveShopping.Logica.Conversion;
 using EveShopping.Modelo;
-using EveShopping.Modelo.Models;
+using EveShopping.Modelo;
 using EveShopping.Modelo.EntidadesAux;
 using System;
 using System.Collections.Generic;
@@ -23,13 +23,13 @@ namespace EveShopping.Logica
             EveShoppingContext contexto = new EveShoppingContext();
             var count =
                 (from f in contexto.eshShoppingLists
-                 join u in contexto.userProfiles on f.userID equals u.UserId
+                 join u in contexto.UserProfiles on f.userID equals u.UserId
                  where u.UserName == userName
                  select f.shoppingListID).Count();
 
             count +=
                 (from f in contexto.eshGroupShoppingLists
-                    join u in contexto.userProfiles on f.userID equals u.UserId
+                    join u in contexto.UserProfiles on f.userID equals u.UserId
                     where u.UserName == userName
                     select f.groupShoppingListID).Count();
 
@@ -108,7 +108,7 @@ namespace EveShopping.Logica
 
                 if (sl.userID.HasValue && userName == null) throw new ApplicationException(Messages.err_notOwner);
 
-                UserProfile user = contexto.userProfiles.Where(u => u.UserName == userName).FirstOrDefault();
+                UserProfile user = contexto.UserProfiles.Where(u => u.UserName == userName).FirstOrDefault();
 
                 if (sl.userID.HasValue && sl.userID.Value != user.UserId) throw new ApplicationException(Messages.err_notOwner);
 
@@ -149,8 +149,8 @@ namespace EveShopping.Logica
         {
             eshFitting fit = context.eshFittings.Where(f => f.fittingID == fittingID).FirstOrDefault();
 
-            eshShoppingListFitting slf = context.eshShoppingListsFittings.Where(s => s.shoppingListID == id && s.fittingID == fit.fittingID).FirstOrDefault();
-            context.eshShoppingListsFittings.Remove(slf);
+            eshShoppingListFitting slf = context.eshShoppingListFittings.Where(s => s.shoppingListID == id && s.fittingID == fit.fittingID).FirstOrDefault();
+            context.eshShoppingListFittings.Remove(slf);
 
             if (!fit.userID.HasValue)
             {
@@ -209,7 +209,7 @@ namespace EveShopping.Logica
             List<EVFitting> fittings = new List<EVFitting>();
             IEnumerable<QFitting> qfittings =
                 (from sl in contexto.eshShoppingLists
-                 join slf in contexto.eshShoppingListsFittings on sl.shoppingListID equals slf.shoppingListID
+                 join slf in contexto.eshShoppingListFittings on sl.shoppingListID equals slf.shoppingListID
                  join f in contexto.eshFittings on slf.fittingID equals f.fittingID
                  join it in contexto.invTypes on f.shipTypeID equals it.typeID
                  join p in contexto.eshPrices on new { sl.tradeHubID, it.typeID } equals new { tradeHubID = p.solarSystemID, p.typeID }
@@ -256,7 +256,7 @@ namespace EveShopping.Logica
             eshShoppingList list = contexto.eshShoppingLists.Where(sl => sl.publicID == publicID).FirstOrDefault();
             if (!list.userID.HasValue) return true;
 
-            UserProfile user = contexto.userProfiles.Where(u => u.UserName == userName).FirstOrDefault();
+            UserProfile user = contexto.UserProfiles.Where(u => u.UserName == userName).FirstOrDefault();
 
             if (user == null) return false;
             if (list.userID.Value == user.UserId) return true;
@@ -279,14 +279,14 @@ namespace EveShopping.Logica
             EveShoppingContext contexto =
                 new EveShoppingContext();
 
-            UserProfile user = contexto.userProfiles.Where(u => u.UserName.ToLower() == userName.ToLower()).FirstOrDefault();
+            UserProfile user = contexto.UserProfiles.Where(u => u.UserName.ToLower() == userName.ToLower()).FirstOrDefault();
 
             if (user == null)
             {
                 throw new ApplicationException(Messages.err_usuarioNoExiste);
             }
 
-            var query = from u in contexto.userProfiles
+            var query = from u in contexto.UserProfiles
                         join sl in contexto.eshShoppingLists on u.UserId equals sl.userID.Value
                         where u.UserName == userName
                         select new EVShoppingListHeader
@@ -316,7 +316,7 @@ namespace EveShopping.Logica
             int? userId = null;
             if (userName != null)
             {
-                UserProfile up = contexto.userProfiles.Where(p => p.UserName == userName).FirstOrDefault();
+                UserProfile up = contexto.UserProfiles.Where(p => p.UserName == userName).FirstOrDefault();
                 if (up == null) throw new ApplicationException(Messages.err_usuarioNoExiste);
                 userId = up.UserId;
 
@@ -362,7 +362,7 @@ namespace EveShopping.Logica
             //si la shopping list ya tiene un propietario no lo cambiamos.
             if (list.userID.HasValue) return;
 
-            UserProfile user = contexto.userProfiles.Where(up => up.UserName == userName).FirstOrDefault();
+            UserProfile user = contexto.UserProfiles.Where(up => up.UserName == userName).FirstOrDefault();
             if (user == null)
             {
                 throw new ApplicationException(Messages.err_usuarioNoExiste);
@@ -487,7 +487,7 @@ namespace EveShopping.Logica
             EveShoppingContext contexto = new EveShoppingContext();
 
             EVFitting fit =
-    (from slf in contexto.eshShoppingListsFittings
+    (from slf in contexto.eshShoppingListFittings
      join f in contexto.eshFittings on slf.fittingID equals f.fittingID
      join it in contexto.invTypes on f.shipTypeID equals it.typeID
      join p in contexto.eshPrices on new { tradeHubID = slf.eshShoppingList.tradeHubID, it.typeID } equals new { tradeHubID = p.solarSystemID, p.typeID }
@@ -519,7 +519,7 @@ namespace EveShopping.Logica
         {
             var qfittingHardwares =
                (from sl in contexto.eshShoppingLists
-                join slf in contexto.eshShoppingListsFittings on sl.shoppingListID equals slf.shoppingListID
+                join slf in contexto.eshShoppingListFittings on sl.shoppingListID equals slf.shoppingListID
                 join f in contexto.eshFittings on slf.fittingID equals f.fittingID
                 join fh in contexto.eshFittingHardwares on f.fittingID equals fh.fittingID
                 join it in contexto.invTypes on fh.typeID equals it.typeID
@@ -702,7 +702,7 @@ namespace EveShopping.Logica
             {
                 throw new ApplicationException(Messages.err_shoppingLisNoExiste);
             }
-            if (contexto.eshShoppingListsFittings.Where(slf => slf.shoppingListID == sl.shoppingListID && slf.fittingID == fitID).Count() > 0)
+            if (contexto.eshShoppingListFittings.Where(slf => slf.shoppingListID == sl.shoppingListID && slf.fittingID == fitID).Count() > 0)
             {
                 throw new ApplicationException(Messages.err_fittigAlreadyUsed);
             }
@@ -710,7 +710,7 @@ namespace EveShopping.Logica
             slft.shoppingListID = sl.shoppingListID;
             slft.fittingID = fitID;
             slft.units = 1;
-            contexto.eshShoppingListsFittings.Add(slft);
+            contexto.eshShoppingListFittings.Add(slft);
             RepositorioShoppingLists repo = new RepositorioShoppingLists();
             repo.ShoppingListUpdated(sl.shoppingListID, contexto);
             contexto.SaveChanges();
@@ -723,7 +723,7 @@ namespace EveShopping.Logica
             EveShoppingContext contexto = new EveShoppingContext();
 
             //guardamos los cambios
-            eshShoppingListFitting slfit = contexto.eshShoppingListsFittings.Where(slf => slf.fittingID == fittingID && slf.eshShoppingList.publicID == publicID).FirstOrDefault();
+            eshShoppingListFitting slfit = contexto.eshShoppingListFittings.Where(slf => slf.fittingID == fittingID && slf.eshShoppingList.publicID == publicID).FirstOrDefault();
             if (slfit == null) throw new ApplicationException(Messages.err_fittingNoExiste);
             if (units < 1) units = 1;
             slfit.units = units;
@@ -740,7 +740,7 @@ namespace EveShopping.Logica
             RepositorioShoppingLists repo = new RepositorioShoppingLists(contexto);
             eshShoppingListInvType item = repo.SelectMarketItemEnShoppingListPorID(id, itemID);
 
-            contexto.eshShoppingListsInvTypes.Remove(item);
+            contexto.eshShoppingListInvTypes.Remove(item);
             repo.ShoppingListUpdated(id, contexto);
             contexto.SaveChanges();
 
@@ -778,7 +778,7 @@ namespace EveShopping.Logica
 
                 if (!string.IsNullOrEmpty(userName))
                 {
-                    UserProfile up = contexto.userProfiles.Where(u => u.UserName == userName).FirstOrDefault();
+                    UserProfile up = contexto.UserProfiles.Where(u => u.UserName == userName).FirstOrDefault();
                     if (up == null) throw new ApplicationException(Messages.err_usuarioNoExiste);
                     fit.userID = up.UserId;
                 }
@@ -798,7 +798,7 @@ namespace EveShopping.Logica
 
             var qlistaItems =
                 (from sl in context.eshShoppingLists
-                 join slit in context.eshShoppingListsInvTypes on sl.shoppingListID equals slit.shoppingListID
+                 join slit in context.eshShoppingListInvTypes on sl.shoppingListID equals slit.shoppingListID
                  join it in context.invTypes on slit.typeID equals it.typeID
                  join p in context.eshPrices on new { sl.tradeHubID, slit.typeID } equals new { tradeHubID = p.solarSystemID, p.typeID }
                  where sl.publicID == publicID
@@ -838,7 +838,7 @@ namespace EveShopping.Logica
 
             var qmi =
                 (from sl in context.eshShoppingLists
-                 join slit in context.eshShoppingListsInvTypes on sl.shoppingListID equals slit.shoppingListID
+                 join slit in context.eshShoppingListInvTypes on sl.shoppingListID equals slit.shoppingListID
                  join it in context.invTypes on slit.typeID equals it.typeID
                  join p in context.eshPrices on new { sl.tradeHubID, slit.typeID } equals new { tradeHubID = p.solarSystemID, p.typeID }
                  where sl.publicID == publicID && slit.typeID == id

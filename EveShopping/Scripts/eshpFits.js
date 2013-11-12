@@ -100,7 +100,7 @@ function exportFit(id) {
 
     $('#fitsInList').find('[data-esh-edit-link]').hide();
     $('#fitsInList').find('[data-esh-del-fit-link]').hide();
-    var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-export><td colspan='4' class='col-edit'><span><a onclick=\"exportToEVEClient(this)\">To EVE client</a></span><span><a onclick=\"exportToEFT(this)\">To EFT format</a></span><span><a  onclick=\"cancelEditItemInShoppingList('" + id + "')\">Close export</a></span>";
+    var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-export><td colspan='4' class='col-edit'><span><a onclick=\"exportToEVEClient(this)\">To EVE client</a></span><span><a onclick=\"exportToEFT(this)\">To EFT format</a></span><span><a onclick=\"exportToLink(this)\">To Link</a></span><span><a  onclick=\"cancelEditItemInShoppingList('" + id + "')\">Close export</a></span>";
     $(filaControlesEdicion).insertBefore(row);
 
     var acc = $('#fitsInList');
@@ -120,4 +120,13 @@ function exportToEFT(exportRow) {
     var eft = fitsConvert.toEFT(divFit);
     var text = "<textarea style='width: 98%; height: 290px;'>" + eft + "</textarea>";
     infoDialog.show("EFT format", null, text, infoDialog.info);
+}
+
+function exportToLink(exportRow) {
+    var divFit = $(exportRow).parents("[data-esh-id]").first();
+    var publicID = divFit.attr("data-esh-publicID");
+    var eft = fitsConvert.toEFT(divFit);
+    var link = "http://eve-shopping.com/s/fit/" + publicID;
+    var text = "<a href= '" + link + "' >" + link + "</a>";
+    infoDialog.show("Direct link to fitting", null, text, infoDialog.info);
 }

@@ -59,16 +59,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EveShopping.Modelo\EveShopping.Modelo.csproj">
-      <Project>{0850a85e-c6c0-439e-83a7-c88a720e9285}</Project>
-      <Name>EveShopping.Modelo</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Messages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EveShopping.Modelo2\EveShopping.Modelo2.csproj">
+      <Project>{a2714bc3-9282-4a00-b87a-b47106004a62}</Project>
+      <Name>EveShopping.Modelo2</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

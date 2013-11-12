@@ -1,6 +1,6 @@
 ﻿using EveShopping.Modelo;
 using EveShopping.Modelo.EntidadesAux;
-using EveShopping.Modelo.Models;
+using EveShopping.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace EveShopping.Repositorios
 {
     public class RepositorioShoppingLists : RepositorioBase
     {
-        public RepositorioShoppingLists(EveShopping.Modelo.Models.EveShoppingContext contexto = null)
+        public RepositorioShoppingLists(EveShopping.Modelo.EveShoppingContext contexto = null)
             : base(contexto)
         {
         }
@@ -36,7 +36,7 @@ namespace EveShopping.Repositorios
         public eshShoppingListInvType SelectMarketItemEnShoppingListPorID(int listID, int itemID)
         {
 
-            return Contexto.eshShoppingListsInvTypes.Where(slit => slit.shoppingListID == listID && slit.typeID == itemID).FirstOrDefault();
+            return Contexto.eshShoppingListInvTypes.Where(slit => slit.shoppingListID == listID && slit.typeID == itemID).FirstOrDefault();
         }
 
         public eshShoppingListInvType CreateMarketItemEnShoppingList(int listID, int itemID, int units)
@@ -53,7 +53,7 @@ namespace EveShopping.Repositorios
             }
             RepositorioItems repoItems = new RepositorioItems();
             slit.volume = units * RepositorioItems.GetVolume(it);
-            Contexto.eshShoppingListsInvTypes.Add(slit);
+            Contexto.eshShoppingListInvTypes.Add(slit);
             Contexto.SaveChanges();
             return slit;
         }
@@ -88,7 +88,7 @@ namespace EveShopping.Repositorios
         {
             var salida =
                 (from sl in Contexto.eshShoppingLists
-                 join slf in Contexto.eshShoppingListsFittings.Include("eshFitting.eshFittingHardwares").Include("eshFitting.invType").Include("eshFitting.eshFittingHardwares.invType") on sl.shoppingListID equals slf.shoppingListID
+                 join slf in Contexto.eshShoppingListFittings.Include("eshFitting.eshFittingHardwares").Include("eshFitting.invType").Include("eshFitting.eshFittingHardwares.invType") on sl.shoppingListID equals slf.shoppingListID
                  join f in Contexto.eshFittings on slf.fittingID equals f.fittingID
                  where sl.publicID == publicID
                  select slf).ToList();

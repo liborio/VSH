@@ -1,6 +1,6 @@
 ﻿using EveShopping.Modelo;
 using EveShopping.Modelo.EntidadesAux;
-using EveShopping.Modelo.Models;
+using EveShopping.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -105,8 +105,8 @@ namespace EveShopping.Logica.Conversion
 
             var query = from it in contexto.invTypes
                         join ig in contexto.invGroups on it.groupID equals ig.groupID
-                        join dte in contexto.dmgTypeEffects on it.typeID equals dte.typeID
-                        join de in contexto.dmgEffects on dte.effectID equals de.effectID
+                        join dte in contexto.dgmTypeEffects on it.typeID equals dte.typeID
+                        join de in contexto.dgmEffects on dte.effectID equals de.effectID
                         where typeIDs.Contains(it.typeID)                        
                         select new
                         {

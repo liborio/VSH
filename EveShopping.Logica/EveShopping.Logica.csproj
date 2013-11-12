@@ -34,6 +34,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="EveAI.Core">
+      <HintPath>..\External\EveAI.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EveAI.Live">
+      <HintPath>..\External\EveAI.Live.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip.Reduced">
+      <HintPath>..\External\Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.1\lib\net40-full\log4net.dll</HintPath>
     </Reference>
@@ -64,6 +73,7 @@
     <Compile Include="Loggin\eLogSeverity.cs" />
     <Compile Include="Loggin\ErrCodes.cs" />
     <Compile Include="LogicaAdmin.cs" />
+    <Compile Include="LogicaAPI.cs" />
     <Compile Include="LogicaEveCentral.cs" />
     <Compile Include="LogicaFittings.cs" />
     <Compile Include="Loggin\VSHLoggin.cs" />
@@ -87,9 +97,9 @@
       <Project>{fe145ed9-ffc6-41ce-8dd4-b05b9a3974b1}</Project>
       <Name>EveShopping.Comun</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EveShopping.Modelo\EveShopping.Modelo.csproj">
-      <Project>{0850a85e-c6c0-439e-83a7-c88a720e9285}</Project>
-      <Name>EveShopping.Modelo</Name>
+    <ProjectReference Include="..\EveShopping.Modelo2\EveShopping.Modelo2.csproj">
+      <Project>{a2714bc3-9282-4a00-b87a-b47106004a62}</Project>
+      <Name>EveShopping.Modelo2</Name>
     </ProjectReference>
     <ProjectReference Include="..\EveShopping.Repositorios\EveShopping.Repositorios.csproj">
       <Project>{eb30c6a5-04ca-406e-bb1f-9fad927b3f89}</Project>

@@ -1,5 +1,5 @@
 ﻿using EveShopping.Modelo.EV;
-using EveShopping.Modelo.Models;
+using EveShopping.Modelo;
 using EveShopping.Web.Modelo;
 using System;
 using System.Collections.Generic;
