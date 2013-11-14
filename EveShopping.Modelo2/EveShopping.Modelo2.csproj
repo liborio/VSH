@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A2714BC3-9282-4A00-B87A-B47106004A62}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EveShopping.Modelo</RootNamespace>
+    <AssemblyName>EveShopping.Modelo2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Constantes.cs" />
+    <Compile Include="dgmEffect.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dgmEffect_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dgmTypeEffect.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dgmTypeEffect_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntidadesAux\FittingAnalyzed.cs" />
+    <Compile Include="EntidadesAux\FittingHardwareAnalyzed.cs" />
+    <Compile Include="EntidadesAux\TreeNode.cs" />
+    <Compile Include="Enumerados.cs" />
+    <Compile Include="eshChangeLog.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshChangeLog_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshEveAccount.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshEveAccountUser.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshEveAccountUser_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshEveAccount_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshFitting.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshFittingHardware.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshFittingHardware_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshFittingSlot.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshFittingSlot_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshFitting_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshGroupShoppingList.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshGroupShoppingListSnapshot.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshGroupShoppingListSnapshot_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshGroupShoppingList_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshLog.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshLog_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshPrice.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshPrice_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshShipsMarketGroup.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshShipsMarketGroup_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshShoppingList.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshShoppingListFitting.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshShoppingListFitting_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshShoppingListInvType.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshShoppingListInvType_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshShoppingListSummInvType.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshShoppingListSummInvType_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshShoppingList_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshSnapshot.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshSnapshotInvType.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshSnapshotInvType_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshSnapshot_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshTinyUrlMapping.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshTinyUrlMapping_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshTradeHub.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eshTradeHub_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EveShopping.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EveShopping.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EveShopping.Entities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EveShopping.Mapping.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EveShoppingModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EveShoppingModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EV\BaseItem.cs" />
+    <Compile Include="EV\ChangesSummaryItem.cs" />
+    <Compile Include="EV\EVFitting.cs" />
+    <Compile Include="EV\EVFittingHardware.cs" />
+    <Compile Include="EV\EVListSummary.cs" />
+    <Compile Include="EV\EVShoppingListHeader.cs" />
+    <Compile Include="EV\EVStaticList.cs" />
+    <Compile Include="EV\IItem.cs" />
+    <Compile Include="EV\MarketItem.cs" />
+    <Compile Include="EV\ShipMarketGroup.cs" />
+    <Compile Include="invGroup.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="invGroup_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="invMarketGroup.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="invMarketGroup_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="invType.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="invType_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mapSolarSystem.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mapSolarSystem_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Messages.Designer.cs">
+      <DependentUpon>Messages.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserProfile.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserProfile_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webpages_Roles.cs">
+      <DependentUpon>EveShopping.Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webpages_Roles_Mapping.cs">
+      <DependentUpon>EveShopping.Mapping.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="EveShoppingModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EveShoppingModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EF.Reverse.POCO.Core.ttinclude" />
+    <None Include="EF.Reverse.POCO.ttinclude" />
+    <None Include="EveShopping.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EveShopping.Context.cs</LastGenOutput>
+    </None>
+    <None Include="EveShopping.Entities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EveShopping.Entities.cs</LastGenOutput>
+    </None>
+    <None Include="EveShopping.Mapping.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EveShopping.Mapping.cs</LastGenOutput>
+    </None>
+    <None Include="EveShoppingModel.edmx.diagram">
+      <DependentUpon>EveShoppingModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EveShopping.Comun\EveShopping.Comun.csproj">
+      <Project>{fe145ed9-ffc6-41ce-8dd4-b05b9a3974b1}</Project>
+      <Name>EveShopping.Comun</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

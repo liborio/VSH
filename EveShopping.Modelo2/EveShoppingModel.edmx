@@ -1,0 +1,2168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EveShoppingModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="EveShoppingModelStoreContainer">
+          <EntitySet Name="dgmEffects" EntityType="EveShoppingModel.Store.dgmEffects" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="dgmTypeEffects" EntityType="EveShoppingModel.Store.dgmTypeEffects" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshChangeLog" EntityType="EveShoppingModel.Store.eshChangeLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshEveAccount" EntityType="EveShoppingModel.Store.eshEveAccount" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshEveAccountUser" EntityType="EveShoppingModel.Store.eshEveAccountUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshFittingHardwares" EntityType="EveShoppingModel.Store.eshFittingHardwares" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshFittings" EntityType="EveShoppingModel.Store.eshFittings" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshFittingSlots" EntityType="EveShoppingModel.Store.eshFittingSlots" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshGroupShoppingList" EntityType="EveShoppingModel.Store.eshGroupShoppingList" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshGroupShoppingListSnapshot" EntityType="EveShoppingModel.Store.eshGroupShoppingListSnapshot" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshLogs" EntityType="EveShoppingModel.Store.eshLogs" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshPrices" EntityType="EveShoppingModel.Store.eshPrices" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshShipsMarketGroups" EntityType="EveShoppingModel.Store.eshShipsMarketGroups" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshShoppingListFittings" EntityType="EveShoppingModel.Store.eshShoppingListFittings" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshShoppingListInvType" EntityType="EveShoppingModel.Store.eshShoppingListInvType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshShoppingLists" EntityType="EveShoppingModel.Store.eshShoppingLists" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshShoppingListSummInvTypes" EntityType="EveShoppingModel.Store.eshShoppingListSummInvTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshSnapshot" EntityType="EveShoppingModel.Store.eshSnapshot" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshSnapshotInvType" EntityType="EveShoppingModel.Store.eshSnapshotInvType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshTinyUrlMapping" EntityType="EveShoppingModel.Store.eshTinyUrlMapping" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshTradeHubs" EntityType="EveShoppingModel.Store.eshTradeHubs" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="invGroups" EntityType="EveShoppingModel.Store.invGroups" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="invMarketGroups" EntityType="EveShoppingModel.Store.invMarketGroups" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="invTypes" EntityType="EveShoppingModel.Store.invTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mapSolarSystems" EntityType="EveShoppingModel.Store.mapSolarSystems" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserProfile" EntityType="EveShoppingModel.Store.UserProfile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_Roles" EntityType="EveShoppingModel.Store.webpages_Roles" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_eshEveAccount_UserProfile" Association="EveShoppingModel.Store.FK_eshEveAccount_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="eshEveAccount" EntitySet="eshEveAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshEveAccountUser_eshEveAccount" Association="EveShoppingModel.Store.FK_eshEveAccountUser_eshEveAccount">
+            <End Role="eshEveAccount" EntitySet="eshEveAccount" />
+            <End Role="eshEveAccountUser" EntitySet="eshEveAccountUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshFittingHardwares_eshFittings" Association="EveShoppingModel.Store.FK_eshFittingHardwares_eshFittings">
+            <End Role="eshFittings" EntitySet="eshFittings" />
+            <End Role="eshFittingHardwares" EntitySet="eshFittingHardwares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshFittingHardwares_eshFittingSlots" Association="EveShoppingModel.Store.FK_eshFittingHardwares_eshFittingSlots">
+            <End Role="eshFittingSlots" EntitySet="eshFittingSlots" />
+            <End Role="eshFittingHardwares" EntitySet="eshFittingHardwares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshFittingHardwares_invTypes" Association="EveShoppingModel.Store.FK_eshFittingHardwares_invTypes">
+            <End Role="invTypes" EntitySet="invTypes" />
+            <End Role="eshFittingHardwares" EntitySet="eshFittingHardwares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshFittings_eshTinyUrlMapping" Association="EveShoppingModel.Store.FK_eshFittings_eshTinyUrlMapping">
+            <End Role="eshTinyUrlMapping" EntitySet="eshTinyUrlMapping" />
+            <End Role="eshFittings" EntitySet="eshFittings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshFittings_invTypes" Association="EveShoppingModel.Store.FK_eshFittings_invTypes">
+            <End Role="invTypes" EntitySet="invTypes" />
+            <End Role="eshFittings" EntitySet="eshFittings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshFittings_UserProfile" Association="EveShoppingModel.Store.FK_eshFittings_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="eshFittings" EntitySet="eshFittings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshGroupShoppingList_eshGroupShoppingList" Association="EveShoppingModel.Store.FK_eshGroupShoppingList_eshGroupShoppingList">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="eshGroupShoppingList" EntitySet="eshGroupShoppingList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshGroupShoppingList_eshTradeHubs" Association="EveShoppingModel.Store.FK_eshGroupShoppingList_eshTradeHubs">
+            <End Role="eshTradeHubs" EntitySet="eshTradeHubs" />
+            <End Role="eshGroupShoppingList" EntitySet="eshGroupShoppingList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshGroupShoppingListSnapshot_eshGroupShoppingList" Association="EveShoppingModel.Store.FK_eshGroupShoppingListSnapshot_eshGroupShoppingList">
+            <End Role="eshGroupShoppingList" EntitySet="eshGroupShoppingList" />
+            <End Role="eshGroupShoppingListSnapshot" EntitySet="eshGroupShoppingListSnapshot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshGroupShoppingListSnapshot_eshSnapshot" Association="EveShoppingModel.Store.FK_eshGroupShoppingListSnapshot_eshSnapshot">
+            <End Role="eshSnapshot" EntitySet="eshSnapshot" />
+            <End Role="eshGroupShoppingListSnapshot" EntitySet="eshGroupShoppingListSnapshot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshPrices_invTypes" Association="EveShoppingModel.Store.FK_eshPrices_invTypes">
+            <End Role="invTypes" EntitySet="invTypes" />
+            <End Role="eshPrices" EntitySet="eshPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshPrices_mapSolarSystems" Association="EveShoppingModel.Store.FK_eshPrices_mapSolarSystems">
+            <End Role="mapSolarSystems" EntitySet="mapSolarSystems" />
+            <End Role="eshPrices" EntitySet="eshPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShipsMarketGroups_invMarketGroups" Association="EveShoppingModel.Store.FK_eshShipsMarketGroups_invMarketGroups">
+            <End Role="invMarketGroups" EntitySet="invMarketGroups" />
+            <End Role="eshShipsMarketGroups" EntitySet="eshShipsMarketGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShipsMarketGroups_invTypes" Association="EveShoppingModel.Store.FK_eshShipsMarketGroups_invTypes">
+            <End Role="invTypes" EntitySet="invTypes" />
+            <End Role="eshShipsMarketGroups" EntitySet="eshShipsMarketGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingListFittings_eshFittings" Association="EveShoppingModel.Store.FK_eshShoppingListFittings_eshFittings">
+            <End Role="eshFittings" EntitySet="eshFittings" />
+            <End Role="eshShoppingListFittings" EntitySet="eshShoppingListFittings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingListFittings_eshShoppingLists" Association="EveShoppingModel.Store.FK_eshShoppingListFittings_eshShoppingLists">
+            <End Role="eshShoppingLists" EntitySet="eshShoppingLists" />
+            <End Role="eshShoppingListFittings" EntitySet="eshShoppingListFittings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingListInvType_eshShoppingLists" Association="EveShoppingModel.Store.FK_eshShoppingListInvType_eshShoppingLists">
+            <End Role="eshShoppingLists" EntitySet="eshShoppingLists" />
+            <End Role="eshShoppingListInvType" EntitySet="eshShoppingListInvType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingListInvType_invTypes" Association="EveShoppingModel.Store.FK_eshShoppingListInvType_invTypes">
+            <End Role="invTypes" EntitySet="invTypes" />
+            <End Role="eshShoppingListInvType" EntitySet="eshShoppingListInvType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingLists_eshTinyUrlMapping" Association="EveShoppingModel.Store.FK_eshShoppingLists_eshTinyUrlMapping">
+            <End Role="eshTinyUrlMapping" EntitySet="eshTinyUrlMapping" />
+            <End Role="eshShoppingLists" EntitySet="eshShoppingLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingLists_eshTradeHubs" Association="EveShoppingModel.Store.FK_eshShoppingLists_eshTradeHubs">
+            <End Role="eshTradeHubs" EntitySet="eshTradeHubs" />
+            <End Role="eshShoppingLists" EntitySet="eshShoppingLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingLists_UserProfile" Association="EveShoppingModel.Store.FK_eshShoppingLists_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="eshShoppingLists" EntitySet="eshShoppingLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingListSummInvTypes_eshShoppingLists" Association="EveShoppingModel.Store.FK_eshShoppingListSummInvTypes_eshShoppingLists">
+            <End Role="eshShoppingLists" EntitySet="eshShoppingLists" />
+            <End Role="eshShoppingListSummInvTypes" EntitySet="eshShoppingListSummInvTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingListSummInvTypes_invTypes" Association="EveShoppingModel.Store.FK_eshShoppingListSummInvTypes_invTypes">
+            <End Role="invTypes" EntitySet="invTypes" />
+            <End Role="eshShoppingListSummInvTypes" EntitySet="eshShoppingListSummInvTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshSnapshot_eshShoppingLists" Association="EveShoppingModel.Store.FK_eshSnapshot_eshShoppingLists">
+            <End Role="eshShoppingLists" EntitySet="eshShoppingLists" />
+            <End Role="eshSnapshot" EntitySet="eshSnapshot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshSnapshot_eshTinyUrlMapping" Association="EveShoppingModel.Store.FK_eshSnapshot_eshTinyUrlMapping">
+            <End Role="eshTinyUrlMapping" EntitySet="eshTinyUrlMapping" />
+            <End Role="eshSnapshot" EntitySet="eshSnapshot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshSnapshotInvType_eshSnapshot" Association="EveShoppingModel.Store.FK_eshSnapshotInvType_eshSnapshot">
+            <End Role="eshSnapshot" EntitySet="eshSnapshot" />
+            <End Role="eshSnapshotInvType" EntitySet="eshSnapshotInvType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshSnapshotInvType_invTypes" Association="EveShoppingModel.Store.FK_eshSnapshotInvType_invTypes">
+            <End Role="invTypes" EntitySet="invTypes" />
+            <End Role="eshSnapshotInvType" EntitySet="eshSnapshotInvType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshTradeHubs_staStations" Association="EveShoppingModel.Store.FK_eshTradeHubs_staStations">
+            <End Role="mapSolarSystems" EntitySet="mapSolarSystems" />
+            <End Role="eshTradeHubs" EntitySet="eshTradeHubs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="dgmEffects">
+          <Key>
+            <PropertyRef Name="effectID" />
+          </Key>
+          <Property Name="effectID" Type="smallint" Nullable="false" />
+          <Property Name="effectName" Type="varchar" MaxLength="400" />
+          <Property Name="effectCategory" Type="smallint" />
+          <Property Name="preExpression" Type="int" />
+          <Property Name="postExpression" Type="int" />
+          <Property Name="description" Type="varchar" MaxLength="1000" />
+          <Property Name="guid" Type="varchar" MaxLength="60" />
+          <Property Name="iconID" Type="int" />
+          <Property Name="isOffensive" Type="bit" />
+          <Property Name="isAssistance" Type="bit" />
+          <Property Name="durationAttributeID" Type="smallint" />
+          <Property Name="trackingSpeedAttributeID" Type="smallint" />
+          <Property Name="dischargeAttributeID" Type="smallint" />
+          <Property Name="rangeAttributeID" Type="smallint" />
+          <Property Name="falloffAttributeID" Type="smallint" />
+          <Property Name="disallowAutoRepeat" Type="bit" />
+          <Property Name="published" Type="bit" />
+          <Property Name="displayName" Type="varchar" MaxLength="100" />
+          <Property Name="isWarpSafe" Type="bit" />
+          <Property Name="rangeChance" Type="bit" />
+          <Property Name="electronicChance" Type="bit" />
+          <Property Name="propulsionChance" Type="bit" />
+          <Property Name="distribution" Type="tinyint" />
+          <Property Name="sfxName" Type="varchar" MaxLength="20" />
+          <Property Name="npcUsageChanceAttributeID" Type="smallint" />
+          <Property Name="npcActivationChanceAttributeID" Type="smallint" />
+          <Property Name="fittingUsageChanceAttributeID" Type="smallint" />
+        </EntityType>
+        <EntityType Name="dgmTypeEffects">
+          <Key>
+            <PropertyRef Name="typeID" />
+            <PropertyRef Name="effectID" />
+          </Key>
+          <Property Name="typeID" Type="int" Nullable="false" />
+          <Property Name="effectID" Type="smallint" Nullable="false" />
+          <Property Name="isDefault" Type="bit" />
+        </EntityType>
+        <EntityType Name="eshChangeLog">
+          <Key>
+            <PropertyRef Name="changeLogID" />
+          </Key>
+          <Property Name="changeLogID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="version" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="changes" Type="nvarchar(max)" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="eshEveAccount">
+          <Key>
+            <PropertyRef Name="accountID" />
+          </Key>
+          <Property Name="accountID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="userID" Type="int" Nullable="false" />
+          <Property Name="keyID" Type="int" Nullable="false" />
+          <Property Name="verficationCode" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="dateCreation" Type="datetime" Nullable="false" />
+          <Property Name="dateUpdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="eshEveAccountUser">
+          <Key>
+            <PropertyRef Name="accountUserID" />
+          </Key>
+          <Property Name="accountUserID" Type="int" Nullable="false" />
+          <Property Name="accountID" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="corpName" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="corpTicker" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="eshFittingHardwares">
+          <Key>
+            <PropertyRef Name="fittingHardwareID" />
+          </Key>
+          <Property Name="fittingHardwareID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="fittingID" Type="int" Nullable="false" />
+          <Property Name="typeID" Type="int" Nullable="false" />
+          <Property Name="slotID" Type="int" Nullable="false" />
+          <Property Name="positionInSlot" Type="smallint" Nullable="false" />
+          <Property Name="units" Type="int" Nullable="false" />
+          <Property Name="volume" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="eshFittings">
+          <Key>
+            <PropertyRef Name="fittingID" />
+          </Key>
+          <Property Name="fittingID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="shipTypeID" Type="int" />
+          <Property Name="description" Type="nvarchar" MaxLength="3000" />
+          <Property Name="dateCreation" Type="datetime" Nullable="false" />
+          <Property Name="shipVolume" Type="float" Nullable="false" />
+          <Property Name="volume" Type="float" Nullable="false" />
+          <Property Name="userID" Type="int" />
+          <Property Name="urlID" Type="int" />
+          <Property Name="publicID" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="eshFittingSlots">
+          <Key>
+            <PropertyRef Name="slotID" />
+          </Key>
+          <Property Name="slotID" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="eshGroupShoppingList">
+          <Key>
+            <PropertyRef Name="groupShoppingListID" />
+          </Key>
+          <Property Name="groupShoppingListID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="userID" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="description" Type="nvarchar" MaxLength="3990" />
+          <Property Name="publicID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="dateCreation" Type="datetime" Nullable="false" />
+          <Property Name="dateUpdate" Type="datetime" Nullable="false" />
+          <Property Name="tradeHubID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="eshGroupShoppingListSnapshot">
+          <Key>
+            <PropertyRef Name="groupShoppingListID" />
+            <PropertyRef Name="snapshotID" />
+          </Key>
+          <Property Name="groupShoppingListID" Type="int" Nullable="false" />
+          <Property Name="snapshotID" Type="int" Nullable="false" />
+          <Property Name="nickName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="creationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="eshLogs">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Severity" Type="smallint" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="eshPrices">
+          <Key>
+            <PropertyRef Name="typeID" />
+            <PropertyRef Name="solarSystemID" />
+          </Key>
+          <Property Name="typeID" Type="int" Nullable="false" />
+          <Property Name="solarSystemID" Type="int" Nullable="false" />
+          <Property Name="avg" Type="money" Nullable="false" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="eshShipsMarketGroups">
+          <Key>
+            <PropertyRef Name="typeID" />
+            <PropertyRef Name="marketGroupID" />
+          </Key>
+          <Property Name="typeID" Type="int" Nullable="false" />
+          <Property Name="marketGroupID" Type="int" Nullable="false" />
+          <Property Name="mock" Type="bit" />
+        </EntityType>
+        <EntityType Name="eshShoppingListFittings">
+          <Key>
+            <PropertyRef Name="shoppingListID" />
+            <PropertyRef Name="fittingID" />
+          </Key>
+          <Property Name="shoppingListID" Type="int" Nullable="false" />
+          <Property Name="fittingID" Type="int" Nullable="false" />
+          <Property Name="units" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="eshShoppingListInvType">
+          <Key>
+            <PropertyRef Name="shoppingListID" />
+            <PropertyRef Name="typeID" />
+          </Key>
+          <Property Name="shoppingListID" Type="int" Nullable="false" />
+          <Property Name="typeID" Type="int" Nullable="false" />
+          <Property Name="units" Type="int" Nullable="false" />
+          <Property Name="volume" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="eshShoppingLists">
+          <Key>
+            <PropertyRef Name="shoppingListID" />
+          </Key>
+          <Property Name="shoppingListID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="publicID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="description" Type="nvarchar" MaxLength="3990" />
+          <Property Name="dateCreation" Type="datetime" Nullable="false" />
+          <Property Name="readOnlypublicID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="dateUpdate" Type="datetime" Nullable="false" />
+          <Property Name="tradeHubID" Type="int" Nullable="false" />
+          <Property Name="dateAccess" Type="datetime" Nullable="false" />
+          <Property Name="allowEditForAll" Type="bit" Nullable="false" />
+          <Property Name="userID" Type="int" />
+          <Property Name="urlID" Type="int" />
+        </EntityType>
+        <EntityType Name="eshShoppingListSummInvTypes">
+          <Key>
+            <PropertyRef Name="shoppingListID" />
+            <PropertyRef Name="typeID" />
+          </Key>
+          <Property Name="shoppingListID" Type="int" Nullable="false" />
+          <Property Name="typeID" Type="int" Nullable="false" />
+          <Property Name="delta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="eshSnapshot">
+          <Key>
+            <PropertyRef Name="snapshotID" />
+          </Key>
+          <Property Name="snapshotID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="shoppingListID" Type="int" Nullable="false" />
+          <Property Name="creationDate" Type="datetime" Nullable="false" />
+          <Property Name="totalVolume" Type="float" Nullable="false" />
+          <Property Name="totalPrice" Type="money" Nullable="false" />
+          <Property Name="publicID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="description" Type="nvarchar" MaxLength="3990" />
+          <Property Name="urlID" Type="int" />
+        </EntityType>
+        <EntityType Name="eshSnapshotInvType">
+          <Key>
+            <PropertyRef Name="snapshotID" />
+            <PropertyRef Name="typeID" />
+          </Key>
+          <Property Name="snapshotID" Type="int" Nullable="false" />
+          <Property Name="typeID" Type="int" Nullable="false" />
+          <Property Name="units" Type="int" Nullable="false" />
+          <Property Name="unitPrice" Type="money" Nullable="false" />
+          <Property Name="volume" Type="float" />
+        </EntityType>
+        <EntityType Name="eshTinyUrlMapping">
+          <Key>
+            <PropertyRef Name="urlId" />
+          </Key>
+          <Property Name="urlId" Type="int" Nullable="false" />
+          <Property Name="tinyUrl" Type="nvarchar" MaxLength="50" />
+          <Property Name="finalUrl" Type="nvarchar" MaxLength="250" />
+          <Property Name="isPermanent" Type="bit" Nullable="false" />
+          <Property Name="lastGivenTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="eshTradeHubs">
+          <Key>
+            <PropertyRef Name="solarSystemID" />
+          </Key>
+          <Property Name="solarSystemID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="invGroups">
+          <Key>
+            <PropertyRef Name="groupID" />
+          </Key>
+          <Property Name="groupID" Type="int" Nullable="false" />
+          <Property Name="categoryID" Type="int" />
+          <Property Name="groupName" Type="nvarchar" MaxLength="100" />
+          <Property Name="description" Type="nvarchar" MaxLength="3000" />
+          <Property Name="iconID" Type="int" />
+          <Property Name="useBasePrice" Type="bit" />
+          <Property Name="allowManufacture" Type="bit" />
+          <Property Name="allowRecycler" Type="bit" />
+          <Property Name="anchored" Type="bit" />
+          <Property Name="anchorable" Type="bit" />
+          <Property Name="fittableNonSingleton" Type="bit" />
+          <Property Name="published" Type="bit" />
+        </EntityType>
+        <EntityType Name="invMarketGroups">
+          <Key>
+            <PropertyRef Name="marketGroupID" />
+          </Key>
+          <Property Name="marketGroupID" Type="int" Nullable="false" />
+          <Property Name="parentGroupID" Type="int" />
+          <Property Name="marketGroupName" Type="nvarchar" MaxLength="100" />
+          <Property Name="description" Type="nvarchar" MaxLength="3000" />
+          <Property Name="iconID" Type="int" />
+          <Property Name="hasTypes" Type="bit" />
+        </EntityType>
+        <EntityType Name="invTypes">
+          <Key>
+            <PropertyRef Name="typeID" />
+          </Key>
+          <Property Name="typeID" Type="int" Nullable="false" />
+          <Property Name="groupID" Type="int" />
+          <Property Name="typeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="description" Type="nvarchar" MaxLength="3000" />
+          <Property Name="mass" Type="float" />
+          <Property Name="volume" Type="float" />
+          <Property Name="capacity" Type="float" />
+          <Property Name="portionSize" Type="int" />
+          <Property Name="raceID" Type="tinyint" />
+          <Property Name="basePrice" Type="money" />
+          <Property Name="published" Type="bit" />
+          <Property Name="marketGroupID" Type="int" />
+          <Property Name="chanceOfDuplicating" Type="float" />
+        </EntityType>
+        <EntityType Name="mapSolarSystems">
+          <Key>
+            <PropertyRef Name="solarSystemID" />
+          </Key>
+          <Property Name="regionID" Type="int" />
+          <Property Name="constellationID" Type="int" />
+          <Property Name="solarSystemID" Type="int" Nullable="false" />
+          <Property Name="solarSystemName" Type="nvarchar" MaxLength="100" />
+          <Property Name="x" Type="float" />
+          <Property Name="y" Type="float" />
+          <Property Name="z" Type="float" />
+          <Property Name="xMin" Type="float" />
+          <Property Name="xMax" Type="float" />
+          <Property Name="yMin" Type="float" />
+          <Property Name="yMax" Type="float" />
+          <Property Name="zMin" Type="float" />
+          <Property Name="zMax" Type="float" />
+          <Property Name="luminosity" Type="float" />
+          <Property Name="border" Type="bit" />
+          <Property Name="fringe" Type="bit" />
+          <Property Name="corridor" Type="bit" />
+          <Property Name="hub" Type="bit" />
+          <Property Name="international" Type="bit" />
+          <Property Name="regional" Type="bit" />
+          <Property Name="constellation" Type="bit" />
+          <Property Name="security" Type="float" />
+          <Property Name="factionID" Type="int" />
+          <Property Name="radius" Type="float" />
+          <Property Name="sunTypeID" Type="int" />
+          <Property Name="securityClass" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+        </EntityType>
+        <Association Name="FK_eshEveAccount_UserProfile">
+          <End Role="UserProfile" Type="EveShoppingModel.Store.UserProfile" Multiplicity="1" />
+          <End Role="eshEveAccount" Type="EveShoppingModel.Store.eshEveAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="eshEveAccount">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshEveAccountUser_eshEveAccount">
+          <End Role="eshEveAccount" Type="EveShoppingModel.Store.eshEveAccount" Multiplicity="1" />
+          <End Role="eshEveAccountUser" Type="EveShoppingModel.Store.eshEveAccountUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshEveAccount">
+              <PropertyRef Name="accountID" />
+            </Principal>
+            <Dependent Role="eshEveAccountUser">
+              <PropertyRef Name="accountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshFittingHardwares_eshFittings">
+          <End Role="eshFittings" Type="EveShoppingModel.Store.eshFittings" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="eshFittingHardwares" Type="EveShoppingModel.Store.eshFittingHardwares" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshFittings">
+              <PropertyRef Name="fittingID" />
+            </Principal>
+            <Dependent Role="eshFittingHardwares">
+              <PropertyRef Name="fittingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshFittingHardwares_eshFittingSlots">
+          <End Role="eshFittingSlots" Type="EveShoppingModel.Store.eshFittingSlots" Multiplicity="1" />
+          <End Role="eshFittingHardwares" Type="EveShoppingModel.Store.eshFittingHardwares" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshFittingSlots">
+              <PropertyRef Name="slotID" />
+            </Principal>
+            <Dependent Role="eshFittingHardwares">
+              <PropertyRef Name="slotID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshFittingHardwares_invTypes">
+          <End Role="invTypes" Type="EveShoppingModel.Store.invTypes" Multiplicity="1" />
+          <End Role="eshFittingHardwares" Type="EveShoppingModel.Store.eshFittingHardwares" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invTypes">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="eshFittingHardwares">
+              <PropertyRef Name="typeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshFittings_eshTinyUrlMapping">
+          <End Role="eshTinyUrlMapping" Type="EveShoppingModel.Store.eshTinyUrlMapping" Multiplicity="0..1" />
+          <End Role="eshFittings" Type="EveShoppingModel.Store.eshFittings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshTinyUrlMapping">
+              <PropertyRef Name="urlId" />
+            </Principal>
+            <Dependent Role="eshFittings">
+              <PropertyRef Name="urlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshFittings_invTypes">
+          <End Role="invTypes" Type="EveShoppingModel.Store.invTypes" Multiplicity="0..1" />
+          <End Role="eshFittings" Type="EveShoppingModel.Store.eshFittings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invTypes">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="eshFittings">
+              <PropertyRef Name="shipTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshFittings_UserProfile">
+          <End Role="UserProfile" Type="EveShoppingModel.Store.UserProfile" Multiplicity="0..1" />
+          <End Role="eshFittings" Type="EveShoppingModel.Store.eshFittings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="eshFittings">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshGroupShoppingList_eshGroupShoppingList">
+          <End Role="UserProfile" Type="EveShoppingModel.Store.UserProfile" Multiplicity="1" />
+          <End Role="eshGroupShoppingList" Type="EveShoppingModel.Store.eshGroupShoppingList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="eshGroupShoppingList">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshGroupShoppingList_eshTradeHubs">
+          <End Role="eshTradeHubs" Type="EveShoppingModel.Store.eshTradeHubs" Multiplicity="1" />
+          <End Role="eshGroupShoppingList" Type="EveShoppingModel.Store.eshGroupShoppingList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshTradeHubs">
+              <PropertyRef Name="solarSystemID" />
+            </Principal>
+            <Dependent Role="eshGroupShoppingList">
+              <PropertyRef Name="tradeHubID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshGroupShoppingListSnapshot_eshGroupShoppingList">
+          <End Role="eshGroupShoppingList" Type="EveShoppingModel.Store.eshGroupShoppingList" Multiplicity="1" />
+          <End Role="eshGroupShoppingListSnapshot" Type="EveShoppingModel.Store.eshGroupShoppingListSnapshot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshGroupShoppingList">
+              <PropertyRef Name="groupShoppingListID" />
+            </Principal>
+            <Dependent Role="eshGroupShoppingListSnapshot">
+              <PropertyRef Name="groupShoppingListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshGroupShoppingListSnapshot_eshSnapshot">
+          <End Role="eshSnapshot" Type="EveShoppingModel.Store.eshSnapshot" Multiplicity="1" />
+          <End Role="eshGroupShoppingListSnapshot" Type="EveShoppingModel.Store.eshGroupShoppingListSnapshot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshSnapshot">
+              <PropertyRef Name="snapshotID" />
+            </Principal>
+            <Dependent Role="eshGroupShoppingListSnapshot">
+              <PropertyRef Name="snapshotID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshPrices_invTypes">
+          <End Role="invTypes" Type="EveShoppingModel.Store.invTypes" Multiplicity="1" />
+          <End Role="eshPrices" Type="EveShoppingModel.Store.eshPrices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invTypes">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="eshPrices">
+              <PropertyRef Name="typeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshPrices_mapSolarSystems">
+          <End Role="mapSolarSystems" Type="EveShoppingModel.Store.mapSolarSystems" Multiplicity="1" />
+          <End Role="eshPrices" Type="EveShoppingModel.Store.eshPrices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mapSolarSystems">
+              <PropertyRef Name="solarSystemID" />
+            </Principal>
+            <Dependent Role="eshPrices">
+              <PropertyRef Name="solarSystemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShipsMarketGroups_invMarketGroups">
+          <End Role="invMarketGroups" Type="EveShoppingModel.Store.invMarketGroups" Multiplicity="1" />
+          <End Role="eshShipsMarketGroups" Type="EveShoppingModel.Store.eshShipsMarketGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invMarketGroups">
+              <PropertyRef Name="marketGroupID" />
+            </Principal>
+            <Dependent Role="eshShipsMarketGroups">
+              <PropertyRef Name="marketGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShipsMarketGroups_invTypes">
+          <End Role="invTypes" Type="EveShoppingModel.Store.invTypes" Multiplicity="1" />
+          <End Role="eshShipsMarketGroups" Type="EveShoppingModel.Store.eshShipsMarketGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invTypes">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="eshShipsMarketGroups">
+              <PropertyRef Name="typeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingListFittings_eshFittings">
+          <End Role="eshFittings" Type="EveShoppingModel.Store.eshFittings" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="eshShoppingListFittings" Type="EveShoppingModel.Store.eshShoppingListFittings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshFittings">
+              <PropertyRef Name="fittingID" />
+            </Principal>
+            <Dependent Role="eshShoppingListFittings">
+              <PropertyRef Name="fittingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingListFittings_eshShoppingLists">
+          <End Role="eshShoppingLists" Type="EveShoppingModel.Store.eshShoppingLists" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="eshShoppingListFittings" Type="EveShoppingModel.Store.eshShoppingListFittings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshShoppingLists">
+              <PropertyRef Name="shoppingListID" />
+            </Principal>
+            <Dependent Role="eshShoppingListFittings">
+              <PropertyRef Name="shoppingListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingListInvType_eshShoppingLists">
+          <End Role="eshShoppingLists" Type="EveShoppingModel.Store.eshShoppingLists" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="eshShoppingListInvType" Type="EveShoppingModel.Store.eshShoppingListInvType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshShoppingLists">
+              <PropertyRef Name="shoppingListID" />
+            </Principal>
+            <Dependent Role="eshShoppingListInvType">
+              <PropertyRef Name="shoppingListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingListInvType_invTypes">
+          <End Role="invTypes" Type="EveShoppingModel.Store.invTypes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="eshShoppingListInvType" Type="EveShoppingModel.Store.eshShoppingListInvType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invTypes">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="eshShoppingListInvType">
+              <PropertyRef Name="typeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingLists_eshTinyUrlMapping">
+          <End Role="eshTinyUrlMapping" Type="EveShoppingModel.Store.eshTinyUrlMapping" Multiplicity="0..1" />
+          <End Role="eshShoppingLists" Type="EveShoppingModel.Store.eshShoppingLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshTinyUrlMapping">
+              <PropertyRef Name="urlId" />
+            </Principal>
+            <Dependent Role="eshShoppingLists">
+              <PropertyRef Name="urlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingLists_eshTradeHubs">
+          <End Role="eshTradeHubs" Type="EveShoppingModel.Store.eshTradeHubs" Multiplicity="1" />
+          <End Role="eshShoppingLists" Type="EveShoppingModel.Store.eshShoppingLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshTradeHubs">
+              <PropertyRef Name="solarSystemID" />
+            </Principal>
+            <Dependent Role="eshShoppingLists">
+              <PropertyRef Name="tradeHubID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingLists_UserProfile">
+          <End Role="UserProfile" Type="EveShoppingModel.Store.UserProfile" Multiplicity="0..1" />
+          <End Role="eshShoppingLists" Type="EveShoppingModel.Store.eshShoppingLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="eshShoppingLists">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingListSummInvTypes_eshShoppingLists">
+          <End Role="eshShoppingLists" Type="EveShoppingModel.Store.eshShoppingLists" Multiplicity="1" />
+          <End Role="eshShoppingListSummInvTypes" Type="EveShoppingModel.Store.eshShoppingListSummInvTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshShoppingLists">
+              <PropertyRef Name="shoppingListID" />
+            </Principal>
+            <Dependent Role="eshShoppingListSummInvTypes">
+              <PropertyRef Name="shoppingListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingListSummInvTypes_invTypes">
+          <End Role="invTypes" Type="EveShoppingModel.Store.invTypes" Multiplicity="1" />
+          <End Role="eshShoppingListSummInvTypes" Type="EveShoppingModel.Store.eshShoppingListSummInvTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invTypes">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="eshShoppingListSummInvTypes">
+              <PropertyRef Name="typeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshSnapshot_eshShoppingLists">
+          <End Role="eshShoppingLists" Type="EveShoppingModel.Store.eshShoppingLists" Multiplicity="1" />
+          <End Role="eshSnapshot" Type="EveShoppingModel.Store.eshSnapshot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshShoppingLists">
+              <PropertyRef Name="shoppingListID" />
+            </Principal>
+            <Dependent Role="eshSnapshot">
+              <PropertyRef Name="shoppingListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshSnapshot_eshTinyUrlMapping">
+          <End Role="eshTinyUrlMapping" Type="EveShoppingModel.Store.eshTinyUrlMapping" Multiplicity="0..1" />
+          <End Role="eshSnapshot" Type="EveShoppingModel.Store.eshSnapshot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshTinyUrlMapping">
+              <PropertyRef Name="urlId" />
+            </Principal>
+            <Dependent Role="eshSnapshot">
+              <PropertyRef Name="urlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshSnapshotInvType_eshSnapshot">
+          <End Role="eshSnapshot" Type="EveShoppingModel.Store.eshSnapshot" Multiplicity="1" />
+          <End Role="eshSnapshotInvType" Type="EveShoppingModel.Store.eshSnapshotInvType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshSnapshot">
+              <PropertyRef Name="snapshotID" />
+            </Principal>
+            <Dependent Role="eshSnapshotInvType">
+              <PropertyRef Name="snapshotID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshSnapshotInvType_invTypes">
+          <End Role="invTypes" Type="EveShoppingModel.Store.invTypes" Multiplicity="1" />
+          <End Role="eshSnapshotInvType" Type="EveShoppingModel.Store.eshSnapshotInvType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invTypes">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="eshSnapshotInvType">
+              <PropertyRef Name="typeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshTradeHubs_staStations">
+          <End Role="mapSolarSystems" Type="EveShoppingModel.Store.mapSolarSystems" Multiplicity="1" />
+          <End Role="eshTradeHubs" Type="EveShoppingModel.Store.eshTradeHubs" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="mapSolarSystems">
+              <PropertyRef Name="solarSystemID" />
+            </Principal>
+            <Dependent Role="eshTradeHubs">
+              <PropertyRef Name="solarSystemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EveShoppingModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EveShoppingContext" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="dgmEffects" EntityType="EveShoppingModel.dgmEffect" />
+          <EntitySet Name="dgmTypeEffects" EntityType="EveShoppingModel.dgmTypeEffect" />
+          <EntitySet Name="eshChangeLogs" EntityType="EveShoppingModel.eshChangeLog" />
+          <EntitySet Name="eshFittingHardwares" EntityType="EveShoppingModel.eshFittingHardware" />
+          <EntitySet Name="eshFittings" EntityType="EveShoppingModel.eshFitting" />
+          <EntitySet Name="eshFittingSlots" EntityType="EveShoppingModel.eshFittingSlot" />
+          <EntitySet Name="eshGroupShoppingLists" EntityType="EveShoppingModel.eshGroupShoppingList" />
+          <EntitySet Name="eshGroupShoppingListSnapshots" EntityType="EveShoppingModel.eshGroupShoppingListSnapshot" />
+          <EntitySet Name="eshLogs" EntityType="EveShoppingModel.eshLog" />
+          <EntitySet Name="eshPrices" EntityType="EveShoppingModel.eshPrice" />
+          <EntitySet Name="eshShipsMarketGroups" EntityType="EveShoppingModel.eshShipsMarketGroup" />
+          <EntitySet Name="eshShoppingListFittings" EntityType="EveShoppingModel.eshShoppingListFitting" />
+          <EntitySet Name="eshShoppingListInvTypes" EntityType="EveShoppingModel.eshShoppingListInvType" />
+          <EntitySet Name="eshShoppingLists" EntityType="EveShoppingModel.eshShoppingList" />
+          <EntitySet Name="eshShoppingListSummInvTypes" EntityType="EveShoppingModel.eshShoppingListSummInvType" />
+          <EntitySet Name="eshSnapshots" EntityType="EveShoppingModel.eshSnapshot" />
+          <EntitySet Name="eshSnapshotInvTypes" EntityType="EveShoppingModel.eshSnapshotInvType" />
+          <EntitySet Name="eshTinyUrlMappings" EntityType="EveShoppingModel.eshTinyUrlMapping" />
+          <EntitySet Name="eshTradeHubs" EntityType="EveShoppingModel.eshTradeHub" />
+          <EntitySet Name="invGroups" EntityType="EveShoppingModel.invGroup" />
+          <EntitySet Name="invMarketGroups" EntityType="EveShoppingModel.invMarketGroup" />
+          <EntitySet Name="invTypes" EntityType="EveShoppingModel.invType" />
+          <EntitySet Name="mapSolarSystems" EntityType="EveShoppingModel.mapSolarSystem" />
+          <EntitySet Name="UserProfiles" EntityType="EveShoppingModel.UserProfile" />
+          <EntitySet Name="webpages_Roles" EntityType="EveShoppingModel.webpages_Roles" />
+          <AssociationSet Name="FK_eshFittingHardwares_eshFittings" Association="EveShoppingModel.FK_eshFittingHardwares_eshFittings">
+            <End Role="eshFittings" EntitySet="eshFittings" />
+            <End Role="eshFittingHardwares" EntitySet="eshFittingHardwares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshFittingHardwares_eshFittingSlots" Association="EveShoppingModel.FK_eshFittingHardwares_eshFittingSlots">
+            <End Role="eshFittingSlots" EntitySet="eshFittingSlots" />
+            <End Role="eshFittingHardwares" EntitySet="eshFittingHardwares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshFittingHardwares_invTypes" Association="EveShoppingModel.FK_eshFittingHardwares_invTypes">
+            <End Role="invTypes" EntitySet="invTypes" />
+            <End Role="eshFittingHardwares" EntitySet="eshFittingHardwares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshFittings_eshTinyUrlMapping" Association="EveShoppingModel.FK_eshFittings_eshTinyUrlMapping">
+            <End Role="eshTinyUrlMapping" EntitySet="eshTinyUrlMappings" />
+            <End Role="eshFittings" EntitySet="eshFittings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshFittings_invTypes" Association="EveShoppingModel.FK_eshFittings_invTypes">
+            <End Role="invTypes" EntitySet="invTypes" />
+            <End Role="eshFittings" EntitySet="eshFittings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshFittings_UserProfile" Association="EveShoppingModel.FK_eshFittings_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="eshFittings" EntitySet="eshFittings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingListFittings_eshFittings" Association="EveShoppingModel.FK_eshShoppingListFittings_eshFittings">
+            <End Role="eshFittings" EntitySet="eshFittings" />
+            <End Role="eshShoppingListFittings" EntitySet="eshShoppingListFittings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshGroupShoppingList_eshGroupShoppingList" Association="EveShoppingModel.FK_eshGroupShoppingList_eshGroupShoppingList">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="eshGroupShoppingList" EntitySet="eshGroupShoppingLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshGroupShoppingList_eshTradeHubs" Association="EveShoppingModel.FK_eshGroupShoppingList_eshTradeHubs">
+            <End Role="eshTradeHubs" EntitySet="eshTradeHubs" />
+            <End Role="eshGroupShoppingList" EntitySet="eshGroupShoppingLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshGroupShoppingListSnapshot_eshGroupShoppingList" Association="EveShoppingModel.FK_eshGroupShoppingListSnapshot_eshGroupShoppingList">
+            <End Role="eshGroupShoppingList" EntitySet="eshGroupShoppingLists" />
+            <End Role="eshGroupShoppingListSnapshot" EntitySet="eshGroupShoppingListSnapshots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshGroupShoppingListSnapshot_eshSnapshot" Association="EveShoppingModel.FK_eshGroupShoppingListSnapshot_eshSnapshot">
+            <End Role="eshSnapshot" EntitySet="eshSnapshots" />
+            <End Role="eshGroupShoppingListSnapshot" EntitySet="eshGroupShoppingListSnapshots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshPrices_invTypes" Association="EveShoppingModel.FK_eshPrices_invTypes">
+            <End Role="invTypes" EntitySet="invTypes" />
+            <End Role="eshPrices" EntitySet="eshPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshPrices_mapSolarSystems" Association="EveShoppingModel.FK_eshPrices_mapSolarSystems">
+            <End Role="mapSolarSystems" EntitySet="mapSolarSystems" />
+            <End Role="eshPrices" EntitySet="eshPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShipsMarketGroups_invMarketGroups" Association="EveShoppingModel.FK_eshShipsMarketGroups_invMarketGroups">
+            <End Role="invMarketGroups" EntitySet="invMarketGroups" />
+            <End Role="eshShipsMarketGroups" EntitySet="eshShipsMarketGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShipsMarketGroups_invTypes" Association="EveShoppingModel.FK_eshShipsMarketGroups_invTypes">
+            <End Role="invTypes" EntitySet="invTypes" />
+            <End Role="eshShipsMarketGroups" EntitySet="eshShipsMarketGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingListFittings_eshShoppingLists" Association="EveShoppingModel.FK_eshShoppingListFittings_eshShoppingLists">
+            <End Role="eshShoppingLists" EntitySet="eshShoppingLists" />
+            <End Role="eshShoppingListFittings" EntitySet="eshShoppingListFittings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingListInvType_eshShoppingLists" Association="EveShoppingModel.FK_eshShoppingListInvType_eshShoppingLists">
+            <End Role="eshShoppingLists" EntitySet="eshShoppingLists" />
+            <End Role="eshShoppingListInvType" EntitySet="eshShoppingListInvTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingListInvType_invTypes" Association="EveShoppingModel.FK_eshShoppingListInvType_invTypes">
+            <End Role="invTypes" EntitySet="invTypes" />
+            <End Role="eshShoppingListInvType" EntitySet="eshShoppingListInvTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingLists_eshTinyUrlMapping" Association="EveShoppingModel.FK_eshShoppingLists_eshTinyUrlMapping">
+            <End Role="eshTinyUrlMapping" EntitySet="eshTinyUrlMappings" />
+            <End Role="eshShoppingLists" EntitySet="eshShoppingLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingLists_eshTradeHubs" Association="EveShoppingModel.FK_eshShoppingLists_eshTradeHubs">
+            <End Role="eshTradeHubs" EntitySet="eshTradeHubs" />
+            <End Role="eshShoppingLists" EntitySet="eshShoppingLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingLists_UserProfile" Association="EveShoppingModel.FK_eshShoppingLists_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="eshShoppingLists" EntitySet="eshShoppingLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingListSummInvTypes_eshShoppingLists" Association="EveShoppingModel.FK_eshShoppingListSummInvTypes_eshShoppingLists">
+            <End Role="eshShoppingLists" EntitySet="eshShoppingLists" />
+            <End Role="eshShoppingListSummInvTypes" EntitySet="eshShoppingListSummInvTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshSnapshot_eshShoppingLists" Association="EveShoppingModel.FK_eshSnapshot_eshShoppingLists">
+            <End Role="eshShoppingLists" EntitySet="eshShoppingLists" />
+            <End Role="eshSnapshot" EntitySet="eshSnapshots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshShoppingListSummInvTypes_invTypes" Association="EveShoppingModel.FK_eshShoppingListSummInvTypes_invTypes">
+            <End Role="invTypes" EntitySet="invTypes" />
+            <End Role="eshShoppingListSummInvTypes" EntitySet="eshShoppingListSummInvTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshSnapshot_eshTinyUrlMapping" Association="EveShoppingModel.FK_eshSnapshot_eshTinyUrlMapping">
+            <End Role="eshTinyUrlMapping" EntitySet="eshTinyUrlMappings" />
+            <End Role="eshSnapshot" EntitySet="eshSnapshots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshSnapshotInvType_eshSnapshot" Association="EveShoppingModel.FK_eshSnapshotInvType_eshSnapshot">
+            <End Role="eshSnapshot" EntitySet="eshSnapshots" />
+            <End Role="eshSnapshotInvType" EntitySet="eshSnapshotInvTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshSnapshotInvType_invTypes" Association="EveShoppingModel.FK_eshSnapshotInvType_invTypes">
+            <End Role="invTypes" EntitySet="invTypes" />
+            <End Role="eshSnapshotInvType" EntitySet="eshSnapshotInvTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshTradeHubs_staStations" Association="EveShoppingModel.FK_eshTradeHubs_staStations">
+            <End Role="mapSolarSystems" EntitySet="mapSolarSystems" />
+            <End Role="eshTradeHubs" EntitySet="eshTradeHubs" />
+          </AssociationSet>
+          <EntitySet Name="eshEveAccounts" EntityType="EveShoppingModel.eshEveAccount" />
+          <EntitySet Name="eshEveAccountUsers" EntityType="EveShoppingModel.eshEveAccountUser" />
+          <AssociationSet Name="FK_eshEveAccount_UserProfile" Association="EveShoppingModel.FK_eshEveAccount_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="eshEveAccount" EntitySet="eshEveAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eshEveAccountUser_eshEveAccount" Association="EveShoppingModel.FK_eshEveAccountUser_eshEveAccount">
+            <End Role="eshEveAccount" EntitySet="eshEveAccounts" />
+            <End Role="eshEveAccountUser" EntitySet="eshEveAccountUsers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="dgmEffect">
+          <Key>
+            <PropertyRef Name="effectID" />
+          </Key>
+          <Property Name="effectID" Type="Int16" Nullable="false" />
+          <Property Name="effectName" Type="String" MaxLength="400" Unicode="false" FixedLength="false" />
+          <Property Name="effectCategory" Type="Int16" />
+          <Property Name="preExpression" Type="Int32" />
+          <Property Name="postExpression" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="guid" Type="String" MaxLength="60" Unicode="false" FixedLength="false" />
+          <Property Name="iconID" Type="Int32" />
+          <Property Name="isOffensive" Type="Boolean" />
+          <Property Name="isAssistance" Type="Boolean" />
+          <Property Name="durationAttributeID" Type="Int16" />
+          <Property Name="trackingSpeedAttributeID" Type="Int16" />
+          <Property Name="dischargeAttributeID" Type="Int16" />
+          <Property Name="rangeAttributeID" Type="Int16" />
+          <Property Name="falloffAttributeID" Type="Int16" />
+          <Property Name="disallowAutoRepeat" Type="Boolean" />
+          <Property Name="published" Type="Boolean" />
+          <Property Name="displayName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="isWarpSafe" Type="Boolean" />
+          <Property Name="rangeChance" Type="Boolean" />
+          <Property Name="electronicChance" Type="Boolean" />
+          <Property Name="propulsionChance" Type="Boolean" />
+          <Property Name="distribution" Type="Byte" />
+          <Property Name="sfxName" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="npcUsageChanceAttributeID" Type="Int16" />
+          <Property Name="npcActivationChanceAttributeID" Type="Int16" />
+          <Property Name="fittingUsageChanceAttributeID" Type="Int16" />
+        </EntityType>
+        <EntityType Name="dgmTypeEffect">
+          <Key>
+            <PropertyRef Name="typeID" />
+            <PropertyRef Name="effectID" />
+          </Key>
+          <Property Name="typeID" Type="Int32" Nullable="false" />
+          <Property Name="effectID" Type="Int16" Nullable="false" />
+          <Property Name="isDefault" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="eshChangeLog">
+          <Key>
+            <PropertyRef Name="changeLogID" />
+          </Key>
+          <Property Name="changeLogID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="version" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="changes" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="eshFittingHardware">
+          <Key>
+            <PropertyRef Name="fittingHardwareID" />
+          </Key>
+          <Property Name="fittingHardwareID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="fittingID" Type="Int32" Nullable="false" />
+          <Property Name="typeID" Type="Int32" Nullable="false" />
+          <Property Name="slotID" Type="Int32" Nullable="false" />
+          <Property Name="positionInSlot" Type="Int16" Nullable="false" />
+          <Property Name="units" Type="Int32" Nullable="false" />
+          <Property Name="volume" Type="Double" Nullable="false" />
+          <NavigationProperty Name="eshFitting" Relationship="EveShoppingModel.FK_eshFittingHardwares_eshFittings" FromRole="eshFittingHardwares" ToRole="eshFittings" />
+          <NavigationProperty Name="eshFittingSlot" Relationship="EveShoppingModel.FK_eshFittingHardwares_eshFittingSlots" FromRole="eshFittingHardwares" ToRole="eshFittingSlots" />
+          <NavigationProperty Name="invType" Relationship="EveShoppingModel.FK_eshFittingHardwares_invTypes" FromRole="eshFittingHardwares" ToRole="invTypes" />
+        </EntityType>
+        <EntityType Name="eshFitting">
+          <Key>
+            <PropertyRef Name="fittingID" />
+          </Key>
+          <Property Name="fittingID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="shipTypeID" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="3000" Unicode="true" FixedLength="false" />
+          <Property Name="dateCreation" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="shipVolume" Type="Double" Nullable="false" />
+          <Property Name="volume" Type="Double" Nullable="false" />
+          <Property Name="userID" Type="Int32" />
+          <Property Name="urlID" Type="Int32" />
+          <Property Name="publicID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="eshFittingHardwares" Relationship="EveShoppingModel.FK_eshFittingHardwares_eshFittings" FromRole="eshFittings" ToRole="eshFittingHardwares" />
+          <NavigationProperty Name="eshTinyUrlMapping" Relationship="EveShoppingModel.FK_eshFittings_eshTinyUrlMapping" FromRole="eshFittings" ToRole="eshTinyUrlMapping" />
+          <NavigationProperty Name="invType" Relationship="EveShoppingModel.FK_eshFittings_invTypes" FromRole="eshFittings" ToRole="invTypes" />
+          <NavigationProperty Name="UserProfile" Relationship="EveShoppingModel.FK_eshFittings_UserProfile" FromRole="eshFittings" ToRole="UserProfile" />
+          <NavigationProperty Name="eshShoppingListFittings" Relationship="EveShoppingModel.FK_eshShoppingListFittings_eshFittings" FromRole="eshFittings" ToRole="eshShoppingListFittings" />
+        </EntityType>
+        <EntityType Name="eshFittingSlot">
+          <Key>
+            <PropertyRef Name="slotID" />
+          </Key>
+          <Property Name="slotID" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="eshFittingHardwares" Relationship="EveShoppingModel.FK_eshFittingHardwares_eshFittingSlots" FromRole="eshFittingSlots" ToRole="eshFittingHardwares" />
+        </EntityType>
+        <EntityType Name="eshGroupShoppingList">
+          <Key>
+            <PropertyRef Name="groupShoppingListID" />
+          </Key>
+          <Property Name="groupShoppingListID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="userID" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="3990" Unicode="true" FixedLength="false" />
+          <Property Name="publicID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="dateCreation" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dateUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tradeHubID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserProfile" Relationship="EveShoppingModel.FK_eshGroupShoppingList_eshGroupShoppingList" FromRole="eshGroupShoppingList" ToRole="UserProfile" />
+          <NavigationProperty Name="eshTradeHub" Relationship="EveShoppingModel.FK_eshGroupShoppingList_eshTradeHubs" FromRole="eshGroupShoppingList" ToRole="eshTradeHubs" />
+          <NavigationProperty Name="eshGroupShoppingListSnapshots" Relationship="EveShoppingModel.FK_eshGroupShoppingListSnapshot_eshGroupShoppingList" FromRole="eshGroupShoppingList" ToRole="eshGroupShoppingListSnapshot" />
+        </EntityType>
+        <EntityType Name="eshGroupShoppingListSnapshot">
+          <Key>
+            <PropertyRef Name="groupShoppingListID" />
+            <PropertyRef Name="snapshotID" />
+          </Key>
+          <Property Name="groupShoppingListID" Type="Int32" Nullable="false" />
+          <Property Name="snapshotID" Type="Int32" Nullable="false" />
+          <Property Name="nickName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="eshGroupShoppingList" Relationship="EveShoppingModel.FK_eshGroupShoppingListSnapshot_eshGroupShoppingList" FromRole="eshGroupShoppingListSnapshot" ToRole="eshGroupShoppingList" />
+          <NavigationProperty Name="eshSnapshot" Relationship="EveShoppingModel.FK_eshGroupShoppingListSnapshot_eshSnapshot" FromRole="eshGroupShoppingListSnapshot" ToRole="eshSnapshot" />
+        </EntityType>
+        <EntityType Name="eshLog">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Severity" Type="Int16" Nullable="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="eshPrice">
+          <Key>
+            <PropertyRef Name="typeID" />
+            <PropertyRef Name="solarSystemID" />
+          </Key>
+          <Property Name="typeID" Type="Int32" Nullable="false" />
+          <Property Name="solarSystemID" Type="Int32" Nullable="false" />
+          <Property Name="avg" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="invType" Relationship="EveShoppingModel.FK_eshPrices_invTypes" FromRole="eshPrices" ToRole="invTypes" />
+          <NavigationProperty Name="mapSolarSystem" Relationship="EveShoppingModel.FK_eshPrices_mapSolarSystems" FromRole="eshPrices" ToRole="mapSolarSystems" />
+        </EntityType>
+        <EntityType Name="eshShipsMarketGroup">
+          <Key>
+            <PropertyRef Name="typeID" />
+            <PropertyRef Name="marketGroupID" />
+          </Key>
+          <Property Name="typeID" Type="Int32" Nullable="false" />
+          <Property Name="marketGroupID" Type="Int32" Nullable="false" />
+          <Property Name="mock" Type="Boolean" />
+          <NavigationProperty Name="invMarketGroup" Relationship="EveShoppingModel.FK_eshShipsMarketGroups_invMarketGroups" FromRole="eshShipsMarketGroups" ToRole="invMarketGroups" />
+          <NavigationProperty Name="invType" Relationship="EveShoppingModel.FK_eshShipsMarketGroups_invTypes" FromRole="eshShipsMarketGroups" ToRole="invTypes" />
+        </EntityType>
+        <EntityType Name="eshShoppingListFitting">
+          <Key>
+            <PropertyRef Name="shoppingListID" />
+            <PropertyRef Name="fittingID" />
+          </Key>
+          <Property Name="shoppingListID" Type="Int32" Nullable="false" />
+          <Property Name="fittingID" Type="Int32" Nullable="false" />
+          <Property Name="units" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="eshFitting" Relationship="EveShoppingModel.FK_eshShoppingListFittings_eshFittings" FromRole="eshShoppingListFittings" ToRole="eshFittings" />
+          <NavigationProperty Name="eshShoppingList" Relationship="EveShoppingModel.FK_eshShoppingListFittings_eshShoppingLists" FromRole="eshShoppingListFittings" ToRole="eshShoppingLists" />
+        </EntityType>
+        <EntityType Name="eshShoppingListInvType">
+          <Key>
+            <PropertyRef Name="shoppingListID" />
+            <PropertyRef Name="typeID" />
+          </Key>
+          <Property Name="shoppingListID" Type="Int32" Nullable="false" />
+          <Property Name="typeID" Type="Int32" Nullable="false" />
+          <Property Name="units" Type="Int32" Nullable="false" />
+          <Property Name="volume" Type="Double" Nullable="false" />
+          <NavigationProperty Name="eshShoppingList" Relationship="EveShoppingModel.FK_eshShoppingListInvType_eshShoppingLists" FromRole="eshShoppingListInvType" ToRole="eshShoppingLists" />
+          <NavigationProperty Name="invType" Relationship="EveShoppingModel.FK_eshShoppingListInvType_invTypes" FromRole="eshShoppingListInvType" ToRole="invTypes" />
+        </EntityType>
+        <EntityType Name="eshShoppingList">
+          <Key>
+            <PropertyRef Name="shoppingListID" />
+          </Key>
+          <Property Name="shoppingListID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="publicID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="3990" Unicode="true" FixedLength="false" />
+          <Property Name="dateCreation" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="readOnlypublicID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="dateUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tradeHubID" Type="Int32" Nullable="false" />
+          <Property Name="dateAccess" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="allowEditForAll" Type="Boolean" Nullable="false" />
+          <Property Name="userID" Type="Int32" />
+          <Property Name="urlID" Type="Int32" />
+          <NavigationProperty Name="eshShoppingListFittings" Relationship="EveShoppingModel.FK_eshShoppingListFittings_eshShoppingLists" FromRole="eshShoppingLists" ToRole="eshShoppingListFittings" />
+          <NavigationProperty Name="eshShoppingListInvTypes" Relationship="EveShoppingModel.FK_eshShoppingListInvType_eshShoppingLists" FromRole="eshShoppingLists" ToRole="eshShoppingListInvType" />
+          <NavigationProperty Name="eshTinyUrlMapping" Relationship="EveShoppingModel.FK_eshShoppingLists_eshTinyUrlMapping" FromRole="eshShoppingLists" ToRole="eshTinyUrlMapping" />
+          <NavigationProperty Name="eshTradeHub" Relationship="EveShoppingModel.FK_eshShoppingLists_eshTradeHubs" FromRole="eshShoppingLists" ToRole="eshTradeHubs" />
+          <NavigationProperty Name="UserProfile" Relationship="EveShoppingModel.FK_eshShoppingLists_UserProfile" FromRole="eshShoppingLists" ToRole="UserProfile" />
+          <NavigationProperty Name="eshShoppingListSummInvTypes" Relationship="EveShoppingModel.FK_eshShoppingListSummInvTypes_eshShoppingLists" FromRole="eshShoppingLists" ToRole="eshShoppingListSummInvTypes" />
+          <NavigationProperty Name="eshSnapshots" Relationship="EveShoppingModel.FK_eshSnapshot_eshShoppingLists" FromRole="eshShoppingLists" ToRole="eshSnapshot" />
+        </EntityType>
+        <EntityType Name="eshShoppingListSummInvType">
+          <Key>
+            <PropertyRef Name="shoppingListID" />
+            <PropertyRef Name="typeID" />
+          </Key>
+          <Property Name="shoppingListID" Type="Int32" Nullable="false" />
+          <Property Name="typeID" Type="Int32" Nullable="false" />
+          <Property Name="delta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="eshShoppingList" Relationship="EveShoppingModel.FK_eshShoppingListSummInvTypes_eshShoppingLists" FromRole="eshShoppingListSummInvTypes" ToRole="eshShoppingLists" />
+          <NavigationProperty Name="invType" Relationship="EveShoppingModel.FK_eshShoppingListSummInvTypes_invTypes" FromRole="eshShoppingListSummInvTypes" ToRole="invTypes" />
+        </EntityType>
+        <EntityType Name="eshSnapshot">
+          <Key>
+            <PropertyRef Name="snapshotID" />
+          </Key>
+          <Property Name="snapshotID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="shoppingListID" Type="Int32" Nullable="false" />
+          <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="totalVolume" Type="Double" Nullable="false" />
+          <Property Name="totalPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="publicID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="3990" Unicode="true" FixedLength="false" />
+          <Property Name="urlID" Type="Int32" />
+          <NavigationProperty Name="eshGroupShoppingListSnapshots" Relationship="EveShoppingModel.FK_eshGroupShoppingListSnapshot_eshSnapshot" FromRole="eshSnapshot" ToRole="eshGroupShoppingListSnapshot" />
+          <NavigationProperty Name="eshShoppingList" Relationship="EveShoppingModel.FK_eshSnapshot_eshShoppingLists" FromRole="eshSnapshot" ToRole="eshShoppingLists" />
+          <NavigationProperty Name="eshTinyUrlMapping" Relationship="EveShoppingModel.FK_eshSnapshot_eshTinyUrlMapping" FromRole="eshSnapshot" ToRole="eshTinyUrlMapping" />
+          <NavigationProperty Name="eshSnapshotInvTypes" Relationship="EveShoppingModel.FK_eshSnapshotInvType_eshSnapshot" FromRole="eshSnapshot" ToRole="eshSnapshotInvType" />
+        </EntityType>
+        <EntityType Name="eshSnapshotInvType">
+          <Key>
+            <PropertyRef Name="snapshotID" />
+            <PropertyRef Name="typeID" />
+          </Key>
+          <Property Name="snapshotID" Type="Int32" Nullable="false" />
+          <Property Name="typeID" Type="Int32" Nullable="false" />
+          <Property Name="units" Type="Int32" Nullable="false" />
+          <Property Name="unitPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="volume" Type="Double" />
+          <NavigationProperty Name="eshSnapshot" Relationship="EveShoppingModel.FK_eshSnapshotInvType_eshSnapshot" FromRole="eshSnapshotInvType" ToRole="eshSnapshot" />
+          <NavigationProperty Name="invType" Relationship="EveShoppingModel.FK_eshSnapshotInvType_invTypes" FromRole="eshSnapshotInvType" ToRole="invTypes" />
+        </EntityType>
+        <EntityType Name="eshTinyUrlMapping">
+          <Key>
+            <PropertyRef Name="urlId" />
+          </Key>
+          <Property Name="urlId" Type="Int32" Nullable="false" />
+          <Property Name="tinyUrl" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="finalUrl" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="isPermanent" Type="Boolean" Nullable="false" />
+          <Property Name="lastGivenTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="eshFittings" Relationship="EveShoppingModel.FK_eshFittings_eshTinyUrlMapping" FromRole="eshTinyUrlMapping" ToRole="eshFittings" />
+          <NavigationProperty Name="eshShoppingLists" Relationship="EveShoppingModel.FK_eshShoppingLists_eshTinyUrlMapping" FromRole="eshTinyUrlMapping" ToRole="eshShoppingLists" />
+          <NavigationProperty Name="eshSnapshots" Relationship="EveShoppingModel.FK_eshSnapshot_eshTinyUrlMapping" FromRole="eshTinyUrlMapping" ToRole="eshSnapshot" />
+        </EntityType>
+        <EntityType Name="eshTradeHub">
+          <Key>
+            <PropertyRef Name="solarSystemID" />
+          </Key>
+          <Property Name="solarSystemID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="eshGroupShoppingLists" Relationship="EveShoppingModel.FK_eshGroupShoppingList_eshTradeHubs" FromRole="eshTradeHubs" ToRole="eshGroupShoppingList" />
+          <NavigationProperty Name="eshShoppingLists" Relationship="EveShoppingModel.FK_eshShoppingLists_eshTradeHubs" FromRole="eshTradeHubs" ToRole="eshShoppingLists" />
+          <NavigationProperty Name="mapSolarSystem" Relationship="EveShoppingModel.FK_eshTradeHubs_staStations" FromRole="eshTradeHubs" ToRole="mapSolarSystems" />
+        </EntityType>
+        <EntityType Name="invGroup">
+          <Key>
+            <PropertyRef Name="groupID" />
+          </Key>
+          <Property Name="groupID" Type="Int32" Nullable="false" />
+          <Property Name="categoryID" Type="Int32" />
+          <Property Name="groupName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="3000" Unicode="true" FixedLength="false" />
+          <Property Name="iconID" Type="Int32" />
+          <Property Name="useBasePrice" Type="Boolean" />
+          <Property Name="allowManufacture" Type="Boolean" />
+          <Property Name="allowRecycler" Type="Boolean" />
+          <Property Name="anchored" Type="Boolean" />
+          <Property Name="anchorable" Type="Boolean" />
+          <Property Name="fittableNonSingleton" Type="Boolean" />
+          <Property Name="published" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="invMarketGroup">
+          <Key>
+            <PropertyRef Name="marketGroupID" />
+          </Key>
+          <Property Name="marketGroupID" Type="Int32" Nullable="false" />
+          <Property Name="parentGroupID" Type="Int32" />
+          <Property Name="marketGroupName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="3000" Unicode="true" FixedLength="false" />
+          <Property Name="iconID" Type="Int32" />
+          <Property Name="hasTypes" Type="Boolean" />
+          <NavigationProperty Name="eshShipsMarketGroups" Relationship="EveShoppingModel.FK_eshShipsMarketGroups_invMarketGroups" FromRole="invMarketGroups" ToRole="eshShipsMarketGroups" />
+        </EntityType>
+        <EntityType Name="invType">
+          <Key>
+            <PropertyRef Name="typeID" />
+          </Key>
+          <Property Name="typeID" Type="Int32" Nullable="false" />
+          <Property Name="groupID" Type="Int32" />
+          <Property Name="typeName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="3000" Unicode="true" FixedLength="false" />
+          <Property Name="mass" Type="Double" />
+          <Property Name="volume" Type="Double" />
+          <Property Name="capacity" Type="Double" />
+          <Property Name="portionSize" Type="Int32" />
+          <Property Name="raceID" Type="Byte" />
+          <Property Name="basePrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="published" Type="Boolean" />
+          <Property Name="marketGroupID" Type="Int32" />
+          <Property Name="chanceOfDuplicating" Type="Double" />
+          <NavigationProperty Name="eshFittingHardwares" Relationship="EveShoppingModel.FK_eshFittingHardwares_invTypes" FromRole="invTypes" ToRole="eshFittingHardwares" />
+          <NavigationProperty Name="eshFittings" Relationship="EveShoppingModel.FK_eshFittings_invTypes" FromRole="invTypes" ToRole="eshFittings" />
+          <NavigationProperty Name="eshPrices" Relationship="EveShoppingModel.FK_eshPrices_invTypes" FromRole="invTypes" ToRole="eshPrices" />
+          <NavigationProperty Name="eshShipsMarketGroups" Relationship="EveShoppingModel.FK_eshShipsMarketGroups_invTypes" FromRole="invTypes" ToRole="eshShipsMarketGroups" />
+          <NavigationProperty Name="eshShoppingListInvTypes" Relationship="EveShoppingModel.FK_eshShoppingListInvType_invTypes" FromRole="invTypes" ToRole="eshShoppingListInvType" />
+          <NavigationProperty Name="eshShoppingListSummInvTypes" Relationship="EveShoppingModel.FK_eshShoppingListSummInvTypes_invTypes" FromRole="invTypes" ToRole="eshShoppingListSummInvTypes" />
+          <NavigationProperty Name="eshSnapshotInvTypes" Relationship="EveShoppingModel.FK_eshSnapshotInvType_invTypes" FromRole="invTypes" ToRole="eshSnapshotInvType" />
+        </EntityType>
+        <EntityType Name="mapSolarSystem">
+          <Key>
+            <PropertyRef Name="solarSystemID" />
+          </Key>
+          <Property Name="regionID" Type="Int32" />
+          <Property Name="constellationID" Type="Int32" />
+          <Property Name="solarSystemID" Type="Int32" Nullable="false" />
+          <Property Name="solarSystemName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="x" Type="Double" />
+          <Property Name="y" Type="Double" />
+          <Property Name="z" Type="Double" />
+          <Property Name="xMin" Type="Double" />
+          <Property Name="xMax" Type="Double" />
+          <Property Name="yMin" Type="Double" />
+          <Property Name="yMax" Type="Double" />
+          <Property Name="zMin" Type="Double" />
+          <Property Name="zMax" Type="Double" />
+          <Property Name="luminosity" Type="Double" />
+          <Property Name="border" Type="Boolean" />
+          <Property Name="fringe" Type="Boolean" />
+          <Property Name="corridor" Type="Boolean" />
+          <Property Name="hub" Type="Boolean" />
+          <Property Name="international" Type="Boolean" />
+          <Property Name="regional" Type="Boolean" />
+          <Property Name="constellation" Type="Boolean" />
+          <Property Name="security" Type="Double" />
+          <Property Name="factionID" Type="Int32" />
+          <Property Name="radius" Type="Double" />
+          <Property Name="sunTypeID" Type="Int32" />
+          <Property Name="securityClass" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="eshPrices" Relationship="EveShoppingModel.FK_eshPrices_mapSolarSystems" FromRole="mapSolarSystems" ToRole="eshPrices" />
+          <NavigationProperty Name="eshTradeHub" Relationship="EveShoppingModel.FK_eshTradeHubs_staStations" FromRole="mapSolarSystems" ToRole="eshTradeHubs" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="eshFittings" Relationship="EveShoppingModel.FK_eshFittings_UserProfile" FromRole="UserProfile" ToRole="eshFittings" />
+          <NavigationProperty Name="eshGroupShoppingLists" Relationship="EveShoppingModel.FK_eshGroupShoppingList_eshGroupShoppingList" FromRole="UserProfile" ToRole="eshGroupShoppingList" />
+          <NavigationProperty Name="eshShoppingLists" Relationship="EveShoppingModel.FK_eshShoppingLists_UserProfile" FromRole="UserProfile" ToRole="eshShoppingLists" />
+          <NavigationProperty Name="eshEveAccounts" Relationship="EveShoppingModel.FK_eshEveAccount_UserProfile" FromRole="UserProfile" ToRole="eshEveAccount" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_eshFittingHardwares_eshFittings">
+          <End Role="eshFittings" Type="EveShoppingModel.eshFitting" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="eshFittingHardwares" Type="EveShoppingModel.eshFittingHardware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshFittings">
+              <PropertyRef Name="fittingID" />
+            </Principal>
+            <Dependent Role="eshFittingHardwares">
+              <PropertyRef Name="fittingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshFittingHardwares_eshFittingSlots">
+          <End Role="eshFittingSlots" Type="EveShoppingModel.eshFittingSlot" Multiplicity="1" />
+          <End Role="eshFittingHardwares" Type="EveShoppingModel.eshFittingHardware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshFittingSlots">
+              <PropertyRef Name="slotID" />
+            </Principal>
+            <Dependent Role="eshFittingHardwares">
+              <PropertyRef Name="slotID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshFittingHardwares_invTypes">
+          <End Role="invTypes" Type="EveShoppingModel.invType" Multiplicity="1" />
+          <End Role="eshFittingHardwares" Type="EveShoppingModel.eshFittingHardware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invTypes">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="eshFittingHardwares">
+              <PropertyRef Name="typeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshFittings_eshTinyUrlMapping">
+          <End Role="eshTinyUrlMapping" Type="EveShoppingModel.eshTinyUrlMapping" Multiplicity="0..1" />
+          <End Role="eshFittings" Type="EveShoppingModel.eshFitting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshTinyUrlMapping">
+              <PropertyRef Name="urlId" />
+            </Principal>
+            <Dependent Role="eshFittings">
+              <PropertyRef Name="urlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshFittings_invTypes">
+          <End Role="invTypes" Type="EveShoppingModel.invType" Multiplicity="0..1" />
+          <End Role="eshFittings" Type="EveShoppingModel.eshFitting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invTypes">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="eshFittings">
+              <PropertyRef Name="shipTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshFittings_UserProfile">
+          <End Role="UserProfile" Type="EveShoppingModel.UserProfile" Multiplicity="0..1" />
+          <End Role="eshFittings" Type="EveShoppingModel.eshFitting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="eshFittings">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingListFittings_eshFittings">
+          <End Role="eshFittings" Type="EveShoppingModel.eshFitting" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="eshShoppingListFittings" Type="EveShoppingModel.eshShoppingListFitting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshFittings">
+              <PropertyRef Name="fittingID" />
+            </Principal>
+            <Dependent Role="eshShoppingListFittings">
+              <PropertyRef Name="fittingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshGroupShoppingList_eshGroupShoppingList">
+          <End Role="UserProfile" Type="EveShoppingModel.UserProfile" Multiplicity="1" />
+          <End Role="eshGroupShoppingList" Type="EveShoppingModel.eshGroupShoppingList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="eshGroupShoppingList">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshGroupShoppingList_eshTradeHubs">
+          <End Role="eshTradeHubs" Type="EveShoppingModel.eshTradeHub" Multiplicity="1" />
+          <End Role="eshGroupShoppingList" Type="EveShoppingModel.eshGroupShoppingList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshTradeHubs">
+              <PropertyRef Name="solarSystemID" />
+            </Principal>
+            <Dependent Role="eshGroupShoppingList">
+              <PropertyRef Name="tradeHubID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshGroupShoppingListSnapshot_eshGroupShoppingList">
+          <End Role="eshGroupShoppingList" Type="EveShoppingModel.eshGroupShoppingList" Multiplicity="1" />
+          <End Role="eshGroupShoppingListSnapshot" Type="EveShoppingModel.eshGroupShoppingListSnapshot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshGroupShoppingList">
+              <PropertyRef Name="groupShoppingListID" />
+            </Principal>
+            <Dependent Role="eshGroupShoppingListSnapshot">
+              <PropertyRef Name="groupShoppingListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshGroupShoppingListSnapshot_eshSnapshot">
+          <End Role="eshSnapshot" Type="EveShoppingModel.eshSnapshot" Multiplicity="1" />
+          <End Role="eshGroupShoppingListSnapshot" Type="EveShoppingModel.eshGroupShoppingListSnapshot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshSnapshot">
+              <PropertyRef Name="snapshotID" />
+            </Principal>
+            <Dependent Role="eshGroupShoppingListSnapshot">
+              <PropertyRef Name="snapshotID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshPrices_invTypes">
+          <End Role="invTypes" Type="EveShoppingModel.invType" Multiplicity="1" />
+          <End Role="eshPrices" Type="EveShoppingModel.eshPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invTypes">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="eshPrices">
+              <PropertyRef Name="typeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshPrices_mapSolarSystems">
+          <End Role="mapSolarSystems" Type="EveShoppingModel.mapSolarSystem" Multiplicity="1" />
+          <End Role="eshPrices" Type="EveShoppingModel.eshPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mapSolarSystems">
+              <PropertyRef Name="solarSystemID" />
+            </Principal>
+            <Dependent Role="eshPrices">
+              <PropertyRef Name="solarSystemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShipsMarketGroups_invMarketGroups">
+          <End Role="invMarketGroups" Type="EveShoppingModel.invMarketGroup" Multiplicity="1" />
+          <End Role="eshShipsMarketGroups" Type="EveShoppingModel.eshShipsMarketGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invMarketGroups">
+              <PropertyRef Name="marketGroupID" />
+            </Principal>
+            <Dependent Role="eshShipsMarketGroups">
+              <PropertyRef Name="marketGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShipsMarketGroups_invTypes">
+          <End Role="invTypes" Type="EveShoppingModel.invType" Multiplicity="1" />
+          <End Role="eshShipsMarketGroups" Type="EveShoppingModel.eshShipsMarketGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invTypes">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="eshShipsMarketGroups">
+              <PropertyRef Name="typeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingListFittings_eshShoppingLists">
+          <End Role="eshShoppingLists" Type="EveShoppingModel.eshShoppingList" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="eshShoppingListFittings" Type="EveShoppingModel.eshShoppingListFitting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshShoppingLists">
+              <PropertyRef Name="shoppingListID" />
+            </Principal>
+            <Dependent Role="eshShoppingListFittings">
+              <PropertyRef Name="shoppingListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingListInvType_eshShoppingLists">
+          <End Role="eshShoppingLists" Type="EveShoppingModel.eshShoppingList" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="eshShoppingListInvType" Type="EveShoppingModel.eshShoppingListInvType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshShoppingLists">
+              <PropertyRef Name="shoppingListID" />
+            </Principal>
+            <Dependent Role="eshShoppingListInvType">
+              <PropertyRef Name="shoppingListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingListInvType_invTypes">
+          <End Role="invTypes" Type="EveShoppingModel.invType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="eshShoppingListInvType" Type="EveShoppingModel.eshShoppingListInvType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invTypes">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="eshShoppingListInvType">
+              <PropertyRef Name="typeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingLists_eshTinyUrlMapping">
+          <End Role="eshTinyUrlMapping" Type="EveShoppingModel.eshTinyUrlMapping" Multiplicity="0..1" />
+          <End Role="eshShoppingLists" Type="EveShoppingModel.eshShoppingList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshTinyUrlMapping">
+              <PropertyRef Name="urlId" />
+            </Principal>
+            <Dependent Role="eshShoppingLists">
+              <PropertyRef Name="urlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingLists_eshTradeHubs">
+          <End Role="eshTradeHubs" Type="EveShoppingModel.eshTradeHub" Multiplicity="1" />
+          <End Role="eshShoppingLists" Type="EveShoppingModel.eshShoppingList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshTradeHubs">
+              <PropertyRef Name="solarSystemID" />
+            </Principal>
+            <Dependent Role="eshShoppingLists">
+              <PropertyRef Name="tradeHubID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingLists_UserProfile">
+          <End Role="UserProfile" Type="EveShoppingModel.UserProfile" Multiplicity="0..1" />
+          <End Role="eshShoppingLists" Type="EveShoppingModel.eshShoppingList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="eshShoppingLists">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingListSummInvTypes_eshShoppingLists">
+          <End Role="eshShoppingLists" Type="EveShoppingModel.eshShoppingList" Multiplicity="1" />
+          <End Role="eshShoppingListSummInvTypes" Type="EveShoppingModel.eshShoppingListSummInvType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshShoppingLists">
+              <PropertyRef Name="shoppingListID" />
+            </Principal>
+            <Dependent Role="eshShoppingListSummInvTypes">
+              <PropertyRef Name="shoppingListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshSnapshot_eshShoppingLists">
+          <End Role="eshShoppingLists" Type="EveShoppingModel.eshShoppingList" Multiplicity="1" />
+          <End Role="eshSnapshot" Type="EveShoppingModel.eshSnapshot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshShoppingLists">
+              <PropertyRef Name="shoppingListID" />
+            </Principal>
+            <Dependent Role="eshSnapshot">
+              <PropertyRef Name="shoppingListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshShoppingListSummInvTypes_invTypes">
+          <End Role="invTypes" Type="EveShoppingModel.invType" Multiplicity="1" />
+          <End Role="eshShoppingListSummInvTypes" Type="EveShoppingModel.eshShoppingListSummInvType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invTypes">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="eshShoppingListSummInvTypes">
+              <PropertyRef Name="typeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshSnapshot_eshTinyUrlMapping">
+          <End Role="eshTinyUrlMapping" Type="EveShoppingModel.eshTinyUrlMapping" Multiplicity="0..1" />
+          <End Role="eshSnapshot" Type="EveShoppingModel.eshSnapshot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshTinyUrlMapping">
+              <PropertyRef Name="urlId" />
+            </Principal>
+            <Dependent Role="eshSnapshot">
+              <PropertyRef Name="urlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshSnapshotInvType_eshSnapshot">
+          <End Role="eshSnapshot" Type="EveShoppingModel.eshSnapshot" Multiplicity="1" />
+          <End Role="eshSnapshotInvType" Type="EveShoppingModel.eshSnapshotInvType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshSnapshot">
+              <PropertyRef Name="snapshotID" />
+            </Principal>
+            <Dependent Role="eshSnapshotInvType">
+              <PropertyRef Name="snapshotID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshSnapshotInvType_invTypes">
+          <End Role="invTypes" Type="EveShoppingModel.invType" Multiplicity="1" />
+          <End Role="eshSnapshotInvType" Type="EveShoppingModel.eshSnapshotInvType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invTypes">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="eshSnapshotInvType">
+              <PropertyRef Name="typeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshTradeHubs_staStations">
+          <End Role="mapSolarSystems" Type="EveShoppingModel.mapSolarSystem" Multiplicity="1" />
+          <End Role="eshTradeHubs" Type="EveShoppingModel.eshTradeHub" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="mapSolarSystems">
+              <PropertyRef Name="solarSystemID" />
+            </Principal>
+            <Dependent Role="eshTradeHubs">
+              <PropertyRef Name="solarSystemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="eshEveAccount">
+          <Key>
+            <PropertyRef Name="accountID" />
+          </Key>
+          <Property Type="Int32" Name="accountID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="userID" Nullable="false" />
+          <Property Type="Int32" Name="keyID" Nullable="false" />
+          <Property Type="String" Name="verficationCode" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
+          <Property Type="DateTime" Name="dateCreation" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="dateUpdate" Nullable="false" Precision="3" />
+          <NavigationProperty Name="UserProfile" Relationship="EveShoppingModel.FK_eshEveAccount_UserProfile" FromRole="eshEveAccount" ToRole="UserProfile" />
+          <NavigationProperty Name="eshEveAccountUsers" Relationship="EveShoppingModel.FK_eshEveAccountUser_eshEveAccount" FromRole="eshEveAccount" ToRole="eshEveAccountUser" />
+        </EntityType>
+        <EntityType Name="eshEveAccountUser">
+          <Key>
+            <PropertyRef Name="accountUserID" />
+          </Key>
+          <Property Type="Int32" Name="accountUserID" Nullable="false" />
+          <Property Type="Int32" Name="accountID" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="corpName" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="corpTicker" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="eshEveAccount" Relationship="EveShoppingModel.FK_eshEveAccountUser_eshEveAccount" FromRole="eshEveAccountUser" ToRole="eshEveAccount" />
+        </EntityType>
+        <Association Name="FK_eshEveAccount_UserProfile">
+          <End Type="EveShoppingModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="EveShoppingModel.eshEveAccount" Role="eshEveAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="eshEveAccount">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eshEveAccountUser_eshEveAccount">
+          <End Type="EveShoppingModel.eshEveAccount" Role="eshEveAccount" Multiplicity="1" />
+          <End Type="EveShoppingModel.eshEveAccountUser" Role="eshEveAccountUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eshEveAccount">
+              <PropertyRef Name="accountID" />
+            </Principal>
+            <Dependent Role="eshEveAccountUser">
+              <PropertyRef Name="accountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EveShoppingModelStoreContainer" CdmEntityContainer="EveShoppingContext">
+          <EntitySetMapping Name="dgmEffects">
+            <EntityTypeMapping TypeName="EveShoppingModel.dgmEffect">
+              <MappingFragment StoreEntitySet="dgmEffects">
+                <ScalarProperty Name="effectID" ColumnName="effectID" />
+                <ScalarProperty Name="effectName" ColumnName="effectName" />
+                <ScalarProperty Name="effectCategory" ColumnName="effectCategory" />
+                <ScalarProperty Name="preExpression" ColumnName="preExpression" />
+                <ScalarProperty Name="postExpression" ColumnName="postExpression" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="guid" ColumnName="guid" />
+                <ScalarProperty Name="iconID" ColumnName="iconID" />
+                <ScalarProperty Name="isOffensive" ColumnName="isOffensive" />
+                <ScalarProperty Name="isAssistance" ColumnName="isAssistance" />
+                <ScalarProperty Name="durationAttributeID" ColumnName="durationAttributeID" />
+                <ScalarProperty Name="trackingSpeedAttributeID" ColumnName="trackingSpeedAttributeID" />
+                <ScalarProperty Name="dischargeAttributeID" ColumnName="dischargeAttributeID" />
+                <ScalarProperty Name="rangeAttributeID" ColumnName="rangeAttributeID" />
+                <ScalarProperty Name="falloffAttributeID" ColumnName="falloffAttributeID" />
+                <ScalarProperty Name="disallowAutoRepeat" ColumnName="disallowAutoRepeat" />
+                <ScalarProperty Name="published" ColumnName="published" />
+                <ScalarProperty Name="displayName" ColumnName="displayName" />
+                <ScalarProperty Name="isWarpSafe" ColumnName="isWarpSafe" />
+                <ScalarProperty Name="rangeChance" ColumnName="rangeChance" />
+                <ScalarProperty Name="electronicChance" ColumnName="electronicChance" />
+                <ScalarProperty Name="propulsionChance" ColumnName="propulsionChance" />
+                <ScalarProperty Name="distribution" ColumnName="distribution" />
+                <ScalarProperty Name="sfxName" ColumnName="sfxName" />
+                <ScalarProperty Name="npcUsageChanceAttributeID" ColumnName="npcUsageChanceAttributeID" />
+                <ScalarProperty Name="npcActivationChanceAttributeID" ColumnName="npcActivationChanceAttributeID" />
+                <ScalarProperty Name="fittingUsageChanceAttributeID" ColumnName="fittingUsageChanceAttributeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dgmTypeEffects">
+            <EntityTypeMapping TypeName="EveShoppingModel.dgmTypeEffect">
+              <MappingFragment StoreEntitySet="dgmTypeEffects">
+                <ScalarProperty Name="typeID" ColumnName="typeID" />
+                <ScalarProperty Name="effectID" ColumnName="effectID" />
+                <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshChangeLogs">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshChangeLog">
+              <MappingFragment StoreEntitySet="eshChangeLog">
+                <ScalarProperty Name="changeLogID" ColumnName="changeLogID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="changes" ColumnName="changes" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshFittingHardwares">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshFittingHardware">
+              <MappingFragment StoreEntitySet="eshFittingHardwares">
+                <ScalarProperty Name="fittingHardwareID" ColumnName="fittingHardwareID" />
+                <ScalarProperty Name="fittingID" ColumnName="fittingID" />
+                <ScalarProperty Name="typeID" ColumnName="typeID" />
+                <ScalarProperty Name="slotID" ColumnName="slotID" />
+                <ScalarProperty Name="positionInSlot" ColumnName="positionInSlot" />
+                <ScalarProperty Name="units" ColumnName="units" />
+                <ScalarProperty Name="volume" ColumnName="volume" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshFittings">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshFitting">
+              <MappingFragment StoreEntitySet="eshFittings">
+                <ScalarProperty Name="fittingID" ColumnName="fittingID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="shipTypeID" ColumnName="shipTypeID" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="dateCreation" ColumnName="dateCreation" />
+                <ScalarProperty Name="shipVolume" ColumnName="shipVolume" />
+                <ScalarProperty Name="volume" ColumnName="volume" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="urlID" ColumnName="urlID" />
+                <ScalarProperty Name="publicID" ColumnName="publicID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshFittingSlots">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshFittingSlot">
+              <MappingFragment StoreEntitySet="eshFittingSlots">
+                <ScalarProperty Name="slotID" ColumnName="slotID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshGroupShoppingLists">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshGroupShoppingList">
+              <MappingFragment StoreEntitySet="eshGroupShoppingList">
+                <ScalarProperty Name="groupShoppingListID" ColumnName="groupShoppingListID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="publicID" ColumnName="publicID" />
+                <ScalarProperty Name="dateCreation" ColumnName="dateCreation" />
+                <ScalarProperty Name="dateUpdate" ColumnName="dateUpdate" />
+                <ScalarProperty Name="tradeHubID" ColumnName="tradeHubID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshGroupShoppingListSnapshots">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshGroupShoppingListSnapshot">
+              <MappingFragment StoreEntitySet="eshGroupShoppingListSnapshot">
+                <ScalarProperty Name="groupShoppingListID" ColumnName="groupShoppingListID" />
+                <ScalarProperty Name="snapshotID" ColumnName="snapshotID" />
+                <ScalarProperty Name="nickName" ColumnName="nickName" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshLogs">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshLog">
+              <MappingFragment StoreEntitySet="eshLogs">
+                <ScalarProperty Name="LogID" ColumnName="LogID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Severity" ColumnName="Severity" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshPrices">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshPrice">
+              <MappingFragment StoreEntitySet="eshPrices">
+                <ScalarProperty Name="typeID" ColumnName="typeID" />
+                <ScalarProperty Name="solarSystemID" ColumnName="solarSystemID" />
+                <ScalarProperty Name="avg" ColumnName="avg" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshShipsMarketGroups">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshShipsMarketGroup">
+              <MappingFragment StoreEntitySet="eshShipsMarketGroups">
+                <ScalarProperty Name="typeID" ColumnName="typeID" />
+                <ScalarProperty Name="marketGroupID" ColumnName="marketGroupID" />
+                <ScalarProperty Name="mock" ColumnName="mock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshShoppingListFittings">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshShoppingListFitting">
+              <MappingFragment StoreEntitySet="eshShoppingListFittings">
+                <ScalarProperty Name="shoppingListID" ColumnName="shoppingListID" />
+                <ScalarProperty Name="fittingID" ColumnName="fittingID" />
+                <ScalarProperty Name="units" ColumnName="units" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshShoppingListInvTypes">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshShoppingListInvType">
+              <MappingFragment StoreEntitySet="eshShoppingListInvType">
+                <ScalarProperty Name="shoppingListID" ColumnName="shoppingListID" />
+                <ScalarProperty Name="typeID" ColumnName="typeID" />
+                <ScalarProperty Name="units" ColumnName="units" />
+                <ScalarProperty Name="volume" ColumnName="volume" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshShoppingLists">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshShoppingList">
+              <MappingFragment StoreEntitySet="eshShoppingLists">
+                <ScalarProperty Name="shoppingListID" ColumnName="shoppingListID" />
+                <ScalarProperty Name="publicID" ColumnName="publicID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="dateCreation" ColumnName="dateCreation" />
+                <ScalarProperty Name="readOnlypublicID" ColumnName="readOnlypublicID" />
+                <ScalarProperty Name="dateUpdate" ColumnName="dateUpdate" />
+                <ScalarProperty Name="tradeHubID" ColumnName="tradeHubID" />
+                <ScalarProperty Name="dateAccess" ColumnName="dateAccess" />
+                <ScalarProperty Name="allowEditForAll" ColumnName="allowEditForAll" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="urlID" ColumnName="urlID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshShoppingListSummInvTypes">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshShoppingListSummInvType">
+              <MappingFragment StoreEntitySet="eshShoppingListSummInvTypes">
+                <ScalarProperty Name="shoppingListID" ColumnName="shoppingListID" />
+                <ScalarProperty Name="typeID" ColumnName="typeID" />
+                <ScalarProperty Name="delta" ColumnName="delta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshSnapshots">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshSnapshot">
+              <MappingFragment StoreEntitySet="eshSnapshot">
+                <ScalarProperty Name="snapshotID" ColumnName="snapshotID" />
+                <ScalarProperty Name="shoppingListID" ColumnName="shoppingListID" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="totalVolume" ColumnName="totalVolume" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="publicID" ColumnName="publicID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="urlID" ColumnName="urlID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshSnapshotInvTypes">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshSnapshotInvType">
+              <MappingFragment StoreEntitySet="eshSnapshotInvType">
+                <ScalarProperty Name="snapshotID" ColumnName="snapshotID" />
+                <ScalarProperty Name="typeID" ColumnName="typeID" />
+                <ScalarProperty Name="units" ColumnName="units" />
+                <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
+                <ScalarProperty Name="volume" ColumnName="volume" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshTinyUrlMappings">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshTinyUrlMapping">
+              <MappingFragment StoreEntitySet="eshTinyUrlMapping">
+                <ScalarProperty Name="urlId" ColumnName="urlId" />
+                <ScalarProperty Name="tinyUrl" ColumnName="tinyUrl" />
+                <ScalarProperty Name="finalUrl" ColumnName="finalUrl" />
+                <ScalarProperty Name="isPermanent" ColumnName="isPermanent" />
+                <ScalarProperty Name="lastGivenTime" ColumnName="lastGivenTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshTradeHubs">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshTradeHub">
+              <MappingFragment StoreEntitySet="eshTradeHubs">
+                <ScalarProperty Name="solarSystemID" ColumnName="solarSystemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invGroups">
+            <EntityTypeMapping TypeName="EveShoppingModel.invGroup">
+              <MappingFragment StoreEntitySet="invGroups">
+                <ScalarProperty Name="groupID" ColumnName="groupID" />
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+                <ScalarProperty Name="groupName" ColumnName="groupName" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="iconID" ColumnName="iconID" />
+                <ScalarProperty Name="useBasePrice" ColumnName="useBasePrice" />
+                <ScalarProperty Name="allowManufacture" ColumnName="allowManufacture" />
+                <ScalarProperty Name="allowRecycler" ColumnName="allowRecycler" />
+                <ScalarProperty Name="anchored" ColumnName="anchored" />
+                <ScalarProperty Name="anchorable" ColumnName="anchorable" />
+                <ScalarProperty Name="fittableNonSingleton" ColumnName="fittableNonSingleton" />
+                <ScalarProperty Name="published" ColumnName="published" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invMarketGroups">
+            <EntityTypeMapping TypeName="EveShoppingModel.invMarketGroup">
+              <MappingFragment StoreEntitySet="invMarketGroups">
+                <ScalarProperty Name="marketGroupID" ColumnName="marketGroupID" />
+                <ScalarProperty Name="parentGroupID" ColumnName="parentGroupID" />
+                <ScalarProperty Name="marketGroupName" ColumnName="marketGroupName" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="iconID" ColumnName="iconID" />
+                <ScalarProperty Name="hasTypes" ColumnName="hasTypes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invTypes">
+            <EntityTypeMapping TypeName="EveShoppingModel.invType">
+              <MappingFragment StoreEntitySet="invTypes">
+                <ScalarProperty Name="typeID" ColumnName="typeID" />
+                <ScalarProperty Name="groupID" ColumnName="groupID" />
+                <ScalarProperty Name="typeName" ColumnName="typeName" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="mass" ColumnName="mass" />
+                <ScalarProperty Name="volume" ColumnName="volume" />
+                <ScalarProperty Name="capacity" ColumnName="capacity" />
+                <ScalarProperty Name="portionSize" ColumnName="portionSize" />
+                <ScalarProperty Name="raceID" ColumnName="raceID" />
+                <ScalarProperty Name="basePrice" ColumnName="basePrice" />
+                <ScalarProperty Name="published" ColumnName="published" />
+                <ScalarProperty Name="marketGroupID" ColumnName="marketGroupID" />
+                <ScalarProperty Name="chanceOfDuplicating" ColumnName="chanceOfDuplicating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mapSolarSystems">
+            <EntityTypeMapping TypeName="EveShoppingModel.mapSolarSystem">
+              <MappingFragment StoreEntitySet="mapSolarSystems">
+                <ScalarProperty Name="regionID" ColumnName="regionID" />
+                <ScalarProperty Name="constellationID" ColumnName="constellationID" />
+                <ScalarProperty Name="solarSystemID" ColumnName="solarSystemID" />
+                <ScalarProperty Name="solarSystemName" ColumnName="solarSystemName" />
+                <ScalarProperty Name="x" ColumnName="x" />
+                <ScalarProperty Name="y" ColumnName="y" />
+                <ScalarProperty Name="z" ColumnName="z" />
+                <ScalarProperty Name="xMin" ColumnName="xMin" />
+                <ScalarProperty Name="xMax" ColumnName="xMax" />
+                <ScalarProperty Name="yMin" ColumnName="yMin" />
+                <ScalarProperty Name="yMax" ColumnName="yMax" />
+                <ScalarProperty Name="zMin" ColumnName="zMin" />
+                <ScalarProperty Name="zMax" ColumnName="zMax" />
+                <ScalarProperty Name="luminosity" ColumnName="luminosity" />
+                <ScalarProperty Name="border" ColumnName="border" />
+                <ScalarProperty Name="fringe" ColumnName="fringe" />
+                <ScalarProperty Name="corridor" ColumnName="corridor" />
+                <ScalarProperty Name="hub" ColumnName="hub" />
+                <ScalarProperty Name="international" ColumnName="international" />
+                <ScalarProperty Name="regional" ColumnName="regional" />
+                <ScalarProperty Name="constellation" ColumnName="constellation" />
+                <ScalarProperty Name="security" ColumnName="security" />
+                <ScalarProperty Name="factionID" ColumnName="factionID" />
+                <ScalarProperty Name="radius" ColumnName="radius" />
+                <ScalarProperty Name="sunTypeID" ColumnName="sunTypeID" />
+                <ScalarProperty Name="securityClass" ColumnName="securityClass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="EveShoppingModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Roles">
+            <EntityTypeMapping TypeName="EveShoppingModel.webpages_Roles">
+              <MappingFragment StoreEntitySet="webpages_Roles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshEveAccounts">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshEveAccount">
+              <MappingFragment StoreEntitySet="eshEveAccount">
+                <ScalarProperty Name="dateUpdate" ColumnName="dateUpdate" />
+                <ScalarProperty Name="dateCreation" ColumnName="dateCreation" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="verficationCode" ColumnName="verficationCode" />
+                <ScalarProperty Name="keyID" ColumnName="keyID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="accountID" ColumnName="accountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eshEveAccountUsers">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshEveAccountUser">
+              <MappingFragment StoreEntitySet="eshEveAccountUser">
+                <ScalarProperty Name="corpTicker" ColumnName="corpTicker" />
+                <ScalarProperty Name="corpName" ColumnName="corpName" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="accountID" ColumnName="accountID" />
+                <ScalarProperty Name="accountUserID" ColumnName="accountUserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

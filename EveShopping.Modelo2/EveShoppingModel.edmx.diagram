@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="170c27c27056429e88cc5bf146fdfd2f" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="EveShoppingModel.dgmEffect" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.dgmTypeEffect" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshChangeLog" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshFittingHardware" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshFitting" Width="1.5" PointX="6" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshFittingSlot" Width="1.5" PointX="0.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshGroupShoppingList" Width="1.5" PointX="3.75" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshGroupShoppingListSnapshot" Width="1.5" PointX="9" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshLog" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshPrice" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshShipsMarketGroup" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshShoppingListFitting" Width="1.5" PointX="8.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshShoppingListInvType" Width="1.5" PointX="6" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshShoppingList" Width="1.5" PointX="3.75" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshShoppingListSummInvType" Width="1.5" PointX="6" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshSnapshot" Width="1.5" PointX="6.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshSnapshotInvType" Width="1.5" PointX="9" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshTinyUrlMapping" Width="1.5" PointX="1.5" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshTradeHub" Width="1.5" PointX="1.5" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.invGroup" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.invMarketGroup" Width="1.5" PointX="0.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.invType" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.mapSolarSystem" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.UserProfile" Width="1.5" PointX="1.5" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EveShoppingModel.webpages_Roles" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshFittingHardwares_eshFittings" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshFittingHardwares_eshFittingSlots" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshFittingHardwares_invTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshFittings_eshTinyUrlMapping" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshFittings_invTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshFittings_UserProfile" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshShoppingListFittings_eshFittings" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshGroupShoppingList_eshGroupShoppingList" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshGroupShoppingList_eshTradeHubs" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshGroupShoppingListSnapshot_eshGroupShoppingList" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshGroupShoppingListSnapshot_eshSnapshot" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshPrices_invTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshPrices_mapSolarSystems" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshShipsMarketGroups_invMarketGroups" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshShipsMarketGroups_invTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshShoppingListFittings_eshShoppingLists" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshShoppingListInvType_eshShoppingLists" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshShoppingListInvType_invTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshShoppingLists_eshTinyUrlMapping" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshShoppingLists_eshTradeHubs" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshShoppingLists_UserProfile" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshShoppingListSummInvTypes_eshShoppingLists" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshSnapshot_eshShoppingLists" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshShoppingListSummInvTypes_invTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshSnapshot_eshTinyUrlMapping" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshSnapshotInvType_eshSnapshot" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshSnapshotInvType_invTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshTradeHubs_staStations" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshEveAccount" Width="1.5" PointX="6.5601797860861666" PointY="18.48392295208011" />
+        <EntityTypeShape EntityType="EveShoppingModel.eshEveAccountUser" Width="1.5" PointX="9.9300710232602754" PointY="31.662430286250277" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshEveAccount_UserProfile" />
+        <AssociationConnector Association="EveShoppingModel.FK_eshEveAccountUser_eshEveAccount" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
