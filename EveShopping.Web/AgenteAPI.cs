@@ -10,7 +10,7 @@ namespace EveShopping.Web
 {
     public class AgenteAPI
     {
-        public EveApi SaveAPIInformation(long keyId, string vCode)
+        public EveApi SaveAPIInformation(int keyId, string vCode)
         {
             LogicaAPI lociga = new LogicaAPI();
             return lociga.GetAPIInformation(keyId, vCode);

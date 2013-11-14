@@ -1,5 +1,6 @@
 ﻿using EveAI.Live;
 using EveAI.Live.Account;
+using EveShopping.Modelo;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,12 +14,19 @@ namespace EveShopping.Logica
 {
     public class LogicaAPI
     {
-        public EveApi GetAPIInformation(long keyId, string vCode)
+        public EveApi GetAPIInformation(int keyId, string vCode)
         {
+            eshEveAccount eveAccount = new eshEveAccount();
 
             EveApi api = new EveApi(keyId, vCode);
 
             APIKeyInfo keyInfo = api.getApiKeyInfo();
+
+            eveAccount.keyID = keyId;
+            eveAccount.verficationCode = vCode;
+            eveAccount.isActive = false;
+            
+
             foreach (var character in keyInfo.Characters)
             {
                 string ticker = GetCorpTicker(keyId, vCode, character.CorporationID.ToString());

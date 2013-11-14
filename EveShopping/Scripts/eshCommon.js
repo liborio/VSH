@@ -23,27 +23,47 @@ $(document).ready(function () {
 });
 
 eshFormats = {
+    formatNumber : function (number){
+        var ivol = Math.round(number)
+        if (ivol == number) {
+            return eshFormats.addCommas(ivol);
+        }
+        return eshFormats.addCommas( vol.toFixed(2));
+    },
     formatPrice: function (price) {
         if (price > 1000000) {
-            return (price / 1000000).toFixed(2) + ' M';
+            return eshFormats.addCommas((price / 1000000).toFixed(2)) + ' M';
         }
         if (price > 1000) {
-            return (price / 1000).toFixed(2) + ' K';
+            return eshFormats.addCommas((price / 1000).toFixed(2)) + ' K';
         }
-        return price.toFixed(2);
+        return eshFormats.addCommas( price.toFixed(2));
     },
     formatVolume: function (vol) {
         var ivol = Math.round(vol)
         if (ivol == vol) {
             return ivol + ' m3';
         }
-        return vol.toFixed(2) + ' m3';
+        return eshFormats.addCommas( vol.toFixed(2)) + ' m3';
     },
     formatDelta: function (delta) {
         if (delta > 0) {
-            return '+' + delta;
+            return '+' + eshFormats.addCommas(delta);
         }
-        return delta;
+        return eshFormats.addCommas( delta);
+    },
+
+    addCommas : function (nStr)
+    {
+        nStr += '';
+        x = nStr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        }
+        return x1 + x2;
     }
 }
 

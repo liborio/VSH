@@ -50,7 +50,7 @@ function editItemInSummary(id) {
 
     $(row).addClass('row-edit')
     $(row).find('a').hide()
-    var units = $(row).find('[data-esh-cdelta]').data('esh-cdelta');
+    var units = $(row).find('[data-esh-cdelta]').attr('data-esh-cdelta');
 
     var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='7' class='col-edit'><span><a onclick=\"setDeltaInSummary('" + id + "')\">Set</a><input data-esh-units type='number' value='" + units + "'>units to add (negative number will remove units from totals)</span>"
         + "<span><a onclick=\"adjustDelta('" + id + "')\" >Adjust to x0 units</a></span>"
@@ -106,7 +106,7 @@ function calculateCommonRowDelta(row, newdelta) {
     var volume = parseFloat($(row).find('[data-esh-cvolume]').data('esh-cvolume'));
     var price = parseFloat($(row).find('[data-esh-cprice]').data('esh-cprice'));
     //update info in screen
-    $(row).find('[data-esh-cunits]').text("x " + newunits);
+    $(row).find('[data-esh-cunits]').text("x " + eshFormats.formatNumber( newunits));
     $(row).find('[data-esh-cprice]').text(eshFormats.formatPrice(price * newunits));
     $(row).find('[data-esh-cvolume]').text(eshFormats.formatVolume(volume * newunits));
     $(row).find('[data-esh-cdelta]').text(eshFormats.formatDelta(newdelta));

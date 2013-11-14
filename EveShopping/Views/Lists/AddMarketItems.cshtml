@@ -28,7 +28,7 @@
         <h3 class="main-title clearfix"><span>Market items in shopping list</span><span class="right">
             @if (Model.MarketItemsEnShoppingList.Count() > 0)
             {
-                <span id="total-price-vol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalPrice(this.Model.MarketItemsEnShoppingList)) - @EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalVolume(this.Model.MarketItemsEnShoppingList) m3</span>
+                <span id="total-price-vol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalPrice(this.Model.MarketItemsEnShoppingList)) - @EveShopping.Web.VSHMappings.GetNormalizedNumber( EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalVolume(this.Model.MarketItemsEnShoppingList)) m3</span>
             }
             else
             {

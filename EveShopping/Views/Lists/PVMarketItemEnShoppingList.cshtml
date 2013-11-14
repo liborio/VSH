@@ -6,9 +6,9 @@
     <td>
         <img src="@Model.ImageUrl32" alt="@Model.Name" /></td>
     <td>@Model.Name</td>
-    <td>x @Model.Units</td>
+    <td>x @EveShopping.Web.VSHMappings.GetNormalizedNumber(Model.Units)</td>
     <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.TotalPrice)</td>
-    <td class="numericCol">@Model.Volume m3</td>
+    <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedNumber(Model.Volume) m3</td>
     <td class="numericCol">
         @if (ViewBag.allowEdit)
         {

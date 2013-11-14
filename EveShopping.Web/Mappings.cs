@@ -45,15 +45,41 @@ namespace EveShopping.Web
         {
             if (precio > 1000000)
             {
-                return string.Format("{0:F} M", precio / 1000000);
+                return string.Format("{0:F} M", GetNormalizedNumber(precio / 1000000));
             }
 
             if (precio > 1000)
             {
-                return string.Format("{0:F} K", precio / 1000);
+                return string.Format("{0:F} K", GetNormalizedNumber(precio / 1000));
             }
+                        
+            return string.Format("{0:F}", GetNormalizedNumber( precio));
+        }
+        
+        public static string GetNormalizedNumber(int number)
+        {
+            string specifier = "#,#";
+            return AddZeroIfNeeded(number.ToString(specifier));
+        }
 
-            return string.Format("{0:F}", precio);
+        public static string GetNormalizedNumber(decimal number)
+        {
+            string specifier = "#,#.##";            
+            return AddZeroIfNeeded( number.ToString(specifier));
+        }
+
+        public static string GetNormalizedNumber(double number)
+        {
+            string specifier = "#,#.##";
+            return AddZeroIfNeeded( number.ToString(specifier));
+        }
+
+        private static string AddZeroIfNeeded(string number)
+        {
+            if (string.IsNullOrEmpty(number)) return "0";
+            if (number.StartsWith(".")) return "0" + number;
+            return number;
+
         }
 
         public static string GetSlotName(int slot)

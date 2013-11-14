@@ -24,10 +24,10 @@
                 <td>
                     <img src="@EveShopping.Web.VSHMappings.ResolveImage32(item.typeID)" alt="@item.invType.typeName" /></td>
                 <td>@item.invType.typeName</td>
-                <td class="numericCol" data-value="@item.volume">@item.volume m3</td>
+                <td class="numericCol" data-value="@item.volume">@(EveShopping.Web.VSHMappings.GetNormalizedNumber(item.volume.Value)) m3</td>
                 <td class="numericCol" data-value="@decimal.ToDouble(item.unitPrice * item.units)">@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.unitPrice * item.units)</td>
                 <td class="numericCol" data-value="@decimal.ToDouble(item.unitPrice)">@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.unitPrice)</td>
-                <td class="numericCol" data-value="@item.units">x @item.units</td>
+                <td class="numericCol" data-value="@item.units">x @EveShopping.Web.VSHMappings.GetNormalizedNumber( item.units)</td>
                 @if (EveShopping.Web.EstadoUsuario.IsIGB())
                 {
                     <td class="numericCol" data-esh-shopping data-value="0">

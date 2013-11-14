@@ -11,7 +11,7 @@
     <span class="right">
         @if (Model.StaticLists.eshSnapshotInvTypes.Count() > 0)
         {
-            <span id="total-price-vol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.StaticLists.totalPrice) - @Model.StaticLists.totalVolume m3</span>
+            <span id="total-price-vol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.StaticLists.totalPrice) - @EveShopping.Web.VSHMappings.GetNormalizedNumber(Model.StaticLists.totalVolume) m3</span>
         }
 
     </span>

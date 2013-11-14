@@ -15,7 +15,7 @@
     <span class="right">
         @if (Model.Summary.Items.Count() > 0)
         {
-            <span id="total-price-vol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalPrice(this.Model.Summary.Items)) - @EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalVolume(this.Model.Summary.Items) m3</span>
+            <span id="total-price-vol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalPrice(this.Model.Summary.Items)) - @EveShopping.Web.VSHMappings.GetNormalizedNumber(EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalVolume(this.Model.Summary.Items)) m3</span>
         }
 
     </span>

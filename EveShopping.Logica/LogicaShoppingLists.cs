@@ -743,7 +743,6 @@ namespace EveShopping.Logica
             contexto.eshShoppingListInvTypes.Remove(item);
             repo.ShoppingListUpdated(id, contexto);
             contexto.SaveChanges();
-
         }
 
         public void DeleteItemFromShoppingList(string publicID, int itemID)
@@ -752,6 +751,7 @@ namespace EveShopping.Logica
 
             RepositorioShoppingLists repo = new RepositorioShoppingLists(contexto);
             eshShoppingList list = repo.SelectShopingListPorPublicID(publicID);
+            DeleteItemFromShoppingList(list.shoppingListID, itemID, contexto);
 
         }
 

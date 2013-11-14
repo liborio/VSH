@@ -425,7 +425,7 @@ namespace EveShopping.Controllers
         [HttpPost]
         public ActionResult CheckAPI(string keyID, string vCode){
             AgenteAPI agente = new AgenteAPI();
-            EveApi api = agente.SaveAPIInformation(long.Parse(keyID), vCode);
+            EveApi api = agente.SaveAPIInformation(int.Parse(keyID), vCode);
             return View();
         }
 

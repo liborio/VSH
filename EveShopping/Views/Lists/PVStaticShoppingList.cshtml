@@ -14,7 +14,7 @@
         <td class="numericCol">@EveShopping.Web.VSHMappings.GetGridDateFormat(Model.creationDate)</td>
     }
     <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.totalPrice)</td>
-    <td class="numericCol">@Model.totalVolume m3</td>
+    <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedNumber( Model.totalVolume) m3</td>
     <td class="numericCol">
         <span class="link-menu"><a href="@Url.Action("Static", "Lists", new { id = Model.publicID })" class="yellow-button">View</a></span>
         @if (ViewBag.AllowDelete == true)
