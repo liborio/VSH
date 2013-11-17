@@ -13,6 +13,7 @@ using EveShopping.Models;
 using EveShopping.Web.Modelo;
 using EveShopping.Web;
 using EveAI.Live;
+using EveShopping.Modelo.EV;
 
 namespace EveShopping.Controllers
 {
@@ -424,9 +425,16 @@ namespace EveShopping.Controllers
 
         [HttpPost]
         public ActionResult CheckAPI(string keyID, string vCode){
-            AgenteAPI agente = new AgenteAPI();
-            EveApi api = agente.SaveAPIInformation(int.Parse(keyID), vCode);
-            return View();
+            try
+            {
+                AgenteAPI agente = new AgenteAPI();
+                EVEveApi api = agente.CheckAPIInformation(int.Parse(keyID), vCode);
+                return PartialView("PVNewEVEAccount", api);
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);   
+            }
         }
 
 

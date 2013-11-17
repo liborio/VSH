@@ -48,10 +48,12 @@ function AddOrReplaceItemInShoppingList(data, id, inEdit) {
     }
     else {
         if (!existeItem) {
-            $(data).insertBefore(itemTable.find('tr').first());
+            $("[data-esch-marketitemsinshoppinglist]").prepend(data);
+            //$(data).insertBefore(itemTable.find('tr').first());
         }
         else {
-            $(data).replaceAll(itemTable.find('[data-esh-id="' + id + '"]'));
+            itemTable.find('[data-esh-id="' + id + '"]').replaceWith(data);
+            //$(data).replaceAll(itemTable.find('[data-esh-id="' + id + '"]'));
         }
         if (inEdit) {
             itemTable.find('[data-esh-id="' + id + '"]').addClass('row-edit');
@@ -122,7 +124,9 @@ function editItemInShoppingList(id) {
     $(row).find('a').hide()
     var units = $(row).data('esh-units');
 
-    var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='5' class='col-edit'><span><a onclick=\"setUnitsItemInShoppingList('" + id + "')\">Set</a><input data-esh-units type='number' min='1' value='" + units + "'>units</span><span><a onclick=\"cancelEditItemInShoppingList('" + id + "')\">Close edit</a></span>"
+    var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='5' class='col-edit'><span><input style='width:5.5em;' data-esh-units type='number' min='1' value='" + units + "'>units</span><span><a onclick=\"setUnitsItemInShoppingList('" + id + "')\">Set</a></span><span><a onclick=\"cancelEditItemInShoppingList('" + id + "')\">Cancel edit</a></span>"
+    var filaControlesAdd = "<tr class='fila-impar' data-esh-row-edit><td colspan='5' class='col-edit'><div style='float: left;'><div><span><a onclick=\"addUnitsItemInShoppingList(1)\">+1</a></span></div><div><span><a onclick=\"addUnitsItemInShoppingList(-1)\">-1</a></span></div></div><div style='float: left;'><div><span><a onclick=\"addUnitsItemInShoppingList(10)\">+10</a></span></div><div><span><a onclick=\"addUnitsItemInShoppingList(-10)\">-10</a></span></div></div><div style='float: left;'><div><span><a onclick=\"addUnitsItemInShoppingList(100)\">+100</a></span></div><div><span><a onclick=\"addUnitsItemInShoppingList(-100)\">-100</a></span></div></div><div style='float: left;'><div><span><a onclick=\"addUnitsItemInShoppingList(1000)\">+1,000</a></span></div><div><span><a onclick=\"addUnitsItemInShoppingList(-1000)\">-1,000</a></span></div></div><div style='float: left;'><div><span><a onclick=\"addUnitsItemInShoppingList(10000)\">+10,000</a></span></div><div><span><a onclick=\"addUnitsItemInShoppingList(-10000)\">-10,000</a></span></div></div><div style='float: left;'><div><span><a onclick=\"addUnitsItemInShoppingList(100000)\">+100,000</a></span></div><div><span><a onclick=\"addUnitsItemInShoppingList(-100000)\">-100,000</a></span></div></div>"
+    $(filaControlesAdd).insertAfter(row)
     $(filaControlesEdicion).insertAfter(row)
 
     var inputRows = $(filaControlesEdicion).find('input:text');
@@ -131,6 +135,14 @@ function editItemInShoppingList(id) {
     $(inputRows).spinner();
 }
 
+function addUnitsItemInShoppingList(units) {
+    var unidades = parseInt($("input[data-esh-units]").val());
+    unidades += units;
+    if (unidades < 0) {
+        unidades = 0;
+    }
+    $("input[data-esh-units]").val(unidades);
+}
 
 function cleanEdits() {
     $('[data-esch-marketitemsinshoppinglist]').find('[data-esh-row-edit]').remove();

@@ -1234,3 +1234,22 @@ tr.fila-impar, tr.seleccionada {
 div.container-input {
     overflow-x: hidden;
 }
+
+/* EVE API ------------------------------------ */
+
+div.divAccount {
+
+}
+
+div.divAccount .divChar{
+    float: left;
+    width: 210px;
+    margin-right:10px;
+    font-size: small;
+}
+
+div.shadowedImage {
+    -moz-opacity: 0.45;
+    opacity: 0.45;
+    filter: alpha(opacity=45);
+}

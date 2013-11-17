@@ -442,6 +442,7 @@
     <Content Include="Content\zocial\zocial-regular-webfont.svg" />
     <Content Include="Content\zocial\zocial.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Scripts\eshAccountManage.js" />
     <Content Include="Scripts\eshMyFittings.js" />
     <Content Include="Scripts\eshMyLists.js" />
     <Content Include="Scripts\eshpAnalyseFits.js" />
@@ -637,6 +638,7 @@
     <Content Include="Views\Changes\v.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Home\Scenarios.cshtml" />
+    <Content Include="Views\Account\PVNewEVEAccount.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>

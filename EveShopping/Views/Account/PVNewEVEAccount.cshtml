@@ -1,0 +1,25 @@
+﻿@model EveShopping.Modelo.EV.EVEveApi
+
+<div class="divAccount clearfix">
+    @foreach (var item in Model.Characters)
+    {
+        <div class="divChar">
+            <div>
+                <input type="checkbox" data-esh-chkAccount id="@string.Format("checkbox{0}", item.EveId)" value="@item.EveId" checked="true" />
+                <label for="checkbox1">@item.Name</label>
+            </div>
+            <div class="divCharImage">
+                <div >
+                    <img src="@EveShopping.Web.VSHMappings.ResolveImageChar256(item.EveId)" />
+                </div>
+                <div>
+                    <img src="@EveShopping.Web.VSHMappings.ResolverImageCorp30(item.CorpId)"/><span>@string.Format("{0} [{1}]", item.CorpName, item.CorpTicker)</span></div>
+                @if (!string.IsNullOrEmpty(item.AlliName))
+                {
+                    <div>
+                        <img src="@EveShopping.Web.VSHMappings.ResolverImageAlli30(item.AlliId)" /><span>@string.Format("{0} [{1}]")</span></div>
+                }
+            </div>
+        </div>            
+    }
+</div>

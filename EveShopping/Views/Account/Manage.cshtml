@@ -20,7 +20,8 @@ else
     @Html.Partial("_SetPasswordPartial")
 }
 @*<h3>EVE API</h3>
-@using(Html.BeginForm("CheckAPI", "Account",FormMethod.Post)){
+@using (Ajax.BeginForm("CheckAPI", "Account", new AjaxOptions { UpdateTargetId = "eveAccountInfo", OnSuccess="onSucessCheckAPI", OnFailure="onFailureCheckAPI" }))
+{
     <fieldset>
         <legend>Key ID</legend>
         <input type="text" name="keyID" placeholder="Shopping list's name" required maxlength="7" />
@@ -33,8 +34,13 @@ else
             <li><a class="yellow-link" href="https://community.eveonline.com/support/api-key/">Manage your API keys in EVE</a></li>
             <li><a class="yellow-link" href="https://community.eveonline.com/support/api-key/CreatePredefined?accessMask=8">Create a new key with minimal access permissions</a></li>
         </ul>
-    <button id="btnCheckAccount" name="btnCreateList" type="submit" class="buttonYellow" value="Create">Check account</button>
-}*@
+    <a id="lnkCheckAccount" class="buttonYellow-short">Check account</a>
+
+<div id="eveAccountInfo">
+
+</div>
+
+<a id="lnkSaveAccount" class="buttonYellow-short" style="display:none">Save account</a>*@
 
 
 <section id="externalLogins">
@@ -46,4 +52,6 @@ else
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Scripts/eshAccountManage.js"></script>
+    
 }

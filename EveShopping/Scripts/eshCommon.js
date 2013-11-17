@@ -333,18 +333,9 @@ function setTotalPriceAndUnits() {
     
     var price = 0;
     $('[data-esh-price]').each(function () { price += Number($(this).attr('data-esh-price')); })
-    var formated = null;
-    if (price > 1000000) {
-        price = price / 1000000;
-        formated = ' M';
-    }
-    if (!formated && (price > 1000)) {
-        price = price / 1000;
-        formated = ' K';
-    }
-    price = price.toFixed(2);
+    
     if (price > 0) {
-        $('#total-price-vol').text(price + formated + ' - ' + vol + ' m3');
+        $('#total-price-vol').text( eshFormats.formatPrice(price) + ' - ' + eshFormats.formatVolume(vol));
     }
     else {
         $('#total-price-vol').text('');

@@ -457,8 +457,7 @@ namespace EveShopping.Controllers
                     evfit = agente.SelectFitPorID(EstadoUsuario.CurrentListPublicId, fitID);
                 }
                 catch (Exception ex)
-                {
-
+                {                    
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
                 }
 

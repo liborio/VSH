@@ -52,8 +52,10 @@ $(document).ready(function () {
 
 
 function OnSuccessUseAnalysedFit(data) {
-    $(data).prependTo($("#fitsInList").first());
-    var name = $(data).first().attr('data-esh-name');
+    $("#fitsInList").prepend(data);
+    //$(data).prependTo($("#fitsInList").first());
+    //var name = $(data).first().attr('data-esh-name');
+    var name = $("#fitsInList").find("[data-esh-id]").first().attr("data-esh-name");
     $('[data-esh-analysed-fits]').children('[data-esh-name = "' + name + '"]').remove();
     accordionState.initAccordion($('#fitsInList'), 0);
     menuCounters.incFittings();
@@ -72,8 +74,8 @@ function onSetUnitsInShoppingListSuccess(data) {
     var id = this;
     var fitsContainer = $('#fitsInList');
     $(fitsContainer).find('[data-esh-id = ' + id + '] + div').remove();
-    $(data).replaceAll($('#fitsInList').find('[data-esh-id = ' + id + ']'));
-    
+    //$(data).replaceAll($('#fitsInList').find('[data-esh-id = ' + id + ']'));
+    $('#fitsInList').find('[data-esh-id = ' + id + ']').replaceWith(data);
     accordionState.initAccordion($('#fitsInList'));
     accordionState.openPanel($('#fitsInList'), id);
     cleanEdits();
@@ -157,8 +159,9 @@ function onSetUnitsInShoppingListSuccess(data) {
     }
 
     function onSuccessUseFitInMyList(data) {
-        $(data).prependTo( $('#fitsInList').first());
-        accordionState.initAccordion($('#fitsInList'), 0);
+        $("#fitsInList").prepend(data);
+        //$(data).prependTo( $("#fitsInList"));
+        accordionState.initAccordion($("#fitsInList"), 0);
         setTotalPriceAndUnits();
     }
 
