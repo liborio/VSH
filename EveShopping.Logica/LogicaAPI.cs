@@ -1,6 +1,8 @@
 ﻿using EveAI.Live;
 using EveAI.Live.Account;
+using EveShopping.Comun.Infraestructure;
 using EveShopping.Modelo;
+using EveShopping.Modelo.EV;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,25 +16,34 @@ namespace EveShopping.Logica
 {
     public class LogicaAPI
     {
-        public EveApi GetAPIInformation(int keyId, string vCode)
+        public EVEveApi GetAPIInformation(int keyId, string vCode)
         {
-            eshEveAccount eveAccount = new eshEveAccount();
+            EVEveApi vapi = new EVEveApi();
 
             EveApi api = new EveApi(keyId, vCode);
 
             APIKeyInfo keyInfo = api.getApiKeyInfo();
 
-            eveAccount.keyID = keyId;
-            eveAccount.verficationCode = vCode;
-            eveAccount.isActive = false;
+            vapi.KeyId = keyId;
+            vapi.VerificationCode = vCode;
+            vapi.IsActive = false;
             
+            if( keyInfo.Characters == null || keyInfo.Characters.Count == 0){
+                throw new ApplicationException(Translator.T("The API information for the account doesn't exist or it is expired"));
+            }
 
             foreach (var character in keyInfo.Characters)
             {
-                string ticker = GetCorpTicker(keyId, vCode, character.CorporationID.ToString());
+                EVEveCharacter vchar = new EVEveCharacter();
+                vchar.Name = character.Name;
+                vchar.EveId = character.CharacterID;
+                vchar.CorpName = character.CorporationName;
+                vchar.CorpId = character.CorporationID;
+                vchar.CorpTicker = GetCorpTicker(keyId, vCode, character.CorporationID.ToString());
+                vapi.Characters.Add(vchar);
             }
 
-            return api;
+            return vapi;
 
         }
 

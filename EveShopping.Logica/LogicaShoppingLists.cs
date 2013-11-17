@@ -476,7 +476,10 @@ namespace EveShopping.Logica
 
             fit.ImageUrl32 = imageResolver.GetImageURL(fit.ShipID);
 
-            AddFittingHardwareToFittingSummary(imageResolver, contexto, fit);
+            LogicaFittings logicaFits = new LogicaFittings();
+            logicaFits.AddFittingHardwaresToFitting(contexto, imageResolver, tradeHubID, fit);
+
+            //AddFittingHardwareToFittingSummary(imageResolver, contexto, fit);
 
             return fit;
         }
@@ -485,6 +488,8 @@ namespace EveShopping.Logica
         public EVFitting SelectFitSummary(string publicID, int fittingID, IImageResolver imageResolver)
         {
             EveShoppingContext contexto = new EveShoppingContext();
+
+            eshShoppingList shlist = contexto.eshShoppingLists.Where(s => s.publicID == publicID).FirstOrDefault();
 
             EVFitting fit =
     (from slf in contexto.eshShoppingListFittings
@@ -509,7 +514,9 @@ namespace EveShopping.Logica
 
             fit.ImageUrl32 = imageResolver.GetImageURL(fit.ShipID);
 
-            AddFittingHardwareToFittingSummary(imageResolver, contexto, fit);
+            //AddFittingHardwareToFittingSummary(imageResolver, contexto, fit);
+            LogicaFittings logicafit = new LogicaFittings();
+            logicafit.AddFittingHardwaresToFitting( contexto, imageResolver, shlist.tradeHubID, fit);
 
             return fit;
 

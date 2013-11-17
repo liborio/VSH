@@ -1,5 +1,6 @@
 ﻿using EveAI.Live;
 using EveShopping.Logica;
+using EveShopping.Modelo.EV;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace EveShopping.Web
 {
     public class AgenteAPI
     {
-        public EveApi SaveAPIInformation(int keyId, string vCode)
+        public EVEveApi CheckAPIInformation(int keyId, string vCode)
         {
             LogicaAPI lociga = new LogicaAPI();
             return lociga.GetAPIInformation(keyId, vCode);

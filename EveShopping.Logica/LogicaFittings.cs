@@ -169,38 +169,43 @@ namespace EveShopping.Logica
 
 
 
-                var qfittingHardwares =
-                   (from f in contexto.eshFittings 
-                    join fh in contexto.eshFittingHardwares on f.fittingID equals fh.fittingID
-                    join it in contexto.invTypes on fh.typeID equals it.typeID
-                    join mg in contexto.invMarketGroups on it.marketGroupID equals mg.marketGroupID
-                    join p in contexto.eshPrices on new { tradeHubID, it.typeID } equals new { tradeHubID = p.solarSystemID, p.typeID }
-                    where f.fittingID == fit.ItemID
-                    orderby fh.slotID, fh.positionInSlot, fh.invType.typeName
-                    select new EVFittingHardware
-                    {
-                        ItemID = fh.typeID,
-                        GroupName = mg.marketGroupName,
-                        Name = it.typeName,
-                        TotalPrice = fh.units * p.avg,
-                        UnitPrice = p.avg,
-                        Slot = fh.slotID,
-                        SlotName = fh.eshFittingSlot.name,
-                        Units = fh.units,
-                        Volume = fh.units * it.volume.Value
-
-                    });
-                foreach (var item in qfittingHardwares)
-                {
-                    item.ImageUrl32 = imageResolver.GetImageURL(item.ItemID);
-                    fit.FittingHardwares.Add(item);
-                    fit.TotalPrice += item.TotalPrice * fit.Units;
-                    fit.Volume += item.Volume * fit.Units;
-                }
+                AddFittingHardwaresToFitting(contexto, imageResolver, tradeHubID, fit);
             }
 
             return fittings;
 
+        }
+
+        public void AddFittingHardwaresToFitting(EveShoppingContext contexto, IImageResolver imageResolver, int tradeHubID, EVFitting fit)
+        {
+            var qfittingHardwares =
+               (from f in contexto.eshFittings
+                join fh in contexto.eshFittingHardwares on f.fittingID equals fh.fittingID
+                join it in contexto.invTypes on fh.typeID equals it.typeID
+                join mg in contexto.invMarketGroups on it.marketGroupID equals mg.marketGroupID
+                join p in contexto.eshPrices on new { tradeHubID, it.typeID } equals new { tradeHubID = p.solarSystemID, p.typeID }
+                where f.fittingID == fit.ItemID
+                orderby fh.slotID, fh.positionInSlot, fh.invType.typeName
+                select new EVFittingHardware
+                {
+                    ItemID = fh.typeID,
+                    GroupName = mg.marketGroupName,
+                    Name = it.typeName,
+                    TotalPrice = fh.units * p.avg,
+                    UnitPrice = p.avg,
+                    Slot = fh.slotID,
+                    SlotName = fh.eshFittingSlot.name,
+                    Units = fh.units,
+                    Volume = fh.units * it.volume.Value
+
+                });
+            foreach (var item in qfittingHardwares)
+            {
+                item.ImageUrl32 = imageResolver.GetImageURL(item.ItemID);
+                fit.FittingHardwares.Add(item);
+                fit.TotalPrice += item.TotalPrice * fit.Units;
+                fit.Volume += item.Volume * fit.Units;
+            }
         }
     }
 }

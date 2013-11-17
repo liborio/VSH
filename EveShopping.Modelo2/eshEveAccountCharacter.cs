@@ -13,13 +13,16 @@ namespace EveShopping.Modelo
     using System;
     using System.Collections.Generic;
     
-    public partial class eshEveAccountUser
+    public partial class eshEveAccountCharacter
     {
-        public int accountUserID { get; set; }
         public int accountID { get; set; }
         public string name { get; set; }
         public string corpName { get; set; }
         public string corpTicker { get; set; }
+        public int characterID { get; set; }
+        public int eveID { get; set; }
+        public string alliName { get; set; }
+        public string alliTicker { get; set; }
     
         public virtual eshEveAccount eshEveAccount { get; set; }
     }

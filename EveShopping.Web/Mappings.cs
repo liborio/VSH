@@ -13,6 +13,7 @@ namespace EveShopping.Web
     {
 
         private static IImageResolver Image32Resolver { get; set; }
+        private static IImageResolver Image256Resolver { get; set; }
 
         static VSHMappings()
         {
@@ -24,6 +25,21 @@ namespace EveShopping.Web
             return Image32Resolver.GetImageURL(id);
         }
 
+        public static string ResolveImageChar256(long id)
+        {
+            return string.Format("https://image.eveonline.com/Character/{0}_200.jpg", id);
+        }
+
+        public static string ResolverImageCorp30(long id)
+        {
+            return string.Format("https://image.eveonline.com/Corporation/{0}_30.png", id);
+        }
+
+        public static string ResolverImageAlli30(long id)
+        {
+            return string.Format("https://image.eveonline.com/Alliance/{0}_30.png", id);
+        }
+        
         public static ulong GetLongFromDate(DateTime date)
         {
             ulong res = 0;

@@ -18,18 +18,21 @@ namespace EveShopping.Modelo
     using System.Data.Entity.ModelConfiguration;
     using System.Data.Entity.Infrastructure;
     
-    internal partial class eshEveAccountUser_Mapping : EntityTypeConfiguration<eshEveAccountUser>
+    internal partial class eshEveAccountCharacter_Mapping : EntityTypeConfiguration<eshEveAccountCharacter>
     {
-        public eshEveAccountUser_Mapping()
+        public eshEveAccountCharacter_Mapping()
         {                        
-              this.HasKey(t => t.accountUserID);        
-              this.ToTable("eshEveAccountUser");
-              this.Property(t => t.accountUserID).HasColumnName("accountUserID").HasDatabaseGeneratedOption(new Nullable<DatabaseGeneratedOption>(DatabaseGeneratedOption.None));
+              this.HasKey(t => t.characterID);        
+              this.ToTable("eshEveAccountCharacter");
               this.Property(t => t.accountID).HasColumnName("accountID");
               this.Property(t => t.name).HasColumnName("name").IsRequired().HasMaxLength(250);
               this.Property(t => t.corpName).HasColumnName("corpName").IsRequired().HasMaxLength(250);
               this.Property(t => t.corpTicker).HasColumnName("corpTicker").HasMaxLength(10);
-              this.HasRequired(t => t.eshEveAccount).WithMany(t => t.eshEveAccountUsers).HasForeignKey(d => d.accountID);
+              this.Property(t => t.characterID).HasColumnName("characterID").HasDatabaseGeneratedOption(new Nullable<DatabaseGeneratedOption>(DatabaseGeneratedOption.None));
+              this.Property(t => t.eveID).HasColumnName("eveID");
+              this.Property(t => t.alliName).HasColumnName("alliName").HasMaxLength(250);
+              this.Property(t => t.alliTicker).HasColumnName("alliTicker").HasMaxLength(10);
+              this.HasRequired(t => t.eshEveAccount).WithMany(t => t.eshEveAccountCharacters).HasForeignKey(d => d.accountID);
          }
     }
 }

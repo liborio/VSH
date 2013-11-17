@@ -10,7 +10,7 @@
           <EntitySet Name="dgmTypeEffects" EntityType="EveShoppingModel.Store.dgmTypeEffects" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="eshChangeLog" EntityType="EveShoppingModel.Store.eshChangeLog" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="eshEveAccount" EntityType="EveShoppingModel.Store.eshEveAccount" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="eshEveAccountUser" EntityType="EveShoppingModel.Store.eshEveAccountUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="eshEveAccountCharacter" EntityType="EveShoppingModel.Store.eshEveAccountCharacter" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="eshFittingHardwares" EntityType="EveShoppingModel.Store.eshFittingHardwares" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="eshFittings" EntityType="EveShoppingModel.Store.eshFittings" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="eshFittingSlots" EntityType="EveShoppingModel.Store.eshFittingSlots" store:Type="Tables" Schema="dbo" />
@@ -39,7 +39,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_eshEveAccountUser_eshEveAccount" Association="EveShoppingModel.Store.FK_eshEveAccountUser_eshEveAccount">
             <End Role="eshEveAccount" EntitySet="eshEveAccount" />
-            <End Role="eshEveAccountUser" EntitySet="eshEveAccountUser" />
+            <End Role="eshEveAccountCharacter" EntitySet="eshEveAccountCharacter" />
           </AssociationSet>
           <AssociationSet Name="FK_eshFittingHardwares_eshFittings" Association="EveShoppingModel.Store.FK_eshFittingHardwares_eshFittings">
             <End Role="eshFittings" EntitySet="eshFittings" />
@@ -217,15 +217,18 @@
           <Property Name="dateCreation" Type="datetime" Nullable="false" />
           <Property Name="dateUpdate" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="eshEveAccountUser">
+        <EntityType Name="eshEveAccountCharacter">
           <Key>
-            <PropertyRef Name="accountUserID" />
+            <PropertyRef Name="characterID" />
           </Key>
-          <Property Name="accountUserID" Type="int" Nullable="false" />
+          <Property Name="characterID" Type="int" Nullable="false" />
           <Property Name="accountID" Type="int" Nullable="false" />
+          <Property Name="eveID" Type="int" Nullable="false" />
           <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="250" />
           <Property Name="corpName" Type="nvarchar" Nullable="false" MaxLength="250" />
           <Property Name="corpTicker" Type="nvarchar" MaxLength="10" />
+          <Property Name="alliName" Type="nvarchar" MaxLength="250" />
+          <Property Name="alliTicker" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="eshFittingHardwares">
           <Key>
@@ -505,12 +508,12 @@
         </Association>
         <Association Name="FK_eshEveAccountUser_eshEveAccount">
           <End Role="eshEveAccount" Type="EveShoppingModel.Store.eshEveAccount" Multiplicity="1" />
-          <End Role="eshEveAccountUser" Type="EveShoppingModel.Store.eshEveAccountUser" Multiplicity="*" />
+          <End Role="eshEveAccountCharacter" Type="EveShoppingModel.Store.eshEveAccountCharacter" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="eshEveAccount">
               <PropertyRef Name="accountID" />
             </Principal>
-            <Dependent Role="eshEveAccountUser">
+            <Dependent Role="eshEveAccountCharacter">
               <PropertyRef Name="accountID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1004,14 +1007,14 @@
             <End Role="eshTradeHubs" EntitySet="eshTradeHubs" />
           </AssociationSet>
           <EntitySet Name="eshEveAccounts" EntityType="EveShoppingModel.eshEveAccount" />
-          <EntitySet Name="eshEveAccountUsers" EntityType="EveShoppingModel.eshEveAccountUser" />
           <AssociationSet Name="FK_eshEveAccount_UserProfile" Association="EveShoppingModel.FK_eshEveAccount_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="eshEveAccount" EntitySet="eshEveAccounts" />
           </AssociationSet>
-          <AssociationSet Name="FK_eshEveAccountUser_eshEveAccount" Association="EveShoppingModel.FK_eshEveAccountUser_eshEveAccount">
+          <EntitySet Name="eshEveAccountCharacters" EntityType="EveShoppingModel.eshEveAccountCharacter" />
+          <AssociationSet Name="FK_eshEveAccountUser_eshEveAccount1" Association="EveShoppingModel.FK_eshEveAccountUser_eshEveAccount1">
             <End Role="eshEveAccount" EntitySet="eshEveAccounts" />
-            <End Role="eshEveAccountUser" EntitySet="eshEveAccountUsers" />
+            <End Role="eshEveAccountCharacter" EntitySet="eshEveAccountCharacters" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="dgmEffect">
@@ -1744,18 +1747,7 @@
           <Property Type="DateTime" Name="dateCreation" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="dateUpdate" Nullable="false" Precision="3" />
           <NavigationProperty Name="UserProfile" Relationship="EveShoppingModel.FK_eshEveAccount_UserProfile" FromRole="eshEveAccount" ToRole="UserProfile" />
-          <NavigationProperty Name="eshEveAccountUsers" Relationship="EveShoppingModel.FK_eshEveAccountUser_eshEveAccount" FromRole="eshEveAccount" ToRole="eshEveAccountUser" />
-        </EntityType>
-        <EntityType Name="eshEveAccountUser">
-          <Key>
-            <PropertyRef Name="accountUserID" />
-          </Key>
-          <Property Type="Int32" Name="accountUserID" Nullable="false" />
-          <Property Type="Int32" Name="accountID" Nullable="false" />
-          <Property Type="String" Name="name" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="corpName" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="corpTicker" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="eshEveAccount" Relationship="EveShoppingModel.FK_eshEveAccountUser_eshEveAccount" FromRole="eshEveAccountUser" ToRole="eshEveAccount" />
+          <NavigationProperty Name="eshEveAccountCharacters" Relationship="EveShoppingModel.FK_eshEveAccountUser_eshEveAccount1" FromRole="eshEveAccount" ToRole="eshEveAccountCharacter" />
         </EntityType>
         <Association Name="FK_eshEveAccount_UserProfile">
           <End Type="EveShoppingModel.UserProfile" Role="UserProfile" Multiplicity="1" />
@@ -1769,14 +1761,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_eshEveAccountUser_eshEveAccount">
+        <EntityType Name="eshEveAccountCharacter">
+          <Key>
+            <PropertyRef Name="characterID" />
+          </Key>
+          <Property Type="Int32" Name="accountID" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="corpName" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="corpTicker" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="eshEveAccount" Relationship="EveShoppingModel.FK_eshEveAccountUser_eshEveAccount1" FromRole="eshEveAccountCharacter" ToRole="eshEveAccount" />
+          <Property Type="Int32" Name="characterID" Nullable="false" />
+          <Property Type="Int32" Name="eveID" Nullable="false" />
+          <Property Type="String" Name="alliName" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="alliTicker" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_eshEveAccountUser_eshEveAccount1">
           <End Type="EveShoppingModel.eshEveAccount" Role="eshEveAccount" Multiplicity="1" />
-          <End Type="EveShoppingModel.eshEveAccountUser" Role="eshEveAccountUser" Multiplicity="*" />
+          <End Type="EveShoppingModel.eshEveAccountCharacter" Role="eshEveAccountCharacter" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="eshEveAccount">
               <PropertyRef Name="accountID" />
             </Principal>
-            <Dependent Role="eshEveAccountUser">
+            <Dependent Role="eshEveAccountCharacter">
               <PropertyRef Name="accountID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2132,14 +2138,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="eshEveAccountUsers">
-            <EntityTypeMapping TypeName="EveShoppingModel.eshEveAccountUser">
-              <MappingFragment StoreEntitySet="eshEveAccountUser">
+          <EntitySetMapping Name="eshEveAccountCharacters">
+            <EntityTypeMapping TypeName="EveShoppingModel.eshEveAccountCharacter">
+              <MappingFragment StoreEntitySet="eshEveAccountCharacter">
+                <ScalarProperty Name="alliTicker" ColumnName="alliTicker" />
+                <ScalarProperty Name="alliName" ColumnName="alliName" />
+                <ScalarProperty Name="eveID" ColumnName="eveID" />
+                <ScalarProperty Name="characterID" ColumnName="characterID" />
                 <ScalarProperty Name="corpTicker" ColumnName="corpTicker" />
                 <ScalarProperty Name="corpName" ColumnName="corpName" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="accountID" ColumnName="accountID" />
-                <ScalarProperty Name="accountUserID" ColumnName="accountUserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

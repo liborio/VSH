@@ -17,7 +17,7 @@ namespace EveShopping.Modelo
     {
         public eshEveAccount()
         {
-            this.eshEveAccountUsers = new HashSet<eshEveAccountUser>();
+            this.eshEveAccountCharacters = new HashSet<eshEveAccountCharacter>();
         }
     
         public int accountID { get; set; }
@@ -29,6 +29,6 @@ namespace EveShopping.Modelo
         public System.DateTime dateUpdate { get; set; }
     
         public virtual UserProfile UserProfile { get; set; }
-        public virtual ICollection<eshEveAccountUser> eshEveAccountUsers { get; set; }
+        public virtual ICollection<eshEveAccountCharacter> eshEveAccountCharacters { get; set; }
     }
 }

@@ -46,7 +46,7 @@ namespace EveShopping.Modelo
     		modelBuilder.Configurations.Add(new dgmTypeEffect_Mapping());
     		modelBuilder.Configurations.Add(new eshChangeLog_Mapping());
     		modelBuilder.Configurations.Add(new eshEveAccount_Mapping());
-    		modelBuilder.Configurations.Add(new eshEveAccountUser_Mapping());
+    		modelBuilder.Configurations.Add(new eshEveAccountCharacter_Mapping());
     		modelBuilder.Configurations.Add(new eshFitting_Mapping());
     		modelBuilder.Configurations.Add(new eshFittingHardware_Mapping());
     		modelBuilder.Configurations.Add(new eshFittingSlot_Mapping());
@@ -97,6 +97,6 @@ namespace EveShopping.Modelo
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<webpages_Roles> webpages_Roles { get; set; }
         public DbSet<eshEveAccount> eshEveAccounts { get; set; }
-        public DbSet<eshEveAccountUser> eshEveAccountUsers { get; set; }
+        public DbSet<eshEveAccountCharacter> eshEveAccountCharacters { get; set; }
     }
 }
