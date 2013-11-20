@@ -49,7 +49,7 @@
             }
             @if (Model.ShowPriceAndVolume)
             {
-                <span>(@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.TotalPrice) - @item.Volume m3)</span>
+                <span>(@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.TotalPrice) - @string.Format("{0} m3", EveShopping.Web.VSHMappings.GetNormalizedNumber( item.Volume)))</span>
             }
 
         </span>

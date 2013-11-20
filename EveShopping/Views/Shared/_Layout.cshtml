@@ -57,6 +57,7 @@
                     </div>
                     <div class="header-subtitle">
                         <span>A shopping lists manager for EVE Online.</span>
+
                     </div>
             </div>
                 <div>
@@ -64,13 +65,6 @@
 
                 </div>
                 </div>
-                        @*            <nav>
-                <ul>
-                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { id = "navlink_home" })</li>
-                    <li>@Html.ActionLink("New List", "New", "Lists", null, new { id = "navlink_newList" })</li>
-                    <li><a href="#" id="navlink_about">About</a></li>
-                </ul>
-            </nav>*@
         </header>
     </div>
     <div class="nav-container">
@@ -79,12 +73,8 @@
             <li>@Html.ActionLink("New list", "New", "Lists", null, new { id = "navlink_newList" })</li>
             @if (Request.IsAuthenticated)
             {
-
                 <li><a href="~/Fittings/MyFittings">My fittings[<span id="fittingCount">@ViewBag.FittingCount</span>]</a></li>
                 <li><a href="~/Lists/MyLists">My lists[<span id="listCount">@ViewBag.ListCount</span>]</a></li>
-@*
-            <li>@Html.ActionLink(string.Format("{0}({1})", "My fittings", Model.FittingCount), "MyFittings", "Fittings", null, new { id = "navlink_newList" })</li>
-            <li>@Html.ActionLink(string.Format("{0}({1})", "My lists", Model.ListCount), "MyLists", "Lists", null, new { id = "navlink_newList" })</li>*@
                 <li>
                     @Html.ActionLink("My account", "Manage", "Account", routeValues: null, htmlAttributes: new { })
                 </li>
@@ -92,7 +82,6 @@
             <li>@Html.ActionLink("Videos", "Videos", "Home", null, null)</li>
             <li>@Html.ActionLink("About", "About", "Home", null, null)</li>
         </ul>
-
     </div>
 
     <div class="main-container">

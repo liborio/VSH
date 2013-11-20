@@ -11,7 +11,7 @@
         <h3 class="main-title clearfix"><span>Fits in shopping list </span><span class="right">
             @if (Model.Fittings != null && Model.Fittings.Fittings != null && Model.Fittings.Fittings.Count() > 0)
             {
-                <span id="total-price-vol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalPrice(Model.Fittings.Fittings)) - @EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalVolume(Model.Fittings.Fittings) m3</span>
+                <span id="total-price-vol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalPrice(Model.Fittings.Fittings)) - @string.Format("{0} m3", EveShopping.Web.VSHMappings.GetNormalizedNumber( EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalVolume(Model.Fittings.Fittings)))</span>
             }
             else
             {

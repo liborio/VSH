@@ -195,6 +195,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BackloadDemoController.cs" />
     <Compile Include="Controllers\ChangesController.cs" />
+    <Compile Include="Controllers\FeedsController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\SController.cs" />
     <Compile Include="Controllers\VSHBaseController.cs" />

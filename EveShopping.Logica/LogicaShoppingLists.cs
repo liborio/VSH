@@ -843,7 +843,7 @@ namespace EveShopping.Logica
             EveShoppingContext context = new EveShoppingContext();
 
 
-            var qmi =
+            var query =
                 (from sl in context.eshShoppingLists
                  join slit in context.eshShoppingListInvTypes on sl.shoppingListID equals slit.shoppingListID
                  join it in context.invTypes on slit.typeID equals it.typeID
@@ -857,7 +857,8 @@ namespace EveShopping.Logica
                      TotalPrice = p.avg * slit.units,
                      Volume = it.volume.Value * slit.units,
                      ItemType = it
-                 }).FirstOrDefault();
+                 });
+            var qmi = query.FirstOrDefault();
             MarketItem mi = new MarketItem()
             {
                 ItemID = qmi.ItemID,

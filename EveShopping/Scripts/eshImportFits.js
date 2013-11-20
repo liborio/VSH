@@ -91,8 +91,11 @@ function onSetUnitsInShoppingListSuccess(data) {
 
         $('#fitsInList').find('[data-esh-edit-link]').hide();
         $('#fitsInList').find('[data-esh-del-fit-link]').hide();
-        var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='4' class='col-edit'><span><a onclick=\"setUnitsItemInShoppingList('" + id + "')\">Set</a> <input  data-esh-units type='number' min='1' value='" + units + "'>units</span><span><a onclick=\"cancelEditItemInShoppingList('" + id + "')\">Close edit</a></span>";
+        var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-edit><td colspan='4' class='col-edit'><span><input  data-esh-units type='number' min='1' value='" + units + "'>units</span><span><a onclick=\"setUnitsItemInShoppingList('" + id + "')\">Save</a></span><span><a onclick=\"cancelEditItemInShoppingList('" + id + "')\">Cancel edit</a></span>";
+        var filaControlesAdd = "<tr class='fila-impar' data-esh-row-edit><td colspan='5' class='col-edit'><div style='float: left;'><div><span><a onclick=\"addUnitsItemInShoppingList(1)\">+1</a></span></div><div><span><a onclick=\"addUnitsItemInShoppingList(-1)\">-1</a></span></div></div><div style='float: left;'><div><span><a onclick=\"addUnitsItemInShoppingList(10)\">+10</a></span></div><div><span><a onclick=\"addUnitsItemInShoppingList(-10)\">-10</a></span></div></div><div style='float: left;'><div><span><a onclick=\"addUnitsItemInShoppingList(100)\">+100</a></span></div><div><span><a onclick=\"addUnitsItemInShoppingList(-100)\">-100</a></span></div></div>"
+
         $(filaControlesEdicion).insertBefore(row);
+        $(filaControlesAdd).insertBefore(row);
 
         var acc = $('#fitsInList');
 
@@ -109,6 +112,14 @@ function onSetUnitsInShoppingListSuccess(data) {
         //$('[data-esch-marketitemsinshoppinglist]').find('[data-esh-row-edit]').find('input:text').focus();
     }
 
+    function addUnitsItemInShoppingList(units) {
+        var unidades = parseInt($("input[data-esh-units]").val());
+        unidades += units;
+        if (unidades < 0) {
+            unidades = 0;
+        }
+        $("input[data-esh-units]").val(unidades);
+    }
 
     function delFitInShoppingList(id) {
         confirmDialog.show("Are you sure to delete the fit from your shopping list?", function () { deleteItemInShoppingList(id); });

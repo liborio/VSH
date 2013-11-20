@@ -21,7 +21,7 @@
             </span>
         }
     </span>
-    <span class="right">x @Model.Units (@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.TotalPrice) - @Model.Volume m3)</span>
+    <span class="right">x @Model.Units (@EveShopping.Web.VSHMappings.GetNormalizedPrice(Model.TotalPrice) - @string.Format("{0} m3", EveShopping.Web.VSHMappings.GetNormalizedNumber( Model.Volume))</span>
 
 </h3>
 

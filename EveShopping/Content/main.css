@@ -386,6 +386,11 @@ nav a {
         width: 28%;
     }
 
+    .main aside.twitter {
+        padding: 0 0 0 0;
+        width: 38%;
+    }
+
     .width33 {
         width: 32%;
     }
