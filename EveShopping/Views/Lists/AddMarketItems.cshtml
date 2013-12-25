@@ -45,7 +45,7 @@
         @Html.ActionLink("<< Ship fittings", "ImportFits", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
         @{ ViewBag.ListDoesntHaveOwner = Model.IsShoppingListFree;  }
         @Html.Partial("PVIncludeListInMyLists")
-        @Html.ActionLink("Summary >>", "Summary", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
+        @Html.ActionLink("My assets>>", "MyAssets", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
     </div>
 
 </div>
@@ -78,14 +78,7 @@
     }
 
 @section subheader{
-    <div id="subheader-container" class="wrapper clearfix">
-        <ul id="menu-pasos">
-            <li>@Html.ActionLink("Ship fittings", "ImportFits", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
-            <li class="selected">@Html.ActionLink("Market items", "AddMarketItems", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
-            <li>@Html.ActionLink("Summary", "Summary", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
-        </ul>
-    </div>
-
+    @Html.Partial("PVListNavMenu", Model.ListNavMenu)
 }
 
 @section ayuda{

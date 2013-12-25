@@ -10,5 +10,7 @@ namespace EveShopping.Models
     {
         public string ShoppingListName { get; set; }
         public bool IsShoppingListFree { get; set; }
+        public bool allowEdit { get; set; }
+        public EDPVListNavMenu ListNavMenu { get; set; }
     }
 }

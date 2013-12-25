@@ -6,9 +6,8 @@ using System.Web;
 
 namespace EveShopping.Models
 {
-    public class EDVImportFits : EDVShopingListBase
+    public class EDVMyAssets : EDVShopingListBase
     {
-        public EDVFittingsList Fittings { get; set; }
-        public EDVMyFittings MyFittings { get; set; }
+        public EVListSummary Summary { get; set; }
     }
 }

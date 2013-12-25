@@ -13,7 +13,5 @@ namespace EveShopping.Models
         public string ItemArray { get; set; }
         public EVListSummary Summary { get; set; }
         public IEnumerable<EVStaticList> StaticLists {get; set;}
-
-        public bool allowEdit {get; set;}
     }
 }

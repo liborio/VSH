@@ -24,6 +24,14 @@ namespace EveShopping.Modelo
             DroneBay = 5,
             Cargo = 6
         }
+
+        public enum StepsForPVPList
+        {
+            AddFits,
+            AddMarketItems,
+            MyAssets,
+            Summary            
+        }
     }
 
 }

@@ -18,7 +18,7 @@
                 <span id="total-price-vol"></span>
             }
 
-        </span></h3>
+        </span></h3>    
         @if(Model.allowEdit){
         <p>It is possible to change the units that you want for each fit in your shopping list.</p>
         }
@@ -84,14 +84,7 @@
 }
 
 @section subheader{
-    <div id="subheader-container" class="wrapper clearfix">
-        <ul id="menu-pasos">
-            <li class="selected">@Html.ActionLink("Ship fittings", "ImportFits", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
-            <li>@Html.ActionLink("Market items", "AddMarketItems", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
-            <li>@Html.ActionLink("Summary", "Summary", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
-        </ul>
-    </div>
-
+    @Html.Partial("PVListNavMenu", Model.ListNavMenu)
 }
 
 @section ayuda{

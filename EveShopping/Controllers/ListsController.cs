@@ -18,16 +18,7 @@ namespace EveShopping.Controllers
 {
     public class ListsController : VSHBaseController
     {
-        //
-        // GET: /Lists/
-
-        public ActionResult Index()
-        {
-
-            return View();
-        }
-
-        #region Import Fits
+        #region Create and delete
 
         public ActionResult New()
         {
@@ -97,6 +88,88 @@ namespace EveShopping.Controllers
             }
         }
 
+        #endregion
+
+
+        #region MyAssets
+
+        public ActionResult MyAssets(string id = null)
+        {
+            if (id == null)
+            {
+                id = Guid.NewGuid().ToString();
+                return RedirectToAction("New", new { id = id });
+            }
+
+            EstadoUsuario.CurrentListPublicId = id;
+
+            EDVMyAssets edv = new EDVMyAssets();
+            SetHeadCounters();
+
+            ViewBag.PublicID = id;
+            AgenteShoppingList agente = new AgenteShoppingList();
+
+            edv.allowEdit = agente.IsShoppingListOwner(EstadoUsuario.CurrentListPublicId, this.User.Identity == null ? null : this.User.Identity.Name);
+
+            //Guardamos la shopping list en las de un usuario si se indica en la url
+            agente.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);
+
+            EVListSummary summ = agente.SelectListSummaryPorPublicID(id);
+
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string itemArray = serializer.Serialize(summ.Items);
+
+            edv.Summary = summ;
+            edv.IsShoppingListFree = agente.IsShoppingListFree(id);
+
+            edv.ListNavMenu = new EDPVListNavMenu(Modelo.Enumerados.StepsForPVPList.MyAssets);
+
+            return View(edv);
+
+        }
+
+        #endregion
+
+        #region Summary
+
+        public ActionResult Summary(string id = null)
+        {
+            if (id == null)
+            {
+                id = Guid.NewGuid().ToString();
+                return RedirectToAction("New", new { id = id });
+            }
+
+            EstadoUsuario.CurrentListPublicId = id;
+
+            EDVSummary edv = new EDVSummary();
+            SetHeadCounters();
+
+
+            ViewBag.PublicID = id;
+            AgenteShoppingList agente = new AgenteShoppingList();
+
+            edv.allowEdit = agente.IsShoppingListOwner(EstadoUsuario.CurrentListPublicId, this.User.Identity == null ? null : this.User.Identity.Name);
+
+            //Guardamos la shopping list en las de un usuario si se indica en la url
+            agente.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);
+
+            EVListSummary summ = agente.SelectListSummaryPorPublicID(id);
+
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string itemArray = serializer.Serialize(summ.Items);
+
+            edv.StaticLists = agente.SelectStaticListsByShoppingListPublicID(id);
+
+            edv.ItemArray = itemArray;
+            edv.Summary = summ;
+            edv.IsShoppingListFree = agente.IsShoppingListFree(id);
+
+            edv.ListNavMenu = new EDPVListNavMenu(Modelo.Enumerados.StepsForPVPList.Summary);
+
+
+            return View(edv);
+        }
 
 
         [HttpPost]
@@ -110,12 +183,156 @@ namespace EveShopping.Controllers
         }
 
 
+
+        public ActionResult GetList(string id)
+        {
+            SetHeadCounters();
+
+
+            AgenteShoppingList agente = new AgenteShoppingList();
+            EVListSummary summ = agente.SelectListSummaryPorPublicIDRead(id);
+
+            ViewBag.PublicID = id;
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string itemArray = serializer.Serialize(summ.Items);
+
+
+            EDVSummary edv = new EDVSummary();
+            edv.ItemArray = itemArray;
+            edv.Summary = summ;
+
+
+            if (summ.PublicID == id)
+            {
+                //Guardamos la shopping list en las de un usuario si se indica en la url
+                agente.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);
+                edv.IsShoppingListFree = agente.IsShoppingListFree(id);
+                return View("Summary", edv);
+            }
+            else
+            {
+                return View("Public", edv);
+            }
+
+
+        }
+        
+        #endregion
+
+        #region Market Items
+
+        public ActionResult AddMarketItems(string id)
+        {
+            if (id == null)
+            {
+                id = Guid.NewGuid().ToString();
+                return RedirectToAction("New", new { id = id });
+            }
+
+            this.ViewBag.PublicID = id;
+
+            EstadoUsuario.CurrentListPublicId = id;
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ApplicationException(Messages.err_requestWithoutPublicID);
+            }
+            AgenteMarketItems agente = new AgenteMarketItems();
+            AgenteShoppingList agenteShList = new AgenteShoppingList();
+
+
+
+            //Guardamos la shopping list en las de un usuario si se indica en la url
+            agenteShList.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);
+
+
+            IEnumerable<EVMarketItem> marketItems = agente.SelectMarketGroupsByParentID(null);
+            IEnumerable<MarketItem> marketItemsEnShoppingList = agenteShList.SelectMarketItemsEnShoppingList(id);
+            EDVAddMarketItems edv = new EDVAddMarketItems();
+            edv.allowEdit = agenteShList.IsShoppingListOwner(EstadoUsuario.CurrentListPublicId, this.User.Identity == null ? null : this.User.Identity.Name);
+            SetHeadCounters();
+            edv.MarketItems = marketItems;
+            edv.IsShoppingListFree = agenteShList.IsShoppingListFree(id);
+            edv.MarketItemsEnShoppingList = marketItemsEnShoppingList;
+
+            edv.ListNavMenu = new EDPVListNavMenu(Modelo.Enumerados.StepsForPVPList.AddMarketItems);
+
+            return View(edv);
+        }
+
+        public PartialViewResult SearchMarketItem(string id)
+        {
+            AgenteMarketItems agente = new AgenteMarketItems();
+            IEnumerable<EVMarketItem> items = agente.SearchMarketItems(id).ToList();
+            return PartialView("PVSearchMarketItem", items);
+        }
+
+        public PartialViewResult NavigateMarketGroup(int id)
+        {
+            AgenteMarketItems agente = new AgenteMarketItems();
+            IEnumerable<EVMarketItem> marketItems = agente.SelectMarketGroupsByParentID(id);
+            IList<invMarketGroup> marketChain = agente.GetParentGroupsChain(id);
+
+            invMarketGroup groupActual = marketChain.Last();
+            marketChain.Remove(groupActual);
+
+            EDVAddMarketItems edv = new EDVAddMarketItems();
+            edv.MarketItems = marketItems;
+            edv.MarketChain = marketChain;
+            edv.GroupName = groupActual.marketGroupName;
+            return PartialView("PVMarketMenu", edv);
+        }
+
+        public PartialViewResult UpdateMarketItemToShoppingList(int id, int units = 1)
+        {
+            AgenteShoppingList agente = new AgenteShoppingList();
+            MarketItem item = agente.AddOrUpdateMarketItemEnShoppingList(EstadoUsuario.CurrentListPublicId, id, units);
+
+            return PartialView("PVMarketItemEnShoppingList", item);
+        }
+
+        public EmptyResult UpdateDeltaInSummary(int id, int units = 0)
+        {
+            AgenteShoppingList agente = new AgenteShoppingList();
+            agente.UpdateDeltaToSummary(EstadoUsuario.CurrentListPublicId, id, units);
+
+            return new EmptyResult();
+        }
+
+        [HttpPost]
+        public ActionResult ClearAllDelta(string id)
+        {
+            try
+            {
+                AgenteShoppingList agente = new AgenteShoppingList();
+                agente.ClearAllDeltaInSummary(id);
+                return new EmptyResult();
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+            }
+
+        }
+
+        public ActionResult DeleteMarketItemToShoppingList(int id)
+        {
+            AgenteShoppingList agente = new AgenteShoppingList();
+            agente.DeleteMarketItemEnShoppingList(EstadoUsuario.CurrentListPublicId, id);
+
+            return null;
+        }
+
+
+        #endregion
+
+        #region Fittings
+
         public ActionResult ImportFits(string id = null)
         {
             if (id == null)
             {
                 id = Guid.NewGuid().ToString();
-                return RedirectToAction("ImportFits", new { id = id });
+                return RedirectToAction("New", new { id = id });
             }
             this.ViewBag.PublicID = id;
 
@@ -145,6 +362,8 @@ namespace EveShopping.Controllers
                 edv.MyFittings = edvmyfit;
                 SetupFitListForImportMenu(edvmyfit.Fittings);
             }
+
+            edv.ListNavMenu = new EDPVListNavMenu(Modelo.Enumerados.StepsForPVPList.MyAssets);
 
             return View(edv);
         }
@@ -189,174 +408,6 @@ namespace EveShopping.Controllers
                 edv.DivID = "myFitList";
             }
         }
-
-        public ActionResult GetList(string id)
-        {
-            SetHeadCounters();
-
-
-            AgenteShoppingList agente = new AgenteShoppingList();
-            EVListSummary summ = agente.SelectListSummaryPorPublicIDRead(id);
-
-            ViewBag.PublicID = id;
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            string itemArray = serializer.Serialize(summ.Items);
-
-
-            EDVSummary edv = new EDVSummary();
-            edv.ItemArray = itemArray;
-            edv.Summary = summ;
-
-
-            if (summ.PublicID == id)
-            {
-                //Guardamos la shopping list en las de un usuario si se indica en la url
-                agente.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);
-                edv.IsShoppingListFree = agente.IsShoppingListFree(id);
-                return View("Summary", edv);
-            }
-            else
-            {
-                return View("Public", edv);
-            }
-
-
-        }
-
-        [Authorize]
-        public ActionResult MyLists()
-        {
-            AgenteShoppingList agente = new AgenteShoppingList();
-            IEnumerable<EVShoppingListHeader> lists =
-                agente.SelectShoppingListsByUserName(User.Identity.Name);
-            AgenteGroupLists agenteGroup = new AgenteGroupLists();
-            IEnumerable<EVShoppingListHeader> groupLists =
-                agenteGroup.SelectGroupListsByUserName(User.Identity.Name);
-            EDVMyLists edv = new EDVMyLists()
-            {
-                Lists = lists,
-                GroupLists = groupLists
-            };
-            SetHeadCounters();
-            return View(edv);
-        }
-
-        public ActionResult Summary(string id = null)
-        {
-            if (id == null)
-            {
-                id = EstadoUsuario.CurrentListPublicId;
-            }
-            EstadoUsuario.CurrentListPublicId = id;
-
-            EDVSummary edv = new EDVSummary();
-            SetHeadCounters();
-
-
-            ViewBag.PublicID = id;
-            AgenteShoppingList agente = new AgenteShoppingList();
-
-            edv.allowEdit = agente.IsShoppingListOwner(EstadoUsuario.CurrentListPublicId, this.User.Identity == null ? null : this.User.Identity.Name);
-
-            //Guardamos la shopping list en las de un usuario si se indica en la url
-            agente.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);
-
-            EVListSummary summ = agente.SelectListSummaryPorPublicID(id);
-
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            string itemArray = serializer.Serialize(summ.Items);
-
-            edv.StaticLists = agente.SelectStaticListsByShoppingListPublicID(id);
-
-            edv.ItemArray = itemArray;
-            edv.Summary = summ;
-            edv.IsShoppingListFree = agente.IsShoppingListFree(id);
-
-            return View(edv);
-        }
-
-        public ActionResult Static(string id )
-        {
-            SetHeadCounters();
-            EDVStatic list = new EDVStatic();
-            AgenteShoppingList agente = new AgenteShoppingList();
-            list.StaticLists = agente.SelectStaticListByPublicID(id);
-            
-            return View(list);
-        }
-
-        public ActionResult GetShoppingListsByListPublicIDMyLists(string id)
-        {
-            ViewBag.AllowDelete = false;
-            return GetShoppingListsByListPublicID(id);
-        }
-
-        public ActionResult GetShoppingListsByListPublicID(string id)
-        {
-            AgenteShoppingList agente =
-                new AgenteShoppingList();
-            IEnumerable<EVStaticList> sslist = agente.SelectStaticListsByShoppingListPublicID(id);
-
-            return PartialView("PVStaticShoppingLists", sslist);
-        }
-
-        public ActionResult NewStaticShoppingList()
-        {
-            AgenteShoppingList agente =
-                new AgenteShoppingList();
-            agente.CreateStaticShoppingList(EstadoUsuario.CurrentListPublicId);
-            return GetShoppingListsByListPublicID(EstadoUsuario.CurrentListPublicId);
-        }
-
-        [HttpPost]
-        public ActionResult DeleteStaticShoppingList(string id)
-        {
-            try
-            {
-                AgenteShoppingList agente =
-                    new AgenteShoppingList();
-                string userName = null;
-                if (Request.IsAuthenticated)
-                {
-                    userName = User.Identity.Name;
-                }
-                agente.DeleteStaticShoppingList(id, userName);
-                return GetShoppingListsByListPublicID(EstadoUsuario.CurrentListPublicId);
-
-            }
-            catch (Exception ex)
-            {
-
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "The static list doesnt exist or you don't have the right to delete it.");
-            }
-        }
-
-        public ActionResult Public(string id)
-        {
-            AgenteShoppingList agente = new AgenteShoppingList();
-            EVListSummary summ = agente.SelectListSummaryPorPublicIDRead(id);
-
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            string itemArray = serializer.Serialize(summ.Items);
-
-            ViewBag.PublicID = id;
-
-            EDVSummary edv = new EDVSummary();
-            edv.ItemArray = itemArray;
-            edv.Summary = summ;
-
-            return View(edv);
-        }
-
-
-        //public JsonResult SummaryData(string id = null)
-        //{
-        //    AgenteShoppingList agente = new AgenteShoppingList();
-        //    EVListSummary summ = agente.SelectListSummaryPorPublicID(id);
-
-        //    return Json(summ.Items, JsonRequestBehavior.AllowGet);
-        //}
-
 
         [HttpPost()]
         [ValidateInput(false)]
@@ -457,7 +508,7 @@ namespace EveShopping.Controllers
                     evfit = agente.SelectFitPorID(EstadoUsuario.CurrentListPublicId, fitID);
                 }
                 catch (Exception ex)
-                {                    
+                {
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
                 }
 
@@ -496,103 +547,127 @@ namespace EveShopping.Controllers
 
         #endregion
 
+        #region Industry
 
-        #region Add Market Items
-
-        public ActionResult AddMarketItems(string id)
+        public ActionResult Industry(string id)
         {
+            if (id == null)
+            {
+                id = Guid.NewGuid().ToString();
+                return RedirectToAction("New", new { id = id });
+            }
             this.ViewBag.PublicID = id;
 
-            EstadoUsuario.CurrentListPublicId = id;
-            if (string.IsNullOrEmpty(id))
-            {
-                throw new ApplicationException(Messages.err_requestWithoutPublicID);
-            }
-            AgenteMarketItems agente = new AgenteMarketItems();
-            AgenteShoppingList agenteShList = new AgenteShoppingList();
+            EDVListsIndustry edv = new EDVListsIndustry();
 
-
-
-            //Guardamos la shopping list en las de un usuario si se indica en la url
-            agenteShList.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);
-
-
-            IEnumerable<EVMarketItem> marketItems = agente.SelectMarketGroupsByParentID(null);
-            IEnumerable<MarketItem> marketItemsEnShoppingList = agenteShList.SelectMarketItemsEnShoppingList(id);
-            EDVAddMarketItems edv = new EDVAddMarketItems();
-            edv.allowEdit = agenteShList.IsShoppingListOwner(EstadoUsuario.CurrentListPublicId, this.User.Identity == null ? null : this.User.Identity.Name);
-            SetHeadCounters();
-            edv.MarketItems = marketItems;
-            edv.IsShoppingListFree = agenteShList.IsShoppingListFree(id);
-            edv.MarketItemsEnShoppingList = marketItemsEnShoppingList;
             return View(edv);
         }
 
-        public PartialViewResult SearchMarketItem(string id)
+        #endregion
+
+        public ActionResult Index()
         {
-            AgenteMarketItems agente = new AgenteMarketItems();
-            IEnumerable<EVMarketItem> items = agente.SearchMarketItems(id).ToList();
-            return PartialView("PVSearchMarketItem", items);
+
+            return View();
         }
 
-        public PartialViewResult NavigateMarketGroup(int id)
-        {
-            AgenteMarketItems agente = new AgenteMarketItems();
-            IEnumerable<EVMarketItem> marketItems = agente.SelectMarketGroupsByParentID(id);
-            IList<invMarketGroup> marketChain = agente.GetParentGroupsChain(id);
 
-            invMarketGroup groupActual = marketChain.Last();
-            marketChain.Remove(groupActual);
-
-            EDVAddMarketItems edv = new EDVAddMarketItems();
-            edv.MarketItems = marketItems;
-            edv.MarketChain = marketChain;
-            edv.GroupName = groupActual.marketGroupName;
-            return PartialView("PVMarketMenu", edv);
-        }
-
-        public PartialViewResult UpdateMarketItemToShoppingList(int id, int units = 1)
+        [Authorize]
+        public ActionResult MyLists()
         {
             AgenteShoppingList agente = new AgenteShoppingList();
-            MarketItem item = agente.AddOrUpdateMarketItemEnShoppingList(EstadoUsuario.CurrentListPublicId, id, units);
-
-            return PartialView("PVMarketItemEnShoppingList", item);
+            IEnumerable<EVShoppingListHeader> lists =
+                agente.SelectShoppingListsByUserName(User.Identity.Name);
+            AgenteGroupLists agenteGroup = new AgenteGroupLists();
+            IEnumerable<EVShoppingListHeader> groupLists =
+                agenteGroup.SelectGroupListsByUserName(User.Identity.Name);
+            EDVMyLists edv = new EDVMyLists()
+            {
+                Lists = lists,
+                GroupLists = groupLists
+            };
+            SetHeadCounters();
+            return View(edv);
         }
 
-        public EmptyResult UpdateDeltaInSummary(int id, int units = 0)
-        {
-            AgenteShoppingList agente = new AgenteShoppingList();
-            agente.UpdateDeltaToSummary(EstadoUsuario.CurrentListPublicId, id, units);
 
-            return new EmptyResult();
+        public ActionResult Static(string id )
+        {
+            SetHeadCounters();
+            EDVStatic list = new EDVStatic();
+            AgenteShoppingList agente = new AgenteShoppingList();
+            list.StaticLists = agente.SelectStaticListByPublicID(id);
+            
+            return View(list);
+        }
+
+        public ActionResult GetShoppingListsByListPublicIDMyLists(string id)
+        {
+            ViewBag.AllowDelete = false;
+            return GetShoppingListsByListPublicID(id);
+        }
+
+        public ActionResult GetShoppingListsByListPublicID(string id)
+        {
+            AgenteShoppingList agente =
+                new AgenteShoppingList();
+            IEnumerable<EVStaticList> sslist = agente.SelectStaticListsByShoppingListPublicID(id);
+
+            return PartialView("PVStaticShoppingLists", sslist);
+        }
+
+        public ActionResult NewStaticShoppingList()
+        {
+            AgenteShoppingList agente =
+                new AgenteShoppingList();
+            agente.CreateStaticShoppingList(EstadoUsuario.CurrentListPublicId);
+            return GetShoppingListsByListPublicID(EstadoUsuario.CurrentListPublicId);
         }
 
         [HttpPost]
-        public ActionResult ClearAllDelta(string id)
+        public ActionResult DeleteStaticShoppingList(string id)
         {
             try
             {
-                AgenteShoppingList agente = new AgenteShoppingList();
-                agente.ClearAllDeltaInSummary(id);
-                return new EmptyResult();
+                AgenteShoppingList agente =
+                    new AgenteShoppingList();
+                string userName = null;
+                if (Request.IsAuthenticated)
+                {
+                    userName = User.Identity.Name;
+                }
+                agente.DeleteStaticShoppingList(id, userName);
+                return GetShoppingListsByListPublicID(EstadoUsuario.CurrentListPublicId);
+
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "The static list doesnt exist or you don't have the right to delete it.");
             }
-            
         }
 
-        public ActionResult DeleteMarketItemToShoppingList(int id)
+        public ActionResult Public(string id)
         {
             AgenteShoppingList agente = new AgenteShoppingList();
-            agente.DeleteMarketItemEnShoppingList(EstadoUsuario.CurrentListPublicId, id);
+            EVListSummary summ = agente.SelectListSummaryPorPublicIDRead(id);
 
-            return null;
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string itemArray = serializer.Serialize(summ.Items);
+
+            ViewBag.PublicID = id;
+
+            EDVSummary edv = new EDVSummary();
+            edv.ItemArray = itemArray;
+            edv.Summary = summ;
+
+            return View(edv);
         }
 
 
-        #endregion
+
+
+
 
 
                 

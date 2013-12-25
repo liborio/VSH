@@ -221,13 +221,16 @@
     <Compile Include="Models\EDVGroupSummary.cs" />
     <Compile Include="Models\EDVImportFits.cs" />
     <Compile Include="Models\EDVImportLinks.cs" />
+    <Compile Include="Models\EDVListsIndustry.cs" />
     <Compile Include="Models\EDVMyFittings.cs" />
     <Compile Include="Models\EDVMyLists.cs" />
+    <Compile Include="Models\EDPVListNavMenu.cs" />
     <Compile Include="Models\EDVShopingListBase.cs" />
     <Compile Include="Models\EDVShopping.cs" />
     <Compile Include="Models\EDVStatic.cs" />
     <Compile Include="Models\EDVSummary.cs" />
     <Compile Include="Models\EDVFittingsList.cs" />
+    <Compile Include="Models\EDVMyAssets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.log4net.cs" />
   </ItemGroup>
@@ -444,6 +447,7 @@
     <Content Include="Content\zocial\zocial.css" />
     <Content Include="favicon.ico" />
     <Content Include="Scripts\eshAccountManage.js" />
+    <Content Include="Scripts\eshMyAssets.js" />
     <Content Include="Scripts\eshMyFittings.js" />
     <Content Include="Scripts\eshMyLists.js" />
     <Content Include="Scripts\eshpAnalyseFits.js" />
@@ -640,6 +644,11 @@
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Home\Scenarios.cshtml" />
     <Content Include="Views\Account\PVNewEVEAccount.cshtml" />
+    <Content Include="Views\Lists\Industry.cshtml" />
+    <Content Include="Views\Lists\MyAssets.cshtml" />
+    <Content Include="Views\Lists\PVListNavMenu.cshtml" />
+    <Content Include="Views\Lists\PVMyAssetsItems.cshtml" />
+    <Content Include="Views\Lists\PVImportAssets.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>

@@ -1,0 +1,77 @@
+﻿@model EveShopping.Models.EDVListsIndustry
+
+@{
+    ViewBag.Title = "Industry jobs";
+    ViewBag.FullTitle = "EVE-shopping list industry jobs: " + Model.ShoppingListName;
+    ViewBag.allowEdit = Model.allowEdit;
+}
+
+<div id="list-main">
+    <div class="inside-section">
+        <h3 class="main-title clearfix"><span>Blueprints in shopping list </span><span class="right">
+        </span></h3>    
+        @if(Model.allowEdit){
+        <p>It is possible to change the runs and parameters of each blueprint.</p>
+        }
+
+        <div id="links-navegacion-pasos-container">
+            @{ ViewBag.ListDoesntHaveOwner = Model.IsShoppingListFree;  }
+            @Html.Partial("PVIncludeListInMyLists")
+            @Html.ActionLink("Ship fittings >>", "ImportFits", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
+            @Html.ActionLink("Market items >>", "AddMarketItems", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
+        </div>
+
+    </div>
+</div>
+
+<input id="fitPublicId" type="hidden" value="@ViewBag.FitPublicId" />
+
+
+@section scripts{
+
+    @if (Request.IsAuthenticated)
+    {
+        <script type="text/javascript">
+            general.authenticated = true;
+        </script>
+    }
+
+
+    @Scripts.Render("~/bundles/fileUpload/bootstrap/Basic/js")
+    @Styles.Render("~/bundles/fileupload/bootstrap/BasicPlusUI/css")
+
+    <script src="~/Scripts/eshpFits.js" type="text/javascript">
+    </script>
+    <script src="~/Scripts/eshImportFits.js" type="text/javascript">
+    </script>
+    <script src="~/Scripts/eshUploadXML.js" type="text/javascript">
+    </script>
+    <!-- We use Backloads. bundeling feature to register only those client side javascript and style files of the jQuery File Upload Plugin that are needed  -->
+
+}
+
+@if (Model.allowEdit)
+{
+
+    @section izquierda{
+        <div id="list-left-menu">
+            <div class="inside-section" id="import-fits-accordion">
+                @if (Request.IsAuthenticated)
+                {
+                    <h3>My personal blueprints</h3>
+                }
+            </div>
+        </div>
+    }
+}
+
+@section subheader{
+    <div id="subheader-container" class="wrapper clearfix">
+        <ul id="menu-pasos">
+            <li class="selected">@Html.ActionLink("Ship fittings", "ImportFits", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
+            <li>@Html.ActionLink("Market items", "AddMarketItems", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
+            <li>@Html.ActionLink("Summary", "Summary", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
+        </ul>
+    </div>
+
+}

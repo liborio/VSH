@@ -1,0 +1,81 @@
+﻿@model EveShopping.Models.EDVMyAssets
+
+@{
+    ViewBag.Title = "My assets";
+    ViewBag.FullTitle = "EVE-shopping, my assets:  " + Model.Summary.Name;
+    ViewBag.allowEdit = Model.allowEdit;
+}
+
+<div id="list-main">
+    <div class="inside-section">
+
+        <h3 class="main-title clearfix"><span>My assets</span>
+            <span class="margin-left" style="margin-left: 1em; vertical-align: bottom">@TwitterGoodies.TweetButton(TwitterGoodies.DataCount.None, string.Format("Shopping list - {0}: ", @Model.Summary.Name), string.Format("http://eve-shopping.com/s/nsl/{0}", @Model.Summary.PublicID), TwitterGoodies.Languages.English, "", "", "")</span>
+
+            @*            <div class="fb-share-button margin-left" data-href="http://developers.facebook.com/docs/plugins/" data-type="button"></div>*@
+
+            <span class="right">
+                @if (Model.Summary.Items.Count() > 0)
+                {
+                    <span id="total-price-vol">@EveShopping.Web.VSHMappings.GetNormalizedPrice(EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalPrice(this.Model.Summary.Items)) - @EveShopping.Web.VSHMappings.GetNormalizedNumber(EveShopping.Web.Agentes.AgenteShoppingList.CalculateTotalVolume(this.Model.Summary.Items)) m3</span>
+                }
+
+            </span>
+        </h3>
+
+        <div id="itemsInSummary" class="subs-wrapper">
+            @if (Model.allowEdit)
+            {
+                <p>Items contained in the shopping list. You can edit to add or remove units (+ / - column) from the amount that you added previously in the <strong>Add ship fittings</strong> and <strong>Add market items</strong> screens.</p>
+                <p>Adjusting the units that you want may be useful if you already have some of the items in the hangar and dont want to buy all units needed for your fits.</p>
+            }
+            @Html.Partial("PVMyAssetsItems", Model.Summary)
+            @if (Model.allowEdit)
+            {
+                <a id="lnkClearAllDelta" onclick="clearAllDelta('@Model.Summary.PublicID');" class="buttonYellow-short">Clear <strong>all</strong> (+ / -)</a>
+            }
+        </div>
+
+        <div id="full-main">
+            <div id="links-navegacion-pasos-container">
+                @Html.ActionLink("<< Market items", "AddMarketItems", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
+                @Html.ActionLink("Summary >>", "Summary", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
+                @{ ViewBag.ListDoesntHaveOwner = Model.IsShoppingListFree;  }
+                @Html.Partial("PVIncludeListInMyLists")
+            </div>
+
+        </div>
+
+    </div>
+</div>
+@section subheader{
+    @Html.Partial("PVListNavMenu", Model.ListNavMenu)
+}
+
+@section ayuda{
+
+
+}
+
+@section izquierda{
+    <div id="list-left-menu">
+        <div class="inside-section" id="import-fits-accordion">
+            @Html.Partial("PVImportAssets")
+        </div>
+    </div>
+}
+
+
+@section scriptsHead{
+
+}
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/eshMyAssets.js"></script>
+
+    <link href="~/content/footable.core.css" rel="stylesheet" type="text/css" />
+    <script src="~/scripts/footable/footable.js" type="text/javascript"></script>
+    <script src="~/scripts/footable/footable.sort.js" type="text/javascript"></script>
+    <script src="~/scripts/footable/footable.paginate.js" type="text/javascript"></script>
+    <script src="~/scripts/bootstrap-tab.js" type="text/javascript"></script>
+}
