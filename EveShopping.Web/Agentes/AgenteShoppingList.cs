@@ -154,10 +154,10 @@ namespace EveShopping.Web.Agentes
         }
 
 
-        public EVListSummary SelectListSummaryPorPublicID(string publicID)
+        public EVListSummary SelectListSummaryPorPublicID(string publicID, bool includeEmpty = true)
         {
             LogicaShoppingLists logica = new LogicaShoppingLists();
-            return logica.SelectListSummaryPorPublicID(publicID, new Imagex32UrlResolver());
+            return logica.SelectListSummaryPorPublicID(publicID, new Imagex32UrlResolver(), includeEmpty);
             //eshShoppingList sl = logica.SelectShoppingListByPublicID(publicID);
 
             //EVListSummary summ = new EVListSummary();

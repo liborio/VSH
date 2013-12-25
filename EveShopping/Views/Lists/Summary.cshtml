@@ -56,10 +56,6 @@
         <p>Adjusting the units that you want may be useful if you already have some of the items in the hangar and dont want to buy all units needed for your fits.</p>
     }
     @Html.Partial("PVSummaryItems", Model.Summary)
-    @if (Model.allowEdit)
-    {
-        <a id="lnkClearAllDelta" onclick="clearAllDelta('@Model.Summary.PublicID');" class="buttonYellow-short">Clear <strong>all</strong> (+ / -)</a>
-    }
 </div>
 
 @if (Model.allowEdit)

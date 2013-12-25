@@ -556,7 +556,7 @@ namespace EveShopping.Logica
             }
         }
 
-        public EVListSummary SelectListSummaryPorPublicID(string publicID, IImageResolver imageResolver)
+        public EVListSummary SelectListSummaryPorPublicID(string publicID, IImageResolver imageResolver, bool includeEmpty = true)
         {
             EveShoppingContext contexto = new EveShoppingContext();
             eshShoppingList shoppingList = contexto.eshShoppingLists.Where(sl => sl.publicID == publicID).FirstOrDefault();
@@ -690,12 +690,17 @@ namespace EveShopping.Logica
 
             foreach (var item in diccHwd.Values)
             {
-                summary.Items.Add(item);
-                summary.TotalPrice += item.TotalPrice;
-                summary.TotalVolume += item.Volume;
+                if (includeEmpty || (item.Units > 0))
+                {
+                    summary.Items.Add(item);
+                    summary.TotalPrice += item.TotalPrice;
+                    summary.TotalVolume += item.Volume;
+                }
             }
 
             contexto.SaveChanges();
+
+            
 
             return summary;
 

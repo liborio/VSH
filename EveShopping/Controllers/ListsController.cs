@@ -154,7 +154,7 @@ namespace EveShopping.Controllers
             //Guardamos la shopping list en las de un usuario si se indica en la url
             agente.SaveListInMyListsIfProceed(this.Request, this.User.Identity, id);
 
-            EVListSummary summ = agente.SelectListSummaryPorPublicID(id);
+            EVListSummary summ = agente.SelectListSummaryPorPublicID(id, false);
 
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             string itemArray = serializer.Serialize(summ.Items);
