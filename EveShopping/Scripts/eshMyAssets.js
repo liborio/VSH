@@ -6,8 +6,10 @@ $(function () {
 });
 
 $(document).ready(function () {
+    $("#idAnalyseBtn").click(function () {
+        analyseAssets($("#rawAssets").val())
+    });
 });
-
 
 function cleanEdits() {
     $('[data-esh-row-edit]').remove();
@@ -45,7 +47,7 @@ function setDeltaInSummary(id) {
 }
 
 function adjustDelta(id) {
-    var units = $('[data-esh-row-edit]').prev().find("[data-esh-cunits]").attr("data-value");
+    var units = $('[data-esh-row-edit]').prev().find("[data-esh-ounits]").attr("data-value");
     units = parseInt(units) * -1;
     $('[data-esh-row-edit]').find('[data-esh-units]').val(units);
     setDeltaInSummary(id);
@@ -76,9 +78,9 @@ function calculateCommonRowDelta(row, newdelta) {
     var units = parseInt($(row).find('[data-esh-cunits]').data('esh-cunits'));
     var newunits = units + newdelta;
     var volume = parseFloat($(row).find('[data-esh-cvolume]').data('esh-cvolume'));
-    var price = parseFloat($(row).find('[data-esh-cprice]').data('esh-cprice'));
+    var price = parseFloat($(row).attr("data-esh-uprice")); //.find('[data-esh-cprice]').data('esh-cprice'));
     //update info in screen
-    $(row).find('[data-esh-cunits]').text("x " + eshFormats.formatNumber(newunits));
+    $(row).find('[data-esh-cunits]').text("x" + eshFormats.formatNumber(newunits));
     $(row).find('[data-esh-cprice]').text(eshFormats.formatPrice(price * newunits));
     $(row).find('[data-esh-cvolume]').text(eshFormats.formatVolume(volume * newunits));
     $(row).find('[data-esh-cdelta]').text(eshFormats.formatDelta(newdelta));
@@ -144,4 +146,70 @@ function onSuccessClearAllDelta(data) {
 
 function onErrorClearAllDelta(data) {
     infoDialog.show("Couldn't clear all the (+ / -)", "There was a problem clearing the (+ / -).", data.statusText, infoDialog.warning);
+}
+
+// Analyse assets ///////////////////////////////////
+
+function onSuccessAnalyseAssets(data) {
+    $('#analyseResult').replaceWith(data);
+    $('#analyse-result-table').footable();
+    $("#rawAssets").val("");
+}
+function analyseAssets(text) {
+    $.ajax({
+        type: 'POST',
+        url: '/lists/AnalyseAssetsForDeltas',
+        success: onSuccessAnalyseAssets,
+        data: {rawAssets: text},
+        dataType: 'html'
+    });
+}
+
+function useAllAssets() {
+    var salida = [];
+    $("#analyse-result-table tbody tr").each(function () { salida.push({ id: $(this).attr("data-esh-id"), units: $(this).attr("data-esh-units") }); });
+    useAssetsForDelta(salida);
+}
+
+function useAsset(_id, _units) {
+    var salida = [];
+    salida.push({ id: _id, units: _units });
+    useAssetsForDelta(salida);
+}
+
+function useAssetsForDelta(deltas) {
+    $.ajax({
+        type: 'POST',
+        url: '/lists/UseAssetsForDeltas',
+        success: onSuccessUseAssetsForDelta,
+        data: { deltas: deltas },
+        dataType: 'html',
+        context: deltas
+    });
+}
+
+function onSuccessUseAssetsForDelta(data) {
+    $(this).each(function () {
+        $("#analyse-result-table").find('[data-esh-id="' + $(this).attr("id") + '"]').remove();
+        updateDeltaInSummaryAfterUsingAnalysed($(this).attr("id"), $(this).attr("units"));
+    });
+    if ($("#analyse-result-table tr[data-esh-id]").length <= 0) {
+        $("#analyse-result-table").remove();
+    }
+
+}
+
+function updateDeltaInSummaryAfterUsingAnalysed(id, addedunits) {
+    var row = $("#summary-table tr[data-esh-id='" + id + "'");
+    var newdelta = parseInt($(row).attr("data-esh-delta")) + parseInt( addedunits);
+
+    var units = parseInt($(row).find('[data-esh-cunits]').data('esh-cunits'));
+
+    if ((newdelta < 0) && (newdelta * -1 > units)) {
+        newdelta = units * -1;
+    }
+
+    calculateCommonRowDelta(row, newdelta);
+    recalculateTotalsInSummaryHeader();
+    cleanEdits();
 }

@@ -213,6 +213,7 @@
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\EDPVImportAssetsForDelta.cs" />
     <Compile Include="Models\EDVAddListsToGroup.cs" />
     <Compile Include="Models\EDVAddMarketItems.cs" />
     <Compile Include="Models\EDVAnalysedFitList.cs" />
@@ -649,6 +650,7 @@
     <Content Include="Views\Lists\PVListNavMenu.cshtml" />
     <Content Include="Views\Lists\PVMyAssetsItems.cshtml" />
     <Content Include="Views\Lists\PVImportAssets.cshtml" />
+    <Content Include="Views\Lists\PVAnalyseAssetsForDeltas.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>

@@ -57,16 +57,32 @@ namespace EveShopping.Web
             return string.Format("{0:dd MMM yyy, HH:mm}", date);
         }
 
+        public static string GetNormalizedUnits(int number)
+        {
+            return string.Format("x{0}", GetNormalizedNumber(number));
+        }
+
+        public static string GetNormalizedUnits(decimal number)
+        {
+            return string.Format("x{0}", GetNormalizedNumber(number));
+        }
+
+        public static string GetNormalizedUnits(double number)
+        {
+            return string.Format("x{0}", GetNormalizedNumber(number));
+        }
+
+
         public static string GetNormalizedPrice(decimal precio)
         {
             if (precio > 1000000)
             {
-                return string.Format("{0:F} M", GetNormalizedNumber(precio / 1000000));
+                return string.Format("{0:F}M", GetNormalizedNumber(precio / 1000000));
             }
 
             if (precio > 1000)
             {
-                return string.Format("{0:F} K", GetNormalizedNumber(precio / 1000));
+                return string.Format("{0:F}K", GetNormalizedNumber(precio / 1000));
             }
                         
             return string.Format("{0:F}", GetNormalizedNumber( precio));

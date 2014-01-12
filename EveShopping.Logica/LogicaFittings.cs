@@ -162,7 +162,7 @@ namespace EveShopping.Logica
                     TotalPrice = qfit.Price,
                 };
 
-                fit.ImageUrl32 = imageResolver.GetImageURL(qfit.ShipID);
+                fit.ImageUrl32 = imageResolver != null ? imageResolver.GetImageURL(qfit.ShipID) : string.Empty; ;
                 fit.ShipVolume = RepositorioItems.GetVolume(qfit.InvType);
                 fit.Volume = fit.ShipVolume * fit.Units;
                 fittings.Add(fit);
@@ -201,7 +201,7 @@ namespace EveShopping.Logica
                 });
             foreach (var item in qfittingHardwares)
             {
-                item.ImageUrl32 = imageResolver.GetImageURL(item.ItemID);
+                item.ImageUrl32 = imageResolver!=null? imageResolver.GetImageURL(item.ItemID):string.Empty;
                 fit.FittingHardwares.Add(item);
                 fit.TotalPrice += item.TotalPrice * fit.Units;
                 fit.Volume += item.Volume * fit.Units;

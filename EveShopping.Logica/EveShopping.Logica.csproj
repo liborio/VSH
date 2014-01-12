@@ -65,6 +65,7 @@
     <Compile Include="Conversion\DNAIntermediateFit.cs" />
     <Compile Include="Conversion\FittingFormatNotRecognisedException.cs" />
     <Compile Include="Conversion\IConversorFit.cs" />
+    <Compile Include="Conversion\ImportItemListFromAssets.cs" />
     <Compile Include="Conversion\SlotDDBBInfo.cs" />
     <Compile Include="EveCentral\EveCentralAgent.cs" />
     <Compile Include="EveCentral\ItemPrices.cs" />

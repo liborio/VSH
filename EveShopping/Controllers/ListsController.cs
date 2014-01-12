@@ -13,6 +13,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using EveShopping.Modelo.JSON;
 
 namespace EveShopping.Controllers
 {
@@ -216,7 +217,7 @@ namespace EveShopping.Controllers
 
 
         }
-        
+
         #endregion
 
         #region Market Items
@@ -363,7 +364,7 @@ namespace EveShopping.Controllers
                 SetupFitListForImportMenu(edvmyfit.Fittings);
             }
 
-            edv.ListNavMenu = new EDPVListNavMenu(Modelo.Enumerados.StepsForPVPList.MyAssets);
+            edv.ListNavMenu = new EDPVListNavMenu(Modelo.Enumerados.StepsForPVPList.AddFits);
 
             return View(edv);
         }
@@ -591,13 +592,13 @@ namespace EveShopping.Controllers
         }
 
 
-        public ActionResult Static(string id )
+        public ActionResult Static(string id)
         {
             SetHeadCounters();
             EDVStatic list = new EDVStatic();
             AgenteShoppingList agente = new AgenteShoppingList();
             list.StaticLists = agente.SelectStaticListByPublicID(id);
-            
+
             return View(list);
         }
 
@@ -665,11 +666,53 @@ namespace EveShopping.Controllers
         }
 
 
+        public PartialViewResult AnalyseAssetsForDeltas(string rawAssets)
+        {
+            string publicID = EstadoUsuario.CurrentListPublicId;
+
+            AgenteShoppingList agente = new AgenteShoppingList();
+            IEnumerable<AssetImported> assets = agente.ImportAssetsForListDelta(publicID, rawAssets);
+
+            EDPVImportAssetsForDelta edv = new EDPVImportAssetsForDelta() { Assets = assets };
+
+            return PartialView("PVAnalyseAssetsForDeltas", edv);
+        }
+
+        public ActionResult UseAssetsForDeltas(IEnumerable<JAssetDeltas> deltas)
+        {
+            string publicID = EstadoUsuario.CurrentListPublicId;
+
+            IEnumerable<string> szdeltas = this.Request.Params.AllKeys.Where(k => k.StartsWith("deltas["));
+
+            List<KeyValuePair<int, int>> assets = new List<KeyValuePair<int, int>>();
+
+            int cont = 0;
+            int id = 0;
+            int units = 0;
+            foreach (var item in szdeltas)
+            {
+                if (cont == 0)
+                {
+                    id = int.Parse(this.Request.Params[item]);
+                    cont++;
+                }
+                else
+                {
+                    units = int.Parse(this.Request.Params[item]);
+                    assets.Add(new KeyValuePair<int, int>(id, units));
+                    cont = 0;
+                }
+            }
+
+            AgenteShoppingList agente = new AgenteShoppingList();
+            agente.UseAssetsForDeltas(publicID, assets);
+            return null;
+
+        }
 
 
 
 
 
-                
     }
 }

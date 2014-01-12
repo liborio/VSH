@@ -292,6 +292,18 @@ namespace EveShopping.Web.Agentes
             return logica.SelectMarketItemsEnShoppingList(publicID, new Imagex32UrlResolver());
         }
 
+        public IList<AssetImported> ImportAssetsForListDelta(string publicId, string assets)
+        {
+            LogicaShoppingLists logica = new LogicaShoppingLists();
+            return logica.ImportAssetsForListDelta(publicId, assets, new Imagex32UrlResolver());
+        }
+
+        public void UseAssetsForDeltas(string publicId, IList<KeyValuePair<int, int>> assets)
+        {
+            LogicaShoppingLists logica = new LogicaShoppingLists();
+            logica.UpdateAllDeltaToSummary(publicId, assets, false);            
+        }
+
         #region eve-central
 
         public void UpdatePrices()

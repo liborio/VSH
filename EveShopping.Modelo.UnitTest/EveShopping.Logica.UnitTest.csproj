@@ -57,6 +57,7 @@
       <DependentUpon>RecursosPrueba.resx</DependentUpon>
     </Compile>
     <Compile Include="UnitTest1.cs" />
+    <Compile Include="ImportAssetsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EveShopping.Logica\EveShopping.Logica.csproj">

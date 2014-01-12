@@ -117,6 +117,48 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="assets1" xml:space="preserve">
+    <value>125mm Railgun II	8	Hybrid Weapon	Small	High	40 m3
+200mm AutoCannon I	4	Projectile Weapon	Small	High	20 m3
+200mm AutoCannon II	1	Projectile Weapon	Small	High	5 m3
+Caldari Navy Antimatter Charge S	171	Hybrid Charge	Small		0,43 m3
+Caldari Navy Plutonium Charge S	2.380	Hybrid Charge	Small		5,95 m3
+Damage Control II	1	Damage Control		Low	5 m3
+F-90 Positional Sensor Subroutines	1	Sensor Booster	Small	Medium	5 m3
+F85 Peripheral Damage System I	1	Damage Control		Low	5 m3
+Faint Warp Disruptor I	1	Warp Scrambler		Medium	5 m3
+Federation Navy Antimatter Charge S	1.216	Hybrid Charge	Small		3,04 m3
+Federation Navy Thorium Charge S	2.132	Hybrid Charge	Small		5,33 m3
+Gyrostabilizer I	2	Gyrostabilizer		Low	10 m3
+Hail S	1.752	Advanced Autocannon Ammo	Small		4,38 m3
+Hobgoblin II	5	Combat Drone			25 m3
+Imperial Navy Multifrequency S		Frequency Crystal	Small		1 m3
+Inferno Rage Rocket	239	Advanced Rocket			1,20 m3
+J5 Prototype Warp Disruptor I	1	Warp Scrambler		Medium	5 m3
+J5b Phased Prototype Warp Scrambler I	1	Warp Scrambler		Medium	5 m3
+Javelin S	43	Advanced Railgun Charge	Small		0,11 m3
+Light Neutron Blaster II	5	Hybrid Weapon	Small	High	25 m3
+Limited 1MN Microwarpdrive I	2	Propulsion Module		Medium	20 m3
+Medium Shield Extender II	2	Shield Extender		Medium	20 m3
+Nanite Repair Paste	110	Nanite Repair Paste			1,10 m3
+Nanofiber Internal Structure II	1	Nanofiber Internal Structure		Low	5 m3
+Null S	922	Advanced Blaster Charge	Small		2,31 m3
+Pseudoelectron Containment Field I	1	Damage Control		Low	5 m3
+Republic Fleet EMP S	2.680	Projectile Ammo	Small		6,70 m3
+Rocket Launcher II	1	Missile Launcher Rocket		High	5 m3
+Scan Resolution Script	1	Sensor Booster Script	Small		1 m3
+Small Focused Modulated Pulse Energy Beam I	1	Energy Weapon	Small	High	5 m3
+Small Unstable Power Fluctuator I	1	Energy Destabilizer		High	5 m3
+Spike S	270	Advanced Railgun Charge	Small		0,68 m3
+Stasis Webifier II	1	Stasis Web		Medium	5 m3
+Tracking Enhancer II	1	Tracking Enhancer		Low	5 m3
+Warp Scrambler I	2	Warp Scrambler		Medium	10 m3
+Warp Scrambler II	1	Warp Scrambler		Medium	5 m3
+Warrior II	3	Combat Drone			15 m3</value>
+  </data>
+  <data name="assetsFewStations1" xml:space="preserve">
+    <value />
+  </data>
   <data name="EFT1" xml:space="preserve">
     <value>[Vexor, Vexor solo PvP]
 Damage Control II

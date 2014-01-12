@@ -1,0 +1,33 @@
+﻿@model EveShopping.Models.EDPVImportAssetsForDelta
+<div id="analyseResult" class="subs-wrapper">
+
+    <table id="analyse-result-table">
+        <thead>
+            <tr>
+                <th data-sort-ignore="true"></th>
+                <th>Name</th>
+                <th class="numericCol">(+/-)</th>
+                <th class="numericCol" data-sort-ignore="true"><a class="yellow-link" data-esh-edit-link onclick="useAllAssets()">Add All</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Assets)
+            {
+                <tr data-esh-id="@item.Id" data-esh-units="@item.Units">
+                    <td>
+                        <img src="@item.ImageUrl32" alt="@item.Name" /></td>
+                    <td>@item.Name</td>
+                    <td class="numericCol">@EveShopping.Web.VSHMappings.GetNormalizedNumber(item.Units)</td>
+                    <td class="numericCol"><a class="yellow-link" data-esh-edit-link onclick="useAsset(@item.Id, @item.Units)">Add</a></td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">
+                    <div class="pagination pagination-centered"></div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

@@ -29,9 +29,9 @@ namespace EveShopping.Logica
 
             count +=
                 (from f in contexto.eshGroupShoppingLists
-                    join u in contexto.UserProfiles on f.userID equals u.UserId
-                    where u.UserName == userName
-                    select f.groupShoppingListID).Count();
+                 join u in contexto.UserProfiles on f.userID equals u.UserId
+                 where u.UserName == userName
+                 select f.groupShoppingListID).Count();
 
 
             return count;
@@ -87,7 +87,7 @@ namespace EveShopping.Logica
             }
         }
 
-        
+
 
         public eshFitting SelectFitPorID(int fittingID)
         {
@@ -414,17 +414,45 @@ namespace EveShopping.Logica
             contexto.SaveChanges();
         }
 
+        public void UpdateAllDeltaToSummary(string publicId, IEnumerable<KeyValuePair<int, int>> deltas, bool isSet = true)
+        {
+            EveShoppingContext contexto = new EveShoppingContext();
+            using (contexto)
+            {
 
+                foreach (var item in deltas)
+                {
+                    eshShoppingList list = contexto.eshShoppingLists.Where(sl => sl.publicID == publicId).FirstOrDefault();
+                    UpdateDeltaToSummary(publicId, item.Key, item.Value, isSet, contexto, list);
+                }
+                contexto.SaveChanges();
+            }
+        }
 
-        public void UpdateDeltaToSummary(string publicID, int itemID, int units)
+        public void UpdateDeltaToSummary(string publicID, int itemID, int units, bool isSet = true)
         {
             EveShoppingContext contexto = new EveShoppingContext();
             eshShoppingList list = contexto.eshShoppingLists.Where(sl => sl.publicID == publicID).FirstOrDefault();
+            UpdateDeltaToSummary(publicID, itemID, units, isSet, contexto, list);
+        }
+
+
+        private void UpdateDeltaToSummary(string publicID, int itemID, int units, bool isSet, EveShoppingContext contexto, eshShoppingList list)
+        {
             ChangesSummaryItem changes = new ChangesSummaryItem();
 
             if (list == null) throw new ApplicationException(Messages.err_shoppingLisNoExiste);
 
             eshShoppingListSummInvType summEntry = contexto.eshShoppingListSummInvTypes.Where(si => si.shoppingListID == list.shoppingListID && si.typeID == itemID).FirstOrDefault();
+
+            //check if we are setting it or adding it to the value of the current delta
+            if (!isSet)
+            {
+                if (summEntry != null)
+                {
+                    units += summEntry.delta;
+                }
+            }
 
             if (units != 0)
             {
@@ -455,7 +483,7 @@ namespace EveShopping.Logica
             EveShoppingContext contexto = new EveShoppingContext();
 
             EVFitting fit =
-(from f in contexto.eshFittings 
+(from f in contexto.eshFittings
  join it in contexto.invTypes on f.shipTypeID equals it.typeID
  join p in contexto.eshPrices on new { tradeHubID = tradeHubID, it.typeID } equals new { tradeHubID = tradeHubID, p.typeID }
  where f.publicID == fittingPublicId
@@ -469,7 +497,7 @@ namespace EveShopping.Logica
      ShipVolume = f.shipVolume,
      Units = 1,
      ShipPrice = p.avg,
-     TotalPrice = p.avg ,
+     TotalPrice = p.avg,
      Volume = f.shipVolume,
      PublicID = f.publicID
  }).FirstOrDefault();
@@ -516,7 +544,7 @@ namespace EveShopping.Logica
 
             //AddFittingHardwareToFittingSummary(imageResolver, contexto, fit);
             LogicaFittings logicafit = new LogicaFittings();
-            logicafit.AddFittingHardwaresToFitting( contexto, imageResolver, shlist.tradeHubID, fit);
+            logicafit.AddFittingHardwaresToFitting(contexto, imageResolver, shlist.tradeHubID, fit);
 
             return fit;
 
@@ -598,7 +626,7 @@ namespace EveShopping.Logica
                         UnitVolume = fit.ShipVolume,
                         TotalPrice = fit.ShipPrice * fit.Units,
                         UnitPrice = fit.ShipPrice,
-                        ImageUrl32 = imageResolver.GetImageURL(fit.ShipID)
+                        ImageUrl32 = imageResolver != null ? imageResolver.GetImageURL(fit.ShipID) : string.Empty
                     };
                     diccHwd.Add(fw.ItemID, fw);
                 }
@@ -700,7 +728,7 @@ namespace EveShopping.Logica
 
             contexto.SaveChanges();
 
-            
+
 
             return summary;
 
@@ -834,7 +862,7 @@ namespace EveShopping.Logica
                         TotalPrice = item.TotalPrice,
                         UnitPrice = item.TotalPrice / item.Units,
                         Volume = RepositorioItems.GetVolume(item.invType) * item.Units,
-                        ImageUrl32 = imageResolver.GetImageURL(item.ItemID)
+                        ImageUrl32 = imageResolver != null ? imageResolver.GetImageURL(item.ItemID) : string.Empty
 
                     };
                 miList.Add(mi);
@@ -872,7 +900,7 @@ namespace EveShopping.Logica
                 TotalPrice = qmi.TotalPrice,
                 UnitPrice = qmi.TotalPrice / qmi.Units,
                 Volume = RepositorioItems.GetVolume(qmi.ItemType) * qmi.Units,
-                ImageUrl32 = imageResolver.GetImageURL(qmi.ItemID)
+                ImageUrl32 = imageResolver != null ? imageResolver.GetImageURL(qmi.ItemID) : string.Empty
             };
 
             return mi;
@@ -924,6 +952,25 @@ namespace EveShopping.Logica
             return salida;
         }
 
+        public IList<AssetImported> ImportAssetsForListDelta(string publicId, string assets, IImageResolver imageResolver)
+        {
+            ImportItemListFromAssets importer = new ImportItemListFromAssets();
+            IDictionary<string, AssetImported> diccassets = importer.ImportFrom(assets);
+            List<AssetImported> salida = new List<AssetImported>();
 
+            EVListSummary summ = this.SelectListSummaryPorPublicID(publicId, imageResolver, true);
+            foreach (var item in summ.Items)
+            {
+                if (diccassets.ContainsKey(item.Name))
+                {
+                    AssetImported ai = diccassets[item.Name];
+                    ai.Id = item.ItemID;
+                    ai.ImageUrl32 = item.ImageUrl32;
+                    ai.Units *= -1;
+                    salida.Add(ai);
+                }
+            }
+            return salida;
+        }
     }
 }

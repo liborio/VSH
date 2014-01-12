@@ -32,19 +32,19 @@ eshFormats = {
     },
     formatPrice: function (price) {
         if (price > 1000000) {
-            return eshFormats.addCommas((price / 1000000).toFixed(2)) + ' M';
+            return eshFormats.addCommas((price / 1000000).toFixed(2)) + 'M';
         }
         if (price > 1000) {
-            return eshFormats.addCommas((price / 1000).toFixed(2)) + ' K';
+            return eshFormats.addCommas((price / 1000).toFixed(2)) + 'K';
         }
         return eshFormats.addCommas( price.toFixed(2));
     },
     formatVolume: function (vol) {
         var ivol = Math.round(vol)
         if (ivol == vol) {
-            return ivol + ' m3';
+            return ivol + 'm3';
         }
-        return eshFormats.addCommas( vol.toFixed(2)) + ' m3';
+        return eshFormats.addCommas( vol.toFixed(2)) + 'm3';
     },
     formatDelta: function (delta) {
         if (delta > 0) {
