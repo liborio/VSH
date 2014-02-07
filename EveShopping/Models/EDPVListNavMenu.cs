@@ -6,14 +6,14 @@ using System.Web;
 
 namespace EveShopping.Models
 {
-    public class EDPVListNavMenu
+    public class EDPVListNavMenu<T>
     {
-        public EDPVListNavMenu(Enumerados.StepsForPVPList _currentStep)
+        public EDPVListNavMenu(T _currentStep)
         {
             CurrentStep = _currentStep;
         }
 
-        public Enumerados.StepsForPVPList CurrentStep
+        public T CurrentStep
         {
             get;
             set;

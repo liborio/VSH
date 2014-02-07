@@ -32,6 +32,13 @@ namespace EveShopping.Modelo
             MyAssets,
             Summary            
         }
+
+        public enum StepsForGroupList
+        {
+            AddLists,            
+            MyAssets,
+            Summary
+        }
     }
 
 }

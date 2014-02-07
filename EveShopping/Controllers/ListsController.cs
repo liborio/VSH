@@ -123,7 +123,7 @@ namespace EveShopping.Controllers
             edv.Summary = summ;
             edv.IsShoppingListFree = agente.IsShoppingListFree(id);
 
-            edv.ListNavMenu = new EDPVListNavMenu(Modelo.Enumerados.StepsForPVPList.MyAssets);
+            edv.ListNavMenu = new EDPVListNavMenu<Enumerados.StepsForPVPList>(Modelo.Enumerados.StepsForPVPList.MyAssets);
 
             return View(edv);
 
@@ -166,7 +166,7 @@ namespace EveShopping.Controllers
             edv.Summary = summ;
             edv.IsShoppingListFree = agente.IsShoppingListFree(id);
 
-            edv.ListNavMenu = new EDPVListNavMenu(Modelo.Enumerados.StepsForPVPList.Summary);
+            edv.ListNavMenu = new EDPVListNavMenu<Enumerados.StepsForPVPList>(Modelo.Enumerados.StepsForPVPList.Summary);
 
 
             return View(edv);
@@ -255,7 +255,7 @@ namespace EveShopping.Controllers
             edv.IsShoppingListFree = agenteShList.IsShoppingListFree(id);
             edv.MarketItemsEnShoppingList = marketItemsEnShoppingList;
 
-            edv.ListNavMenu = new EDPVListNavMenu(Modelo.Enumerados.StepsForPVPList.AddMarketItems);
+            edv.ListNavMenu = new EDPVListNavMenu<Enumerados.StepsForPVPList>(Modelo.Enumerados.StepsForPVPList.AddMarketItems);
 
             return View(edv);
         }
@@ -364,7 +364,7 @@ namespace EveShopping.Controllers
                 SetupFitListForImportMenu(edvmyfit.Fittings);
             }
 
-            edv.ListNavMenu = new EDPVListNavMenu(Modelo.Enumerados.StepsForPVPList.AddFits);
+            edv.ListNavMenu = new EDPVListNavMenu<Enumerados.StepsForPVPList>(Modelo.Enumerados.StepsForPVPList.AddFits);
 
             return View(edv);
         }

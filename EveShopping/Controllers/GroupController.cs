@@ -1,4 +1,5 @@
-﻿using EveShopping.Modelo.EV;
+﻿using EveShopping.Modelo;
+using EveShopping.Modelo.EV;
 using EveShopping.Models;
 using EveShopping.Web;
 using EveShopping.Web.Agentes;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace EveShopping.Controllers
 {
@@ -36,6 +38,10 @@ namespace EveShopping.Controllers
             IEnumerable<EVStaticList> lists =  agente.SelectStaticListsHeadersByGroupId(EstadoUsuario.CurrentListPublicId);
             EDVImportLinks edv = new EDVImportLinks { Lists = lists };
             ViewBag.ShowGroupInfo = true;
+
+            edv.ListNavMenu = new EDPVListNavMenu<Enumerados.StepsForGroupList>(Modelo.Enumerados.StepsForGroupList.AddLists);
+
+
             return View(edv);
         }
 
@@ -55,6 +61,10 @@ namespace EveShopping.Controllers
             edv.allowEdit = agente.IsGroupListOwner(id, this.User.Identity == null ? null : this.User.Identity.Name);
             ViewBag.AllowDelete = false;
             ViewBag.ShowGroupInfo = true;
+
+            edv.ListNavMenu = new EDPVListNavMenu<Enumerados.StepsForGroupList>(Modelo.Enumerados.StepsForGroupList.Summary);
+
+
             return View(edv);
         }
 
@@ -124,6 +134,38 @@ namespace EveShopping.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "The group shopping list doesnt exist or you don't have the right to delete it.");
             }
         }
+
+        #region My assets
+
+        public ActionResult MyAssets(string id = null)
+        {
+            if (id == null)
+            {
+                id = Guid.NewGuid().ToString();
+                return RedirectToAction("New", new { id = id });
+            }
+
+            EstadoUsuario.CurrentListPublicId = id;
+
+            EDVGroupMyAssets edv = new EDVGroupMyAssets();
+            SetHeadCounters();
+
+            ViewBag.PublicID = id;
+            AgenteGroupLists agente = new AgenteGroupLists();
+
+            edv.allowEdit = agente.IsGroupListOwner(id, this.User.Identity == null ? null : this.User.Identity.Name);
+
+            EVListSummary summ = agente.SelectGroupListSummaryPorPublicID(id);
+
+            edv.Summary = summ;
+
+            edv.ListNavMenu = new EDPVListNavMenu<Enumerados.StepsForGroupList>(Modelo.Enumerados.StepsForGroupList.MyAssets);
+
+            return View(edv);
+        }
+
+
+        #endregion
 
 
     }

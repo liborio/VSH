@@ -55,9 +55,14 @@
         @Html.Partial("../Lists/PVStaticShoppingLists", Model.Lists)
     </div>
     <div id="links-navegacion-pasos-container">
-        @Html.ActionLink("<< Edit lists in group", "ImportLinks", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
+        @Html.ActionLink("<< My assets", "MyAssets", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
     </div>
 }
+
+@section subheader{
+    @Html.Partial("PVGroupListNavMenu", Model.ListNavMenu)
+}
+
 
 @section scripts{
     <script type="text/javascript" src="~/Scripts/eshSummary.js"></script>

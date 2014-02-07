@@ -6,7 +6,7 @@ using System.Web;
 
 namespace EveShopping.Models
 {
-    public class EDVImportLinks
+    public class EDVImportLinks : EDVGroupListBase
     {
         public IEnumerable<EVStaticList> Lists { get; set; }
     }

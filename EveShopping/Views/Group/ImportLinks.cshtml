@@ -31,8 +31,12 @@
 </div>
 
 <div id="links-navegacion-pasos-container">
-    @Html.ActionLink("Summary >>", "Summary", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
+    @Html.ActionLink("My assets >>", "MyAssets", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
 </div>
+
+@section subheader{
+    @Html.Partial("PVGroupListNavMenu", Model.ListNavMenu)
+}
 
 @section scripts{
 

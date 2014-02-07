@@ -6,10 +6,8 @@ using System.Web;
 
 namespace EveShopping.Models
 {
-    public class EDVGroupSummary : EDVGroupListBase
+    public class EDVGroupMyAssets : EDVGroupListBase
     {
         public EVListSummary Summary { get; set; }
-        public IEnumerable<EVStaticList> Lists { get; set; }
-
     }
 }
