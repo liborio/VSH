@@ -3,7 +3,7 @@
 <div id="subheader-container" class="wrapper clearfix">
     <ul id="menu-pasos">
         <li class="@(Model.CurrentStep == EveShopping.Modelo.Enumerados.StepsForGroupList.AddLists ? "selected" : string.Empty)">@Html.ActionLink("Lists in group", "ImportLinks", "Group", new { id = this.ViewBag.PublicID }, null)</li>
-        <li class="@(Model.CurrentStep == EveShopping.Modelo.Enumerados.StepsForGroupList.MyAssets ? "selected" : string.Empty)">@Html.ActionLink("My assets", "MyAssets", "Group", new { id = this.ViewBag.PublicID }, null)</li>
+@*        <li class="@(Model.CurrentStep == EveShopping.Modelo.Enumerados.StepsForGroupList.MyAssets ? "selected" : string.Empty)">@Html.ActionLink("My assets", "MyAssets", "Group", new { id = this.ViewBag.PublicID }, null)</li>*@
         <li class="@(Model.CurrentStep == EveShopping.Modelo.Enumerados.StepsForGroupList.Summary ? "selected" : string.Empty)">@Html.ActionLink("Summary", "Summary", "Group", new { id = this.ViewBag.PublicID }, null)</li>
     </ul>
 </div>
