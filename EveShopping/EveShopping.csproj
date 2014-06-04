@@ -488,6 +488,7 @@
     <Content Include="Scripts\eshImportLinks.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="App_Code\TwitterGoodies.cshtml" />
+    <None Include="Properties\PublishProfiles\local pre.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />

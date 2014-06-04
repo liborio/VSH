@@ -54,15 +54,26 @@ namespace EveShopping.Logica
                             foreach (var price in prices)
                             {
                                 eshPrice eprice = contexto.eshPrices.Where(p => p.typeID == price.ItemID && p.solarSystemID == price.HubID).FirstOrDefault();
+
+                                
                                 if (eprice == null)
                                 {
                                     eprice = new eshPrice();
                                     contexto.eshPrices.Add(eprice);
                                     eprice.typeID = price.ItemID;
                                     eprice.solarSystemID = price.HubID;
+                                    //if stats are null for this item means that the price update failed for it
+                                    if (price.Stats == null)
+                                    {
+                                        eprice.avg = 0;
+                                        eprice.updateTime = System.DateTime.Now;
+                                    }
                                 }
-                                eprice.avg = price.Stats.Avg;
-                                eprice.updateTime = System.DateTime.Now;
+                                if (price.Stats != null)
+                                {
+                                    eprice.avg = price.Stats.Avg;
+                                    eprice.updateTime = System.DateTime.Now;
+                                }
                             }
                             ItemIds.Clear();
                             contexto.SaveChanges();

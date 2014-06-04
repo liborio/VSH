@@ -49,8 +49,18 @@
 }
 
 @section ayuda{
-
-
+@if(Model.allowEdit){
+    <div id="help-container" class="notVisible">
+        <h3><span>Adjust the units of your items in shopping list</span><span class="right">(open for help)</span></h3>
+        <div>
+            <p>In this step you will be able to modify the units that you want to get for every item in your shopping list.</p>
+            <p>It is not possible to delete items here, only adjust to 0 units if you want. An item with 0 units in the shopping list will not show in the summary.</p>
+            <p>In the left panel you can import items that you already have in your hangars, so the units that you already have can be removed from the units that you really need to get from your list.</p>
+            <p>To import units from EVE Online client you only have to copy the items that you want from the Assets or Items window.</p>
+            <p>The lines of items selected and copyed have to be shown in Details or List mode. Be aware that by default the item window of you hangar show in Icons mode, you may need to change the display mode.</p>
+        </div>
+    </div>
+}
 }
 
 @section izquierda{

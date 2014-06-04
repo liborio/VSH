@@ -9,6 +9,9 @@ $(document).ready(function () {
     $("#idAnalyseBtn").click(function () {
         analyseAssets($("#rawAssets").val())
     });
+    $('#help-container div').show();
+    $('#help-container').show().accordion({ collapsible: true, active: false, heighStyle: "content", autoHeight: false, clearStyle: true });
+
 });
 
 function cleanEdits() {

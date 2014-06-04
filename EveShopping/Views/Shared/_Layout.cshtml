@@ -83,6 +83,9 @@
             <li>@Html.ActionLink("About", "About", "Home", null, null)</li>
         </ul>
     </div>
+@*    <div class="nav-container">
+        <p style="color: rgb(245, 72, 39); font-size:large">Be aware: We are updating eve-shopping. Estimated time to complete is 16:00 eve time. You can use it, but some inestability may be experieced until this time.</p>
+    </div>*@
 
     <div class="main-container">
         @RenderSection("subheader", required: false)
@@ -102,7 +105,7 @@
 
     <div class="footer-container">
         <footer class="wrapper">
-            <p>EVE-shopping v<span>@EveShopping.Web.Utils.GetVersion()</span>. If you like EVE-shopping and would like to help, you can donate some ISK to <a class="yellow-link" onclick="openEoghanInfo();">Eoghan Gorthaur</a>. If you have any suggestion or found any issue you can add it to our feedback site or mail to <a class="yellow-link" href="mailto:info@eve-shopping.com">info@eve-shopping.com</a>. Thanks !!!</p>
+            <p>EVE-shopping <span><a class="yellow-link" href="../changes/v/1-1-0">Version 1.1.0</a></span>. If you like EVE-shopping and would like to help, you can donate some ISK to <a class="yellow-link" onclick="openEoghanInfo();">Eoghan Gorthaur</a>. If you have any suggestion or found any issue you can add it to our feedback site or mail to <a class="yellow-link" href="mailto:info@eve-shopping.com">info@eve-shopping.com</a>. Thanks !!!</p>
             Material related to EVE-Online is used with limited permission of CCP Games hf. No official affiliation or endorsement by CCP Games hf is stated or implied.
         </footer>
     </div>
