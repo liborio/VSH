@@ -16,6 +16,45 @@ $(document).ready(function () {
     refreshDeleteEvents();    
 });
 
+function exportList() {
+    var row = $("tr[esh-data-pager]");
+    var filaControlesEdicion = "<tr class='fila-impar' data-esh-row-export><td colspan='4' class='col-edit'><span><a onclick=\"exportSummaryAsLinks()\">To EVE Mail friendly list</a></span><span><a onclick=\"exportSummaryAsList()\">To a simple list</a></span><span><a  onclick=\"closeExport()\">Close export</a></span>";
+    $("[data-esh-row-export]").remove();
+    $(filaControlesEdicion).insertAfter(row);
+}
+
+function closeExport() {
+    $("[data-esh-row-export]").remove();
+}
+
+function exportSummaryAsList() {
+    var salida = "";
+    $('tr[data-esh-id]').each(function () {
+        var name = $($(this).children()[1]).html();
+        var units = $($(this).children().filter("[data-esh-cunits]")).html();
+        salida += name + " " + units + "\n";
+    });
+    salida += "\nExported by http://eve-shopping.com\n";
+
+    var text = "<textarea style='width: 98%; height: 290px;'>" + salida + "</textarea>";
+    infoDialog.show("Items list", null, text, infoDialog.info);
+}
+
+
+function exportSummaryAsLinks() {
+    var salida = "";
+    $('tr[data-esh-id]').each( function() {
+        var id = $(this).attr("data-esh-id");
+        var name = $($(this).children()[1]).html();
+        var units = $($(this).children().filter("[data-esh-cunits]")).html();
+        salida += "<url=showinfo:" + id + ">" + name + "</url> " + units + "\n";
+    });
+    salida += "\nExported by http://eve-shopping.com\n";
+
+    var text = "<textarea style='width: 98%; height: 290px;'>" + salida + "</textarea>";
+    infoDialog.show("EVE Mail friendly list", null, text, infoDialog.info);
+}
+
 function onBoughtLnkChange(lnk) {
     
     if (lnk.checked) {

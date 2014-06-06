@@ -41,12 +41,16 @@
     @if (Model.Items.Count() > 15)
     {
         <tfoot>
-            <tr>
+            <tr esh-data-pager>
+                <td>
+                    <a onclick="exportList()">Export</a>
+                </td>
                 <td colspan="@Model.ColCount">
                     <div class="pagination pagination-centered"></div>
                 </td>
             </tr>
         </tfoot>
+        
     }
 </table>
 
