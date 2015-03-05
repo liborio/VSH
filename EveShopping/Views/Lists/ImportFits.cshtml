@@ -31,7 +31,7 @@
         <div id="links-navegacion-pasos-container">
             @{ ViewBag.ListDoesntHaveOwner = Model.IsShoppingListFree;  }
             @Html.Partial("PVIncludeListInMyLists")
-            @Html.ActionLink("Market items >>", "AddMarketItems", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
+            @Html.ActionLink("Items >>", "ImportItems", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
         </div>
 
     </div>

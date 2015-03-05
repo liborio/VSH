@@ -56,6 +56,7 @@
     <Compile Include="Agentes\AgenteMarketItems.cs" />
     <Compile Include="Agentes\AgenteShared.cs" />
     <Compile Include="Agentes\AgenteShoppingList.cs" />
+    <Compile Include="EstadoAplicacion.cs" />
     <Compile Include="EstadoUsuario.cs" />
     <Compile Include="Imagex32UrlResolver.cs" />
     <Compile Include="IsGuidConstrain.cs" />

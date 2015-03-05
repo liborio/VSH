@@ -326,6 +326,28 @@ namespace EveShopping.Controllers
 
         #endregion
 
+        #region Import Items
+
+        public ActionResult ImportItems(string id = null)
+        {
+            if (id == null)
+            {
+                id = Guid.NewGuid().ToString();
+                return RedirectToAction("New", new { id = id });
+            }
+            this.ViewBag.PublicID = id;
+
+            EstadoUsuario.CurrentListPublicId = id;
+
+            EDVImportItems edv = new EDVImportItems();
+            edv.ListNavMenu = new EDPVListNavMenu<Enumerados.StepsForPVPList>(Modelo.Enumerados.StepsForPVPList.ImportItems);
+
+            return View(edv);
+        }
+
+
+        #endregion
+
         #region Fittings
 
         public ActionResult ImportFits(string id = null)

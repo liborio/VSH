@@ -2,8 +2,9 @@
 
 <div id="subheader-container" class="wrapper clearfix">
     <ul id="menu-pasos">
-        <li class="@(Model.CurrentStep == EveShopping.Modelo.Enumerados.StepsForPVPList.AddFits ? "selected" : string.Empty)">@Html.ActionLink("Ship fittings", "ImportFits", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
-        <li class="@(Model.CurrentStep == EveShopping.Modelo.Enumerados.StepsForPVPList.AddMarketItems ? "selected" : string.Empty)">@Html.ActionLink("Market items", "AddMarketItems", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
+        <li class="@(Model.CurrentStep == EveShopping.Modelo.Enumerados.StepsForPVPList.AddFits ? "selected" : string.Empty)">@Html.ActionLink("Fittings", "ImportFits", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
+        <li class="@(Model.CurrentStep == EveShopping.Modelo.Enumerados.StepsForPVPList.ImportItems ? "selected" : string.Empty)">@Html.ActionLink("Items", "ImportItems", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
+        <li class="@(Model.CurrentStep == EveShopping.Modelo.Enumerados.StepsForPVPList.AddMarketItems ? "selected" : string.Empty)">@Html.ActionLink("Market", "AddMarketItems", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
         <li class="@(Model.CurrentStep == EveShopping.Modelo.Enumerados.StepsForPVPList.MyAssets ? "selected" : string.Empty)">@Html.ActionLink("My assets", "MyAssets", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
         <li class="@(Model.CurrentStep == EveShopping.Modelo.Enumerados.StepsForPVPList.Summary ? "selected" : string.Empty)">@Html.ActionLink("Summary", "Summary", "Lists", new { id = this.ViewBag.PublicID }, null)</li>
     </ul>

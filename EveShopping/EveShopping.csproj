@@ -223,6 +223,7 @@
     <Compile Include="Models\EDVGroupMyAssets.cs" />
     <Compile Include="Models\EDVGroupSummary.cs" />
     <Compile Include="Models\EDVImportFits.cs" />
+    <Compile Include="Models\EDVImportItems.cs" />
     <Compile Include="Models\EDVImportLinks.cs" />
     <Compile Include="Models\EDVListsIndustry.cs" />
     <Compile Include="Models\EDVMyFittings.cs" />
@@ -656,6 +657,7 @@
     <Content Include="Views\Lists\PVAnalyseAssetsForDeltas.cshtml" />
     <Content Include="Views\Group\PVGroupListNavMenu.cshtml" />
     <Content Include="Views\Group\MyAssets.cshtml" />
+    <Content Include="Views\Lists\ImportItems.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>

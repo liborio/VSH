@@ -1,0 +1,60 @@
+﻿@model EveShopping.Models.EDVImportItems
+
+@{
+    ViewBag.Title = "Import items to shopping list";
+    ViewBag.FullTitle = "EVE-shopping list import items: " + Model.ShoppingListName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.allowEdit = Model.allowEdit;
+}
+
+@section scripts{
+    <script src="~/Scripts/jquery.blockUI.js"></script>
+
+    <link href="~/content/footable.core.css" rel="stylesheet" type="text/css" />
+    <script src="~/scripts/footable/footable.js" type="text/javascript"></script>
+    <script src="~/scripts/footable/footable.paginate.js" type="text/javascript"></script>
+    <script src="~/scripts/bootstrap-tab.js" type="text/javascript"></script>
+
+
+    @*<script src="~/Scripts/eshAddMarketItems.js" type="text/javascript">
+    </script>*@
+
+}
+
+<div id="list-main">
+    <div class="inside-section">
+        <h3 class="main-title clearfix">
+            <span>Import items to shopping list</span><span class="right">
+            </span>
+        </h3>
+        <div id="fitsInList" class="subs-wrapper" data-esh-fits-in-list>
+        </div>
+        <p style="font-size:large;font-style:italic;font-weight:bold">
+            This functionality is under development
+        </p>
+        <div>
+            Follow us on twitter at <span style="font-style:italic;font-weight:bold">@@EveShopping</span> and stay informed of last updates.
+        </div>
+        <div>
+            <a href="https://twitter.com/eveshopping" class="twitter-follow-button leftMargin left" data-show-count="false" data-show-screen-name="false">Follow @@eveshopping</a>
+        </div>
+    </div>
+    <div id="links-navegacion-pasos-container">
+        @Html.ActionLink("<< Fittings", "ImportFits", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
+        @{ ViewBag.ListDoesntHaveOwner = Model.IsShoppingListFree;  }
+        @Html.Partial("PVIncludeListInMyLists")
+        @Html.ActionLink("Market >>", "AddMarketItems", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
+    </div>
+
+</div>
+
+
+@section subheader{
+    @Html.Partial("PVListNavMenu", Model.ListNavMenu)
+}
+
+@section ayuda{
+        <div class="clearfix">
+            <p>Import batches of items into your shopping list: Contracts, industry materials and assets.</p>
+        </div>
+}

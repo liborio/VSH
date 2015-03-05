@@ -28,6 +28,7 @@ namespace EveShopping.Modelo
         public enum StepsForPVPList
         {
             AddFits,
+            ImportItems,
             AddMarketItems,
             MyAssets,
             Summary            

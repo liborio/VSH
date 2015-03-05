@@ -42,7 +42,7 @@
         </div>
     </div>
     <div id="links-navegacion-pasos-container">
-        @Html.ActionLink("<< Ship fittings", "ImportFits", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
+        @Html.ActionLink("<< Items", "ImportItems", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })
         @{ ViewBag.ListDoesntHaveOwner = Model.IsShoppingListFree;  }
         @Html.Partial("PVIncludeListInMyLists")
         @Html.ActionLink("My assets>>", "MyAssets", new { id = this.ViewBag.PublicID }, new { @class = "buttonYellow" })

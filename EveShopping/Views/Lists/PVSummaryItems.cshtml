@@ -23,34 +23,35 @@
         {
             <tr data-esh-id="@item.ItemID" data-esh-delta="@item.Delta">
                 <td>
-                    <img src="@item.ImageUrl32" alt="@item.Name" /></td>
+                    <img src="@item.ImageUrl32" alt="@item.Name" />
+                </td>
                 <td>@item.Name</td>
                 <td class="numericCol" data-esh-cvolume="@item.UnitVolume" data-value="@item.Volume">@EveShopping.Web.VSHMappings.GetNormalizedNumber(item.Volume) m3</td>
                 <td class="numericCol" data-esh-cprice="@decimal.ToDouble(item.UnitPrice)" data-value="@decimal.ToDouble(item.TotalPrice)">@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.TotalPrice)</td>
                 <td class="numericCol" data-value="@decimal.ToDouble(item.UnitPrice)">@EveShopping.Web.VSHMappings.GetNormalizedPrice(item.UnitPrice)</td>
-                <td class="numericCol" data-esh-cunits="@(item.Units - item.Delta) "  data-value="@item.Units">x @EveShopping.Web.VSHMappings.GetNormalizedNumber(item.Units)</td>
+                <td class="numericCol" data-esh-cunits="@(item.Units - item.Delta) " data-value="@item.Units">x @EveShopping.Web.VSHMappings.GetNormalizedNumber(item.Units)</td>
                 @if (EveShopping.Web.EstadoUsuario.IsIGB())
                 {
                     <td class="numericCol" data-esh-shopping data-value="0">
-                        <input data-esh-boughtchk type="checkbox" value="false" /></td>
+                        <input data-esh-boughtchk type="checkbox" value="false" />
+                    </td>
                 }
                 <td class="numericCol"><a onclick="openMarketDatailsWindow(@item.ItemID)">Market</a></td>
             </tr>
         }
     </tbody>
-    @if (Model.Items.Count() > 15)
-    {
-        <tfoot>
-            <tr esh-data-pager>
-                <td>
-                    <a onclick="exportList()">Export</a>
-                </td>
+    <tfoot>
+        <tr esh-data-pager>
+            <td>
+                <a onclick="exportList()">Export</a>
+            </td>
+            @if (Model.Items.Count() > 15)
+            {
                 <td colspan="@Model.ColCount">
                     <div class="pagination pagination-centered"></div>
                 </td>
-            </tr>
-        </tfoot>
-        
-    }
-</table>
+            }
+        </tr>
+    </tfoot>
 
+</table>

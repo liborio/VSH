@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Twitter.Helper</id>
+    <version>1.0</version>
+    <title>Twitter.Helper</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ASP.NET Web Pages helpers for displaying Twitter widgets like Follow Me and Tweet Buttons.</description>
+    <summary>ASP.NET Web Pages helpers for displaying Twitter widgets like Follow Me and Tweet Buttons.</summary>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>ASPNETWEBPAGES</tags>
+    <references />
+  </metadata>
+</package>

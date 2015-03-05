@@ -1,4 +1,5 @@
 ﻿using EveShopping.Logica;
+using EveShopping.Web;
 using EveShopping.Web.Agentes;
 using System;
 using System.Collections.Generic;
@@ -21,8 +22,13 @@ namespace EveShopping.Controllers
 
         public EmptyResult UpdatePrices()
         {
-            AgenteShoppingList agente = new AgenteShoppingList();
-            agente.UpdatePrices();
+            double horas = (DateTime.Now - EstadoAplicacion.LastPricesUpdateTime).TotalHours;
+            if (horas >= 24)
+            {
+                EstadoAplicacion.LastPricesUpdateTime = DateTime.Now;
+                AgenteShoppingList agente = new AgenteShoppingList();
+                agente.UpdatePrices();
+            }
             return new EmptyResult();
         }
 
